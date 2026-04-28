@@ -1,10 +1,18 @@
-import { PrismaClient } from '@prisma/client';
+import 'server-only';
+import { PrismaClient, Prisma } from '@prisma/client';
 
-const prismaClientSingleton = () => {
-  return new PrismaClient({
-    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
-  });
-};
+// Logging policy:
+//   production:  errors only
+//   development: errors + warnings (and queries if DEBUG_PRISMA=true)
+const logLevels: Prisma.LogLevel[] =
+  process.env.NODE_ENV === 'production'
+    ? ['error']
+    : process.env.DEBUG_PRISMA === 'true'
+      ? ['query', 'error', 'warn']
+      : ['error', 'warn'];
+
+const prismaClientSingleton = () =>
+  new PrismaClient({ log: logLevels });
 
 declare global {
   var prismaGlobal: undefined | ReturnType<typeof prismaClientSingleton>;
@@ -12,9 +20,8 @@ declare global {
 
 const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
 
+if (process.env.NODE_ENV !== 'production') {
+  globalThis.prismaGlobal = prisma;
+}
+
 export default prisma;
-
-
-
-
-if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma;

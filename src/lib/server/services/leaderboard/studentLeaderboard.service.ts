@@ -68,19 +68,9 @@ export async function getStudentLeaderboard(
     // 1. Try cache first
     const cached = await safeGet(cacheKey);
     if (cached) {
-      console.log('=== REDIS CACHE HIT ===');
-      console.log(`[CACHE HIT] student_leaderboard for student ${studentId}`);
-      console.log(`Cache Key: ${cacheKey}`);
-      console.log(`Data Source: Redis Cache`);
-      console.log('========================');
       return JSON.parse(cached);
     }
     
-    console.log('=== DATABASE FETCH ===');
-    console.log(`[CACHE MISS] student_leaderboard for student ${studentId}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`Data Source: Database Query`);
-    console.log('===================');
     
     // Look up city ID from city name when a specific city is selected
     let effectiveCityId: number | undefined = undefined;
@@ -261,12 +251,6 @@ export async function getStudentLeaderboard(
     const serializedResult = JSON.stringify(result);
     await setWithTTL(cacheKey, serializedResult, CACHE_TTL.studentLeaderboard);
     
-    console.log('=== CACHE STORAGE ===');
-    console.log(`[CACHE STORE] student_leaderboard for student ${studentId}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`TTL: ${CACHE_TTL.studentLeaderboard} seconds (${CACHE_TTL.studentLeaderboard/60} minutes)`);
-    console.log(`Data Source: Database Query -> Cached in Redis`);
-    console.log('====================');
 
     return result;
   } catch (error) {

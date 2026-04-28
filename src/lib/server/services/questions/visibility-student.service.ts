@@ -33,21 +33,11 @@ export const getAllQuestionsWithFiltersService = async ({
   // 1. Try cache first
   const cached = await safeGet(cacheKey);
   if (cached) {
-    console.log('=== REDIS CACHE HIT ===');
-    console.log(`[CACHE HIT] assigned_questions for student ${studentId}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`Data Source: Redis Cache`);
-    console.log('========================');
     return JSON.parse(cached);
   }
   
   const apiStartTime = Date.now();
   
-  console.log('=== DATABASE FETCH ===');
-  console.log(`[CACHE MISS] assigned_questions for student ${studentId}`);
-  console.log(`Cache Key: ${cacheKey}`);
-  console.log(`Data Source: Database Query`);
-  console.log('===================');
   
   // Build base where clause for question visibility (questions assigned to this batch)
   const baseWhereClause: any = {
@@ -329,12 +319,6 @@ export const getAllQuestionsWithFiltersService = async ({
   const serializedResult = JSON.stringify(result);
   await setWithTTL(cacheKey, serializedResult, CACHE_TTL.studentAssignedQuestions);
   
-  console.log('=== CACHE STORAGE ===');
-  console.log(`[CACHE STORE] assigned_questions for student ${studentId}`);
-  console.log(`Cache Key: ${cacheKey}`);
-  console.log(`TTL: ${CACHE_TTL.studentAssignedQuestions} seconds (${CACHE_TTL.studentAssignedQuestions/60} minutes)`);
-  console.log(`Data Source: Database Query -> Cached in Redis`);
-  console.log('====================');
 
   return result;
 };

@@ -32,19 +32,9 @@ export const getRecentQuestionsService = async ({
   // 1. Try cache first
   const cached = await safeGet(cacheKey);
   if (cached) {
-    console.log('=== REDIS CACHE HIT ===');
-    console.log(`[CACHE HIT] recent_questions for batch ${batchId}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`Data Source: Redis Cache`);
-    console.log('========================');
     return JSON.parse(cached);
   }
   
-  console.log('=== DATABASE FETCH ===');
-  console.log(`[CACHE MISS] recent_questions for batch ${batchId}`);
-  console.log(`Cache Key: ${cacheKey}`);
-  console.log(`Data Source: Database Query`);
-  console.log('===================');
 
   // Calculate date range for the specific date
   let startDate: Date;
@@ -143,12 +133,6 @@ export const getRecentQuestionsService = async ({
   const serializedResult = JSON.stringify(result);
   await setWithTTL(cacheKey, serializedResult, CACHE_TTL.studentRecentQuestions);
   
-  console.log('=== CACHE STORAGE ===');
-  console.log(`[CACHE STORE] recent_questions for batch ${batchId}`);
-  console.log(`Cache Key: ${cacheKey}`);
-  console.log(`TTL: ${CACHE_TTL.studentRecentQuestions} seconds (${CACHE_TTL.studentRecentQuestions/60} minutes)`);
-  console.log(`Data Source: Database Query -> Cached in Redis`);
-  console.log('====================');
 
   return result;
 };

@@ -26,19 +26,9 @@ export const getStudentProfileService = async (studentId: number) => {
   // 1. Try cache first
   const cached = await safeGet(cacheKey);
   if (cached) {
-    console.log('=== REDIS CACHE HIT ===');
-    console.log(`[CACHE HIT] student_profile for student ${studentId}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`Data Source: Redis Cache`);
-    console.log('========================');
     return JSON.parse(cached);
   }
   
-  console.log('=== DATABASE FETCH ===');
-  console.log(`[CACHE MISS] student_profile for student ${studentId}`);
-  console.log(`Cache Key: ${cacheKey}`);
-  console.log(`Data Source: Database Query`);
-  console.log('===================');
 
   try {
     // 1 Get student basic info + leaderboard (single query with all relations)
@@ -196,12 +186,6 @@ export const getStudentProfileService = async (studentId: number) => {
     const serializedResult = JSON.stringify(result);
     await setWithTTL(cacheKey, serializedResult, CACHE_TTL.studentProfile);
     
-    console.log('=== CACHE STORAGE ===');
-    console.log(`[CACHE STORE] student_profile for student ${studentId}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`TTL: ${CACHE_TTL.studentProfile} seconds (${CACHE_TTL.studentProfile/60} minutes)`);
-    console.log(`Data Source: Database Query -> Cached in Redis`);
-    console.log('====================');
 
     return result;
 

@@ -29,19 +29,9 @@ export const getTopicsWithBatchProgressService = async ({
   // 1. Try cache first
   const cached = await safeGet(cacheKey);
   if (cached) {
-    console.log('=== REDIS CACHE HIT ===');
-    console.log(`[CACHE HIT] student_topics for student ${studentId}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`Data Source: Redis Cache`);
-    console.log('========================');
     return JSON.parse(cached);
   }
   
-  console.log('=== DATABASE FETCH ===');
-  console.log(`[CACHE MISS] student_topics for student ${studentId}`);
-  console.log(`Cache Key: ${cacheKey}`);
-  console.log(`Data Source: Database Query`);
-  console.log('===================');
 
   // Build ORDER BY clause safely
   let orderByClause = 'ORDER BY last_class_created_at DESC NULLS LAST';
@@ -182,12 +172,6 @@ export const getTopicsWithBatchProgressService = async ({
     const serializedResult = JSON.stringify(result);
     await setWithTTL(cacheKey, serializedResult, CACHE_TTL.studentTopics);
     
-    console.log('=== CACHE STORAGE ===');
-    console.log(`[CACHE STORE] student_topics for student ${studentId}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`TTL: ${CACHE_TTL.studentTopics} seconds (${CACHE_TTL.studentTopics/60} minutes)`);
-    console.log(`Data Source: Database Query -> Cached in Redis`);
-    console.log('====================');
 
     return result;
   } catch (error: unknown) {
@@ -217,19 +201,9 @@ export const getTopicOverviewWithClassesSummaryService = async ({
   // 1. Try cache first
   const cached = await safeGet(cacheKey);
   if (cached) {
-    console.log('=== REDIS CACHE HIT ===');
-    console.log(`[CACHE HIT] topic_overview for topic ${topicSlug}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`Data Source: Redis Cache`);
-    console.log('========================');
     return JSON.parse(cached);
   }
   
-  console.log('=== DATABASE FETCH ===');
-  console.log(`[CACHE MISS] topic_overview for topic ${topicSlug}`);
-  console.log(`Cache Key: ${cacheKey}`);
-  console.log(`Data Source: Database Query`);
-  console.log('===================');
 
   // Get topic basic info first
   const topic = await prisma.topic.findFirst({
@@ -327,12 +301,6 @@ export const getTopicOverviewWithClassesSummaryService = async ({
   const serializedResult = JSON.stringify(result);
   await setWithTTL(cacheKey, serializedResult, CACHE_TTL.studentTopicOverview);
   
-  console.log('=== CACHE STORAGE ===');
-  console.log(`[CACHE STORE] topic_overview for topic ${topicSlug}`);
-  console.log(`Cache Key: ${cacheKey}`);
-  console.log(`TTL: ${CACHE_TTL.studentTopicOverview} seconds (${CACHE_TTL.studentTopicOverview/60} minutes)`);
-  console.log(`Data Source: Database Query -> Cached in Redis`);
-  console.log('====================');
 
   return result;
 };

@@ -34,19 +34,9 @@ export const getBookmarksService = async (
   }
 
   if (cached) {
-    console.log('=== REDIS CACHE HIT ===');
-    console.log(`[CACHE HIT] bookmarks for student ${studentId}`);
-    console.log(`Cache Key: ${cacheKey}`);
-    console.log(`Data Source: Redis Cache`);
-    console.log('========================');
     return JSON.parse(cached);
   }
 
-  console.log('=== DATABASE FETCH ===');
-  console.log(`[CACHE MISS] bookmarks for student ${studentId}`);
-  console.log(`Cache Key: ${cacheKey}`);
-  console.log(`Data Source: Database Query`);
-  console.log('===================');
 
   try {
     const skip = (Number(page) - 1) * Number(limit);
@@ -180,12 +170,6 @@ export const getBookmarksService = async (
     try {
       await setWithTTL(cacheKey, serializedResult, CACHE_TTL.studentBookmarks);
 
-      console.log('=== CACHE STORAGE ===');
-      console.log(`[CACHE STORE] bookmarks for student ${studentId}`);
-      console.log(`Cache Key: ${cacheKey}`);
-      console.log(`TTL: ${CACHE_TTL.studentBookmarks} seconds (${CACHE_TTL.studentBookmarks/60} minutes)`);
-      console.log(`Data Source: Database Query -> Cached in Redis`);
-      console.log('====================');
     } catch (redisError) {
       console.warn('[REDIS WARNING] Failed to cache result in Redis:', redisError);
     }
