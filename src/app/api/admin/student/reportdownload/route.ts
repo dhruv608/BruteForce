@@ -1,7 +1,8 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin } from '@/lib/server/auth-helper';
 import { generateBatchReportCSV } from '@/lib/server/services/admin/csv.service';
+import { apiOk } from '@/lib/server/api-response';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
 
@@ -17,7 +18,7 @@ export async function POST(req: NextRequest) {
 
     const { csvContent, filename } = await generateBatchReportCSV(batch_id);
 
-    return NextResponse.json({ success: true, filename, csvContent });
+    return apiOk({ filename, csvContent });
   } catch (err) {
     return handleError(err);
   }

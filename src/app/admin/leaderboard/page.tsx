@@ -118,7 +118,7 @@ export default function AdminLeaderboardPage() {
       };
 
       const response = await getAdminLeaderboard(query, body);
-      setLeaderboardData(response.data);
+      setLeaderboardData(response);
     } catch (err: unknown) {
       // Error is handled by API client interceptor
       console.error('Failed to refresh leaderboard data:', err);
@@ -178,17 +178,17 @@ export default function AdminLeaderboardPage() {
 
         const response = await getAdminLeaderboard(query, body);
 
-        // Extract cities and years from the single API response
-        if (response?.data) {
-          setAllCities(response.data.available_cities || []);
+        // Extract cities and years from the API response
+        if (response) {
+          setAllCities(response.available_cities || []);
 
           // Extract years from "All Cities" entry
-          const allCitiesEntry = response.data.available_cities?.find((city: { city_name: string; available_years: number[] }) => city.city_name === "All Cities");
+          const allCitiesEntry = response.available_cities?.find((city: { city_name: string; available_years: number[] }) => city.city_name === "All Cities");
           setAllYears(allCitiesEntry?.available_years || []);
 
           // Build cityYearMap for compatibility with existing logic
           const map: Record<string, Set<number>> = {};
-          response.data.available_cities?.forEach((city: { city_name: string; available_years: number[] }) => {
+          response.available_cities?.forEach((city: { city_name: string; available_years: number[] }) => {
             if (city.city_name !== "All Cities") {
               map[city.city_name.toLowerCase()] = new Set(city.available_years);
             }
@@ -196,7 +196,7 @@ export default function AdminLeaderboardPage() {
           setCityYearMap(map);
         }
 
-        setLeaderboardData(response.data);
+        setLeaderboardData(response);
       } catch (err: unknown) {
         // Error is handled by API client interceptor
         console.error('Failed to fetch leaderboard data:', err);

@@ -27,7 +27,7 @@ export default function LeaderboardClient() {
     queryKey: ['currentStudent'],
     queryFn: async () => {
       const response = await studentAuthService.getCurrentStudent();
-      return response.data;
+      return response;
     },
     staleTime: 10 * 60 * 1000, // 10 minutes
     retry: false
@@ -67,14 +67,14 @@ export default function LeaderboardClient() {
   });
 
   // Compute year options similar to admin leaderboard
-  const yearOptions = leaderboardData?.data?.available_cities ? (() => {
+  const yearOptions = leaderboardData?.available_cities ? (() => {
     if (lCity === 'all' || lCity === 'All Cities') {
       // Extract years from "All Cities" entry
-      const allCitiesEntry = leaderboardData.data.available_cities.find((city: LeaderboardCity) => city.city_name === "All Cities");
+      const allCitiesEntry = leaderboardData.available_cities.find((city: LeaderboardCity) => city.city_name === "All Cities");
       return allCitiesEntry?.available_years || [];
     } else {
       // Find specific city and return its years
-      const cityData = leaderboardData.data.available_cities.find((city: LeaderboardCity) => city.city_name === lCity);
+      const cityData = leaderboardData.available_cities.find((city: LeaderboardCity) => city.city_name === lCity);
       return cityData?.available_years || [];
     }
   })() : [];
@@ -97,7 +97,7 @@ export default function LeaderboardClient() {
     }
   }, [lCity, yearOptions, lYear]);
 
-  const data = leaderboardData?.data;
+  const data = leaderboardData;
   const combinedLoading = isLoading || isInitialLoading;
   const handleRefresh = useCallback(() => {
     refetch();

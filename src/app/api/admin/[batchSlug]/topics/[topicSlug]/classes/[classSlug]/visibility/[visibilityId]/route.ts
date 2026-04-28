@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin } from '@/lib/server/auth-helper';
 import { resolveBatch } from '@/lib/server/batch-helper';
 import { updateQuestionVisibilityTypeService } from '@/lib/server/services/questions/visibility.service';
@@ -33,7 +34,7 @@ export async function PATCH(
       type,
     });
 
-    return NextResponse.json({ message: 'Question visibility type updated successfully', data: updated });
+    return apiOk({ data: updated }, 'Question visibility type updated successfully');
   } catch (err) {
     return handleError(err);
   }

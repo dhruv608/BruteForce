@@ -20,19 +20,19 @@ export const getCurrentSuperAdmin = async () => {
 
 export const getStats = async () => {
   const response = await apiClient.get('/api/superadmin/stats');
-  return response.data.data;
+  return response.data;
 };
 
 export const createAdmin = async (data: AdminCreateData) => {
   const response = await apiClient.post('/api/superadmin/admins', data);
   showSuccess('Admin Created');
-  return response.data.data;
+  return response.data;
 };
 
 export const updateAdmin = async (id: number, data: AdminUpdateData) => {
   const response = await apiClient.patch(`/api/superadmin/admins/${id}`, data);
   showSuccess('Admin updated successfully');
-  return response.data.data;
+  return response.data;
 };
 
 export const deleteAdmin = async (id: number) => {
@@ -53,5 +53,5 @@ export const getAllAdmins = async (role?: string): Promise<Admin[]> => {
 
   const params = role ? { role } : {};
   const response = await apiClient.get('/api/superadmin/admins', { params });
-  return response.data.data; // Backend wraps in { success, data }
+  return response.data; // Backend wraps in { success, data }
 };

@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk, apiMessage } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
 import { updateQuestionService, deleteQuestionService } from '@/lib/server/services/questions/question-core.service';
 import { handleError } from '@/lib/server/error-response';
@@ -16,7 +17,7 @@ export async function PATCH(
     const { id } = await params;
     const body = await req.json();
     const updated = await updateQuestionService({ id: Number(id), ...body });
-    return NextResponse.json({ message: 'Question updated successfully', question: updated });
+    return apiOk({ question: updated }, 'Question updated successfully');
   } catch (err) {
     return handleError(err);
   }
@@ -33,7 +34,7 @@ export async function DELETE(
     const { id } = await params;
     if (isNaN(Number(id))) throw new ApiError(400, 'Invalid question ID');
     await deleteQuestionService({ id: Number(id) });
-    return NextResponse.json({ message: 'Question deleted successfully' });
+    return apiMessage('Question deleted successfully');
   } catch (err) {
     return handleError(err);
   }

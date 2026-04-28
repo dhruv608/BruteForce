@@ -1,5 +1,6 @@
 import 'server-only';
 import { NextRequest, NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
 import { googleAuth } from '@/lib/server/services/auth/auth-login.service';
 import { setRefreshTokenCookie } from '@/lib/server/route-handler';
 import { handleError } from '@/lib/server/error-response';
@@ -20,11 +21,7 @@ export async function POST(req: NextRequest) {
 
     const { user, accessToken, refreshToken } = await googleAuth(idToken);
 
-    const response = NextResponse.json({
-      message: 'Google login successful',
-      accessToken,
-      user,
-    });
+    const response = apiOk({ user, accessToken }, 'Google login successful');
 
     setRefreshTokenCookie(response, refreshToken);
     return response;

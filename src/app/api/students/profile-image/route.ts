@@ -1,9 +1,10 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertStudent } from '@/lib/server/auth-helper';
 import { parseFormDataFile } from '@/lib/server/file-helper';
 import { ProfileImageService } from '@/lib/server/services/students/profileImage.service';
 import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
+import { apiCreated, apiMessage } from '@/lib/server/api-response';
 import { handleError } from '@/lib/server/error-response';
 
 export async function POST(req: NextRequest) {
@@ -19,14 +20,7 @@ export async function POST(req: NextRequest) {
     const result = await ProfileImageService.uploadProfileImage(user.id, file as any);
     await CacheInvalidation.invalidateStudentProfile(user.id);
 
-    return NextResponse.json(
-      {
-        success: true,
-        message: 'Profile image uploaded successfully',
-        data: { profileImageUrl: result.url },
-      },
-      { status: 201 }
-    );
+    return apiCreated({ profileImageUrl: result.url }, 'Profile image uploaded successfully');
   } catch (err) {
     return handleError(err);
   }
@@ -40,7 +34,7 @@ export async function DELETE(req: NextRequest) {
     await ProfileImageService.deleteProfileImage(user.id);
     await CacheInvalidation.invalidateStudentProfile(user.id);
 
-    return NextResponse.json({ success: true, message: 'Profile image deleted successfully' });
+    return apiMessage('Profile image deleted successfully');
   } catch (err) {
     return handleError(err);
   }

@@ -1,5 +1,5 @@
 import 'server-only';
-import { NextResponse } from 'next/server';
+import { apiOk, apiCreated } from '@/lib/server/api-response';
 import { withHandler } from '@/lib/server/route-handler';
 import { createStudentSchema, studentQuerySchema } from '@/lib/server/schemas/student.schema';
 import { getAllStudentsService } from '@/lib/server/services/students/student-query.service';
@@ -8,7 +8,7 @@ import { createStudentService } from '@/lib/server/services/students/student.ser
 export const GET = withHandler(
   async ({ query }) => {
     const result = await getAllStudentsService(Object.fromEntries(query.entries()));
-    return NextResponse.json(result);
+    return apiOk(result);
   },
   { requireAuth: true, requireRole: 'admin', rateLimit: 'api' }
 );
@@ -16,7 +16,7 @@ export const GET = withHandler(
 export const POST = withHandler(
   async ({ body }) => {
     const student = await createStudentService(body as any);
-    return NextResponse.json({ message: 'Student created successfully', data: student }, { status: 201 });
+    return apiCreated(student, 'Student created successfully');
   },
   { requireAuth: true, requireRole: 'teacherOrAbove', rateLimit: 'api', bodySchema: createStudentSchema }
 );

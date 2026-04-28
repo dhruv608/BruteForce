@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertStudent } from '@/lib/server/auth-helper';
 import { getTopicOverviewWithClassesSummaryService } from '@/lib/server/services/topics/topic-progress.service';
 import { handleError } from '@/lib/server/error-response';
@@ -27,7 +28,7 @@ export async function GET(
       query,
     });
 
-    return NextResponse.json(result);
+    return apiOk(result);
   } catch (err) {
     return handleError(err);
   }

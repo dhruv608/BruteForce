@@ -1,5 +1,5 @@
 import 'server-only';
-import { NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
 import { withHandler } from '@/lib/server/route-handler';
 import { getPaginatedTopicsService } from '@/lib/server/services/topics/topic-query.service';
 
@@ -10,7 +10,7 @@ export const GET = withHandler(
     const search = query.get('search') ?? '';
 
     const result = await getPaginatedTopicsService({ page, limit, search });
-    return NextResponse.json(result);
+    return apiOk(result);
   },
   { rateLimit: 'api' }
 );

@@ -121,7 +121,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       try {
         // Get current admin user from API
         const userData = await getCurrentAdmin();
-        setUser(userData.data); // Service returns unwrapped data directly
+        setUser(userData);
 
         // Get cities and batches
         const cityList = await getAllCities();

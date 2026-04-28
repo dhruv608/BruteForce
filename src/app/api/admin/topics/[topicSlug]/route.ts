@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk, apiMessage } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
 import { updateTopicService, deleteTopicService } from '@/lib/server/services/topics/topic.service';
 import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
@@ -47,7 +48,7 @@ export async function PUT(
       CacheInvalidation.invalidateTopicOverviews(),
     ]);
 
-    return NextResponse.json({ message: 'Topic updated successfully', topic: updated });
+    return apiOk({ topic: updated }, 'Topic updated successfully');
   } catch (err) {
     return handleError(err);
   }
@@ -78,7 +79,7 @@ export async function DELETE(
       CacheInvalidation.invalidateTopicOverviews(),
     ]);
 
-    return NextResponse.json({ message: 'Topic deleted successfully' });
+    return apiMessage('Topic deleted successfully');
   } catch (err) {
     return handleError(err);
   }

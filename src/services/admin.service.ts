@@ -12,7 +12,7 @@ import { LeaderboardQueryFilters } from '@/types/admin/leaderboard.types';
 
 export const getAdminRoles = async (): Promise<string[]> => {
   const response = await apiClient.get('/api/admin/roles');
-  return response.data.data;
+  return response.data;
 };
 export const getCurrentAdmin = async () => {
   // Check if we have an admin token before making the request
@@ -29,7 +29,7 @@ export const getCurrentAdmin = async () => {
 };
 export const getAdminStats = async (batch_id: number) => {
   const response = await apiClient.post('/api/admin/stats', { batch_id });
-  return response.data.data;
+  return response.data;
 };
 
 export const getAdminBatchTopics = async (batchSlug: string, params?: TopicQueryParams) => {

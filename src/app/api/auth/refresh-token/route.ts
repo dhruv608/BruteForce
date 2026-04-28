@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
 import { getRefreshTokenFromRequest } from '@/lib/server/auth-helper';
 import { refreshAccessToken } from '@/lib/server/services/auth/auth-login.service';
 import { setRefreshTokenCookie } from '@/lib/server/route-handler';
@@ -16,7 +17,7 @@ export async function POST(req: NextRequest) {
 
     const { accessToken, newRefreshToken } = await refreshAccessToken(refreshToken);
 
-    const response = NextResponse.json({ accessToken });
+    const response = apiOk({ accessToken });
     setRefreshTokenCookie(response, newRefreshToken);
     return response;
   } catch (err) {

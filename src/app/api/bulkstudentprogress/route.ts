@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { parseFormDataFileAny } from '@/lib/server/file-helper';
 import prisma from '@/lib/server/config/prisma';
 import { handleError } from '@/lib/server/error-response';
@@ -105,7 +106,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json(results);
+    return apiOk(results);
   } catch (err) {
     return handleError(err);
   }

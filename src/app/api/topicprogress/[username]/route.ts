@@ -1,6 +1,7 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { getTopicProgressByUsernameService } from '@/lib/server/services/topics/topic-progress.service';
+import { apiOk } from '@/lib/server/api-response';
 import { handleError } from '@/lib/server/error-response';
 
 export async function GET(
@@ -20,11 +21,7 @@ export async function GET(
       sortedTopics.sort((a: any, b: any) => b.progressPercentage - a.progressPercentage);
     }
 
-    return NextResponse.json({
-      success: true,
-      student: result.student,
-      topics: sortedTopics,
-    });
+    return apiOk({ student: result.student, topics: sortedTopics });
   } catch (err) {
     return handleError(err);
   }

@@ -1,6 +1,7 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
+import { apiOk } from '@/lib/server/api-response';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
 import prisma from '@/lib/server/config/prisma';
@@ -52,7 +53,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    return NextResponse.json({ success: true, created: created.length, errors });
+    return apiOk({ created: created.length, errors });
   } catch (err) {
     return handleError(err);
   }

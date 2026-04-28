@@ -1,4 +1,5 @@
 import 'server-only';
+import { apiOk } from '@/lib/server/api-response';
 import { NextResponse } from 'next/server';
 import { withHandler } from '@/lib/server/route-handler';
 import { updateProfileSchema } from '@/lib/server/schemas/student.schema';
@@ -18,7 +19,7 @@ export const PUT = withHandler(
   async ({ user, body }) => {
     const data = body as any;
     const updated = await updateStudentProfileData(user!.id, data);
-    return NextResponse.json({ message: 'Profile updated successfully', student: updated });
+    return apiOk({ student: updated }, 'Profile updated successfully');
   },
   { requireAuth: true, requireRole: 'student', rateLimit: 'api', bodySchema: updateProfileSchema }
 );

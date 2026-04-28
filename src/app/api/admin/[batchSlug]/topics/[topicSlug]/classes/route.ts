@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk, apiCreated } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
 import { resolveBatch } from '@/lib/server/batch-helper';
 import { getClassesByTopicService } from '@/lib/server/services/topics/class-query.service';
@@ -28,7 +29,7 @@ export async function GET(
       search: sp.get('search') ?? '',
     });
 
-    return NextResponse.json(data);
+    return apiOk(data);
   } catch (err) {
     return handleError(err);
   }
@@ -86,7 +87,7 @@ export async function POST(
 
     await CacheInvalidation.invalidateBatch(batch.id);
 
-    return NextResponse.json({ message: 'Class created successfully', class: cls }, { status: 201 });
+    return apiCreated({ class: cls }, 'Class created successfully');
   } catch (err) {
     return handleError(err);
   }

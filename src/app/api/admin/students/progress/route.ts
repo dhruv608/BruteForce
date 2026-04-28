@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { apiCreated } from '@/lib/server/api-response';
 import { getAuthUser, assertAdmin } from '@/lib/server/auth-helper';
 import { addStudentProgressService } from '@/lib/server/services/students/student-progress.service';
 import { handleError } from '@/lib/server/error-response';
@@ -18,7 +19,7 @@ export async function POST(req: NextRequest) {
     }
 
     const progress = await addStudentProgressService(Number(student_id), Number(question_id));
-    return NextResponse.json({ message: 'Student progress added successfully', data: progress }, { status: 201 });
+    return apiCreated(progress, 'Student progress added successfully');
   } catch (err) {
     return handleError(err);
   }

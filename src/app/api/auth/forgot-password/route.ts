@@ -1,5 +1,5 @@
 import 'server-only';
-import { NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
 import { withHandler } from '@/lib/server/route-handler';
 import { forgotPasswordSchema } from '@/lib/server/schemas/auth.schema';
 import { sendPasswordResetOTP } from '@/lib/server/services/auth/auth-password.service';
@@ -9,7 +9,7 @@ export const POST = withHandler(
     const { email } = body as { email: string };
     const result = await sendPasswordResetOTP(email);
 
-    return NextResponse.json(result);
+    return apiOk(result);
   },
   { bodySchema: forgotPasswordSchema }
 );

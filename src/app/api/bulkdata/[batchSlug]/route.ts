@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { parseFormDataFileAny } from '@/lib/server/file-helper';
 import { createClassInTopicService } from '@/lib/server/services/topics/class.service';
 import { assignQuestionsToClassService } from '@/lib/server/services/questions/visibility.service';
@@ -123,7 +124,7 @@ export async function POST(
       }
     }
 
-    return NextResponse.json(results);
+    return apiOk(results);
   } catch (err) {
     return handleError(err);
   }

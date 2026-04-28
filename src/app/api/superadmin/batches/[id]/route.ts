@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk, apiMessage } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertSuperAdmin } from '@/lib/server/auth-helper';
 import { updateBatchService, deleteBatchService } from '@/lib/server/services/batches/batch-crud.service';
 import { handleError } from '@/lib/server/error-response';
@@ -17,7 +18,7 @@ export async function PATCH(
     if (isNaN(batchId)) throw new ApiError(400, 'Invalid batch ID');
     const body = await req.json();
     const updated = await updateBatchService({ id: batchId, ...body });
-    return NextResponse.json({ message: 'Batch updated successfully', batch: updated });
+    return apiOk({ batch: updated }, 'Batch updated successfully');
   } catch (err) {
     return handleError(err);
   }
@@ -34,7 +35,7 @@ export async function DELETE(
     const batchId = Number(id);
     if (isNaN(batchId)) throw new ApiError(400, 'Invalid batch ID');
     await deleteBatchService({ id: batchId });
-    return NextResponse.json({ message: 'Batch deleted successfully' });
+    return apiMessage('Batch deleted successfully');
   } catch (err) {
     return handleError(err);
   }

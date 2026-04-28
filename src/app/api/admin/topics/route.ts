@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk, apiCreated } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
 import { getAllTopicsService } from '@/lib/server/services/topics/topic-query.service';
 import { createTopicService } from '@/lib/server/services/topics/topic.service';
@@ -13,7 +14,7 @@ export async function GET(req: NextRequest) {
     const user = getAuthUser(req);
     assertAdmin(user);
     const topics = await getAllTopicsService();
-    return NextResponse.json(topics);
+    return apiOk(topics);
   } catch (err) {
     return handleError(err);
   }
@@ -60,7 +61,7 @@ export async function POST(req: NextRequest) {
       CacheInvalidation.invalidateTopicOverviews(),
     ]);
 
-    return NextResponse.json({ message: 'Topic created successfully', topic }, { status: 201 });
+    return apiCreated({ topic }, 'Topic created successfully');
   } catch (err) {
     return handleError(err);
   }

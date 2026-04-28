@@ -149,9 +149,9 @@ export default function StudentHeader() {
   };
 
   const isProfileLoaded = !!profile;
-  const username = profile?.data?.username;
-  const leetcode = profile?.data?.leetcode;
-  const gfg = profile?.data?.gfg;
+  const username = profile?.username;
+  const leetcode = profile?.leetcode;
+  const gfg = profile?.gfg;
 
 
   return (
@@ -229,7 +229,7 @@ export default function StudentHeader() {
           <div className="flex items-center gap-3">
 
             {/* Desktop Recent Questions Button - Hidden on Mobile */}
-            {profile?.data && !profileLoading && (
+            {profile && !profileLoading && (
               <button
                 onClick={() => toggleSidebar()}
                 className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-2xl border border-border/40 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent/40 transition-all duration-200"
@@ -266,7 +266,7 @@ export default function StudentHeader() {
               }
 
               // If authenticated and profile is loaded, show user dropdown
-              if (isAuthenticated && profile?.data && !profileLoading) {
+              if (isAuthenticated && profile && !profileLoading) {
                 return (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -274,14 +274,14 @@ export default function StudentHeader() {
                         className=" relative w-10 h-10 rounded-full border-2 border-border/50 hover:border-accent-primary/50 focus:outline-none transition-all duration-200 hover:scale-105  overflow-hidden"
                         style={{ borderRadius: 'var(--radius-full)', borderColor: 'var(--border)' }}
                       >
-                        {profile.data.profileImageUrl ? (
-                          <img src={profile.data.profileImageUrl} alt="Profile" className="w-full h-full object-cover" />
+                        {profile.profileImageUrl ? (
+                          <img src={profile.profileImageUrl} alt="Profile" className="w-full h-full object-cover" />
                         ) : (
                           <div
                             className="w-full h-full bg-linear-to-br from-accent-primary to-accent-primary text-primary-foreground flex items-center justify-center text-sm font-bold"
                             style={{ borderRadius: 'var(--radius-full)' }}
                           >
-                            <ProfileAvatar username={profile.data.name} size={40}/>
+                            <ProfileAvatar username={profile.name} size={40}/>
                           </div>
                         )}
                       </button>
@@ -296,11 +296,11 @@ export default function StudentHeader() {
                         <div className="flex flex-col">
 
                           <p className="text-sm font-semibold text-foreground truncate leading-none m-0 p-1">
-                            {profile.data.name}
+                            {profile.name}
                           </p>
 
                           <p className="text-[10px] text-muted-foreground font-mono truncate leading-none m-0 p-1 -mt-0.5">
-                            @{profile.data.username}
+                            @{profile.username}
                           </p>
 
                         </div>
@@ -311,7 +311,7 @@ export default function StudentHeader() {
                       {/* PROFILE BUTTON */}
                       <DropdownMenuItem asChild className="cursor-pointer rounded-2xl text-sm p-3">
                         <Link
-                          href={profile.data.username ? `/profile/${profile.data.username}` : '/profile'}
+                          href={profile.username ? `/profile/${profile.username}` : '/profile'}
                           className="flex items-center gap-2"
                         >
                           <User className="w-4 h-4" />
@@ -353,7 +353,7 @@ export default function StudentHeader() {
               }
 
               // For authenticated users where profile failed to load, show login button
-              if (isAuthenticated && !profileLoading && !profile?.data) {
+              if (isAuthenticated && !profileLoading && !profile) {
                 return (
                   <div className="flex items-center gap-3">
                     <Button
@@ -411,7 +411,7 @@ export default function StudentHeader() {
         })}
 
         {/* Mobile Recent Questions Button */}
-        {profile?.data && !profileLoading && (
+        {profile && !profileLoading && (
           <button
             onClick={() => {
               toggleSidebar();

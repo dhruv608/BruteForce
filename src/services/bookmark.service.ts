@@ -17,21 +17,21 @@ export const bookmarkService = {
     if (params.filter) queryParams.append('filter', params.filter);
 
     const res = await apiClient.get(`/api/students/bookmarks?${queryParams.toString()}`);
-    return res.data.data;
+    return res.data;
   },
 
   // Add new bookmark
   addBookmark: async (data: BookmarkRequest): Promise<{ id: number; question_id: number; description: string | null; created_at: string }> => {
     const res = await apiClient.post('/api/students/bookmarks', data);
     showSuccess('Bookmark added successfully!');
-    return res.data.data;
+    return res.data;
   },
 
   // Update bookmark description
   updateBookmark: async (questionId: number, description: string): Promise<{ id: number; question_id: number; description: string; created_at: string; updated_at: string }> => {
     const res = await apiClient.put(`/api/students/bookmarks/${questionId}`, { description });
     showSuccess('Bookmark updated successfully!');
-    return res.data.data;
+    return res.data;
   },
 
   // Delete bookmark

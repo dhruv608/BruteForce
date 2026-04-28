@@ -1,8 +1,9 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
 import { resolveBatch } from '@/lib/server/batch-helper';
-import { getAssignedQuestionsService } from '@/lib/server/services/questions/question-query.service';
+import { getAssignedQuestionsOfClassService } from '@/lib/server/services/questions/visibility-query.service';
 import { assignQuestionsToClassService } from '@/lib/server/services/questions/visibility.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
@@ -18,7 +19,7 @@ export async function GET(
     const batch = await resolveBatch(batchSlug);
     const sp = new URL(req.url).searchParams;
 
-    const result = await getAssignedQuestionsService({
+    const result = await getAssignedQuestionsOfClassService({
       batchId: batch.id,
       topicSlug,
       classSlug,
@@ -27,7 +28,7 @@ export async function GET(
       search: sp.get('search') ?? '',
     });
 
-    return NextResponse.json({ message: 'Assigned questions retrieved successfully', ...result });
+    return apiOk(result, 'Assigned questions retrieved successfully');
   } catch (err) {
     return handleError(err);
   }
@@ -56,7 +57,7 @@ export async function POST(
       questions: body.questions,
     });
 
-    return NextResponse.json({ message: 'Questions assigned successfully', ...result });
+    return apiOk(result, 'Questions assigned successfully');
   } catch (err) {
     return handleError(err);
   }

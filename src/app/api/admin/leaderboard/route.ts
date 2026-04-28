@@ -1,7 +1,8 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin } from '@/lib/server/auth-helper';
 import { getAdminLeaderboard } from '@/lib/server/services/leaderboard/adminLeaderboard.service';
+import { apiOk } from '@/lib/server/api-response';
 import { handleError } from '@/lib/server/error-response';
 import { applyRateLimit } from '@/lib/server/rate-limiter';
 
@@ -44,16 +45,13 @@ export async function POST(req: NextRequest) {
       city_rank: entry.city_rank,
     }));
 
-    return NextResponse.json({
-      success: true,
-      data: {
-        leaderboard: formattedLeaderboard,
-        total: result.pagination.total,
-        page: result.pagination.page,
-        limit: result.pagination.limit,
-        available_cities: result.available_cities,
-        last_calculated: result.last_calculated,
-      },
+    return apiOk({
+      leaderboard: formattedLeaderboard,
+      total: result.pagination.total,
+      page: result.pagination.page,
+      limit: result.pagination.limit,
+      available_cities: result.available_cities,
+      last_calculated: result.last_calculated,
     });
   } catch (err) {
     return handleError(err);

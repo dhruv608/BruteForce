@@ -74,9 +74,27 @@ const processQueue = (error: any, token: string | null = null) => {
   failedQueue = [];
 };
 
-// Response Interceptor - Smart error handling with token refresh
+// Response Interceptor — auto-unwraps `{success, data, message?}` envelope.
+// Backend ALWAYS responds with this shape via apiOk()/apiCreated()/apiMessage().
+// After this interceptor:
+//   - response.data === the unwrapped `data` field
+//   - response.successMessage === the optional `message` field (for toasts)
 apiClient.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    const body = response.data;
+    if (
+      body &&
+      typeof body === 'object' &&
+      body.success === true &&
+      'data' in body
+    ) {
+      if (typeof body.message === 'string') {
+        (response as any).successMessage = body.message;
+      }
+      response.data = body.data;
+    }
+    return response;
+  },
   async (error: AxiosError) => {
     const originalRequest = error.config as CustomAxiosRequestConfig;
 

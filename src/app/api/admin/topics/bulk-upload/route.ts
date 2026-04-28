@@ -1,5 +1,6 @@
 import 'server-only';
 import { NextRequest, NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
 import { parseFormDataFileAny } from '@/lib/server/file-helper';
 import { handleError } from '@/lib/server/error-response';
@@ -47,7 +48,7 @@ export async function POST(req: NextRequest) {
       ]);
     }
 
-    return NextResponse.json({ created: created.length, errors });
+    return apiOk({ created: created.length, errors });
   } catch (err) {
     return handleError(err);
   }

@@ -1,5 +1,5 @@
 import 'server-only';
-import { NextResponse } from 'next/server';
+import { apiCreated } from '@/lib/server/api-response';
 import { withHandler } from '@/lib/server/route-handler';
 import { registerStudentSchema } from '@/lib/server/schemas/auth.schema';
 import prisma from '@/lib/server/config/prisma';
@@ -60,10 +60,7 @@ export const POST = withHandler(
         select: { id: true, name: true, email: true, username: true },
       });
 
-      return NextResponse.json(
-        { message: 'Student registered successfully', user: student },
-        { status: 201 }
-      );
+      return apiCreated({ user: student }, 'Student registered successfully');
     } catch (err) {
       if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002') {
         const field = (err.meta?.target as string[]) ?? [];

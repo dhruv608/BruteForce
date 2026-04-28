@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk, apiMessage } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
 import { updateStudentDetailsService, deleteStudentDetailsService } from '@/lib/server/services/students/student.service';
 import { handleError } from '@/lib/server/error-response';
@@ -18,7 +19,7 @@ export async function PATCH(
     if (isNaN(studentId)) throw new ApiError(400, 'Invalid student ID');
     const body = await req.json();
     const updated = await updateStudentDetailsService(studentId, body);
-    return NextResponse.json({ message: 'Student updated successfully', data: updated });
+    return apiOk({ data: updated }, 'Student updated successfully');
   } catch (err) {
     return handleError(err);
   }
@@ -36,7 +37,7 @@ export async function DELETE(
     const studentId = Number(id);
     if (isNaN(studentId)) throw new ApiError(400, 'Invalid student ID');
     await deleteStudentDetailsService(studentId);
-    return NextResponse.json({ message: 'Student deleted permanently' });
+    return apiMessage('Student deleted permanently');
   } catch (err) {
     return handleError(err);
   }

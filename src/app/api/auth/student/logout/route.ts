@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { apiMessage } from '@/lib/server/api-response';
 import { getOptionalAuthUser } from '@/lib/server/auth-helper';
 import { logoutStudent } from '@/lib/server/services/auth/auth-logout.service';
 import { clearRefreshTokenCookie } from '@/lib/server/route-handler';
@@ -12,7 +13,7 @@ export async function POST(req: NextRequest) {
       await logoutStudent(user.id);
     }
 
-    const response = NextResponse.json({ message: 'Student logout successful' });
+    const response = apiMessage('Student logout successful');
     clearRefreshTokenCookie(response);
     return response;
   } catch (err) {

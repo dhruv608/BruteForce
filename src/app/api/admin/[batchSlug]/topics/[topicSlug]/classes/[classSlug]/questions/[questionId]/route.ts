@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiMessage } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
 import { resolveBatch } from '@/lib/server/batch-helper';
 import { removeQuestionFromClassService } from '@/lib/server/services/questions/visibility.service';
@@ -26,7 +27,7 @@ export async function DELETE(
       questionId: questionIdNum,
     });
 
-    return NextResponse.json({ message: 'Question removed successfully' });
+    return apiMessage('Question removed successfully');
   } catch (err) {
     return handleError(err);
   }

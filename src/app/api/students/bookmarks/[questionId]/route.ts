@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk, apiMessage } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertStudent } from '@/lib/server/auth-helper';
 import { updateBookmarkService, deleteBookmarkService } from '@/lib/server/services/bookmarks/bookmark-crud.service';
 import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
@@ -28,7 +29,7 @@ export async function PUT(
       CacheInvalidation.invalidateClassProgressForStudent(user.id),
     ]);
 
-    return NextResponse.json({ success: true, data: updated });
+    return apiOk(updated);
   } catch (err) {
     return handleError(err);
   }
@@ -53,7 +54,7 @@ export async function DELETE(
       CacheInvalidation.invalidateClassProgressForStudent(user.id),
     ]);
 
-    return NextResponse.json({ success: true, message: 'Bookmark deleted successfully' });
+    return apiMessage('Bookmark deleted successfully');
   } catch (err) {
     return handleError(err);
   }

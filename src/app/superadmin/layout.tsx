@@ -42,7 +42,7 @@ export default function SuperAdminLayout({ children }: { children: React.ReactNo
 
       try {
         const userData = await getCurrentSuperAdmin();
-        setUser(userData.data); // Service returns unwrapped data directly
+        setUser(userData);
       } catch (err) {
         // Error is handled by API client interceptor
         console.error('Failed to load superadmin user:', err);

@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { checkUsernameAvailabilityService } from '@/lib/server/services/students/username.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
@@ -15,7 +16,7 @@ export async function GET(req: NextRequest) {
     }
 
     const result = await checkUsernameAvailabilityService({ username, userId });
-    return NextResponse.json(result);
+    return apiOk(result);
   } catch (err) {
     return handleError(err);
   }

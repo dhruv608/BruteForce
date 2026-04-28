@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
 import { getAuthUser, assertAdmin } from '@/lib/server/auth-helper';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
@@ -21,11 +22,7 @@ export async function POST(
     const studentId = Number(id);
     const result = await syncOneStudent(studentId);
 
-    return NextResponse.json({
-      success: true,
-      message: 'Student progress synchronized successfully',
-      data: result,
-    });
+    return apiOk(result, 'Student progress synchronized successfully');
   } catch (err) {
     return handleError(err);
   }

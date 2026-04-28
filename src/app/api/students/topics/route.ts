@@ -1,5 +1,5 @@
 import 'server-only';
-import { NextResponse } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
 import { withHandler } from '@/lib/server/route-handler';
 import { getTopicsWithBatchProgressService } from '@/lib/server/services/topics/topic-progress.service';
 import { ApiError } from '@/lib/server/utils/ApiError';
@@ -16,7 +16,7 @@ export const GET = withHandler(
       query: Object.fromEntries(query.entries()),
     });
 
-    return NextResponse.json(result);
+    return apiOk(result);
   },
   { requireAuth: true, requireRole: 'student', rateLimit: 'api' }
 );

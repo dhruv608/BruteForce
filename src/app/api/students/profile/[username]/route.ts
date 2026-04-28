@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
+import { apiOk } from '@/lib/server/api-response';
 import { getOptionalAuthUser } from '@/lib/server/auth-helper';
 import { getPublicStudentProfileService } from '@/lib/server/services/students/profile-public.service';
 import { handleError } from '@/lib/server/error-response';
@@ -15,7 +16,7 @@ export async function GET(
 
     const canEdit = currentUser && profile.student.id === currentUser.id;
 
-    return NextResponse.json({ ...profile, canEdit });
+    return apiOk({ ...profile, canEdit });
   } catch (err) {
     return handleError(err);
   }

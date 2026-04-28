@@ -1,5 +1,5 @@
 import 'server-only';
-import { NextResponse } from 'next/server';
+import { apiOk, apiCreated } from '@/lib/server/api-response';
 import { withHandler } from '@/lib/server/route-handler';
 import { bookmarkQuerySchema, createBookmarkSchema } from '@/lib/server/schemas/bookmark.schema';
 import { getBookmarksService } from '@/lib/server/services/bookmarks/bookmark-query.service';
@@ -14,7 +14,7 @@ export const GET = withHandler(
     const filter = (query.get('filter') ?? 'all') as 'all' | 'solved' | 'unsolved';
 
     const result = await getBookmarksService(user!.id, { page, limit, sort, filter });
-    return NextResponse.json({ success: true, data: result });
+    return apiOk(result);
   },
   { requireAuth: true, requireRole: 'student', rateLimit: 'api' }
 );
@@ -30,7 +30,7 @@ export const POST = withHandler(
       CacheInvalidation.invalidateClassProgressForStudent(user!.id),
     ]);
 
-    return NextResponse.json({ success: true, data: bookmark }, { status: 201 });
+    return apiCreated(bookmark, 'Bookmark added successfully');
   },
   { requireAuth: true, requireRole: 'student', rateLimit: 'api', bodySchema: createBookmarkSchema }
 );

@@ -5,20 +5,17 @@ import { studentAuthService } from '@/services/student/auth.service';
 import { isStudentToken } from '@/lib/auth-utils';
 import { ApiError } from '@/types/common/api.types';
 
+// Flat shape — axios interceptor unwraps the {success, data} envelope.
 interface ProfileData {
-  data: {
-    id: string;
-    name: string;
-    username: string;
-    email: string;
-    profileImageUrl?: string;
-    leetcode?: string;
-    leetcode_id?: string;
-    gfg?: string;
-    gfg_id?: string;
-  };
-  success?: boolean;
-  message?: string;
+  id: string;
+  name: string;
+  username: string;
+  email: string;
+  profileImageUrl?: string;
+  leetcode?: string;
+  leetcode_id?: string;
+  gfg?: string;
+  gfg_id?: string;
 }
 
 interface ProfileContextType {

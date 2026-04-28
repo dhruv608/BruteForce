@@ -49,12 +49,33 @@ export default function PracticePage() {
   // Check if any filters are active (excluding page and limit)
   const hasActiveFilters = !!(filters.search || filters.topic || filters.level || filters.platform || filters.type || filters.solved);
 
+  // Refs to dedupe calls (prevents Strict Mode double-fire + same-param refetches)
+  const isFetching = useRef(false);
+  const lastFetchKey = useRef<string>('');
+
   // Sync state to URL and fetch
   const fetchQuestions = useCallback(async () => {
+    const currentFilters = filtersRef.current;
+    const fetchKey = JSON.stringify({
+      search: debouncedSearch,
+      page: debouncedPage,
+      limit: debouncedLimit,
+      topic: currentFilters.topic,
+      level: currentFilters.level,
+      platform: currentFilters.platform,
+      type: currentFilters.type,
+      solved: currentFilters.solved,
+    });
+
+    // Skip if same params already in flight or just completed
+    if (isFetching.current || lastFetchKey.current === fetchKey) return;
+    isFetching.current = true;
+    lastFetchKey.current = fetchKey;
+
     setLoading(true);
     try {
       const debouncedFilters = {
-        ...filtersRef.current,
+        ...currentFilters,
         search: debouncedSearch,
         page: debouncedPage,
         limit: debouncedLimit
@@ -88,10 +109,15 @@ export default function PracticePage() {
     } catch (e) {
       // Error is handled by API client interceptor
       console.error("Failed to fetch practice questions", e);
+      // Allow retry on error
+      lastFetchKey.current = '';
     } finally {
       setLoading(false);
+      isFetching.current = false;
     }
-  }, [filters.topic, filters.level, filters.platform, filters.type, filters.solved, debouncedSearch, debouncedPage, debouncedLimit, router]);
+  // router is stable from useRouter() — excluded from deps to avoid callback recreation
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters.topic, filters.level, filters.platform, filters.type, filters.solved, debouncedSearch, debouncedPage, debouncedLimit]);
 
   useEffect(() => {
     fetchQuestions();

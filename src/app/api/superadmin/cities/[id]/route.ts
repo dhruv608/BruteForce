@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk, apiMessage } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertSuperAdmin } from '@/lib/server/auth-helper';
 import { updateCityService, deleteCityService } from '@/lib/server/services/cities/city.service';
 import { handleError } from '@/lib/server/error-response';
@@ -17,7 +18,7 @@ export async function PATCH(
     if (isNaN(cityId)) throw new ApiError(400, 'Invalid city ID');
     const body = await req.json();
     const updated = await updateCityService({ id: cityId, city_name: body.city_name });
-    return NextResponse.json({ message: 'City updated successfully', city: updated });
+    return apiOk({ city: updated }, 'City updated successfully');
   } catch (err) {
     return handleError(err);
   }
@@ -34,7 +35,7 @@ export async function DELETE(
     const cityId = Number(id);
     if (isNaN(cityId)) throw new ApiError(400, 'Invalid city ID');
     await deleteCityService({ id: cityId });
-    return NextResponse.json({ message: 'City deleted successfully' });
+    return apiMessage('City deleted successfully');
   } catch (err) {
     return handleError(err);
   }

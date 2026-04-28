@@ -1,5 +1,6 @@
 import 'server-only';
-import { NextRequest, NextResponse } from 'next/server';
+import { apiOk, apiMessage } from '@/lib/server/api-response';
+import { NextRequest } from 'next/server';
 import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/auth-helper';
 import { resolveBatch } from '@/lib/server/batch-helper';
 import { getClassDetailsWithFullQuestionsService } from '@/lib/server/services/topics/class-student.service';
@@ -25,7 +26,7 @@ export async function GET(
       classSlug,
       query,
     });
-    return NextResponse.json(data);
+    return apiOk(data);
   } catch (err) {
     return handleError(err);
   }
@@ -83,7 +84,7 @@ export async function PATCH(
       class_date,
     });
 
-    return NextResponse.json({ message: 'Class updated successfully', class: updated });
+    return apiOk({ class: updated }, 'Class updated successfully');
   } catch (err) {
     return handleError(err);
   }
@@ -100,7 +101,7 @@ export async function DELETE(
     const { batchSlug, topicSlug, classSlug } = await params;
     const batch = await resolveBatch(batchSlug);
     await deleteClassService({ batchId: batch.id, topicSlug, classSlug });
-    return NextResponse.json({ message: 'Class deleted successfully' });
+    return apiMessage('Class deleted successfully');
   } catch (err) {
     return handleError(err);
   }
