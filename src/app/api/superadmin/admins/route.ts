@@ -7,8 +7,12 @@ import { createAdminService } from '@/lib/server/services/admin/admin-crud.servi
 
 export const GET = withHandler(
   async ({ query }) => {
-    const admins = await getAllAdminsService(Object.fromEntries(query.entries()));
-    return NextResponse.json(admins);
+    const filters = Object.fromEntries(query.entries());
+    // Default to TEACHER role if no role filter provided (matches Express getAllAdminsController)
+    if (!filters.role) filters.role = 'TEACHER';
+
+    const admins = await getAllAdminsService(filters);
+    return NextResponse.json({ success: true, data: admins });
   },
   { requireAuth: true, requireRole: 'superadmin', rateLimit: 'api' }
 );
