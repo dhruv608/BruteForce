@@ -1,0 +1,61 @@
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { showError, showSuccess } from '@/ui/toast';
+import { useLocalStorage } from '../../../../app/(auth)/shared/hooks/useLocalStorage';
+import { OnboardingData } from '@/types/student/index.types';
+
+export function useOnboarding() {
+  const router = useRouter();
+  const [onboardingUser] = useLocalStorage<OnboardingData | null>('onboardingUser', null);
+  
+  const [step, setStep] = useState(1);
+  const [data, setData] = useState<OnboardingData>({ username: '', leetcode_id: '', gfg_id: '', linkedin: '', github: '', originalUsername: '' });
+  const [confirmChecked, setConfirmChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!onboardingUser) {
+      router.push('/login');
+    } else {
+      setData(prev => ({
+        ...prev,
+        username: onboardingUser.username || '',
+        originalUsername: onboardingUser.username || '',
+        leetcode_id: onboardingUser.leetcode_id || '',
+        gfg_id: onboardingUser.gfg_id || ''
+      }));
+    }
+  }, [onboardingUser, router]);
+
+  const submitOnboarding = async () => {
+    if (!confirmChecked) { showError("Please confirm that your usernames are correct."); return; }
+    setLoading(true);
+    try {
+      // Only send profile data, no city_id/batch_id needed for /me endpoint
+      const payload = {
+        leetcode_id: data.leetcode_id,
+        gfg_id: data.gfg_id,
+        linkedin: data.linkedin,
+        github: data.github,
+        username: data.username
+      };
+      const res = await fetch(`/api/students/me`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('accessToken')}` },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error("Failed to save profile.");
+      showSuccess("Profile completed successfully. Welcome!");
+      // Clear localStorage 
+      localStorage.removeItem('onboardingUser');
+      router.push('/');
+    } catch (err) {
+      // Error is handled by API client interceptor
+      showError("Profile verification failed.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { step, setStep, data, setData, confirmChecked, setConfirmChecked, loading, submitOnboarding };
+}

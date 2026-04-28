@@ -1,0 +1,263 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model City {
+  id         Int       @id @default(autoincrement())
+  city_name  String    @unique @db.VarChar(100)
+  created_at DateTime  @default(now())
+  admins     Admin[]
+  batches    Batch[]
+  students   Student[]
+
+  @@index([city_name, id], map: "idx_city_name_lookup")
+}
+
+model Batch {
+  id              Int       @id @default(autoincrement())
+  batch_name      String    @db.VarChar(50)
+  year            Int
+  city_id         Int
+  created_at      DateTime  @default(now())
+  slug            String    @unique @db.VarChar(100)
+  easy_assigned   Int       @default(0)
+  hard_assigned   Int       @default(0)
+  medium_assigned Int       @default(0)
+  admins          Admin[]
+  city            City      @relation(fields: [city_id], references: [id], onDelete: Cascade)
+  classes         Class[]
+  students        Student[]
+
+  @@unique([city_id, year, batch_name])
+  @@index([city_id])
+  @@index([year, city_id, id], map: "idx_batch_year_city")
+}
+
+
+model Student {
+  id                Int               @id @default(autoincrement())
+  name              String            @db.VarChar(100)
+  email             String            @unique @db.VarChar(150)
+  username          String            @unique @db.VarChar(100)
+  password_hash     String?
+  google_id         String?           @unique @db.VarChar(100)
+  enrollment_id     String?           @unique @db.VarChar(100)
+  city_id           Int?
+  batch_id          Int?
+  leetcode_id       String?           @db.VarChar(100)
+  gfg_id            String?           @db.VarChar(100)
+  created_at        DateTime          @default(now())
+  updated_at        DateTime          @updatedAt
+  provider          String            @default("google")
+  refresh_token     String?
+  gfg_total_solved  Int               @default(0)
+  last_synced_at    DateTime?
+  lc_total_solved   Int               @default(0)
+  github            String?           @db.VarChar(100)
+  linkedin          String?           @db.VarChar(150)
+  profile_image_url String?           @db.VarChar(500)
+  leaderboards      Leaderboard?
+  batch             Batch?            @relation(fields: [batch_id], references: [id])
+  city              City?             @relation(fields: [city_id], references: [id])
+  progress          StudentProgress[]
+  bookmarks         Bookmark[]
+
+  @@index([city_id])
+  @@index([batch_id])
+  @@index([batch_id, city_id])
+  @@index([batch_id, city_id, id], map: "idx_student_batch_city_composite")
+  @@index([id], map: "idx_student_me_optimized", type: BTree)
+}
+
+model Admin {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(100)
+  email         String    @unique @db.VarChar(150)
+  password_hash String
+  role          AdminRole @default(TEACHER)
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+  refresh_token String?
+  batch_id      Int?
+  city_id       Int?
+  batch         Batch?    @relation(fields: [batch_id], references: [id])
+  city          City?     @relation(fields: [city_id], references: [id])
+
+  @@index([city_id])
+  @@index([batch_id])
+}
+
+model Topic {
+  id          Int        @id @default(autoincrement())
+  topic_name  String     @unique @db.VarChar(150)
+  created_at  DateTime   @default(now())
+  slug        String     @unique @db.VarChar(80)
+  description String?
+  photo_url   String?    @db.VarChar(500)
+  order       Int        @default(0)
+  updated_at  DateTime   @updatedAt
+  classes     Class[]
+  questions   Question[]
+
+  @@index([topic_name])
+  @@index([slug])
+  @@index([created_at])
+  @@index([order, created_at], map: "idx_topic_order_created")
+}
+
+model Question {
+  id            Int                  @id @default(autoincrement())
+  question_name String               @db.VarChar(255)
+  question_link String               @unique
+  platform      Platform             @default(LEETCODE)
+  level         Level                @default(MEDIUM)
+  topic_id      Int
+  created_at    DateTime             @default(now())
+  topic         Topic                @relation(fields: [topic_id], references: [id], onDelete: Cascade)
+  visibility    QuestionVisibility[]
+  progress      StudentProgress[]
+  bookmarks     Bookmark[]
+
+  @@index([topic_id])
+  @@index([platform])
+  @@index([level])
+  @@index([topic_id, level, platform], map: "idx_question_topic_level")
+}
+
+model Class {
+  id                 Int                  @id @default(autoincrement())
+  topic_id           Int
+  batch_id           Int
+  pdf_url            String?
+  description        String?
+  duration_minutes   Int?
+  class_date         DateTime?
+  created_at         DateTime             @default(now())
+  class_name         String               @db.VarChar(50)
+  slug               String               @db.VarChar(150)
+  batch              Batch                @relation(fields: [batch_id], references: [id], onDelete: Cascade)
+  topic              Topic                @relation(fields: [topic_id], references: [id], onDelete: Cascade)
+  questionVisibility QuestionVisibility[]
+
+  @@unique([topic_id, batch_id, slug])
+  @@unique([topic_id, batch_id, class_name])
+  @@index([batch_id])
+  @@index([topic_id])
+  @@index([batch_id, topic_id])
+  @@index([created_at])
+  @@index([batch_id, topic_id, id], map: "idx_class_batch_topic_composite")
+}
+
+model QuestionVisibility {
+  id          Int          @id @default(autoincrement())
+  class_id    Int
+  question_id Int
+  type        QuestionType @default(HOMEWORK)
+  assigned_at DateTime     @default(now())
+  class       Class        @relation(fields: [class_id], references: [id], onDelete: Cascade)
+  question    Question     @relation(fields: [question_id], references: [id], onDelete: Cascade)
+
+  @@unique([class_id, question_id])
+  @@index([class_id])
+  @@index([question_id])
+  @@index([class_id, question_id, type], map: "idx_question_visibility_class_batch")
+  @@index([assigned_at, class_id], map: "idx_question_visibility_assignment_date")
+  @@index([question_id, class_id], map: "idx_question_visibility_question_lookup")
+}
+
+model StudentProgress {
+  id          Int      @id @default(autoincrement())
+  student_id  Int
+  question_id Int
+  sync_at     DateTime @default(now())
+  question    Question @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  student     Student  @relation(fields: [student_id], references: [id], onDelete: Cascade)
+
+  @@unique([student_id, question_id])
+  @@index([student_id])
+  @@index([question_id])
+  @@index([student_id, question_id])
+  @@index([student_id, question_id, sync_at], map: "idx_student_progress_composite")
+  @@index([sync_at, student_id], map: "idx_student_progress_sync_date")
+  @@index([question_id, student_id], map: "idx_student_progress_question_lookup")
+}
+
+model Leaderboard {
+  student_id          Int      @id
+  max_streak          Int      @default(0)
+  last_calculated     DateTime @default(now())
+  current_streak      Int      @default(0)
+  easy_solved         Int      @default(0)
+  hard_solved         Int      @default(0)
+  medium_solved       Int      @default(0)
+  alltime_city_rank   Int      @default(0)
+  alltime_global_rank Int      @default(0)
+  student             Student  @relation(fields: [student_id], references: [id], onDelete: Cascade)
+
+  @@index([alltime_global_rank])
+  @@index([max_streak])
+  @@index([last_calculated])
+  @@index([student_id])
+  @@index([student_id, alltime_global_rank, alltime_city_rank])
+  @@index([alltime_global_rank, alltime_city_rank], map: "idx_leaderboard_global_ranking")
+  @@index([last_calculated], map: "idx_leaderboard_calculation_time")
+}
+
+enum Platform {
+  LEETCODE
+  GFG
+  OTHER
+  INTERVIEWBIT
+}
+
+enum Level {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum QuestionType {
+  HOMEWORK
+  CLASSWORK
+}
+
+enum AdminRole {
+  SUPERADMIN
+  TEACHER
+}
+
+model PasswordResetOTP {
+  id         Int      @id @default(autoincrement())
+  email      String   @db.VarChar(150)
+  otp        String   @db.VarChar(6)
+  expires_at DateTime @default(dbgenerated("(now() + interval '10 minutes')"))
+  created_at DateTime @default(now())
+  is_used    Boolean  @default(false)
+
+  @@index([email])
+  @@index([expires_at])
+  @@index([expires_at, is_used], map: "idx_password_reset_expires")
+}
+
+model Bookmark {
+  id          Int      @id @default(autoincrement())
+  student_id  Int
+  question_id Int
+  description String?  @db.Text
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  
+  student   Student  @relation(fields: [student_id], references: [id], onDelete: Cascade)
+  question  Question @relation(fields: [question_id], references: [id], onDelete: Cascade)
+  
+  @@unique([student_id, question_id])
+  @@index([student_id])
+  @@index([question_id])
+  @@index([student_id, created_at])
+  @@index([student_id, created_at], map: "idx_bookmark_student_created")
+}

@@ -1,0 +1,100 @@
+"use client";
+import React from 'react';
+import { Trophy } from 'lucide-react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Pagination } from '@/components/Pagination';
+import TableShimmer from '@/components/leaderboard/shimmers/TableShimmer';
+import { LeaderboardTableRow } from './LeaderboardTableRow';
+import { LeaderboardData } from '@/types/admin/leaderboard.types';
+
+interface LeaderboardTableProps {
+  data: LeaderboardData | null;
+  loading: boolean;
+  error: string | null;
+  page: number;
+  limit: number;
+  setPage: (value: number) => void;
+  setLimit: (value: number) => void;
+  selectedCity: string;
+  mode?: 'admin' | 'student';
+}
+
+export function LeaderboardTable({
+  data, loading, error,
+  page, limit, setPage, setLimit,
+  selectedCity,
+  mode = 'admin'
+}: LeaderboardTableProps) {
+  const leaderboard = data?.leaderboard || [];
+  const totalRecords = data?.total_students || 0;
+  const errorMsg = error;
+  
+  // Determine rank column name based on city selection
+  const isGlobalView = selectedCity === 'all';
+  const rankColumnName = isGlobalView ? 'Global Rank' : 'City Rank';
+  
+    return (
+    <>
+      {loading ? (
+        <div className="w-full flex-1 p-0">
+          <TableShimmer />
+        </div>
+      ) : (
+        <div className=" flex-1 px-3 glass mb-5 backdrop-blur-2xl rounded-2xl overflow-auto">
+          <Table >
+            <TableHeader>
+              <TableRow className=" rounded-2xl  p-5! ">
+                <TableHead className="font-bold px-4">Student</TableHead>
+                <TableHead className=" text-center font-bold">{rankColumnName}</TableHead>
+                <TableHead className="font-bold">Location</TableHead>
+                <TableHead className="font-bold text-center">Score</TableHead>
+                <TableHead className="font-bold text-center">Max Streak</TableHead>
+                <TableHead className="font-bold text-center">Solved</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody >
+              {errorMsg ? (
+                <TableRow>
+                  <TableCell colSpan={6} className="h-[300px] text-center text-red-500">
+                    <div className="flex flex-col items-center justify-center">
+                      <p className="font-bold">Error Fetching Data</p>
+                      <p className="text-sm opacity-80 mt-1">{errorMsg}</p>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ) : leaderboard.length === 0 ? (
+                <TableRow>
+                  <TableCell colSpan={6} className="h-[300px] text-center text-muted-foreground">
+                    <div className="flex flex-col items-center justify-center opacity-70">
+                      <Trophy className="w-12 h-12 mb-4 text-muted-foreground/50" />
+                      <p>No students found for the current filters.</p>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ) : ( 
+                leaderboard.map((entry) => (
+                  <LeaderboardTableRow key={entry.student_id || entry.username} entry={entry}  selectedCity={selectedCity} />
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
+      )}
+
+      {mode !== 'student' && (
+        <Pagination
+          currentPage={page}
+          totalItems={totalRecords}
+          limit={limit}
+          onPageChange={setPage}
+          onLimitChange={(newLimit: number) => {
+            setLimit(newLimit);
+            setPage(1);
+          }}
+          showLimitSelector={true}
+          loading={loading}
+        />
+      )}
+    </>
+  );
+}
