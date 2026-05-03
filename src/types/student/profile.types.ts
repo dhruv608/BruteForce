@@ -128,8 +128,8 @@ export interface ProfileResponse {
     streak?: StreakData;
 }
 
-export interface CurrentUserResponse {
-    data: StudentProfile;
+// Flat shape — axios interceptor unwraps the {success, data} envelope.
+export interface CurrentUserResponse extends StudentProfile {
     // May also have error property for auth failures
     error?: string;
 }

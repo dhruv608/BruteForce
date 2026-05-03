@@ -34,6 +34,8 @@ export const updateStudentSchema = z.object({
 export const updateProfileSchema = z.object({
   leetcode_id: z.string().optional(),
   gfg_id: z.string().optional(),
+  github: z.string().optional(),
+  linkedin: z.string().optional(),
 });
 
 /**

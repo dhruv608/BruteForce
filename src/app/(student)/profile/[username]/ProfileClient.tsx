@@ -238,7 +238,7 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
       await studentProfileService.updateUsername(newUsername);
       
       // Update local state immediately to prevent "username not found" flash
-      setCurrentUser(prev => prev ? { ...prev, data: { ...prev.data, username: newUsername } } : null);
+      setCurrentUser(prev => prev ? { ...prev, username: newUsername } : null);
       setProfileData(prev => prev ? { ...prev, student: { ...prev.student, username: newUsername } } : null);
       setUsernameForm({ username: newUsername });
       
@@ -348,7 +348,7 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
         usernameForm={usernameForm}
         setUsernameForm={setUsernameForm}
         handleSaveUsername={handleSaveUsername}
-        currentUsername={currentUser?.data?.username}
+        currentUsername={currentUser?.username}
       />
 
       <TopicProgressModal

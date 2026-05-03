@@ -1,4 +1,4 @@
-﻿import prisma from '@/lib/server/config/prisma';
+import prisma from '@/lib/server/config/prisma';
 import { fetchLeetcodeData } from '@/lib/server/services/external/leetcode.service';
 import { fetchGfgData } from '@/lib/server/services/external/gfg.service';
 import { ApiError } from '@/lib/server/utils/ApiError';
@@ -90,11 +90,9 @@ export async function syncOneStudent(
     // LOGIC FIX: Always process memory questions mappings because:
     // 1. We ALREADY spent the time making the API request.
     // 2. We skip discovering newly-added classroom questions if student totalSolved hasn't changed.
-    let shouldProcessLeetcode = true;
-
-    if (shouldProcessLeetcode) {
-      // Process submissions - only "Accepted" ones count
-      lcData.submissions
+    
+    // Process submissions - only "Accepted" ones count
+    lcData.submissions
         .filter(sub => sub.statusDisplay === "Accepted")
         .forEach(sub => {
           
@@ -114,7 +112,6 @@ export async function syncOneStudent(
             });
           }
         });
-    }
 
     // Always update real count in Student table
     await prisma.student.update({
@@ -144,11 +141,9 @@ export async function syncOneStudent(
 
 
     // LOGIC FIX: Always process mapped questions for the same reasons as Leetcode
-    let shouldProcessGfg = true;
 
-    if (shouldProcessGfg) {
-      // Process all solved slugs from GFG
-      gfgData.solvedSlugs.forEach(slug => {
+    // Process all solved slugs from GFG
+    gfgData.solvedSlugs.forEach(slug => {
         
         // Match API slug with our question map
         const questionIds = questionMap.get(slug);
@@ -166,7 +161,6 @@ export async function syncOneStudent(
           });
         }
       });
-    }
 
     // Always update real count in Student table
     await prisma.student.update({

@@ -22,18 +22,10 @@ export const registerStudentSchema = z.object({
 export const loginStudentSchema = z
   .object({
     email: z.string().email("Invalid email format").optional(),
-    username: z.string().optional(),
+    username: z.string().min(3, "Username must be at least 3 characters").optional(),
     password: z.string().min(1, "Password is required"),
   })
-  .refine((data) => {
-    // At least one required
-    if (!data.email && !data.username) return false;
-
-    // If username exists → validate length
-    if (data.username && data.username.length < 3) return false;
-
-    return true;
-  }, {
+  .refine((data) => data.email || data.username, {
     message: "Enter a valid email or username (min 3 chars)",
     path: ["email"],
   });
@@ -69,7 +61,8 @@ export const verifyOtpSchema = z.object({
  * For reset password modal
  */
 export const resetPasswordSchema = z.object({
-  token: z.string().min(1, "Token is required"),
+  email: z.string().email("Invalid email format"),
+  otp: z.string().length(6, "OTP must be 6 digits"),
   newPassword: z.string().min(8, "Password must be at least 8 characters"),
   confirmPassword: z.string().min(1, "Please confirm your password"),
 }).refine((data) => data.newPassword === data.confirmPassword, {
@@ -84,3 +77,4 @@ export type LoginAdminInput = z.infer<typeof loginAdminSchema>;
 export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
 export type VerifyOtpInput = z.infer<typeof verifyOtpSchema>;
 export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
+export type { ResetPasswordInput as ResetPasswordFormInput };

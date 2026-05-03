@@ -147,21 +147,30 @@ apiClient.interceptors.response.use(
       isRefreshing = true;
 
       try {
+        // Use raw `axios` (not apiClient) to avoid recursive 401-handling.
+        // Because we bypass apiClient, the auto-unwrap interceptor does NOT run —
+        // the response shape is the full envelope: { success, data: { accessToken } }.
         const res = await axios.post(
           `/api/auth/refresh-token`,
           {},
           { withCredentials: true }
         );
 
-        if (res.data?.accessToken) {
+        const accessToken: string | undefined =
+          res.data?.data?.accessToken ?? res.data?.accessToken;
+
+        if (accessToken) {
           if (typeof window !== 'undefined') {
-            localStorage.setItem('accessToken', res.data.accessToken);
-            document.cookie = `accessToken=${res.data.accessToken}; path=/`;
+            localStorage.setItem('accessToken', accessToken);
+            document.cookie = `accessToken=${accessToken}; path=/`;
           }
-          originalRequest.headers.Authorization = `Bearer ${res.data.accessToken}`;
-          processQueue(null, res.data.accessToken);
+          originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+          processQueue(null, accessToken);
           return apiClient(originalRequest);
         }
+
+        // Refresh response missing accessToken → treat as failure
+        throw new Error('Refresh response did not include accessToken');
       } catch (refreshError) {
         processQueue(refreshError, null);
         // Refresh failed → Logout

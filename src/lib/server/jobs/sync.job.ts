@@ -1,8 +1,8 @@
-﻿import cron from "node-cron";
+import cron from "node-cron";
 import prisma from '@/lib/server/config/prisma';
 import { studentSyncQueue } from '@/lib/server/queues/studentSync.queue';
 import { tryRunLeaderboard } from '@/lib/server/services/leaderboardSync/leaderboardWindow.service';
-import { startSync, isSyncRunning } from '@/lib/server/utils/syncStatus';
+import { startSync, isSyncRunning, resetSync } from '@/lib/server/utils/syncStatus';
 import { setBatchQuestions } from '@/lib/server/store/batchQuestions.store';
 import { LinkUpdateService } from '@/lib/server/services/linkUpdate/linkUpdate.service';
 
@@ -136,6 +136,7 @@ export function startSyncJob() {
 
           if (attempt >= maxRetries) {
             console.error("[CRON] All student sync attempts failed");
+            resetSync();
             break;
           }
 

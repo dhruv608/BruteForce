@@ -2,11 +2,10 @@ import { useMemo } from 'react';
 
 interface UseCanEditProfileParams {
   authChecked: boolean;
+  // Flat shape — axios interceptor unwraps {success, data} envelope.
   currentUser: {
-    data?: {
-      id?: number;
-      username?: string;
-    };
+    id?: number;
+    username?: string;
     error?: string;
   } | null;
   profileStudent?: {
@@ -22,8 +21,8 @@ export function useCanEditProfile({ authChecked, currentUser, profileStudent }: 
     if (currentUser?.error === "Access denied. Students only.") return false;
     if (!profileStudent) return false;
 
-    const isOwner1 = currentUser?.data?.id === profileStudent.id;
-    const isOwner2 = currentUser?.data?.username === profileStudent.username;
+    const isOwner1 = currentUser?.id === profileStudent.id;
+    const isOwner2 = currentUser?.username === profileStudent.username;
 
     const token = typeof window !== 'undefined'
       ? localStorage.getItem('accessToken') || document.cookie.split('; ').find(row => row.startsWith('accessToken='))?.split('=')[1]

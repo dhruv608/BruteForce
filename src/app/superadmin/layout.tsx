@@ -55,7 +55,16 @@ export default function SuperAdminLayout({ children }: { children: React.ReactNo
     loadUser();
   }, [pathname]);
 
-  const handleLogout = (showToast = true) => {
+  const handleLogout = async (showToast = true) => {
+    // Call backend to clear refresh token in DB and httpOnly refreshToken cookie.
+    // Best-effort — never block redirect if API fails.
+    try {
+      const { apiClient } = await import('@/api');
+      await apiClient.post('/api/auth/admin/logout');
+    } catch {
+      // Token may be expired — ignore
+    }
+
     if (typeof window !== 'undefined') {
       localStorage.removeItem('accessToken');
       document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
