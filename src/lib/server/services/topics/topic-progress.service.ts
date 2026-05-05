@@ -212,7 +212,6 @@ export const getTopicOverviewWithClassesSummaryService = async ({
       id: true,
       topic_name: true,
       slug: true,
-      description: true,
       photo_url: true
     }
   });
@@ -279,7 +278,6 @@ export const getTopicOverviewWithClassesSummaryService = async ({
     id: topic.id,
     topic_name: topic.topic_name,
     slug: topic.slug,
-    description: topic.description || null,
     photo_url: topic.photo_url || null,
     classes: classesSummary,
     pagination: {
@@ -327,7 +325,6 @@ export const getTopicProgressByUsernameService = async (username: string) => {
       t.id,
       t.topic_name,
       t.slug,
-      t.description,
       t.photo_url,
       t.created_at,
       t.updated_at,
@@ -343,7 +340,7 @@ export const getTopicProgressByUsernameService = async (username: string) => {
     LEFT JOIN "QuestionVisibility" qv ON c.id = qv.class_id
     LEFT JOIN "Question" q ON qv.question_id = q.id
     LEFT JOIN "StudentProgress" sp ON q.id = sp.question_id AND sp.student_id = $2
-    GROUP BY t.id, t.topic_name, t.slug, t.description, t.photo_url, t.created_at, t.updated_at
+    GROUP BY t.id, t.topic_name, t.slug, t.photo_url, t.created_at, t.updated_at
     ORDER BY t.created_at DESC
   `;
 
@@ -355,7 +352,6 @@ export const getTopicProgressByUsernameService = async (username: string) => {
       id: topic.id.toString(),
       topic_name: topic.topic_name,
       slug: topic.slug,
-      description: topic.description,
       photo_url: topic.photo_url,
       created_at: topic.created_at,
       updated_at: topic.updated_at,

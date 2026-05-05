@@ -28,13 +28,11 @@ export async function POST(req: NextRequest) {
 
     const contentType = req.headers.get('content-type') ?? '';
     let topic_name: string;
-    let description: string | undefined;
     let photo: ParsedFile | undefined;
 
     if (contentType.includes('multipart/form-data')) {
       const formData = await req.formData();
       topic_name = formData.get('topic_name') as string;
-      description = (formData.get('description') as string) ?? undefined;
       const photoFile = formData.get('photo') as File | null;
       if (photoFile) {
         const buf = await photoFile.arrayBuffer();
@@ -48,12 +46,11 @@ export async function POST(req: NextRequest) {
     } else {
       const body = await req.json();
       topic_name = body.topic_name;
-      description = body.description;
     }
 
     if (!topic_name) throw new ApiError(400, 'topic_name is required');
 
-    const topic = await createTopicService({ topic_name, description, photo: photo as any });
+    const topic = await createTopicService({ topic_name, photo: photo as any });
 
     await Promise.all([
       CacheInvalidation.invalidateAdminTopics(),

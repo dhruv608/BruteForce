@@ -1,0 +1,49 @@
+topic_name,imagePath
+"TreeMap and TreeSet",treemap-and-treeset.png
+"Hashing",hashing.png
+"Problem Solving Sorting",problem-solving-sorting.png
+"Huffman Coding",huffman-coding.png
+"Math Modular",math-modular.png
+"Stack",stack.png
+"Trees",trees.png
+"Backtracking",backtracking.png
+"Dynamic Programming",dynamic-programming.png
+"Queues",queues.png
+"Tries",tries.png
+"Binary Search Tree",binary-search-tree.png
+"Subarray",subarray.png
+"2D Matrices",2d-matrices.png
+"Linked List",linked-list.png
+"Recursion",recursion.png
+"Searching",searching.png
+"Prefix Sum",prefix-sum.png
+"Heaps",heaps.png
+"Greedy",greedy.png
+"Strings",strings.png
+"Graphs",graphs.png
+"Meet in the Middle",meet-in-the-middle.png
+"Two Pointers",two-pointers.png
+"Advanced Queue",advanced-queue.png
+"Carry Forward",carry-forward.png
+"Array Basics",array-basics.png
+"Bit Manipulations",bit-manipulations.png
+"Pattern Matching",pattern-matching.png
+"C++ Introduction",c-introduction.png
+"Problem Solving Two Pointers",problem-solving-two-pointers.png
+"Problem Solving Linked List",problem-solving-linked-list.png
+"Maths Permutations",maths-permutations.png
+"Intro to DataStructure and Algorithms",intro-to-datastructure-and-algorithms.png
+"Maths Primes",maths-primes.png
+"Sorting",sorting.png
+"Time Complexity Calculations",time-complexity-calculations.png
+"Problem Solving Hashing",problem-solving-hashing.png
+"Advanced Stacks",advanced-stacks.png
+"Advanced Deque",advanced-deque.png
+"Problem Solving Binary Search",problem-solving-binary-search.png
+"Problem Solving Searching",problem-solving-searching.png
+"Problem Solving Arrays",problem-solving-arrays.png
+"Constraints Importance",constraints-importance.png
+"Calculating Iterations",calculating-iterations.png
+"Big O Introduction",big-o-introduction.png
+"Maths GCD",maths-gcd.png
+"Balanced Binary Search Tree",balanced-binary-search-tree.png

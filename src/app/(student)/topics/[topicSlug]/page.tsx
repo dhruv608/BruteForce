@@ -24,11 +24,7 @@ interface TopicWithPagination {
   photo_url?: string;
   total_questions: number;
   solved_questions: number;
-
   total_classes: number;
-
-  description?: string;
-
   overallProgress?: {
 
     totalQuestions: number;

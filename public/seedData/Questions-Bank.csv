@@ -1,0 +1,763 @@
+question_name,question_link,level,type,topic_slug
+Number of factors,https://www.geeksforgeeks.org/problems/number-of-factors1435/1,EASY,CLASSWORK,intro-to-datastructure-algorithms
+Prime Number,https://www.geeksforgeeks.org/problems/prime-number2314/1,EASY,CLASSWORK,intro-to-datastructure-algorithms
+Bulb Switcher,https://leetcode.com/problems/bulb-switcher/,EASY,HOMEWORK,intro-to-datastructure-algorithms
+LOOP_CMPL,https://www.interviewbit.com/problems/loopcmpl/,EASY,CLASSWORK,big-o-introduction
+NESTED_CMPL,https://www.interviewbit.com/problems/nestedcmpl/,EASY,CLASSWORK,big-o-introduction
+NESTED_CMPL2,https://www.interviewbit.com/problems/nestedcmpl2/,EASY,CLASSWORK,big-o-introduction
+CHOOSE4,https://www.interviewbit.com/problems/choose4/,EASY,CLASSWORK,big-o-introduction
+WHILE_CMPL,https://www.interviewbit.com/problems/whilecmpl/,EASY,CLASSWORK,big-o-introduction
+NESTED_CMPL3,https://www.interviewbit.com/problems/nestedcmpl3/,MEDIUM,CLASSWORK,big-o-introduction
+LOOP_CMPL2,https://www.interviewbit.com/problems/loopcmpl2/,MEDIUM,CLASSWORK,big-o-introduction
+CHOOSE3,https://www.interviewbit.com/problems/choose3/,MEDIUM,CLASSWORK,big-o-introduction
+CHOOSE2,https://www.interviewbit.com/problems/choose2/,MEDIUM,CLASSWORK,big-o-introduction
+CHOOSE1,https://www.interviewbit.com/problems/choose1/,MEDIUM,CLASSWORK,big-o-introduction
+Two Sum,https://leetcode.com/problems/two-sum/,EASY,CLASSWORK,array-basics
+Count Pairs Whose Sum is Less than Target,https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/,EASY,CLASSWORK,array-basics
+Largest Positive Integer That Exists With Its Negative,https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/,EASY,HOMEWORK,array-basics
+Count Number of Pairs With Absolute Difference K,https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/,EASY,HOMEWORK,array-basics
+Second largest,https://www.geeksforgeeks.org/problems/second-largest3735/1,EASY,HOMEWORK,array-basics
+Check if Array Is Sorted and Rotated,https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/description/,EASY,HOMEWORK,array-basics
+Rotate Array,https://leetcode.com/problems/rotate-array/description/,MEDIUM,CLASSWORK,array-basics
+Rotating an Array,https://www.geeksforgeeks.org/problems/reversal-algorithm5340/1,MEDIUM,CLASSWORK,array-basics
+Reverse array in groups,https://www.geeksforgeeks.org/problems/reverse-array-in-groups0255/1,EASY,HOMEWORK,array-basics
+Reverse String,https://leetcode.com/problems/reverse-string/description/,EASY,HOMEWORK,array-basics
+Check if Array Is Sorted and Rotated,https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/description/,EASY,HOMEWORK,array-basics
+Reverse Words in a String,https://leetcode.com/problems/reverse-words-in-a-string/,HARD,HOMEWORK,array-basics
+Array Leaders,https://www.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,carry-forward
+Best Time to Buy and Sell Stock,https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/,EASY,HOMEWORK,carry-forward
+Equilibrium index of an array,https://www.geeksforgeeks.org/problems/equilibrium-point-1587115620/1,EASY,CLASSWORK,carry-forward
+Magic Triplets,https://www.geeksforgeeks.org/problems/magic-triplets4003/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,carry-forward
+Ways to Make a Fair Array,https://leetcode.com/problems/ways-to-make-a-fair-array/description/,HARD,HOMEWORK,carry-forward
+Number of Arithmetic Triplets,https://leetcode.com/problems/number-of-arithmetic-triplets/,MEDIUM,HOMEWORK,carry-forward
+Count Partitions with Even Sum Difference,https://leetcode.com/problems/count-partitions-with-even-sum-difference/,MEDIUM,HOMEWORK,carry-forward
+Running Sum of 1d Array,https://leetcode.com/problems/running-sum-of-1d-array/,EASY,CLASSWORK,prefix-sum
+Prefix Sum Queries 1,https://www.hackerrank.com/contests/pwioi-dsa-assignments/challenges/prefix-sum-queries-1,MEDIUM,CLASSWORK,prefix-sum
+Average of Prefix,https://www.geeksforgeeks.org/problems/average4856/1?page=1&category=prefix-sum&sortBy=submissions,EASY,HOMEWORK,prefix-sum
+Maximum prefix sum for a given range,https://www.geeksforgeeks.org/problems/maximum-prefix-sum-for-a-given-range0227/1,MEDIUM,HOMEWORK,prefix-sum
+Sum of Subarrays,https://www.geeksforgeeks.org/problems/sum-of-subarrays2229/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,subarray
+Split an array into two equal Sum subarrays,https://www.geeksforgeeks.org/problems/split-an-array-into-two-equal-sum-subarrays/1?page=1&category=prefix-sum&sortBy=submissions,EASY,HOMEWORK,subarray
+Sum of All Odd Length Subarrays,https://leetcode.com/problems/sum-of-all-odd-length-subarrays/,MEDIUM,HOMEWORK,subarray
+Shortest un-ordered subarray,https://www.geeksforgeeks.org/problems/shortest-un-ordered-subarray3634/1?page=2&category=Arrays&sortBy=difficulty,MEDIUM,HOMEWORK,subarray
+Sum of Subarray Ranges,https://leetcode.com/problems/sum-of-subarray-ranges/,MEDIUM,HOMEWORK,subarray
+Minimum distance in an Array,https://www.geeksforgeeks.org/problems/minimum-distance-between-two-numbers/1,MEDIUM,HOMEWORK,subarray
+Max Sum Subarray of size K,https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,subarray
+Maximum average subarray I,https://leetcode.com/problems/maximum-average-subarray-i/description/,MEDIUM,HOMEWORK,subarray
+Increasing Triplet Sequence,https://leetcode.com/problems/increasing-triplet-subsequence/description/,MEDIUM,HOMEWORK,subarray
+Pick from both sides!,https://www.interviewbit.com/problems/pick-from-both-sides/,MEDIUM,HOMEWORK,subarray
+Maximum Subarray,https://leetcode.com/problems/maximum-subarray/description/,EASY,CLASSWORK,subarray
+Max Non Negative SubArray,https://www.interviewbit.com/problems/max-non-negative-subarray/,MEDIUM,HOMEWORK,subarray
+Smallest sum contiguous subarray,https://www.geeksforgeeks.org/problems/smallest-sum-contiguous-subarray/1,EASY,HOMEWORK,subarray
+Diagonal sum,https://www.geeksforgeeks.org/problems/diagonal-sum0158/1?page=1&category=Matrix&sortBy=difficulty,EASY,CLASSWORK,2d-matrices
+Sum of elements in a matrix,https://www.geeksforgeeks.org/problems/sum-of-elements-in-a-matrix2000/1?page=1&category=Matrix&sortBy=difficulty,EASY,CLASSWORK,2d-matrices
+Row Sum in a Matrix,https://www.geeksforgeeks.org/problems/row-sum-in-a-matrix/1?page=1&category=Matrix&sortBy=difficulty,EASY,CLASSWORK,2d-matrices
+Column Sum in a Matrix,https://www.geeksforgeeks.org/problems/column-sum-in-a-matrix/1?page=1&category=Matrix&sortBy=difficulty,EASY,CLASSWORK,2d-matrices
+Print Diagonally,https://www.geeksforgeeks.org/problems/print-diagonally4331/1?page=3&category=Matrix&sortBy=difficulty,MEDIUM,CLASSWORK,2d-matrices
+Identical Matrices,https://www.geeksforgeeks.org/problems/identical-matrices1042/1?page=1&category=Matrix&sortBy=difficulty,EASY,HOMEWORK,2d-matrices
+Sums of i-th row and i-th column,https://www.geeksforgeeks.org/problems/sums-of-i-th-row-and-i-th-column3054/1?page=1&category=Matrix&sortBy=difficulty,EASY,HOMEWORK,2d-matrices
+Squares in a Matrix,https://www.geeksforgeeks.org/problems/squares-in-a-matrix5716/1?page=1&category=Matrix&sortBy=difficulty,EASY,HOMEWORK,2d-matrices
+Addition of two square matrices,https://www.geeksforgeeks.org/problems/addition-of-two-square-matrices4916/1?page=1&category=Matrix&sortBy=difficulty,EASY,HOMEWORK,2d-matrices
+Find difference between sum of diagonals,https://www.geeksforgeeks.org/problems/find-difference-between-sum-of-diagonals1554/1?page=1&category=Matrix&sortBy=difficulty,EASY,HOMEWORK,2d-matrices
+Count Sorted Rows,https://www.geeksforgeeks.org/problems/count-sorted-rows2702/1?page=1&category=Matrix&sortBy=difficulty,MEDIUM,HOMEWORK,2d-matrices
+Starting Point,https://www.geeksforgeeks.org/problems/starting-point0909/1?page=1&category=Matrix&sortBy=difficulty,MEDIUM,HOMEWORK,2d-matrices
+Boundary Elements of Matrix,https://www.geeksforgeeks.org/problems/boundary-elements-of-matrix1102/1?page=2&category=Matrix&sortBy=difficulty,MEDIUM,CLASSWORK,2d-matrices
+Spiral Matrix II,https://leetcode.com/problems/spiral-matrix-ii/,HARD,CLASSWORK,2d-matrices
+Matrix Boundary Traversal,https://www.geeksforgeeks.org/problems/boundary-traversal-of-matrix-1587115620/1?page=2&category=Matrix&sortBy=difficulty,MEDIUM,HOMEWORK,2d-matrices
+Spirally traversing a matrix,https://www.geeksforgeeks.org/problems/spirally-traversing-a-matrix-1587115621/1?page=4&category=Matrix&sortBy=difficulty,HARD,HOMEWORK,2d-matrices
+Reverse Spiral Form of Matrix,https://www.geeksforgeeks.org/problems/reverse-spiral-form-of-matrix4033/1?page=4&category=Matrix&sortBy=difficulty,HARD,HOMEWORK,2d-matrices
+Spiral Matrix,https://www.geeksforgeeks.org/problems/spiral-matrix--141631/1?page=6&category=Matrix&sortBy=difficulty,HARD,HOMEWORK,2d-matrices
+Spiral Matrix III,https://leetcode.com/problems/spiral-matrix-iii/,HARD,HOMEWORK,2d-matrices
+Multiply 2 matrices,https://www.geeksforgeeks.org/problems/multiply-2-matrices4144/1?page=1&category=Matrix&sortBy=difficulty,MEDIUM,CLASSWORK,2d-matrices
+Swapping Triangles,https://www.geeksforgeeks.org/problems/swapping-triangles5209/1?page=1&category=Matrix&sortBy=difficulty,EASY,CLASSWORK,2d-matrices
+Rotate by 90 degree,https://www.geeksforgeeks.org/problems/rotate-by-90-degree-1587115621/1?page=2&category=Matrix&sortBy=difficulty,MEDIUM,CLASSWORK,2d-matrices
+Transpose of Matrix,https://www.geeksforgeeks.org/problems/transpose-of-matrix-1587115621/1?page=2&category=Matrix&sortBy=difficulty,MEDIUM,CLASSWORK,2d-matrices
+Interchanging the rows of a Matrix,https://www.geeksforgeeks.org/problems/transpose-of-matrix-1587115621/1?page=2&category=Matrix&sortBy=difficulty,MEDIUM,HOMEWORK,2d-matrices
+Rotate a Matrix by 180 Counterclockwise,https://www.geeksforgeeks.org/problems/c-matrix-rotation-by-180-degree0745/1?page=2&category=Matrix&sortBy=difficulty,MEDIUM,HOMEWORK,2d-matrices
+Reversing the columns of a Matrix,https://www.geeksforgeeks.org/problems/reversing-the-columns-of-a-matrix-1587115621/1?page=3&category=Matrix&sortBy=difficulty,MEDIUM,HOMEWORK,2d-matrices
+Magic Square,https://www.geeksforgeeks.org/problems/magic-square/1?page=3&category=Matrix&sortBy=difficulty,HARD,HOMEWORK,2d-matrices
+Set Matrix Zeroes,https://leetcode.com/problems/set-matrix-zeroes/,HARD,CLASSWORK,2d-matrices
+Game of Life,https://leetcode.com/problems/game-of-life/,MEDIUM,HOMEWORK,2d-matrices
+Number of Laser Beams in a Bank,https://leetcode.com/problems/number-of-laser-beams-in-a-bank/,MEDIUM,HOMEWORK,2d-matrices
+Add Binary Strings,https://www.geeksforgeeks.org/problems/add-binary-strings3805/1,MEDIUM,CLASSWORK,bit-manipulations
+K-th Bit is Set or Not,https://www.geeksforgeeks.org/problems/check-whether-k-th-bit-is-set-or-not-1587115620/1,EASY,CLASSWORK,bit-manipulations
+Unique Number I,https://www.geeksforgeeks.org/problems/find-unique-number/1,EASY,CLASSWORK,bit-manipulations
+Exceptionally odd,https://www.geeksforgeeks.org/problems/find-the-odd-occurence4820/1?page=1&category=Bit%20Magic&sortBy=submissions,EASY,CLASSWORK,bit-manipulations
+Missing in Array,https://www.geeksforgeeks.org/problems/missing-number-in-array1416/1?page=1&category=Bit%20Magic&sortBy=submissions,EASY,HOMEWORK,bit-manipulations
+First Set Bit,https://www.geeksforgeeks.org/problems/find-first-set-bit-1587115620/1?page=1&category=Bit%20Magic&sortBy=submissions,EASY,HOMEWORK,bit-manipulations
+Find position of set bit,https://www.geeksforgeeks.org/problems/find-position-of-set-bit3706/1,EASY,HOMEWORK,bit-manipulations
+First and last Bit,https://www.geeksforgeeks.org/problems/first-and-last-bit2357/1,EASY,HOMEWORK,bit-manipulations
+Find one extra character,https://www.geeksforgeeks.org/problems/find-one-extra-character/0,EASY,HOMEWORK,bit-manipulations
+Play With OR,https://www.geeksforgeeks.org/problems/play-with-or5515/1?page=3&category=Bit%20Magic&sortBy=difficulty,EASY,HOMEWORK,bit-manipulations
+Number of 1 Bits,https://www.geeksforgeeks.org/problems/set-bits0143/1,EASY,CLASSWORK,bit-manipulations
+Bit Manipulation,https://www.geeksforgeeks.org/problems/bit-manipulation-1666686020/1,EASY,CLASSWORK,bit-manipulations
+Count unset bits in a given Range,https://www.geeksforgeeks.org/problems/count-unset-bits-in-a-given-range1216/1,EASY,HOMEWORK,bit-manipulations
+Set all the bits in given range of a number,https://www.geeksforgeeks.org/problems/set-all-the-bits-in-given-range-of-a-number4538/1?page=4&category=Bit%20Magic&sortBy=difficulty,EASY,HOMEWORK,bit-manipulations
+Bit Difference,https://www.geeksforgeeks.org/problems/bit-difference-1587115620/1?page=1&category=Bit%20Magic&sortBy=submissions,EASY,HOMEWORK,bit-manipulations
+Longest Consecutive 1's,https://www.geeksforgeeks.org/problems/longest-consecutive-1s-1587115620/1?page=1&category=Bit%20Magic&sortBy=submissions,EASY,HOMEWORK,bit-manipulations
+Power of 2,https://www.geeksforgeeks.org/problems/power-of-2-1587115620/1?page=1&category=Bit%20Magic&sortBy=submissions,EASY,HOMEWORK,bit-manipulations
+C++ Nega Bit,https://www.geeksforgeeks.org/problems/c-nega-bit2019/1,EASY,HOMEWORK,bit-manipulations
+Bitwise OR in a given Range,https://www.geeksforgeeks.org/problems/ishaans-curiosity0853/1?page=4&category=Bit%20Magic&sortBy=difficulty,MEDIUM,HOMEWORK,bit-manipulations
+Is Binary Number Multiple of 3,https://www.geeksforgeeks.org/problems/is-binary-number-multiple-of-30654/1?page=1&category=Bit%20Magic&sortBy=submissions,MEDIUM,HOMEWORK,bit-manipulations
+Bleak Numbers,https://www.geeksforgeeks.org/problems/bleak-numbers1552/1?page=2&category=Bit%20Magic&sortBy=submissions,MEDIUM,HOMEWORK,bit-manipulations
+Unique Number III,https://www.geeksforgeeks.org/problems/find-element-occuring-once-when-all-other-are-present-thrice/1,MEDIUM,CLASSWORK,bit-manipulations
+Unique Number II,https://www.geeksforgeeks.org/problems/finding-the-numbers0215/1,MEDIUM,CLASSWORK,bit-manipulations
+Akku and Binary Numbers,https://www.geeksforgeeks.org/problems/akku-and-binary-numbers0902/1?page=6&category=Bit%20Magic&sortBy=difficulty,HARD,HOMEWORK,bit-manipulations
+Even Subsets,https://www.geeksforgeeks.org/problems/even-subsets/1?page=4&category=Bit%20Magic&sortBy=difficulty,MEDIUM,CLASSWORK,bit-manipulations
+Missing And Repeating,https://www.geeksforgeeks.org/problems/find-missing-and-repeating2512/1,MEDIUM,CLASSWORK,bit-manipulations
+Print all bitwise subsets of a number N,https://www.geeksforgeeks.org/problems/print-all-bitwise-subsets-of-a-number-n3301/1?page=3&category=Bit%20Magic&sortBy=difficulty,MEDIUM,HOMEWORK,bit-manipulations
+Sum of XOR of all pairs,https://www.geeksforgeeks.org/problems/sum-of-xor-of-all-pairs0723/1,MEDIUM,CLASSWORK,bit-manipulations
+Total Hamming Distance,https://www.geeksforgeeks.org/problems/total-hamming-distance/1?page=5&category=Bit%20Magic&sortBy=difficulty,MEDIUM,HOMEWORK,bit-manipulations
+Sum of bit differences,https://www.geeksforgeeks.org/problems/sum-of-bit-differences2937/1?page=5&category=Bit%20Magic&sortBy=difficulty,MEDIUM,HOMEWORK,bit-manipulations
+Minimum X (xor) A,https://www.geeksforgeeks.org/problems/minimum-x-xor-a--170645/1?page=5&category=Bit%20Magic&sortBy=difficulty,MEDIUM,HOMEWORK,bit-manipulations
+Sum of Products,https://www.geeksforgeeks.org/problems/sum-of-products5049/1?page=6&category=Bit%20Magic&sortBy=difficulty,MEDIUM,HOMEWORK,bit-manipulations
+Sum of XOR of all possible subsets,https://www.geeksforgeeks.org/problems/sum-of-xor-of-all-possible-subsets/1?page=6&category=Bit%20Magic&sortBy=difficulty,HARD,HOMEWORK,bit-manipulations
+Maximum XOR of two numbers in an array,https://www.geeksforgeeks.org/problems/sum-of-xor-of-all-possible-subsets/1?page=6&category=Bit%20Magic&sortBy=difficulty,HARD,HOMEWORK,bit-manipulations
+Minimum XOR value pair,https://www.geeksforgeeks.org/problems/minimum-xor-value-pair/1,EASY,CLASSWORK,bit-manipulations
+Maximum AND Value,https://www.geeksforgeeks.org/problems/maximum-and-value2637/1,MEDIUM,CLASSWORK,bit-manipulations
+Counts Zeros Xor Pairs,https://www.geeksforgeeks.org/problems/counts-zeros-xor-pairs0349/1?page=3&category=Bit%20Magic&sortBy=difficulty,MEDIUM,HOMEWORK,bit-manipulations
+Count total set bits,https://www.geeksforgeeks.org/problems/count-total-set-bits-1587115620/1?page=1&category=Bit%20Magic&sortBy=submissions,HARD,CLASSWORK,bit-manipulations
+Gray to Binary equivalent,https://www.geeksforgeeks.org/problems/gray-to-binary-equivalent-1587115620/1?page=6&category=Bit%20Magic&sortBy=difficulty,HARD,CLASSWORK,bit-manipulations
+Count Primes,https://leetcode.com/problems/count-primes/,MEDIUM,CLASSWORK,maths-primes
+Closest Prime Numbers in Range,https://leetcode.com/problems/closest-prime-numbers-in-range/,MEDIUM,CLASSWORK,maths-primes
+N-divisors,https://www.geeksforgeeks.org/problems/n-divisors5123/1,EASY,CLASSWORK,maths-primes
+Sum 1 to n Divisors,https://www.geeksforgeeks.org/problems/sum-of-all-divisors-from-1-to-n4738/1,EASY,HOMEWORK,maths-primes
+Count Odd Factors,https://www.geeksforgeeks.org/problems/count-odd-factors0844/1,EASY,HOMEWORK,maths-primes
+Prime Pairs With Target Sum,https://leetcode.com/problems/prime-pairs-with-target-sum/,MEDIUM,HOMEWORK,maths-primes
+Distinct Prime Factors of Product of Array,https://leetcode.com/problems/distinct-prime-factors-of-product-of-array/,HARD,HOMEWORK,maths-primes
+Count pairs in array divisible by K,https://www.geeksforgeeks.org/problems/count-pairs-in-array-divisible-by-k/1,MEDIUM,CLASSWORK,math-modular
+Product of Primes,https://www.geeksforgeeks.org/problems/product-of-primes5328/1,MEDIUM,HOMEWORK,math-modular
+Product of an Array,https://www.geeksforgeeks.org/problems/product-of-array-element/1?page=6&category=Arrays&sortBy=difficulty,EASY,HOMEWORK,math-modular
+Excel Sheet Column Number,https://leetcode.com/problems/excel-sheet-column-number/,MEDIUM,HOMEWORK,math-modular
+Frequencies in a Limited Array,https://www.geeksforgeeks.org/problems/frequency-of-array-elements-1587115620/1,EASY,CLASSWORK,math-modular
+Rearrange an array with O(1) extra space,https://www.geeksforgeeks.org/problems/rearrange-an-array-with-o1-extra-space3142/1,EASY,CLASSWORK,math-modular
+Pascal Triangle,https://www.geeksforgeeks.org/problems/pascal-triangle0652/1,MEDIUM,CLASSWORK,maths-permutations
+nCr,https://www.geeksforgeeks.org/problems/ncr1019/1,MEDIUM,HOMEWORK,maths-permutations
+Rank The Permutations,https://www.geeksforgeeks.org/problems/rank-the-permutations2229/1,MEDIUM,HOMEWORK,maths-permutations
+GCD of two numbers,https://www.geeksforgeeks.org/problems/gcd-of-two-numbers3459/1,EASY,CLASSWORK,maths-gcd
+GCD of Array,https://www.geeksforgeeks.org/problems/gcd-of-array0614/1,EASY,HOMEWORK,maths-gcd
+Sum of GCDs,https://www.geeksforgeeks.org/problems/sum-of-gcds1050/1,MEDIUM,HOMEWORK,maths-gcd
+Array Subset,https://www.geeksforgeeks.org/problems/array-subset-of-another-array2317/1?page=1&category=Hash&sortBy=difficulty,EASY,HOMEWORK,hashing
+Check Arithmetic Progression,https://www.geeksforgeeks.org/problems/check-arithmetic-progression1842/1?page=1&category=Hash&sortBy=difficulty,EASY,HOMEWORK,hashing
+Difference between highest and lowest occurrence,https://www.geeksforgeeks.org/problems/difference-between-highest-and-lowest-occurrence4613/1?page=1&category=Hash&sortBy=difficulty,EASY,HOMEWORK,hashing
+Find unique element,https://www.geeksforgeeks.org/problems/find-unique-element2632/1?page=1&category=Hash&sortBy=difficulty,EASY,HOMEWORK,hashing
+Distinct Elements in a Stream,https://www.geeksforgeeks.org/problems/distinct-elements-in-a-stream1557/1?page=1&category=Hash&sortBy=difficulty,EASY,HOMEWORK,hashing
+Count number of elements between two given elements in array,https://www.geeksforgeeks.org/problems/count-number-of-elements-between-two-given-elements-in-array4044/1?page=1&category=Hash&sortBy=difficulty,MEDIUM,HOMEWORK,hashing
+Anagram Palindrome,https://www.geeksforgeeks.org/problems/anagram-palindrome4720/1?page=1&category=Hash&sortBy=difficulty,EASY,HOMEWORK,hashing
+Repeated Character,https://www.geeksforgeeks.org/problems/repeated-character2058/1?page=1&category=Hash&sortBy=difficulty,EASY,HOMEWORK,hashing
+Contains Duplicate,https://leetcode.com/problems/contains-duplicate/,EASY,HOMEWORK,hashing
+Intersection of Two Arrays,https://leetcode.com/problems/intersection-of-two-arrays/,EASY,HOMEWORK,hashing
+Intersection of Two Arrays II,https://leetcode.com/problems/intersection-of-two-arrays-ii/,MEDIUM,HOMEWORK,hashing
+Find the Difference,https://leetcode.com/problems/find-the-difference/,EASY,HOMEWORK,hashing
+Find distinct elements,https://www.geeksforgeeks.org/problems/find-distinct-elements--130928/1,EASY,CLASSWORK,hashing
+Remove duplicates in array,https://www.geeksforgeeks.org/problems/remove-duplicates-in-small-prime-array/1,EASY,HOMEWORK,hashing
+Unique Number of Occurrences,https://leetcode.com/problems/unique-number-of-occurrences/,EASY,HOMEWORK,hashing
+Sum of Unique Elements,https://leetcode.com/problems/sum-of-unique-elements/,EASY,HOMEWORK,hashing
+Majority Element,https://leetcode.com/problems/majority-element/,EASY,HOMEWORK,hashing
+Ransom Note,https://leetcode.com/problems/ransom-note/,EASY,HOMEWORK,hashing
+Longest Palindrome,https://leetcode.com/problems/longest-palindrome/,EASY,HOMEWORK,hashing
+Subarray with 0 sum,https://www.geeksforgeeks.org/problems/subarray-with-0-sum-1587115621/1,MEDIUM,CLASSWORK,hashing
+Largest subarray with 0 sum,https://www.geeksforgeeks.org/problems/largest-subarray-with-0-sum/1,MEDIUM,CLASSWORK,hashing
+Contiguous Array,https://leetcode.com/problems/contiguous-array/,MEDIUM,CLASSWORK,hashing
+Two Sum,https://leetcode.com/problems/two-sum/,MEDIUM,CLASSWORK,hashing
+Zero Sum Subarrays,https://www.geeksforgeeks.org/problems/zero-sum-subarrays1825/1,MEDIUM,HOMEWORK,hashing
+Count pairs with given sum,https://www.geeksforgeeks.org/problems/count-pairs-with-given-sum--150253/1,MEDIUM,CLASSWORK,hashing
+Count Number of Pairs With Absolute Difference K,https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/,MEDIUM,HOMEWORK,hashing
+Pairs with difference k,https://www.geeksforgeeks.org/problems/pairs-with-difference-k1713/1,MEDIUM,HOMEWORK,hashing
+Subarray Sum Equals K,https://leetcode.com/problems/subarray-sum-equals-k/,MEDIUM,CLASSWORK,hashing
+Count distinct elements in every window,https://www.geeksforgeeks.org/problems/count-distinct-elements-in-every-window/1,MEDIUM,CLASSWORK,hashing
+Maximum Sum of Distinct Subarrays With Length K,https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/,MEDIUM,HOMEWORK,hashing
+Subarray Sums Divisible by K,https://leetcode.com/problems/subarray-sums-divisible-by-k/,MEDIUM,HOMEWORK,hashing
+Longest Consecutive Sequence,https://leetcode.com/problems/longest-consecutive-sequence/description/,MEDIUM,CLASSWORK,hashing
+Length of the Longest Alphabetical Continuous Substring,https://leetcode.com/problems/length-of-the-longest-alphabetical-continuous-substring/,MEDIUM,HOMEWORK,hashing
+Number of Zero-Filled Subarrays,https://leetcode.com/problems/number-of-zero-filled-subarrays/,MEDIUM,HOMEWORK,hashing
+Find the Maximum Number of Elements in Subset,https://leetcode.com/problems/find-the-maximum-number-of-elements-in-subset/,HARD,HOMEWORK,hashing
+Print 1 to n without using loops,https://www.geeksforgeeks.org/problems/print-1-to-n-without-using-loops3621/1,EASY,CLASSWORK,recursion
+Print GFG n times,https://www.geeksforgeeks.org/problems/print-gfg-n-times/0,EASY,CLASSWORK,recursion
+Power Using Recursion,https://www.geeksforgeeks.org/problems/power-using-recursion/1?page=1&category=Recursion&sortBy=difficulty,EASY,HOMEWORK,recursion
+Sum of Digits of a Number,https://www.geeksforgeeks.org/problems/sum-of-digits-of-a-number/1?page=1&category=Recursion&sortBy=difficulty,EASY,HOMEWORK,recursion
+Count Total Digits in a Number,https://www.geeksforgeeks.org/problems/count-total-digits-in-a-number/1?page=1&category=Recursion&sortBy=difficulty,EASY,HOMEWORK,recursion
+Recursive sequence,https://www.geeksforgeeks.org/problems/recursive-sequence1611/1?page=1&category=Recursion&sortBy=difficulty,HARD,HOMEWORK,recursion
+Fibonacci Number,https://leetcode.com/problems/fibonacci-number/,EASY,CLASSWORK,recursion
+G.F Series,https://www.geeksforgeeks.org/problems/gf-series3535/1?page=1&category=Recursion&sortBy=difficulty,EASY,CLASSWORK,recursion
+Count Total Digits in a Number,https://www.geeksforgeeks.org/problems/count-total-digits-in-a-number/1?page=1&category=Recursion&sortBy=difficulty,EASY,CLASSWORK,recursion
+Digital Root,https://www.geeksforgeeks.org/problems/digital-root/1?page=1&category=Recursion&sortBy=difficulty,MEDIUM,CLASSWORK,recursion
+"Pow(x, n)",https://leetcode.com/problems/powx-n/,HARD,CLASSWORK,recursion
+Recamans sequence,https://www.geeksforgeeks.org/problems/recamans-sequence4856/1?page=1&category=Recursion&sortBy=difficulty,HARD,CLASSWORK,recursion
+Print Pattern,https://www.geeksforgeeks.org/problems/print-pattern3549/1?page=1&category=Recursion&sortBy=difficulty,MEDIUM,HOMEWORK,recursion
+Josephus problem,https://www.geeksforgeeks.org/problems/josephus-problem/1?page=1&category=Recursion&sortBy=difficulty,HARD,HOMEWORK,recursion
+Juggler Sequence,https://www.geeksforgeeks.org/problems/juggler-sequence3930/1?page=1&category=Recursion&sortBy=difficulty,HARD,HOMEWORK,recursion
+REC_CMPL1,https://www.interviewbit.com/problems/reccmpl1/,HARD,CLASSWORK,recursion
+REC_CMPL2,https://www.interviewbit.com/problems/reccmpl2/,HARD,CLASSWORK,recursion
+REC_CMPL3,https://www.interviewbit.com/problems/reccmpl3/,HARD,CLASSWORK,recursion
+Tower Of Hanoi,https://www.geeksforgeeks.org/problems/tower-of-hanoi-1587115621/1,EASY,CLASSWORK,recursion
+Modular Exponentiation,https://www.geeksforgeeks.org/problems/modular-exponentiation-for-large-numbers5537/1,EASY,CLASSWORK,recursion
+Super Pow,https://leetcode.com/problems/super-pow/,MEDIUM,HOMEWORK,recursion
+Bubble Sort,https://www.geeksforgeeks.org/problems/bubble-sort/1,EASY,CLASSWORK,sorting
+Selection Sort,https://www.geeksforgeeks.org/problems/selection-sort/1,EASY,CLASSWORK,sorting
+Maximum product of two numbers,https://www.geeksforgeeks.org/problems/maximum-product-of-two-numbers2730/1,EASY,HOMEWORK,sorting
+Maximum Product of Three Numbers,https://leetcode.com/problems/maximum-product-of-three-numbers/,MEDIUM,HOMEWORK,sorting
+Stable Sort and Position,https://www.geeksforgeeks.org/problems/stable-sort-and-position1359/1?page=1&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Maximum Perimeter of Triangle from array,https://www.geeksforgeeks.org/problems/maximum-perimeter-of-triangle-from-array4322/1?page=1&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Largest three distinct elements,https://www.geeksforgeeks.org/problems/largest-three-distinct-elements/1?page=2&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Insertion Sort,https://www.geeksforgeeks.org/problems/insertion-sort/1,EASY,CLASSWORK,sorting
+Merge Sorted Array,https://leetcode.com/problems/merge-sorted-array/description/,MEDIUM,CLASSWORK,sorting
+Merging two unsorted arrays in sorted order,https://www.geeksforgeeks.org/problems/merging-two-unsorted-arrays-in-sorted-order1020/1?page=2&category=Sorting&sortBy=difficulty,MEDIUM,CLASSWORK,sorting
+Squares of a Sorted Array,https://leetcode.com/problems/squares-of-a-sorted-array/,MEDIUM,HOMEWORK,sorting
+Merge and Sort,https://www.geeksforgeeks.org/problems/merge-and-sort5821/1?page=1&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Intersection of Two arrays with Duplicate Elements,https://www.geeksforgeeks.org/problems/intersection-of-two-arrays-with-duplicate-elements/1?page=2&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Sort the Half Sorted,https://www.geeksforgeeks.org/problems/sort-the-half-sorted2157/1?page=1&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Merge Sort,https://www.geeksforgeeks.org/problems/merge-sort/1,MEDIUM,CLASSWORK,sorting
+Count Inversions,https://www.geeksforgeeks.org/problems/inversion-of-array-1587115620/1,MEDIUM,CLASSWORK,sorting
+Count of Smaller Numbers After Self,https://leetcode.com/problems/count-of-smaller-numbers-after-self/,MEDIUM,HOMEWORK,sorting
+Maximum number of partitions that can be sorted individually to make sorted,https://www.geeksforgeeks.org/problems/maximum-number-of-partitions-that-can-be-sorted-individually-to-make-sorted2926/1?page=3&category=Sorting&sortBy=difficulty,MEDIUM,HOMEWORK,sorting
+Equalize an array in minimum operations,https://www.geeksforgeeks.org/problems/equalize-an-array3405/1?page=6&category=Sorting&sortBy=difficulty,MEDIUM,HOMEWORK,sorting
+Reverse Pairs,https://leetcode.com/problems/reverse-pairs/,HARD,HOMEWORK,sorting
+Smallest Positive Integer that can not be represented as Sum,https://www.geeksforgeeks.org/problems/smallest-number-subset1220/1,HARD,HOMEWORK,sorting
+Sort an Array of 1 to n,https://www.geeksforgeeks.org/problems/sort-an-array-which-contains-1-to-n-values-using-mathematical-formula/1?page=2&category=Sorting&sortBy=difficulty,EASY,CLASSWORK,sorting
+The Optimal Selection,https://www.geeksforgeeks.org/problems/the-optimal-selection5413/1?page=3&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Merge three sorted arrays,https://www.geeksforgeeks.org/problems/merge-three-sorted-arrays-1587115620/1?page=6&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Sorting Employees,https://www.geeksforgeeks.org/problems/sorting-employees5907/1?selectedLang=cpp,EASY,CLASSWORK,sorting
+K closest point to origin,https://www.geeksforgeeks.org/problems/product-array-puzzle4634/1?page=7&category=Sorting&sortBy=difficulty,EASY,CLASSWORK,sorting
+Largest Number,https://leetcode.com/problems/largest-number/,EASY,CLASSWORK,sorting
+Sort Array by Increasing Frequency,https://leetcode.com/problems/sort-array-by-increasing-frequency/,EASY,CLASSWORK,sorting
+Sort by Set Bit Count,https://www.geeksforgeeks.org/problems/sort-by-set-bit-count1153/1?page=2&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Sort Characters By Frequency,https://leetcode.com/problems/sort-characters-by-frequency/,EASY,HOMEWORK,sorting
+Largest Even Number,https://www.geeksforgeeks.org/problems/largest-even-number3821/1?page=6&category=Sorting&sortBy=difficulty,MEDIUM,HOMEWORK,sorting
+Minimum sum,https://www.geeksforgeeks.org/problems/minimum-sum4058/1?page=7&category=Sorting&sortBy=difficulty,HARD,HOMEWORK,sorting
+Marks of PCM,https://www.geeksforgeeks.org/problems/marks-of-pcm2529/1?page=9&category=Sorting&sortBy=difficulty,EASY,HOMEWORK,sorting
+Sorted Array Search,https://www.geeksforgeeks.org/problems/who-will-win-1587115621/1,EASY,CLASSWORK,searching
+Search Insert Position,https://leetcode.com/problems/search-insert-position/description/?envType=problem-list-v2&envId=binary-search&difficulty=EASY,EASY,HOMEWORK,searching
+Floor in a Sorted Array,https://www.geeksforgeeks.org/problems/floor-in-a-sorted-array-1587115620/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,CLASSWORK,searching
+Implement Lower Bound,https://www.geeksforgeeks.org/problems/implement-lower-bound/1?page=1&category=Binary%20Search&sortBy=difficulty,EASY,CLASSWORK,searching
+First 1 in a Sorted Binary Array,https://www.geeksforgeeks.org/problems/index-of-first-1-in-a-sorted-array-of-0s-and-1s4048/1,EASY,HOMEWORK,searching
+Find First and Last Position of Element in Sorted Array,https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/,EASY,CLASSWORK,searching
+k sorted array,https://www.geeksforgeeks.org/problems/k-sorted-array1610/1?page=1&category=Binary%20Search&sortBy=difficulty,MEDIUM,HOMEWORK,searching
+Find the closest number,https://www.geeksforgeeks.org/problems/find-the-closest-number5513/1?page=1&category=Binary%20Search&sortBy=difficulty,EASY,HOMEWORK,searching
+Missing element of AP,https://www.geeksforgeeks.org/problems/missing-element-of-ap2228/1?page=2&category=Binary%20Search&sortBy=difficulty,MEDIUM,HOMEWORK,searching
+Find Peak Element,https://leetcode.com/problems/find-peak-element/description/,MEDIUM,CLASSWORK,searching
+Single Element in a Sorted Array,https://leetcode.com/problems/single-element-in-a-sorted-array/description/,MEDIUM,CLASSWORK,searching
+Bitonic Point,https://www.geeksforgeeks.org/problems/maximum-value-in-a-bitonic-array3001/1?page=1&category=Binary%20Search&sortBy=difficulty,MEDIUM,HOMEWORK,searching
+Closer to sort,https://www.geeksforgeeks.org/problems/closer-to-sort-1587115620/1?page=4&category=Searching&sortBy=difficulty,HARD,HOMEWORK,searching
+Sqrt(x),https://leetcode.com/problems/sqrtx/description/,EASY,CLASSWORK,searching
+Valid Perfect Square,https://leetcode.com/problems/valid-perfect-square/,EASY,CLASSWORK,searching
+First Bad Version,https://leetcode.com/problems/first-bad-version/,EASY,HOMEWORK,searching
+Guess Number Higher or Lower,https://leetcode.com/problems/guess-number-higher-or-lower/,EASY,HOMEWORK,searching
+Capacity To Ship Packages Within D Days,https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/,HARD,HOMEWORK,searching
+Split Array Largest Sum,https://leetcode.com/problems/split-array-largest-sum/description/,HARD,CLASSWORK,searching
+The Painter's Partition Problem-II,https://www.geeksforgeeks.org/problems/the-painters-partition-problem1535/1,HARD,CLASSWORK,searching
+Cube root of a number,https://www.geeksforgeeks.org/problems/cube-root-of-a-number0915/1,EASY,HOMEWORK,searching
+Allocate Minimum Pages,https://www.geeksforgeeks.org/problems/allocate-minimum-number-of-pages0937/1?page=4&category=Searching&sortBy=difficulty,MEDIUM,HOMEWORK,searching
+Aggressive Cows,https://www.geeksforgeeks.org/problems/aggressive-cows/0,MEDIUM,CLASSWORK,searching
+Find the Smallest Divisor Given a Threshold,https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/description/,MEDIUM,HOMEWORK,searching
+Koko Eating Bananas,https://leetcode.com/problems/koko-eating-bananas/description/,MEDIUM,HOMEWORK,searching
+Minimum Speed to Arrive on Time,https://leetcode.com/problems/minimum-speed-to-arrive-on-time/description/,MEDIUM,HOMEWORK,searching
+Magnetic Force Between Two Balls,https://leetcode.com/problems/magnetic-force-between-two-balls/description/,MEDIUM,HOMEWORK,searching
+Two Sum - Pair with Given Sum,https://www.geeksforgeeks.org/problems/key-pair5616/1,EASY,CLASSWORK,two-pointers
+Pair with given sum in a sorted array,https://www.geeksforgeeks.org/problems/pair-with-given-sum-in-a-sorted-array4940/1,EASY,CLASSWORK,two-pointers
+Count pairs with given sum,https://www.geeksforgeeks.org/problems/count-pairs-with-given-sum--150253/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,two-pointers
+K-diff Pairs in an Array,https://leetcode.com/problems/k-diff-pairs-in-an-array/description/,MEDIUM,CLASSWORK,two-pointers
+Valid Pair Sum,https://www.geeksforgeeks.org/problems/valid-pair-sum--141631/1,MEDIUM,HOMEWORK,two-pointers
+Closest Pair Sum in an unsorted Array,https://www.geeksforgeeks.org/problems/closest-pair-sum-in-an-unsorted-array/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,two-pointers
+Happiest Triplet,https://www.geeksforgeeks.org/problems/happiest-triplet2921/1,MEDIUM,CLASSWORK,two-pointers
+Find the closest pair from two arrays,https://www.geeksforgeeks.org/problems/find-the-closest-pair-from-two-arrays4215/1,MEDIUM,CLASSWORK,two-pointers
+Minimize Maximum Pair Sum in Array,https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/description/,MEDIUM,HOMEWORK,two-pointers
+Maximum Distance Between a Pair of Values,https://leetcode.com/problems/maximum-distance-between-a-pair-of-values/description/,MEDIUM,HOMEWORK,two-pointers
+Find all pairs with a given sum,https://www.geeksforgeeks.org/problems/find-all-pairs-whose-sum-is-x5808/1,MEDIUM,HOMEWORK,two-pointers
+Search in a Row-Column sorted matrix,https://www.geeksforgeeks.org/problems/search-in-a-matrix17201720/1,MEDIUM,CLASSWORK,two-pointers
+Row with max 1s,https://www.geeksforgeeks.org/problems/row-with-max-1s0023/1,MEDIUM,CLASSWORK,two-pointers
+Container With Most Water,https://leetcode.com/problems/container-with-most-water/description/,MEDIUM,CLASSWORK,two-pointers
+Length of Longest Subarray With at Most K Frequency,https://leetcode.com/problems/length-of-longest-subarray-with-at-most-k-frequency/,HARD,CLASSWORK,two-pointers
+Max Consecutive Ones III,https://leetcode.com/problems/max-consecutive-ones-iii/description/,HARD,HOMEWORK,two-pointers
+Maximum Erasure Value,https://leetcode.com/problems/maximum-erasure-value/,HARD,HOMEWORK,two-pointers
+Longest Nice Subarray,https://leetcode.com/problems/longest-nice-subarray/,HARD,HOMEWORK,two-pointers
+Minimum Size Subarray Sum,https://leetcode.com/problems/minimum-size-subarray-sum/,MEDIUM,CLASSWORK,two-pointers
+Minimum Consecutive Cards to Pick Up,https://leetcode.com/problems/minimum-consecutive-cards-to-pick-up/,HARD,HOMEWORK,two-pointers
+Partition Array Into Two Arrays to Minimize Sum Difference,https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/,MEDIUM,HOMEWORK,meet-in-the-middle
+4Sum,https://leetcode.com/problems/4sum/,MEDIUM,CLASSWORK,meet-in-the-middle
+4Sum II,https://leetcode.com/problems/4sum-ii/description/,MEDIUM,CLASSWORK,meet-in-the-middle
+Palindrome String,https://www.geeksforgeeks.org/problems/palindrome-string0817/1,EASY,CLASSWORK,strings
+Longest Palindrome in a String,https://www.geeksforgeeks.org/problems/longest-palindrome-in-a-string3411/1?page=1&category=Strings&sortBy=submissions,MEDIUM,CLASSWORK,strings
+C++ Strings,https://www.geeksforgeeks.org/problems/c-strings4609/1,EASY,CLASSWORK,strings
+Parenthesis Checker,https://www.geeksforgeeks.org/problems/parenthesis-checker2744/1?page=1&category=Strings&sortBy=submissions,EASY,HOMEWORK,strings
+Reverse Words,https://www.geeksforgeeks.org/problems/reverse-words-in-a-given-string5459/1?page=1&category=Strings&sortBy=submissions,MEDIUM,HOMEWORK,strings
+Non Repeating Character,https://www.geeksforgeeks.org/problems/non-repeating-character-1587115620/1?page=1&category=Strings&sortBy=submissions,EASY,HOMEWORK,strings
+Isomorphic Strings,https://www.geeksforgeeks.org/problems/isomorphic-strings-1587115620/1?page=1&category=Strings&sortBy=submissions,EASY,HOMEWORK,strings
+Remove vowels from string,https://www.geeksforgeeks.org/problems/remove-vowels-from-string1446/1?page=4&category=Strings&sortBy=difficulty,EASY,HOMEWORK,strings
+Longest Common Prefix of Strings,https://www.geeksforgeeks.org/problems/longest-common-prefix-in-an-array5129/1?page=6&category=Strings&sortBy=difficulty,MEDIUM,HOMEWORK,strings
+Longest substring with distinct characters,https://www.geeksforgeeks.org/problems/longest-distinct-characters-in-string5848/1,MEDIUM,CLASSWORK,strings
+Longest Substring with K Uniques,https://www.geeksforgeeks.org/problems/longest-k-unique-characters-substring0853/1?page=4&category=two-pointer-algorithm&sortBy=difficulty,MEDIUM,HOMEWORK,strings
+Count Subarray with k odds,https://www.geeksforgeeks.org/problems/count-subarray-with-k-odds/1?page=4&category=two-pointer-algorithm&sortBy=difficulty,HARD,HOMEWORK,strings
+Subarrays with K Different Integers,https://leetcode.com/problems/subarrays-with-k-different-integers/,HARD,HOMEWORK,strings
+Count Complete Subarrays in an Array,https://leetcode.com/problems/count-complete-subarrays-in-an-array/,HARD,HOMEWORK,strings
+Search Pattern (KMP-Algorithm),https://www.geeksforgeeks.org/problems/search-pattern0205/1,HARD,CLASSWORK,pattern-matching
+First Occurence,https://www.geeksforgeeks.org/problems/implement-strstr/1?page=1&category=Pattern%20Searching&sortBy=difficulty,EASY,CLASSWORK,pattern-matching
+Minimum times A has to be repeated such that B is a substring of it,https://www.geeksforgeeks.org/problems/implement-strstr/1?page=1&category=Pattern%20Searching&sortBy=difficulty,MEDIUM,HOMEWORK,pattern-matching
+Case Insensitive Search,https://www.geeksforgeeks.org/problems/case-insensitive-search/1?page=1&category=Pattern%20Searching&sortBy=difficulty,MEDIUM,HOMEWORK,pattern-matching
+1[0]1 Pattern Count,https://www.geeksforgeeks.org/problems/101-pattern-count1341/1?page=1&category=Pattern%20Searching&sortBy=difficulty,EASY,HOMEWORK,pattern-matching
+Min Chars to Add for Palindrome,https://www.geeksforgeeks.org/problems/minimum-characters-to-be-added-at-front-to-make-string-palindrome/1,HARD,CLASSWORK,pattern-matching
+Periodic Strings,https://onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396,HARD,HOMEWORK,pattern-matching
+Array to Linked List,https://www.geeksforgeeks.org/problems/introduction-to-linked-list/0,EASY,CLASSWORK,linked-list
+Search in Linked List,https://www.geeksforgeeks.org/problems/search-in-linked-list-1664434326/0,EASY,CLASSWORK,linked-list
+Print Linked List,https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list/problem?isFullScreen=true,EASY,CLASSWORK,linked-list
+Count Linked List Nodes,https://www.geeksforgeeks.org/problems/count-nodes-of-linked-list/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,CLASSWORK,linked-list
+Is Linked List Length Even?,https://www.geeksforgeeks.org/problems/linked-list-length-even-or-odd/1?page=1&category=Linked%20List&sortBy=difficulty,EASY,CLASSWORK,linked-list
+Modular Node,https://www.geeksforgeeks.org/problems/modular-node/1?page=1&category=Linked%20List&sortBy=difficulty,EASY,CLASSWORK,linked-list
+Insert in Middle of Linked List,https://www.geeksforgeeks.org/problems/insert-in-middle-of-linked-list/1?page=1&category=Linked%20List&sortBy=difficulty,MEDIUM,CLASSWORK,linked-list
+Linked List Insertion At End,https://www.geeksforgeeks.org/problems/linked-list-insertion-1587115620/1?page=1&category=Linked%20List&sortBy=difficulty,MEDIUM,CLASSWORK,linked-list
+Kth from End of Linked List,https://www.geeksforgeeks.org/problems/nth-node-from-end-of-linked-list/1?page=2&category=Linked%20List&sortBy=difficulty,MEDIUM,CLASSWORK,linked-list
+Identical Linked Lists,https://www.geeksforgeeks.org/problems/identical-linked-lists/1?page=1&category=Linked%20List&sortBy=difficulty,EASY,HOMEWORK,linked-list
+Insert in a Sorted List,https://www.geeksforgeeks.org/problems/insert-in-a-sorted-list/1,MEDIUM,HOMEWORK,linked-list
+Remove Linked List Elements,https://leetcode.com/problems/remove-linked-list-elements/description/,MEDIUM,CLASSWORK,linked-list
+Remove Duplicates from Sorted List,https://leetcode.com/problems/remove-duplicates-from-sorted-list/description/,MEDIUM,HOMEWORK,linked-list
+Delete Node in a Linked List,https://leetcode.com/problems/delete-node-in-a-linked-list/description/,MEDIUM,HOMEWORK,linked-list
+Remove Duplicates from a Sorted Linked List,https://www.geeksforgeeks.org/problems/remove-duplicate-element-from-sorted-linked-list/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,linked-list
+Reverse Linked List,https://leetcode.com/problems/reverse-linked-list/description/,MEDIUM,CLASSWORK,linked-list
+Reverse a Linked List in Groups,https://www.geeksforgeeks.org/problems/reverse-a-linked-list-in-groups-of-given-size/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,linked-list
+Reverse Nodes in k-Group,https://leetcode.com/problems/reverse-nodes-in-k-group/description/,MEDIUM,HOMEWORK,linked-list
+Middle of the Linked List,https://leetcode.com/problems/middle-of-the-linked-list/description/,EASY,CLASSWORK,linked-list
+Palindrome Linked List,https://leetcode.com/problems/palindrome-linked-list/description/,MEDIUM,CLASSWORK,linked-list
+Reorder List,https://leetcode.com/problems/reorder-list/description/,MEDIUM,CLASSWORK,linked-list
+Odd Even Linked List,https://leetcode.com/problems/odd-even-linked-list/description/,MEDIUM,HOMEWORK,linked-list
+Longest Palindrome in Linked List,https://www.geeksforgeeks.org/problems/length-of-longest-palindrome-in-linked-list/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,HARD,HOMEWORK,linked-list
+Linked List Cycle,https://leetcode.com/problems/linked-list-cycle/description/,EASY,CLASSWORK,linked-list
+Linked List Cycle II,https://leetcode.com/problems/linked-list-cycle-ii/,MEDIUM,CLASSWORK,linked-list
+Remove loop in Linked List,https://www.geeksforgeeks.org/problems/remove-loop-in-linked-list/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,linked-list
+Intersection of Two Linked Lists,https://leetcode.com/problems/intersection-of-two-linked-lists/description/,MEDIUM,CLASSWORK,linked-list
+Remove Nth Node From End of List,https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/,MEDIUM,HOMEWORK,linked-list
+Max value after m range operation,https://www.geeksforgeeks.org/problems/max-value-after-m-range-operation4300/1?page=1&category=prefix-sum&sortBy=submissions,MEDIUM,CLASSWORK,problem-solving-arrays
+Trapping Rain Water,https://www.geeksforgeeks.org/problems/trapping-rain-water-1587115621/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,HARD,CLASSWORK,problem-solving-arrays
+Product array puzzle,https://www.geeksforgeeks.org/problems/product-array-puzzle4525/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,HARD,CLASSWORK,problem-solving-arrays
+First Missing Positive,https://leetcode.com/problems/first-missing-positive/description/,MEDIUM,CLASSWORK,problem-solving-arrays
+Missing Number,https://leetcode.com/problems/missing-number/,EASY,HOMEWORK,problem-solving-arrays
+Link,https://leetcode.com/problems/find-the-duplicate-number/,EASY,HOMEWORK,problem-solving-arrays
+Find All Numbers Disappeared in an Array,https://leetcode.com/problems/find-the-duplicate-number/,EASY,HOMEWORK,problem-solving-arrays
+Majority Element,https://leetcode.com/problems/majority-element/description/,MEDIUM,CLASSWORK,problem-solving-arrays
+Minimum swaps and K together,https://www.geeksforgeeks.org/problems/minimum-swaps-required-to-bring-all-elements-less-than-or-equal-to-k-together4847/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,problem-solving-arrays
+Majority Element II,https://leetcode.com/problems/majority-element-ii/,MEDIUM,HOMEWORK,problem-solving-arrays
+Minimum Index of a Valid Split,https://leetcode.com/problems/minimum-index-of-a-valid-split/,MEDIUM,HOMEWORK,problem-solving-arrays
+Merge Intervals,https://leetcode.com/problems/merge-intervals/,MEDIUM,CLASSWORK,problem-solving-arrays
+Insert Interval,https://leetcode.com/problems/insert-interval/,MEDIUM,CLASSWORK,problem-solving-arrays
+Interval List Intersections,https://leetcode.com/problems/interval-list-intersections/,MEDIUM,HOMEWORK,problem-solving-arrays
+Divide Intervals Into Minimum Number of Groups,https://leetcode.com/problems/divide-intervals-into-minimum-number-of-groups/,MEDIUM,HOMEWORK,problem-solving-arrays
+Next Permutation,https://leetcode.com/problems/next-permutation/,MEDIUM,CLASSWORK,problem-solving-arrays
+Permutations,https://leetcode.com/problems/permutations/,EASY,HOMEWORK,problem-solving-arrays
+Permutations II,https://leetcode.com/problems/permutations-ii/,MEDIUM,HOMEWORK,problem-solving-arrays
+Permutation Sequence,https://leetcode.com/problems/permutation-sequence/,HARD,HOMEWORK,problem-solving-arrays
+Wiggle Sort II,https://leetcode.com/problems/wiggle-sort-ii/,MEDIUM,HOMEWORK,problem-solving-arrays
+Wave Array,https://www.geeksforgeeks.org/problems/wave-array-1587115621/0,EASY,HOMEWORK,problem-solving-arrays
+Prefix Sum of Matrix (Or 2D Array),https://www.geeksforgeeks.org/problems/queries-on-a-matrix0443/1,MEDIUM,CLASSWORK,problem-solving-arrays
+Queries on a Matrix,https://www.geeksforgeeks.org/problems/queries-on-a-matrix0443/1,HARD,HOMEWORK,problem-solving-arrays
+Number of submatrix have sum X,https://www.geeksforgeeks.org/problems/number-of-submatrix-have-sum-k/1?page=7&category=Matrix&sortBy=difficulty,HARD,CLASSWORK,problem-solving-arrays
+Coins of Geekland,https://www.geeksforgeeks.org/problems/prefix-sum-of-matrix-or-2d-array/1?page=3&category=Matrix&sortBy=difficulty,HARD,HOMEWORK,problem-solving-arrays
+Count number of free cell,https://www.geeksforgeeks.org/problems/count-number-of-free-cell--170646/1?page=4&category=Matrix&sortBy=difficulty,HARD,HOMEWORK,problem-solving-arrays
+Find the Peak Element in a 2D Matrix,https://www.geeksforgeeks.org/problems/find-the-peak-element-in-a-2d-matrix/1?page=4&category=Matrix&sortBy=difficulty,HARD,HOMEWORK,problem-solving-arrays
+Maximum value of expression,https://www.geeksforgeeks.org/problems/maximum-value-of-expression2515/1,MEDIUM,CLASSWORK,problem-solving-arrays
+Maximum of Absolute Value Expression,https://leetcode.com/problems/maximum-of-absolute-value-expression/,MEDIUM,HOMEWORK,problem-solving-arrays
+Quick Sort,https://www.geeksforgeeks.org/problems/quick-sort/1,MEDIUM,CLASSWORK,problem-solving-sorting
+Quick Sort,https://www.geeksforgeeks.org/problems/quick-sort-on-linked-list/1,MEDIUM,CLASSWORK,problem-solving-sorting
+Kth Largest Element in an Array,https://leetcode.com/problems/kth-largest-element-in-an-array/,HARD,HOMEWORK,problem-solving-sorting
+Max Points on a Line,https://leetcode.com/problems/max-points-on-a-line/,HARD,HOMEWORK,problem-solving-hashing
+Minimum Lines to Represent a Line Chart,https://leetcode.com/problems/minimum-lines-to-represent-a-line-chart/,HARD,HOMEWORK,problem-solving-hashing
+Closest Similar Elements,https://www.geeksforgeeks.org/problems/water-the-plants--141631/1?page=9&category=Sorting&sortBy=difficulty,MEDIUM,HOMEWORK,treemap-and-treeset
+Contains Duplicate III,https://leetcode.com/problems/contains-duplicate-iii/,HARD,HOMEWORK,treemap-and-treeset
+Find Right Interval,https://leetcode.com/problems/find-right-interval/,MEDIUM,HOMEWORK,treemap-and-treeset
+My Calendar I,https://leetcode.com/problems/my-calendar-i/,MEDIUM,HOMEWORK,treemap-and-treeset
+Exam Room,https://leetcode.com/problems/exam-room/,MEDIUM,HOMEWORK,treemap-and-treeset
+Search in Rotated Sorted Array,https://leetcode.com/problems/search-in-rotated-sorted-array/description/,MEDIUM,CLASSWORK,problem-solving-binary-search
+Find Minimum in Rotated Sorted Array,https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/,MEDIUM,CLASSWORK,problem-solving-binary-search
+Kth Missing Positive Number in a Sorted Array,https://www.geeksforgeeks.org/problems/kth-missing-positive-number-in-a-sorted-array/1,MEDIUM,HOMEWORK,problem-solving-binary-search
+K-th element of two Arrays,https://www.geeksforgeeks.org/problems/k-th-element-of-two-sorted-array1317/1,MEDIUM,CLASSWORK,problem-solving-searching
+Median of 2 Sorted Arrays of Same Size,https://www.geeksforgeeks.org/problems/median-of-2-sorted-arrays-of-same-size/1,MEDIUM,CLASSWORK,problem-solving-searching
+Median of Two Sorted Arrays,https://leetcode.com/problems/median-of-two-sorted-arrays/,HARD,HOMEWORK,problem-solving-searching
+Kth Smallest Element in a Sorted Matrix,https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/,MEDIUM,CLASSWORK,problem-solving-searching
+Kth Smallest Number in Multiplication Table,https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/,MEDIUM,HOMEWORK,problem-solving-searching
+Find K-th Smallest Pair Distance,https://leetcode.com/problems/find-k-th-smallest-pair-distance/,MEDIUM,HOMEWORK,problem-solving-searching
+Median in a row-wise sorted Matrix,https://www.geeksforgeeks.org/problems/median-in-a-row-wise-sorted-matrix1527/1,MEDIUM,CLASSWORK,problem-solving-searching
+Missing Number in Sorted Array of Natural Numbers,https://www.geeksforgeeks.org/problems/missing-number-in-sorted-array-of-natural-numbers/1,MEDIUM,CLASSWORK,problem-solving-searching
+Count elements less than or equal to k in a sorted rotated array,https://www.geeksforgeeks.org/problems/count-elements-less-than-or-equal-to-k-in-a-sorted-rotated-array/1?page=2&category=Binary%20Search&sortBy=difficulty,MEDIUM,HOMEWORK,problem-solving-searching
+Minimum Window Substring,https://leetcode.com/problems/minimum-window-substring/,MEDIUM,CLASSWORK,problem-solving-two-pointers
+Permutation in String,https://leetcode.com/problems/permutation-in-string/,MEDIUM,HOMEWORK,problem-solving-two-pointers
+Find All Anagrams in a String,https://leetcode.com/problems/find-all-anagrams-in-a-string/,MEDIUM,HOMEWORK,problem-solving-two-pointers
+Count Substrings That Can Be Rearranged to Contain a String II,https://leetcode.com/problems/count-substrings-that-can-be-rearranged-to-contain-a-string-ii/,HARD,HOMEWORK,problem-solving-two-pointers
+Count Substrings That Can Be Rearranged to Contain a String I,https://leetcode.com/problems/count-substrings-that-can-be-rearranged-to-contain-a-string-i/,HARD,HOMEWORK,problem-solving-two-pointers
+Merge Two Sorted Lists,https://leetcode.com/problems/merge-two-sorted-lists/description/,MEDIUM,CLASSWORK,problem-solving-linked-list
+Merge k Sorted Lists,https://leetcode.com/problems/merge-k-sorted-lists/description/,MEDIUM,CLASSWORK,problem-solving-linked-list
+Sort List,https://leetcode.com/problems/sort-list/description/,MEDIUM,CLASSWORK,problem-solving-linked-list
+Insertion Sort List,https://leetcode.com/problems/insertion-sort-list/,EASY,HOMEWORK,problem-solving-linked-list
+Copy List with Random Pointer,https://leetcode.com/problems/copy-list-with-random-pointer/,MEDIUM,CLASSWORK,problem-solving-linked-list
+Flattening a Linked List,https://www.geeksforgeeks.org/problems/flattening-a-linked-list/1,MEDIUM,HOMEWORK,problem-solving-linked-list
+Insertion at doubly linked list,https://www.geeksforgeeks.org/problems/insert-a-node-in-doubly-linked-list/1,EASY,CLASSWORK,problem-solving-linked-list
+Delete in a Doubly Linked List,https://www.geeksforgeeks.org/problems/delete-node-in-doubly-linked-list/1,EASY,CLASSWORK,problem-solving-linked-list
+LRU Cache,https://leetcode.com/problems/lru-cache/description/,HARD,CLASSWORK,problem-solving-linked-list
+LFU Cache,https://leetcode.com/problems/lfu-cache/,HARD,HOMEWORK,problem-solving-linked-list
+Rotate doubly Linked List,https://www.geeksforgeeks.org/problems/rotate-doubly-linked-list-by-p-nodes/1,EASY,HOMEWORK,problem-solving-linked-list
+Insert in Sorted way in a Sorted DLL,https://www.geeksforgeeks.org/problems/insert-in-sorted-way-in-a-sorted-dll/1,MEDIUM,HOMEWORK,problem-solving-linked-list
+Flatten a Multilevel Doubly Linked List,https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/description/,MEDIUM,HOMEWORK,problem-solving-linked-list
+Doubly Linked List Traversal,https://www.geeksforgeeks.org/problems/display-doubly-linked-list--154650/0,EASY,HOMEWORK,problem-solving-linked-list
+Introduction to Doubly Linked List,https://www.geeksforgeeks.org/problems/introduction-to-doubly-linked-list/0,EASY,HOMEWORK,problem-solving-linked-list
+Find the Duplicate Number,https://leetcode.com/problems/find-the-duplicate-number/,HARD,CLASSWORK,problem-solving-linked-list
+Add Two Numbers,https://leetcode.com/problems/add-two-numbers/,MEDIUM,CLASSWORK,problem-solving-linked-list
+Double a Number Represented as a Linked List,https://leetcode.com/problems/double-a-number-represented-as-a-linked-list/,MEDIUM,HOMEWORK,problem-solving-linked-list
+Valid Parentheses,https://leetcode.com/problems/valid-parentheses/description/,MEDIUM,CLASSWORK,stack
+Remove All Adjacent Duplicates In String,https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/description/,MEDIUM,CLASSWORK,stack
+Remove Outermost Parentheses,https://leetcode.com/problems/remove-outermost-parentheses/description/,MEDIUM,HOMEWORK,stack
+Make The String Great,https://leetcode.com/problems/make-the-string-great/description/,MEDIUM,HOMEWORK,stack
+Crawler Log Folder,https://leetcode.com/problems/crawler-log-folder/description/,MEDIUM,HOMEWORK,stack
+Remove All Adjacent Duplicates in String II,https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/,HARD,HOMEWORK,stack
+Removing Stars From a String,https://leetcode.com/problems/removing-stars-from-a-string/,MEDIUM,HOMEWORK,stack
+Evaluate Reverse Polish Notation,https://leetcode.com/problems/evaluate-reverse-polish-notation/,MEDIUM,CLASSWORK,stack
+Infix to Postfix,https://www.geeksforgeeks.org/problems/infix-to-postfix-1587115620/1,HARD,CLASSWORK,stack
+Basic Calculator,https://leetcode.com/problems/basic-calculator/,HARD,HOMEWORK,stack
+Min Stack,https://leetcode.com/problems/min-stack/,EASY,CLASSWORK,stack
+Maximum Frequency Stack,https://leetcode.com/problems/maximum-frequency-stack/,MEDIUM,CLASSWORK,stack
+Get Max from Stack,https://www.geeksforgeeks.org/problems/get-max-from-stack/1,EASY,HOMEWORK,stack
+Reverse First K elements of Queue,https://www.geeksforgeeks.org/problems/reverse-first-k-elements-of-queue/1,EASY,CLASSWORK,queues
+Number of Students Unable to Eat Lunch,https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/description/,EASY,HOMEWORK,queues
+Queue using Linked List,https://www.geeksforgeeks.org/problems/implement-queue-using-linked-list/1,EASY,CLASSWORK,queues
+Next Greater Element I,https://www.geeksforgeeks.org/problems/next-larger-element-1587115620/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,advanced-stacks
+Help Classmates,https://www.geeksforgeeks.org/problems/help-classmates--141631/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,advanced-stacks
+Smaller on Left,https://www.geeksforgeeks.org/problems/smallest-number-on-left3403/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,advanced-stacks
+Next Greater Element I,https://leetcode.com/problems/next-greater-element-i/description/,MEDIUM,CLASSWORK,advanced-stacks
+Online Stock Span,https://leetcode.com/problems/online-stock-span/,MEDIUM,HOMEWORK,advanced-stacks
+Daily Temperatures,https://leetcode.com/problems/daily-temperatures/,MEDIUM,HOMEWORK,advanced-stacks
+Next Greater Node In Linked List,https://leetcode.com/problems/next-greater-node-in-linked-list/,MEDIUM,HOMEWORK,advanced-stacks
+Largest Rectangle in Histogram,https://leetcode.com/problems/largest-rectangle-in-histogram/description/,HARD,CLASSWORK,advanced-stacks
+Maximal Rectangle,https://leetcode.com/problems/maximal-rectangle/,HARD,CLASSWORK,advanced-stacks
+Maximal Square,https://leetcode.com/problems/maximal-square/,HARD,HOMEWORK,advanced-stacks
+Sum of Max of Subarrays,https://www.geeksforgeeks.org/problems/sum-of-max-of-subarrays/1,HARD,CLASSWORK,advanced-stacks
+Sum of Subarray Minimums,https://leetcode.com/problems/sum-of-subarray-minimums/,MEDIUM,HOMEWORK,advanced-stacks
+Sum of Subarray Ranges,https://leetcode.com/problems/sum-of-subarray-ranges/,MEDIUM,HOMEWORK,advanced-stacks
+Sum of Total Strength of Wizards,https://leetcode.com/problems/sum-of-total-strength-of-wizards/,MEDIUM,HOMEWORK,advanced-stacks
+Remove Duplicate Letters,https://leetcode.com/problems/remove-duplicate-letters/,MEDIUM,CLASSWORK,advanced-stacks
+Implement Queue using Stacks,https://leetcode.com/problems/implement-queue-using-stacks/,MEDIUM,CLASSWORK,advanced-stacks
+Remove All Adjacent Duplicates in String II,https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii/,MEDIUM,CLASSWORK,advanced-stacks
+Smallest K-Length Subsequence With Occurrences of a Letter,https://leetcode.com/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/,HARD,HOMEWORK,advanced-stacks
+Remove K Digits,https://leetcode.com/problems/remove-k-digits/,HARD,HOMEWORK,advanced-stacks
+Implement Stack using Queues,https://leetcode.com/problems/implement-stack-using-queues/,MEDIUM,HOMEWORK,advanced-stacks
+Sort a stack,https://www.geeksforgeeks.org/problems/sort-a-stack/1,MEDIUM,HOMEWORK,advanced-stacks
+Stream First Non-repeating,https://www.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1,MEDIUM,CLASSWORK,advanced-stacks
+First negative in every window of size k,https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/1,MEDIUM,CLASSWORK,advanced-queue
+Design MinMax Queue,https://www.geeksforgeeks.org/problems/design-minmax-queue/1?page=1&category=Deque&sortBy=submissions,MEDIUM,HOMEWORK,advanced-queue
+Sliding Window Maximum,https://leetcode.com/problems/sliding-window-maximum/description/,HARD,CLASSWORK,advanced-deque
+Implementation of Deque using doubly linked list,https://www.geeksforgeeks.org/problems/implementation-of-deque-using-doubly-linked-list/1?page=1&category=Deque&sortBy=submissions,MEDIUM,CLASSWORK,advanced-deque
+Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit,https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/,HARD,HOMEWORK,advanced-deque
+Continuous Subarrays,https://leetcode.com/problems/continuous-subarrays/description/,HARD,HOMEWORK,advanced-deque
+Shortest Subarray with Sum at Least K,https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/,HARD,CLASSWORK,advanced-deque
+Maximum subarray sum 2,https://www.geeksforgeeks.org/problems/maximum-subarray-sum--110820/1?page=1&category=Deque&sortBy=submissions,HARD,HOMEWORK,advanced-deque
+Longest Bounded-Difference Subarray,https://www.geeksforgeeks.org/problems/longest-bounded-difference-subarray/1?page=1&category=Deque&sortBy=submissions,HARD,HOMEWORK,advanced-deque
+Jump Game VI,https://leetcode.com/problems/jump-game-vi/,MEDIUM,HOMEWORK,advanced-deque
+Constrained Subsequence Sum,https://leetcode.com/problems/constrained-subsequence-sum/,HARD,HOMEWORK,advanced-deque
+Binary Tree Representation,https://www.geeksforgeeks.org/problems/binary-tree-representation/1,EASY,CLASSWORK,trees
+Binary Tree Preorder Traversal,https://leetcode.com/problems/binary-tree-preorder-traversal/description/,EASY,CLASSWORK,trees
+Binary Tree Inorder Traversal,https://leetcode.com/problems/binary-tree-inorder-traversal/description/,EASY,CLASSWORK,trees
+Binary Tree Postorder Traversal,https://leetcode.com/problems/binary-tree-postorder-traversal/description/,EASY,CLASSWORK,trees
+N-ary Tree Preorder Traversal,https://leetcode.com/problems/n-ary-tree-preorder-traversal/,EASY,HOMEWORK,trees
+N-ary Tree Postorder Traversal,https://leetcode.com/problems/n-ary-tree-postorder-traversal/,EASY,HOMEWORK,trees
+Same Tree,https://leetcode.com/problems/same-tree/,EASY,HOMEWORK,trees
+Symmetric Tree,https://leetcode.com/problems/symmetric-tree/,EASY,HOMEWORK,trees
+Size of Binary Tree,https://www.geeksforgeeks.org/problems/size-of-binary-tree/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,CLASSWORK,trees
+Sum of Binary Tree,https://www.geeksforgeeks.org/problems/sum-of-binary-tree/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,CLASSWORK,trees
+Height of Binary Tree,https://www.geeksforgeeks.org/problems/height-of-binary-tree/1,EASY,CLASSWORK,trees
+Maximum Depth of Binary Tree,https://leetcode.com/problems/maximum-depth-of-binary-tree/description/,EASY,CLASSWORK,trees
+Max and min element in Binary Tree,https://www.geeksforgeeks.org/problems/max-and-min-element-in-binary-tree/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,CLASSWORK,trees
+Sum of Leaf Nodes,https://www.geeksforgeeks.org/problems/sum-of-leaf-nodes/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,HOMEWORK,trees
+Balanced Binary Tree,https://leetcode.com/problems/balanced-binary-tree/,MEDIUM,CLASSWORK,trees
+Sum of Left Leaves,https://leetcode.com/problems/sum-of-left-leaves/,MEDIUM,HOMEWORK,trees
+Largest subtree sum in a tree,https://www.geeksforgeeks.org/problems/largest-subtree-sum-in-a-tree/1,MEDIUM,HOMEWORK,trees
+Count Non-Leaf Nodes in Tree,https://www.geeksforgeeks.org/problems/count-non-leaf-nodes-in-tree/1?page=1&category=Tree&sortBy=difficulty,MEDIUM,HOMEWORK,trees
+Count Leaves in Binary Tree,https://www.geeksforgeeks.org/problems/count-leaves-in-binary-tree/1?page=1&category=Tree&sortBy=difficulty,MEDIUM,HOMEWORK,trees
+Transform to Sum Tree,https://www.geeksforgeeks.org/problems/transform-to-sum-tree/1?page=2&category=Tree&sortBy=difficulty,MEDIUM,HOMEWORK,trees
+Binary Tree K level sum,https://www.geeksforgeeks.org/problems/binary-tree-k-level-sum3857/1?page=3&category=Tree&sortBy=difficulty,MEDIUM,HOMEWORK,trees
+Diameter of Binary Tree,https://leetcode.com/problems/diameter-of-binary-tree/description/,EASY,CLASSWORK,trees
+Iterative Inorder,https://www.geeksforgeeks.org/problems/inorder-traversal-iterative/1,EASY,CLASSWORK,trees
+Preorder traversal (Iterative),https://www.geeksforgeeks.org/problems/preorder-traversal-iterative/1,EASY,CLASSWORK,trees
+Iterative Postorder,https://www.geeksforgeeks.org/problems/postorder-traversal-iterative/1,EASY,CLASSWORK,trees
+Two Mirror Trees,https://www.geeksforgeeks.org/problems/two-mirror-trees/1?page=3&category=Tree&sortBy=difficulty,EASY,CLASSWORK,trees
+Maximum Depth of N-ary Tree,https://leetcode.com/problems/maximum-depth-of-n-ary-tree/,MEDIUM,HOMEWORK,trees
+Root Equals Sum of Children,https://leetcode.com/problems/root-equals-sum-of-children/,EASY,HOMEWORK,trees
+Evaluate Boolean Binary Tree,https://leetcode.com/problems/evaluate-boolean-binary-tree/,MEDIUM,HOMEWORK,trees
+Level order traversal,https://www.geeksforgeeks.org/problems/level-order-traversal/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,CLASSWORK,trees
+Binary Tree Level Order Traversal,https://leetcode.com/problems/binary-tree-level-order-traversal/description/,MEDIUM,CLASSWORK,trees
+Left View of Binary Tree,https://www.geeksforgeeks.org/problems/left-view-of-binary-tree/1,MEDIUM,CLASSWORK,trees
+Binary Tree Right Side View,https://leetcode.com/problems/binary-tree-right-side-view/,MEDIUM,CLASSWORK,trees
+Binary Tree Zigzag Level Order Traversal,https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/,HARD,HOMEWORK,trees
+Vertical Tree Traversal,https://www.geeksforgeeks.org/problems/print-a-binary-tree-in-vertical-order/1,HARD,CLASSWORK,trees
+Vertical Order Traversal of a Binary Tree,https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/,HARD,HOMEWORK,trees
+Top View of Binary Tree,https://www.geeksforgeeks.org/problems/top-view-of-binary-tree/1,MEDIUM,HOMEWORK,trees
+Bottom View of Binary Tree,https://www.geeksforgeeks.org/problems/bottom-view-of-binary-tree/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,trees
+Diagonal Tree Traversal,https://www.geeksforgeeks.org/problems/diagonal-traversal-of-binary-tree/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,trees
+Tree Boundary Traversal,https://www.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1,HARD,HOMEWORK,trees
+Construct Binary Tree from Preorder and Inorder Traversal,https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/,MEDIUM,CLASSWORK,trees
+Postorder from Inorder and Preorder,https://www.geeksforgeeks.org/problems/postorder-traversal-from-given-inorder-and-preorder-traversals/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,trees
+Construct Binary Tree from Inorder and Postorder Traversal,https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/,MEDIUM,HOMEWORK,trees
+Check Tree Traversal,https://www.geeksforgeeks.org/problems/check-tree-traversal--141628/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,HARD,HOMEWORK,trees
+Flatten binary tree to linked list,https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/,MEDIUM,HOMEWORK,trees
+Binary Tree to CDLL,https://www.geeksforgeeks.org/problems/binary-tree-to-cdll/1,MEDIUM,CLASSWORK,trees
+Construct Binary Tree from String with bracket representation,https://www.geeksforgeeks.org/problems/construct-binary-tree-from-string-with-bracket-representation/1?page=4&category=Tree&sortBy=difficulty,MEDIUM,HOMEWORK,trees
+Leaves to DLL,https://www.geeksforgeeks.org/problems/leaves-to-dll/1?page=4&category=Tree&sortBy=difficulty,MEDIUM,HOMEWORK,trees
+All Nodes Distance K in Binary Tree,https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/description/,HARD,CLASSWORK,trees
+Amount of Time for Binary Tree to Be Infected,https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/,MEDIUM,HOMEWORK,trees
+Path to Given Node,https://www.interviewbit.com/problems/path-to-given-node/,MEDIUM,CLASSWORK,trees
+Find Bottom Left Tree Value,https://leetcode.com/problems/find-bottom-left-tree-value/description/,MEDIUM,HOMEWORK,trees
+Find Largest Value in Each Tree Row,https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/,MEDIUM,HOMEWORK,trees
+Maximum Level Sum of a Binary Tree,https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/description/,MEDIUM,HOMEWORK,trees
+Binary Tree Maximum Path Sum,https://leetcode.com/problems/binary-tree-maximum-path-sum/description/,MEDIUM,CLASSWORK,trees
+Path Sum III,https://leetcode.com/problems/path-sum-iii/description/,MEDIUM,CLASSWORK,trees
+Path Sum II,https://leetcode.com/problems/path-sum-ii/description/,MEDIUM,HOMEWORK,trees
+Sum Root to Leaf Numbers,https://leetcode.com/problems/sum-root-to-leaf-numbers/description/,MEDIUM,CLASSWORK,trees
+Sum of Left Leaves,https://leetcode.com/problems/sum-of-left-leaves/description/,EASY,HOMEWORK,trees
+Maximum Difference Between Node and Ancestor,https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/description/,MEDIUM,HOMEWORK,trees
+Sum Tree,https://www.geeksforgeeks.org/problems/sum-tree/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,trees
+Binary Search Trees,https://www.geeksforgeeks.org/problems/binary-search-trees/0,EASY,CLASSWORK,binary-search-tree
+Search in a Binary Search Tree,https://leetcode.com/problems/search-in-a-binary-search-tree/description/,EASY,CLASSWORK,binary-search-tree
+Convert Sorted Array to Binary Search Tree,https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/description/,MEDIUM,HOMEWORK,binary-search-tree
+Kth Smallest Element in a BST,https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/,EASY,HOMEWORK,binary-search-tree
+Balance a Binary Search Tree,https://leetcode.com/problems/balance-a-binary-search-tree/description/,MEDIUM,HOMEWORK,binary-search-tree
+Binary Search Tree to Greater Sum Tree,https://leetcode.com/problems/binary-search-tree-to-greater-sum-tree/description/,MEDIUM,HOMEWORK,binary-search-tree
+Trim a Binary Search Tree,https://leetcode.com/problems/trim-a-binary-search-tree/,MEDIUM,CLASSWORK,binary-search-tree
+Validate Binary Search Tree,https://leetcode.com/problems/validate-binary-search-tree/description/,MEDIUM,CLASSWORK,binary-search-tree
+Range Sum of BST,https://leetcode.com/problems/range-sum-of-bst/description/,EASY,HOMEWORK,binary-search-tree
+Distribute Coins in Binary Tree,https://leetcode.com/problems/distribute-coins-in-binary-tree/description/,MEDIUM,HOMEWORK,binary-search-tree
+All Elements in Two Binary Search Trees,https://leetcode.com/problems/all-elements-in-two-binary-search-trees/description/,MEDIUM,HOMEWORK,binary-search-tree
+Largest BST,https://www.geeksforgeeks.org/problems/largest-bst/1,MEDIUM,CLASSWORK,binary-search-tree
+Maximum Sum BST in Binary Tree,https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/,MEDIUM,HOMEWORK,binary-search-tree
+Recover Binary Search Tree,https://leetcode.com/problems/recover-binary-search-tree/description/,MEDIUM,CLASSWORK,binary-search-tree
+Valid BST from Preorder,https://www.interviewbit.com/problems/valid-bst-from-preorder/,MEDIUM,HOMEWORK,binary-search-tree
+Lowest Common Ancestor of a Binary Tree,https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/,MEDIUM,CLASSWORK,binary-search-tree
+Lowest Common Ancestor of a Binary Search Tree,https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/,EASY,CLASSWORK,binary-search-tree
+Insert into a Binary Search Tree,https://leetcode.com/problems/insert-into-a-binary-search-tree/,EASY,CLASSWORK,binary-search-tree
+Delete Node in a BST,https://leetcode.com/problems/delete-node-in-a-bst/,MEDIUM,CLASSWORK,binary-search-tree
+Flatten BST to sorted list,https://www.geeksforgeeks.org/problems/flatten-bst-to-sorted-list--111950/1?page=3&category=Binary%20Search%20Tree&sortBy=difficulty,EASY,HOMEWORK,balanced-binary-search-tree
+Minimum BST Sum Subtree,https://www.geeksforgeeks.org/problems/flatten-bst-to-sorted-list--111950/1?page=3&category=Binary%20Search%20Tree&sortBy=difficulty,HARD,HOMEWORK,balanced-binary-search-tree
+Predecessor and Successor,https://www.geeksforgeeks.org/problems/predecessor-and-successor/1?page=3&category=Binary%20Search%20Tree&sortBy=difficulty,EASY,HOMEWORK,balanced-binary-search-tree
+Ceil in BST,https://www.geeksforgeeks.org/problems/implementing-ceil-in-bst/1?page=3&category=Binary%20Search%20Tree&sortBy=difficulty,EASY,HOMEWORK,balanced-binary-search-tree
+Floor in BST,https://www.geeksforgeeks.org/problems/floor-in-bst/1?page=3&category=Binary%20Search%20Tree&sortBy=difficulty,EASY,HOMEWORK,balanced-binary-search-tree
+Delete nodes greater than k,https://www.geeksforgeeks.org/problems/delete-nodes-greater-than-k/1?page=3&category=Binary%20Search%20Tree&sortBy=difficulty,EASY,HOMEWORK,balanced-binary-search-tree
+Root to Leaf Paths,https://www.geeksforgeeks.org/problems/root-to-leaf-paths/1?page=2&category=Binary%20Search%20Tree&sortBy=difficulty,EASY,HOMEWORK,balanced-binary-search-tree
+AVL Tree Insertion,https://www.geeksforgeeks.org/problems/avl-tree-insertion/1,HARD,CLASSWORK,balanced-binary-search-tree
+AVL Tree Deletion,https://www.geeksforgeeks.org/problems/avl-tree-deletion/1,HARD,CLASSWORK,balanced-binary-search-tree
+Huffman Encoding,https://www.geeksforgeeks.org/problems/huffman-encoding3345/1,HARD,CLASSWORK,huffman-coding
+Find Substring With Given Hash Value,https://leetcode.com/problems/find-substring-with-given-hash-value/,HARD,CLASSWORK,pattern-matching
+Repeated DNA Sequences,https://leetcode.com/problems/repeated-dna-sequences/,MEDIUM,CLASSWORK,pattern-matching
+Check If a String Contains All Binary Codes of Size K,https://leetcode.com/problems/check-if-a-string-contains-all-binary-codes-of-size-k/,MEDIUM,HOMEWORK,pattern-matching
+Search Pattern (Rabin-Karp Algorithm),https://www.geeksforgeeks.org/problems/search-pattern-rabin-karp-algorithm--141631/1?page=1&category=Pattern%20Searching&sortBy=submissions,HARD,CLASSWORK,pattern-matching
+Number of Substrings,https://judge.yosupo.jp/problem/number_of_substrings,MEDIUM,CLASSWORK,pattern-matching
+Longest Duplicate Substring,https://leetcode.com/problems/longest-duplicate-substring/,HARD,CLASSWORK,pattern-matching
+Maximum Length of Repeated Subarray,https://leetcode.com/problems/maximum-length-of-repeated-subarray/,MEDIUM,CLASSWORK,pattern-matching
+Longest Chunked Palindrome Decomposition,https://leetcode.com/problems/longest-chunked-palindrome-decomposition/,HARD,HOMEWORK,pattern-matching
+Distinct Echo Substrings,https://leetcode.com/problems/distinct-echo-substrings/,HARD,HOMEWORK,pattern-matching
+Implement Trie (Prefix Tree),https://leetcode.com/problems/implement-trie-prefix-tree/,MEDIUM,CLASSWORK,tries
+Replace Words,https://leetcode.com/problems/replace-words/,MEDIUM,HOMEWORK,tries
+Find the longest string,https://www.geeksforgeeks.org/problems/find-the-longest-string--170645/1?page=1&category=Trie&sortBy=difficulty,MEDIUM,HOMEWORK,tries
+CamelCase Pattern Matching,https://www.geeksforgeeks.org/problems/camelcase-pattern-matching2259/1?page=1&category=Trie&sortBy=difficulty,MEDIUM,HOMEWORK,tries
+Count of distinct substrings,https://www.geeksforgeeks.org/problems/count-of-distinct-substrings/1?page=1&category=Trie&sortBy=difficulty,MEDIUM,HOMEWORK,tries
+Count words in a Trie,https://www.geeksforgeeks.org/problems/count-words-in-a-trie/1?page=1&category=Trie&sortBy=difficulty,MEDIUM,HOMEWORK,tries
+Find duplicate rows in a binary matrix,https://www.geeksforgeeks.org/problems/find-duplicate-rows-in-a-binary-matrix/1?page=1&category=Trie&sortBy=difficulty,EASY,CLASSWORK,tries
+Unique rows in boolean matrix,https://www.geeksforgeeks.org/problems/unique-rows-in-boolean-matrix/1?page=1&category=Trie&sortBy=difficulty,EASY,CLASSWORK,tries
+Find the Length of the Longest Common Prefix,https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/,MEDIUM,HOMEWORK,tries
+Search Suggestions System,https://leetcode.com/problems/search-suggestions-system/,MEDIUM,HOMEWORK,tries
+Top K Frequent Words,https://leetcode.com/problems/top-k-frequent-words/,MEDIUM,HOMEWORK,tries
+Sum of Prefix Scores of Strings,https://leetcode.com/problems/sum-of-prefix-scores-of-strings/,MEDIUM,HOMEWORK,tries
+Maximum XOR of Two Numbers in an Array,https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/,MEDIUM,CLASSWORK,tries
+Maximum XOR subarray,https://www.geeksforgeeks.org/problems/maximum-xor-subarray--141631/1,MEDIUM,CLASSWORK,tries
+Maximum XOR With an Element From Array,https://leetcode.com/problems/maximum-xor-with-an-element-from-array/,MEDIUM,HOMEWORK,tries
+Min Heap implementation,https://www.geeksforgeeks.org/problems/min-heap-implementation/1?page=1&category=Heap&sortBy=difficulty,MEDIUM,HOMEWORK,heaps
+Binary Heap Operations,https://www.geeksforgeeks.org/problems/operations-on-binary-min-heap/1?page=2&category=Heap&sortBy=difficulty,MEDIUM,HOMEWORK,heaps
+Heap Sort,https://www.geeksforgeeks.org/problems/heap-sort/1,MEDIUM,CLASSWORK,heaps
+Kth Largest Element in an Array,https://leetcode.com/problems/kth-largest-element-in-an-array/description/,EASY,CLASSWORK,heaps
+Last Stone Weight,https://leetcode.com/problems/last-stone-weight/description/,EASY,CLASSWORK,heaps
+Minimum Cost of ropes,https://www.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,CLASSWORK,heaps
+Relative Ranks,https://leetcode.com/problems/relative-ranks/description/,EASY,HOMEWORK,heaps
+K Largest Elements,https://www.interviewbit.com/problems/k-largest-elements/,MEDIUM,HOMEWORK,heaps
+Nearly sorted,https://www.geeksforgeeks.org/problems/nearly-sorted-1587115620/1,MEDIUM,HOMEWORK,heaps
+Relative Ranks,https://leetcode.com/problems/relative-ranks/,EASY,HOMEWORK,heaps
+Ugly Number II,https://leetcode.com/problems/ugly-number-ii/,MEDIUM,HOMEWORK,heaps
+Top K Frequent Elements,https://leetcode.com/problems/top-k-frequent-elements/,MEDIUM,HOMEWORK,heaps
+Reduce Array Size to The Half,https://leetcode.com/problems/reduce-array-size-to-the-half/,MEDIUM,HOMEWORK,heaps
+Find median in a stream,https://www.geeksforgeeks.org/problems/find-median-in-a-stream-1587115620/1,MEDIUM,CLASSWORK,heaps
+Make Array Zero by Subtracting Equal Amounts,https://leetcode.com/problems/make-array-zero-by-subtracting-equal-amounts/description/,EASY,HOMEWORK,heaps
+Max Triplet Product,https://leetcode.com/problems/maximum-product-of-three-numbers/,EASY,HOMEWORK,heaps
+Maximum Product of Two Elements in an Array,https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/description/,EASY,HOMEWORK,heaps
+Kth Largest Element in a Stream,https://leetcode.com/problems/kth-largest-element-in-a-stream/description/,MEDIUM,HOMEWORK,heaps
+Operations on PriorityQueue,https://www.geeksforgeeks.org/problems/operations-on-priorityqueue/1?page=1&category=Heap&sortBy=difficulty,EASY,HOMEWORK,heaps
+Merge two binary Max heaps,https://www.geeksforgeeks.org/problems/merge-two-binary-max-heap0144/1?page=1&category=Heap&sortBy=difficulty,EASY,HOMEWORK,heaps
+Maximum Diamonds,https://www.geeksforgeeks.org/problems/chinky-and-diamonds3340/1?page=1&category=Heap&sortBy=difficulty,EASY,HOMEWORK,heaps
+Merge k Sorted Arrays,https://www.geeksforgeeks.org/problems/merge-k-sorted-arrays/1,MEDIUM,CLASSWORK,heaps
+Design Twitter,https://leetcode.com/problems/design-twitter/description/,HARD,HOMEWORK,heaps
+Smallest range in K lists,https://www.geeksforgeeks.org/problems/find-smallest-range-containing-elements-from-k-lists/1?page=2&category=Heap&sortBy=difficulty,MEDIUM,HOMEWORK,heaps
+Jump Game,https://leetcode.com/problems/jump-game/,MEDIUM,CLASSWORK,heaps
+Jump Game II,https://leetcode.com/problems/jump-game-ii/,MEDIUM,CLASSWORK,heaps
+Minimum Number of Refueling Stops,https://leetcode.com/problems/minimum-number-of-refueling-stops/,MEDIUM,HOMEWORK,heaps
+Maximize Toys,https://www.geeksforgeeks.org/problems/activity-selection-1587115620/1,EASY,CLASSWORK,greedy
+Three Great Candidates,https://www.geeksforgeeks.org/problems/three-great-candidates0515/1,EASY,CLASSWORK,greedy
+Fractional Knapsack,https://www.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1,MEDIUM,CLASSWORK,greedy
+Police and Thieves,https://www.geeksforgeeks.org/problems/police-and-thieves--141631/1,MEDIUM,CLASSWORK,greedy
+Maximum number of events that can be attended,https://www.geeksforgeeks.org/problems/maximum-number-of-events-that-can-be-attended--170636/1?page=2&category=Heap&sortBy=difficulty,MEDIUM,CLASSWORK,greedy
+N meetings in one room,https://www.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1?page=2&category=Greedy&sortBy=difficulty,EASY,HOMEWORK,greedy
+Last Moment Before All Ants Fall Out,https://www.geeksforgeeks.org/problems/last-moment-before-all-ants-fall-out-of-a-plank/1?page=3&category=Greedy&sortBy=difficulty,EASY,HOMEWORK,greedy
+Job Sequencing Problem,https://www.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1?page=5&category=Greedy&sortBy=difficulty,MEDIUM,CLASSWORK,greedy
+Number of Flowers in Full Bloom,https://leetcode.com/problems/number-of-flowers-in-full-bloom/,MEDIUM,CLASSWORK,greedy
+Minimum Number of Taps to Open to Water a Garden,https://leetcode.com/problems/minimum-number-of-taps-to-open-to-water-a-garden/description/,MEDIUM,CLASSWORK,greedy
+Maximum Meetings in One Room,https://www.geeksforgeeks.org/problems/maximum-meetings-in-one-room/1?page=3&category=Greedy&sortBy=difficulty,MEDIUM,HOMEWORK,greedy
+Task Scheduler,https://www.geeksforgeeks.org/problems/task-scheduler/1?page=3&category=Greedy&sortBy=difficulty,MEDIUM,HOMEWORK,greedy
+Activity Selection,https://www.geeksforgeeks.org/problems/activity-selection-1587115620/1?page=5&category=Greedy&sortBy=difficulty,MEDIUM,HOMEWORK,greedy
+Meeting Rooms III,https://www.geeksforgeeks.org/problems/meeting-rooms-iii/1?page=3&category=Heap&sortBy=difficulty,MEDIUM,HOMEWORK,greedy
+Non-overlapping Intervals,https://www.geeksforgeeks.org/problems/non-overlapping-intervals/1?page=3&category=Greedy&sortBy=difficulty,MEDIUM,HOMEWORK,greedy
+Meeting Rooms II,https://www.geeksforgeeks.org/problems/attend-all-meetings-ii/1?page=3&category=Greedy&sortBy=difficulty,MEDIUM,HOMEWORK,greedy
+Maximum trains for which stoppage can be provided,https://www.geeksforgeeks.org/problems/maximum-trains-for-which-stoppage-can-be-provided/1?page=4&category=Greedy&sortBy=difficulty,MEDIUM,HOMEWORK,greedy
+Minimize the Heights II,https://www.geeksforgeeks.org/problems/minimize-the-heights3351/1?page=3&category=Greedy&sortBy=difficulty,HARD,HOMEWORK,greedy
+Minimum Platforms,https://www.geeksforgeeks.org/problems/minimum-platforms-1587115620/1?page=3&category=Greedy&sortBy=difficulty,HARD,HOMEWORK,greedy
+Stable Marriage Problem,https://www.geeksforgeeks.org/problems/stable-marriage-problem/1?page=5&category=Greedy&sortBy=difficulty,HARD,HOMEWORK,greedy
+Coin Piles,https://www.geeksforgeeks.org/problems/coin-piles5152/1?page=3&category=Greedy&sortBy=difficulty,HARD,HOMEWORK,greedy
+Subset Sums,https://www.geeksforgeeks.org/problems/subset-sums2234/0,MEDIUM,CLASSWORK,backtracking
+Combination Sum,https://leetcode.com/problems/combination-sum/description/,MEDIUM,HOMEWORK,backtracking
+N Digit numbers with digits in increasing order,https://www.geeksforgeeks.org/problems/n-digit-numbers-with-digits-in-increasing-order5903/1,MEDIUM,HOMEWORK,backtracking
+Beautiful Arrangement,https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/,MEDIUM,HOMEWORK,backtracking
+Combination Sum III,https://leetcode.com/problems/combination-sum-iii/,HARD,HOMEWORK,backtracking
+Target Sum,https://leetcode.com/problems/target-sum/,MEDIUM,HOMEWORK,backtracking
+Subsets,https://leetcode.com/problems/subsets/,MEDIUM,CLASSWORK,backtracking
+Generate Parentheses,https://leetcode.com/problems/generate-parentheses/description/,EASY,CLASSWORK,backtracking
+Combinations,https://leetcode.com/problems/combinations/,EASY,HOMEWORK,backtracking
+Restore IP Addresses,https://leetcode.com/problems/restore-ip-addresses/,MEDIUM,HOMEWORK,backtracking
+Subsets II,https://leetcode.com/problems/subsets-ii/description/,MEDIUM,CLASSWORK,backtracking
+Combination Sum II,https://leetcode.com/problems/combination-sum-ii/description/,MEDIUM,HOMEWORK,backtracking
+N-Queens,https://leetcode.com/problems/n-queens/description/,MEDIUM,CLASSWORK,backtracking
+N-Queens II,https://leetcode.com/problems/n-queens-ii/,MEDIUM,CLASSWORK,backtracking
+Remove Invalid Parentheses,https://leetcode.com/problems/remove-invalid-parentheses/,HARD,HOMEWORK,backtracking
+Unique Paths III,https://leetcode.com/problems/unique-paths-iii/,MEDIUM,HOMEWORK,backtracking
+Rat in a Maze,https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1,MEDIUM,CLASSWORK,backtracking
+Longest Possible Route in a Matrix with Hurdles,https://www.geeksforgeeks.org/problems/longest-possible-route-in-a-matrix-with-hurdles/1?page=1&category=Backtracking&sortBy=difficulty,MEDIUM,HOMEWORK,backtracking
+The Knight's tour problem,https://www.geeksforgeeks.org/problems/longest-possible-route-in-a-matrix-with-hurdles/1?page=1&category=Backtracking&sortBy=difficulty,MEDIUM,CLASSWORK,backtracking
+Word Search,https://leetcode.com/problems/word-search/,MEDIUM,CLASSWORK,backtracking
+Letter Case Permutation,https://leetcode.com/problems/letter-case-permutation/,MEDIUM,HOMEWORK,backtracking
+Word Search II,https://leetcode.com/problems/word-search-ii/,MEDIUM,CLASSWORK,backtracking
+Maximum Score Words Formed by Letters,https://leetcode.com/problems/maximum-score-words-formed-by-letters/,MEDIUM,HOMEWORK,backtracking
+Partition array to k subsets,https://www.geeksforgeeks.org/problems/partition-array-to-k-subsets/1?page=3&category=Backtracking&sortBy=difficulty,MEDIUM,HOMEWORK,backtracking
+Sliding Puzzle,https://leetcode.com/problems/sliding-puzzle/,MEDIUM,HOMEWORK,backtracking
+Sudoku Solver,https://leetcode.com/problems/sudoku-solver/description/,HARD,CLASSWORK,backtracking
+Valid Sudoku,https://leetcode.com/problems/valid-sudoku/,MEDIUM,HOMEWORK,backtracking
+Beautiful Arrangement,https://leetcode.com/problems/beautiful-arrangement/,MEDIUM,HOMEWORK,backtracking
+Partition to K Equal Sum Subsets,https://leetcode.com/problems/partition-to-k-equal-sum-subsets/,HARD,HOMEWORK,backtracking
+Word Break II,https://leetcode.com/problems/word-break-ii/,HARD,HOMEWORK,backtracking
+Expression Add Operators,https://leetcode.com/problems/expression-add-operators/,HARD,HOMEWORK,backtracking
+Permutations,https://leetcode.com/problems/permutations/,MEDIUM,CLASSWORK,backtracking
+Permutations II,https://leetcode.com/problems/permutations-ii/,MEDIUM,HOMEWORK,backtracking
+Partition String Into Minimum Beautiful Substrings,https://leetcode.com/problems/partition-string-into-minimum-beautiful-substrings/,MEDIUM,CLASSWORK,backtracking
+Word Break,https://leetcode.com/problems/word-break/,MEDIUM,HOMEWORK,backtracking
+Word Ladder II,https://leetcode.com/problems/word-ladder-ii/,HARD,HOMEWORK,backtracking
+24 Game,https://leetcode.com/problems/24-game/,HARD,HOMEWORK,backtracking
+Find Minimum Time to Finish All Jobs,https://leetcode.com/problems/find-minimum-time-to-finish-all-jobs/,HARD,HOMEWORK,backtracking
+Maximum Good People Based on Statements,https://leetcode.com/problems/maximum-good-people-based-on-statements/,HARD,HOMEWORK,backtracking
+Number of Valid Move Combinations On Chessboard,https://leetcode.com/problems/number-of-valid-move-combinations-on-chessboard/,HARD,HOMEWORK,backtracking
+Fibonacci Number,https://leetcode.com/problems/fibonacci-number/description/,EASY,CLASSWORK,dynamic-programming
+Ways to Reach the n'th Stair,https://www.geeksforgeeks.org/problems/count-ways-to-reach-the-nth-stair-1587115620/1,EASY,CLASSWORK,dynamic-programming
+Tribonacci Number,https://www.geeksforgeeks.org/problems/tribonacci-number/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,HOMEWORK,dynamic-programming
+Climbing Stairs,https://leetcode.com/problems/climbing-stairs/description/,EASY,CLASSWORK,dynamic-programming
+Perfect Squares,https://leetcode.com/problems/perfect-squares/description/,MEDIUM,CLASSWORK,dynamic-programming
+Min Cost Climbing Stairs,https://www.geeksforgeeks.org/problems/min-cost-climbing-stairs/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,dynamic-programming
+Maximize The Cut Segments,https://www.geeksforgeeks.org/problems/cutted-segments1642/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,dynamic-programming
+Friends Pairing Problem,https://www.geeksforgeeks.org/problems/friends-pairing-problem5425/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,dynamic-programming
+House Robber,https://leetcode.com/problems/house-robber/,MEDIUM,CLASSWORK,dynamic-programming
+House Robber II,https://leetcode.com/problems/house-robber-ii/description/,MEDIUM,HOMEWORK,dynamic-programming
+Paint N House,https://www.geeksforgeeks.org/problems/distinct-coloring--170645/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,dynamic-programming
+Unique Paths,https://leetcode.com/problems/unique-paths/description/,EASY,CLASSWORK,dynamic-programming
+Unique Paths II,https://leetcode.com/problems/unique-paths-ii/description/,EASY,CLASSWORK,dynamic-programming
+Minimum Path Sum,https://leetcode.com/problems/minimum-path-sum/,MEDIUM,CLASSWORK,dynamic-programming
+Minimum Path Cost in a Grid,https://leetcode.com/problems/minimum-path-cost-in-a-grid/,MEDIUM,HOMEWORK,dynamic-programming
+Triangle Path Sum,https://www.geeksforgeeks.org/problems/triangle-path-sum/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,dynamic-programming
+nCr,https://www.geeksforgeeks.org/problems/ncr1019/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,dynamic-programming
+Pascal Triangle,https://www.geeksforgeeks.org/problems/pascal-triangle0652/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,dynamic-programming
+Subset Sum Problem,https://www.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,CLASSWORK,dynamic-programming
+Perfect Sum Problem,https://www.geeksforgeeks.org/problems/perfect-sum-problem5633/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=perfect-sum-problem,EASY,CLASSWORK,dynamic-programming
+Target Sum,https://leetcode.com/problems/target-sum/,EASY,HOMEWORK,dynamic-programming
+Partition Equal Subset Sum,https://leetcode.com/problems/partition-equal-subset-sum/description/,EASY,CLASSWORK,dynamic-programming
+Minimum sum partition,https://www.geeksforgeeks.org/problems/minimum-sum-partition3317/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,dynamic-programming
+Partition Array Into Two Arrays to Minimize Sum Difference,https://leetcode.com/problems/partition-array-into-two-arrays-to-minimize-sum-difference/description/,HARD,HOMEWORK,dynamic-programming
+Coin Change,https://leetcode.com/problems/coin-change/description/,MEDIUM,HOMEWORK,dynamic-programming
+Coin Change II,https://leetcode.com/problems/coin-change-ii/description/,MEDIUM,HOMEWORK,dynamic-programming
+Russian Doll Envelopes,https://leetcode.com/problems/russian-doll-envelopes/description/,HARD,HOMEWORK,dynamic-programming
+Combination Sum IV,https://leetcode.com/problems/combination-sum-iv/description/,HARD,HOMEWORK,dynamic-programming
+Fractional Knapsack,https://www.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1,HARD,HOMEWORK,dynamic-programming
+0 - 1 Knapsack Problem,https://www.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1,MEDIUM,CLASSWORK,dynamic-programming
+Knapsack with Duplicate Items,https://www.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1,MEDIUM,CLASSWORK,dynamic-programming
+Minimum Cost to Cut a Stick,https://leetcode.com/problems/minimum-cost-to-cut-a-stick/description/,MEDIUM,HOMEWORK,dynamic-programming
+Number of Ways to Earn Points,https://leetcode.com/problems/number-of-ways-to-earn-points/description/,MEDIUM,HOMEWORK,dynamic-programming
+Number of Ways to Divide a Long Corridor,https://leetcode.com/problems/number-of-ways-to-divide-a-long-corridor/description/,MEDIUM,HOMEWORK,dynamic-programming
+Longest Increasing Subsequence,https://leetcode.com/problems/longest-increasing-subsequence/,MEDIUM,CLASSWORK,dynamic-programming
+Number of Longest Increasing Subsequence,https://leetcode.com/problems/longest-increasing-subsequence/,MEDIUM,HOMEWORK,dynamic-programming
+Longest Common Subsequence,https://leetcode.com/problems/longest-common-subsequence/description/,MEDIUM,CLASSWORK,dynamic-programming
+Longest Palindromic Subsequence,https://leetcode.com/problems/longest-palindromic-subsequence/description/,MEDIUM,CLASSWORK,dynamic-programming
+Longest Palindromic Substring,https://leetcode.com/problems/longest-palindromic-substring/,MEDIUM,CLASSWORK,dynamic-programming
+Delete Operation for Two Strings,https://leetcode.com/problems/delete-operation-for-two-strings/,MEDIUM,HOMEWORK,dynamic-programming
+Shortest Common Supersequence,https://leetcode.com/problems/shortest-common-supersequence/,HARD,HOMEWORK,dynamic-programming
+LCS of three strings,https://www.geeksforgeeks.org/problems/lcs-of-three-strings0028/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,HOMEWORK,dynamic-programming
+Minimum Insertion Steps to Make a String Palindrome,https://leetcode.com/problems/minimum-insertion-steps-to-make-a-string-palindrome/,MEDIUM,HOMEWORK,dynamic-programming
+Longest Common Substring,https://www.geeksforgeeks.org/problems/longest-common-substring1452/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,HARD,HOMEWORK,dynamic-programming
+Longest Repeating Subsequence,https://www.geeksforgeeks.org/problems/longest-repeating-subsequence2004/1,HARD,HOMEWORK,dynamic-programming
+Edit Distance,https://leetcode.com/problems/edit-distance/description/,MEDIUM,CLASSWORK,dynamic-programming
+Regular Expression Matching,https://leetcode.com/problems/regular-expression-matching/description/,MEDIUM,HOMEWORK,dynamic-programming
+Longest Chunked Palindrome Decomposition,https://leetcode.com/problems/longest-chunked-palindrome-decomposition/description/,MEDIUM,HOMEWORK,dynamic-programming
+Wildcard Matching,https://leetcode.com/problems/wildcard-matching/,MEDIUM,CLASSWORK,dynamic-programming
+Minimum ASCII Delete Sum for Two Strings,https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/,MEDIUM,HOMEWORK,dynamic-programming
+Uncrossed Lines,https://leetcode.com/problems/uncrossed-lines/,MEDIUM,HOMEWORK,dynamic-programming
+Minimum White Tiles After Covering With Carpets,https://leetcode.com/problems/minimum-white-tiles-after-covering-with-carpets/,HARD,HOMEWORK,dynamic-programming
+Substring Matching Pattern,https://leetcode.com/problems/substring-matching-pattern/,MEDIUM,HOMEWORK,dynamic-programming
+Matrix Chain Multiplication,https://www.geeksforgeeks.org/problems/matrix-chain-multiplication0303/1,EASY,CLASSWORK,dynamic-programming
+Burst Balloons,https://leetcode.com/problems/burst-balloons/,HARD,HOMEWORK,dynamic-programming
+Palindrome Partitioning II,https://leetcode.com/problems/palindrome-partitioning-ii/,HARD,CLASSWORK,dynamic-programming
+Palindrome Partitioning IV,https://leetcode.com/problems/palindrome-partitioning-iv/,HARD,HOMEWORK,dynamic-programming
+Palindrome Partitioning III,https://leetcode.com/problems/palindrome-partitioning-iii/,HARD,HOMEWORK,dynamic-programming
+Maximum Number of Non-overlapping Palindrome Substrings,https://leetcode.com/problems/maximum-number-of-non-overlapping-palindrome-substrings/,HARD,HOMEWORK,dynamic-programming
+Boolean Parenthesization,https://www.geeksforgeeks.org/problems/boolean-parenthesization5610/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,HARD,CLASSWORK,dynamic-programming
+Dungeon Game,https://leetcode.com/problems/dungeon-game/,HARD,CLASSWORK,dynamic-programming
+Cherry Pickup,https://leetcode.com/problems/cherry-pickup/,HARD,HOMEWORK,dynamic-programming
+BFS of graph,https://www.geeksforgeeks.org/problems/bfs-traversal-of-graph/1,MEDIUM,CLASSWORK,graphs
+Find if Path Exists in Graph,https://leetcode.com/problems/find-if-path-exists-in-graph/description/,MEDIUM,CLASSWORK,graphs
+Clone Graph,https://leetcode.com/problems/clone-graph/description/,MEDIUM,HOMEWORK,graphs
+DFS of Graph,https://www.geeksforgeeks.org/problems/depth-first-traversal-for-a-graph/1,MEDIUM,CLASSWORK,graphs
+Count the paths,https://www.geeksforgeeks.org/problems/count-the-paths4332/0,MEDIUM,HOMEWORK,graphs
+Snakes and Ladders,https://leetcode.com/problems/snakes-and-ladders/,MEDIUM,CLASSWORK,graphs
+Steps by Knight,https://www.geeksforgeeks.org/problems/steps-by-knight5927/1,HARD,HOMEWORK,graphs
+Check Knight Tour Configuration,https://leetcode.com/problems/check-knight-tour-configuration/,HARD,HOMEWORK,graphs
+Number of Good Components,https://www.geeksforgeeks.org/problems/number-of-good-components--170647/0,MEDIUM,CLASSWORK,graphs
+Number of Provinces,https://leetcode.com/problems/number-of-provinces/,MEDIUM,CLASSWORK,graphs
+Undirected Graph Cycle,https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1,MEDIUM,CLASSWORK,graphs
+Count the Number of Complete Components,https://leetcode.com/problems/count-the-number-of-complete-components/,HARD,HOMEWORK,graphs
+Number of Islands,https://leetcode.com/problems/number-of-islands/description/,MEDIUM,CLASSWORK,graphs
+Flood Fill,https://leetcode.com/problems/flood-fill/description/,EASY,HOMEWORK,graphs
+Max Area of Island,https://leetcode.com/problems/max-area-of-island/,MEDIUM,CLASSWORK,graphs
+Battleships in a Board,https://leetcode.com/problems/battleships-in-a-board/description/,MEDIUM,HOMEWORK,graphs
+Number of Enclaves,https://leetcode.com/problems/number-of-enclaves/description/,MEDIUM,HOMEWORK,graphs
+Escape the Spreading Fire,https://leetcode.com/problems/escape-the-spreading-fire/,HARD,HOMEWORK,graphs
+Battleships in a Board,https://leetcode.com/problems/battleships-in-a-board/,HARD,HOMEWORK,graphs
+Find All Groups of Farmland,https://leetcode.com/problems/find-all-groups-of-farmland/description/,MEDIUM,HOMEWORK,graphs
+Find number of closed islands,https://www.geeksforgeeks.org/problems/find-number-of-closed-islands/1,MEDIUM,HOMEWORK,graphs
+Maximum Connected group,https://www.geeksforgeeks.org/problems/maximum-connected-group/1,HARD,HOMEWORK,graphs
+Surrounded Regions,https://leetcode.com/problems/surrounded-regions/,MEDIUM,HOMEWORK,graphs
+Maximum Number of Moves to Kill All Pawns,https://leetcode.com/problems/maximum-number-of-moves-to-kill-all-pawns/,HARD,HOMEWORK,graphs
+Rotting Oranges,https://leetcode.com/problems/rotting-oranges/description/,MEDIUM,CLASSWORK,graphs
+Topological sort,https://www.geeksforgeeks.org/problems/topological-sort/1,MEDIUM,CLASSWORK,graphs
+Detect Cycle in a Directed Graph,https://www.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1,MEDIUM,CLASSWORK,graphs
+Course Schedule,https://leetcode.com/problems/course-schedule/,MEDIUM,CLASSWORK,graphs
+Course Schedule II,https://leetcode.com/problems/course-schedule-ii/,MEDIUM,HOMEWORK,graphs
+Find Eventual Safe States,https://leetcode.com/problems/find-eventual-safe-states/description/,MEDIUM,CLASSWORK,graphs
+Longest Cycle in a Graph,https://leetcode.com/problems/longest-cycle-in-a-graph/,HARD,HOMEWORK,graphs
+Parallel Courses III,https://leetcode.com/problems/parallel-courses-iii/description/,HARD,CLASSWORK,graphs
+Bridge edge in a graph,https://www.geeksforgeeks.org/problems/bridge-edge-in-graph/1,EASY,HOMEWORK,graphs
+Evaluate Division,https://leetcode.com/problems/evaluate-division/,HARD,HOMEWORK,graphs
+Redundant Connection,https://leetcode.com/problems/redundant-connection/,HARD,HOMEWORK,graphs
+Redundant Connection II,https://leetcode.com/problems/redundant-connection-ii/,HARD,HOMEWORK,graphs
+Accounts Merge,https://leetcode.com/problems/accounts-merge/,MEDIUM,HOMEWORK,graphs
+Dijkstra Algorithm,https://www.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1,HARD,CLASSWORK,graphs
+Network Delay Time,https://leetcode.com/problems/network-delay-time/,HARD,CLASSWORK,graphs
+Path With Minimum Effort,https://leetcode.com/problems/path-with-minimum-effort/,MEDIUM,HOMEWORK,graphs
+Path with Maximum Probability,https://leetcode.com/problems/path-with-maximum-probability/description/,HARD,HOMEWORK,graphs
+Bellman-Ford,https://www.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1,HARD,CLASSWORK,graphs
+Negative weight cycle,https://www.geeksforgeeks.org/problems/negative-weight-cycle3504/1,HARD,CLASSWORK,graphs
+Floyd Warshall,https://www.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1,MEDIUM,CLASSWORK,graphs
+Minimum Spanning Tree,https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1,HARD,CLASSWORK,graphs
+Min Cost to Connect All Points,https://leetcode.com/problems/min-cost-to-connect-all-points/,MEDIUM,HOMEWORK,graphs
+Rank Transform of a Matrix,https://leetcode.com/problems/rank-transform-of-a-matrix/description/,MEDIUM,HOMEWORK,graphs
+Find the City With the Smallest Number of Neighbors at a Threshold Distance,https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/description/,MEDIUM,HOMEWORK,graphs
+Course Schedule IV,https://leetcode.com/problems/course-schedule-iv/,MEDIUM,HOMEWORK,graphs
+Couples Holding Hands,https://leetcode.com/problems/couples-holding-hands/,HARD,HOMEWORK,graphs

@@ -11,8 +11,7 @@ export const QuestionTypeEnum = z.enum(["HOMEWORK", "CLASSWORK"]);
  */
 export const createTopicSchema = z.object({
   topic_name: z.string().min(1, "Topic name is required"),
-  description: z.string().optional(),
-  photo: z.any().optional(), // File upload handled by multer
+  photo: z.any().optional(),
 });
 
 /**
@@ -21,7 +20,6 @@ export const createTopicSchema = z.object({
  */
 export const updateTopicSchema = z.object({
   topic_name: z.string().min(1, "Topic name is required").optional(),
-  description: z.string().optional(),
   photo: z.any().optional(),
   removePhoto: z.union([z.boolean(), z.string()]).optional(),
 });

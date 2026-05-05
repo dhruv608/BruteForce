@@ -10,7 +10,6 @@ export interface Topic {
   total_questions: number;
   solved_questions: number;
   total_classes: number;
-  description?: string;
   classes?: unknown[];
   overallProgress?: {
     totalQuestions: number;

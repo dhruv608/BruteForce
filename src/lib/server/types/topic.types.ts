@@ -10,13 +10,11 @@ import type { ParsedFile } from '@/lib/server/file-helper';
 // Topic Data Transfer Objects
 export interface CreateTopicDTO {
   topic_name: string;
-  description?: string;
   photo?: ParsedFile;
 }
 
 export interface UpdateTopicDTO {
   topic_name?: string;
-  description?: string;
   photo?: ParsedFile;
   removePhoto?: boolean;
 }
@@ -24,7 +22,6 @@ export interface UpdateTopicDTO {
 export interface UpdateTopicInput {
   topicSlug: string;
   topic_name?: string;
-  description?: string;
   photo?: ParsedFile;
   removePhoto?: boolean;
 }

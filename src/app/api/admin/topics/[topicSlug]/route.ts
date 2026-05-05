@@ -19,14 +19,12 @@ export async function PUT(
 
     const contentType = req.headers.get('content-type') ?? '';
     let topic_name: string | undefined;
-    let description: string | undefined;
     let removePhoto: boolean = false;
     let photo: ParsedFile | undefined;
 
     if (contentType.includes('multipart/form-data')) {
       const formData = await req.formData();
       topic_name = (formData.get('topic_name') as string) ?? undefined;
-      description = (formData.get('description') as string) ?? undefined;
       removePhoto = formData.get('removePhoto') === 'true';
       const photoFile = formData.get('photo') as File | null;
       if (photoFile) {
@@ -36,11 +34,10 @@ export async function PUT(
     } else {
       const body = await req.json();
       topic_name = body.topic_name;
-      description = body.description;
       removePhoto = body.removePhoto === true;
     }
 
-    const updated = await updateTopicService({ topicSlug, topic_name, description, photo: photo as any, removePhoto });
+    const updated = await updateTopicService({ topicSlug, topic_name, photo: photo as any, removePhoto });
 
     await Promise.all([
       CacheInvalidation.invalidateAdminTopics(),
