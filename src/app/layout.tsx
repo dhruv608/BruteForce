@@ -31,6 +31,13 @@ export const metadata: Metadata = {
 
   description: "BruteForce Executive Portal",
 
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+  },
+
 };
 
 export default function RootLayout({

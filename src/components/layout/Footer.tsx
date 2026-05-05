@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { MapPin, Heart } from 'lucide-react';
+import Logo from '@/components/Logo';
 
 export function Footer() {
   return (
@@ -12,9 +13,9 @@ export function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <div>
-              <h3 className="font-serif italic text-2xl font-bold bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text text-transparent">
-                Brute<span className="text-primary">Force</span>
-              </h3>
+              <div className="-mt-[43px] -ml-1">
+                <Logo />
+              </div>
               <p className="text-sm text-muted-foreground mt-2 font-medium">
                 Solve Faster.<br />
                 Rank Higher.<br />
@@ -22,10 +23,15 @@ export function Footer() {
               </p>
             </div>
 
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <a
+              href="https://www.pwioi.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
               <MapPin className="w-4 h-4" />
               <span>PW Institute of Innovation</span>
-            </div>
+            </a>
           </div>
 
           {/* Quick Links */}

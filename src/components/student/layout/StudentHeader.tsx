@@ -281,7 +281,7 @@ export default function StudentHeader() {
                             className="w-full h-full bg-linear-to-br from-accent-primary to-accent-primary text-primary-foreground flex items-center justify-center text-sm font-bold"
                             style={{ borderRadius: 'var(--radius-full)' }}
                           >
-                            <ProfileAvatar username={profile.name} size={40}/>
+                            <ProfileAvatar username={profile.name} size={40} />
                           </div>
                         )}
                       </button>
