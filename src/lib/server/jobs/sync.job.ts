@@ -100,11 +100,12 @@ export function startSyncJob() {
 
           console.log(`[CRON] Adding ${students.length} students to sync queue`);
 
-          // Add all students to queue in bulk with batchId
+          const today = new Date().toISOString().slice(0, 10);
           const jobs = students.map(student => ({
             name: 'sync-student',
             data: { studentId: student.id, batchId: student.batch_id },
             opts: {
+              jobId: `sync-${student.id}-${today}`,
               attempts: 3,
               backoff: {
                 type: 'exponential',
@@ -136,7 +137,8 @@ export function startSyncJob() {
 
           if (attempt >= maxRetries) {
             console.error("[CRON] All student sync attempts failed");
-            resetSync();
+            const remaining = await studentSyncQueue.count();
+            if (remaining === 0) resetSync();
             break;
           }
 
@@ -146,14 +148,11 @@ export function startSyncJob() {
           await new Promise(resolve => setTimeout(resolve, delay));
         }
       }
-    });
+    }, { timezone: 'Asia/Kolkata' });
   }
 
   // Leaderboard Sync Cron: 9 AM, 6 PM, 11 PM
   cron.schedule("0 9,18,23 * * *", async () => {
-  // cron.schedule("45 15 * * *", async () => {
-    // cron.schedule("*/1 * * * *", async () => {
-    // cron.schedule("30 22 * * *", async () => {
     try {
       console.log("[CRON] Leaderboard sync cycle started");
       await tryRunLeaderboard();
@@ -161,7 +160,7 @@ export function startSyncJob() {
     } catch (error) {
       console.error("[CRON] Leaderboard sync failed:", error);
     }
-  });
+  }, { timezone: 'Asia/Kolkata' });
 
   console.log("[CRON] Student sync: 5 AM, 2 PM, 8 PM (0 5,14,20 * * *)");
   console.log("[CRON] Leaderboard sync: 9 AM, 6 PM, 11 PM (0 9,18,23 * * *)");

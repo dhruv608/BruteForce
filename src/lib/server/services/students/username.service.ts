@@ -76,24 +76,31 @@ export const updateUsernameService = async (
     select: { username: true }
   });
 
-  // Update username
-  const updatedStudent = await prisma.student.update({
-    where: { id: studentId },
-    data: { username },
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      username: true,
-      leetcode_id: true,
-      gfg_id: true,
-      github: true,
-      linkedin: true,
-      city_id: true,
-      batch_id: true,
-      created_at: true
+  let updatedStudent;
+  try {
+    updatedStudent = await prisma.student.update({
+      where: { id: studentId },
+      data: { username },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        username: true,
+        leetcode_id: true,
+        gfg_id: true,
+        github: true,
+        linkedin: true,
+        city_id: true,
+        batch_id: true,
+        created_at: true
+      }
+    });
+  } catch (e: any) {
+    if (e.code === 'P2002') {
+      throw new ApiError(409, 'Username already taken', [], 'USERNAME_TAKEN');
     }
-  });
+    throw e;
+  }
 
   // Invalidate caches when username changes
   await CacheInvalidation.invalidateAllLeaderboards();

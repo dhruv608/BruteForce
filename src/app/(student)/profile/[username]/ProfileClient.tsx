@@ -22,6 +22,7 @@ import TopicProgressModal from '@/components/student/topics/TopicProgressModal';
 import { showSuccess } from '@/ui/toast';
 import { getErrorMessage } from '@/errors';
 import { useCanEditProfile } from '@/hooks/useCanEditProfile';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface ProfileClientProps {
   username: string;
@@ -30,6 +31,7 @@ interface ProfileClientProps {
 
 export default function ProfileClient({ username, initialData }: ProfileClientProps) {
   const router = useRouter();
+  const queryClient = useQueryClient();
   const [profileData, setProfileData] = useState<ProfileDataState>(initialData ?? null);
   const [loading, setLoading] = useState(!initialData);
   const [uploading, setUploading] = useState(false);
@@ -213,6 +215,7 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
       await fetchProfileByUsername();
       setShowEditModal(false);
       window.dispatchEvent(new CustomEvent('profileUpdated'));
+      queryClient.invalidateQueries({ queryKey: ['currentStudent'] });
       showSuccess('Profile updated successfully!');
     } catch (error) {
     } finally {

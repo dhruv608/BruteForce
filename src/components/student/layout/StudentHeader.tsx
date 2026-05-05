@@ -19,6 +19,7 @@ import { useRecentQuestions } from '@/contexts/RecentQuestionsContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import { studentAuthService } from '@/services/student/auth.service';
 import { showSuccess } from '@/ui/toast';
+import { useQueryClient } from '@tanstack/react-query';
 import Logo from '@/components/Logo';
 import { ProfileAvatar } from '@/components/ui/ProfileAvatar';
 
@@ -109,10 +110,11 @@ export default function StudentHeader() {
   const pathname = usePathname();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { toggleSidebar } = useRecentQuestions();
+  const { toggleSidebar, setIsOpen, setSelectedDate } = useRecentQuestions();
   const { theme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { profile, profileLoading } = useProfile();
+  const { profile, profileLoading, clearProfile } = useProfile();
+  const queryClient = useQueryClient();
 
   // Avoid hydration mismatch
   useEffect(() => {
@@ -134,6 +136,12 @@ export default function StudentHeader() {
     // Clear tokens immediately
     localStorage.removeItem('accessToken');
     document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+
+    // Clear all cached data to prevent leaking to next user
+    queryClient.clear();
+    clearProfile();
+    setIsOpen(false);
+    setSelectedDate(new Date().toISOString().slice(0, 10));
 
     // Try to call logout API (best effort - don't wait for it)
     try {

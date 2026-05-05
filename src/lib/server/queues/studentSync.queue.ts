@@ -10,7 +10,7 @@ export const studentSyncQueue = new Queue('student-sync', {
     attempts: 5,           // Retry failed jobs 5 times
     backoff: {
       type: 'exponential',
-      delay: 5000,         // Start with 1 second delay
+      delay: 5000,         // Start with 5 second delay
     },
   },
 });

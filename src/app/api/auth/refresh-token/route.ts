@@ -1,15 +1,13 @@
 import 'server-only';
-import { NextRequest } from 'next/server';
 import { apiOk } from '@/lib/server/api-response';
+import { withHandler, setRefreshTokenCookie } from '@/lib/server/route-handler';
 import { getRefreshTokenFromRequest } from '@/lib/server/auth-helper';
 import { refreshAccessToken } from '@/lib/server/services/auth/auth-login.service';
-import { setRefreshTokenCookie } from '@/lib/server/route-handler';
-import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
 
-export async function POST(req: NextRequest) {
-  try {
-    const refreshToken = getRefreshTokenFromRequest(req);
+export const POST = withHandler(
+  async ({ rawRequest }) => {
+    const refreshToken = getRefreshTokenFromRequest(rawRequest);
 
     if (!refreshToken) {
       throw new ApiError(401, 'Refresh token required', [], 'NO_REFRESH_TOKEN');
@@ -20,7 +18,6 @@ export async function POST(req: NextRequest) {
     const response = apiOk({ accessToken });
     setRefreshTokenCookie(response, newRefreshToken);
     return response;
-  } catch (err) {
-    return handleError(err);
-  }
-}
+  },
+  { rateLimit: 'auth' }
+);

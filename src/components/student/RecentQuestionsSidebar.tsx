@@ -38,6 +38,7 @@ export function RecentQuestionsSidebar() {
   const [hasMore, setHasMore] = useState(true);
   const [pagination, setPagination] = useState<PaginationState | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   // Get date strings for today, yesterday, and ereyesterday
   const getDateStrings = () => {
@@ -67,6 +68,10 @@ export function RecentQuestionsSidebar() {
 
   // Fetch initial questions (page 1)
   const fetchRecentQuestions = async (date?: string, reset = true) => {
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = new AbortController();
+    const signal = abortControllerRef.current.signal;
+
     if (reset) {
       setLoading(true);
       setPage(1);
@@ -79,7 +84,8 @@ export function RecentQuestionsSidebar() {
       const queryDate = date || selectedDate;
       const currentPage = reset ? 1 : page;
       const response = await apiClient.get(
-        `/api/students/recent-questions?date=${queryDate}&page=${currentPage}&limit=12`
+        `/api/students/recent-questions?date=${queryDate}&page=${currentPage}&limit=12`,
+        { signal }
       );
 
       const { questions: newQuestions, pagination: pag } = response.data;
@@ -130,6 +136,9 @@ export function RecentQuestionsSidebar() {
       setPage(1);
       fetchRecentQuestions(selectedDate, true);
     }
+    return () => {
+      abortControllerRef.current?.abort();
+    };
   }, [isOpen, selectedDate]);
 
   // Time formatting

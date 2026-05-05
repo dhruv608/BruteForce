@@ -71,7 +71,7 @@ export async function fetchLeetcodeData(
 
     return {
       totalSolved,
-      submissions: data.recentSubmissionList
+      submissions: data.recentSubmissionList ?? []
     };
   };
 

@@ -85,6 +85,7 @@ export async function fetchGfgData(
 
     // result contains: Easy, Medium, Hard, Basic
 
+    if (data.result && typeof data.result === 'object') {
     for (const difficulty in data.result) {
 
 
@@ -113,6 +114,7 @@ export async function fetchGfgData(
 
       }
 
+    }
     }
 
 
