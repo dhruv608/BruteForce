@@ -49,7 +49,6 @@ export const getClassesByTopicService = async ({
   const classes = await prisma.class.findMany({
     where: whereClause,
     include: {
-      topic: true, // so we can validate topic existence
       _count: {
         select: {
           questionVisibility: true,
@@ -63,15 +62,14 @@ export const getClassesByTopicService = async ({
     take: limit,
   });
 
-  // If no classes found, we must check whether topic exists
-  if (classes.length === 0 && !search) {
-    const topicExists = await prisma.topic.findUnique({
-      where: { slug: topicSlug },
-    });
+  // Always fetch the topic directly so topic details are available even when 0 classes exist
+  const topic = await prisma.topic.findUnique({
+    where: { slug: topicSlug },
+    select: { topic_name: true, photo_url: true },
+  });
 
-    if (!topicExists) {
-      throw new ApiError(400, "Topic not found");
-    }
+  if (!topic && !search) {
+    throw new ApiError(400, "Topic not found");
   }
 
   const formatted = classes.map((cls) => ({
@@ -86,11 +84,9 @@ export const getClassesByTopicService = async ({
     created_at: cls.created_at,
   }));
 
-  // Extract topic details from the first class (all classes belong to the same topic)
-  const topicDetails = classes.length > 0 ? {
-    topic_name: classes[0].topic.topic_name,
-    photo_url: classes[0].topic.photo_url,
-  } : null;
+  const topicDetails = topic
+    ? { topic_name: topic.topic_name, photo_url: topic.photo_url }
+    : null;
 
   return {
     data: formatted,
