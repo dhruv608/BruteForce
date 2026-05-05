@@ -5,6 +5,11 @@ interface UsernameCheckResponse {
   available: boolean;
 }
 
+interface UsernameCheckApiResponse {
+  success: boolean;
+  data: UsernameCheckResponse;
+}
+
 export function useUsernameCheck() {
   return useMutation({
     mutationFn: async (username: string): Promise<UsernameCheckResponse> => {
@@ -16,7 +21,8 @@ export function useUsernameCheck() {
         throw new Error('Failed to check username availability');
       }
       
-      return response.json();
+      const result: UsernameCheckApiResponse = await response.json();
+      return result.data;
     },
     retry: false, // Don't retry username checks
   });

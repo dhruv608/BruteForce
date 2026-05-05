@@ -5,6 +5,11 @@ interface UsernameCheckResponse {
   available: boolean;
 }
 
+interface UsernameCheckApiResponse {
+  success: boolean;
+  data: UsernameCheckResponse;
+}
+
 interface UsernameCheckParams {
   username: string;
   userId?: string;
@@ -26,7 +31,8 @@ export function useUsernameCheck() {
         throw new Error('Failed to check username availability');
       }
       
-      return response.json();
+      const result: UsernameCheckApiResponse = await response.json();
+      return result.data;
     },
     retry: false, // Don't retry username checks
   });

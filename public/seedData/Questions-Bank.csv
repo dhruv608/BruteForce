@@ -1,7 +1,7 @@
 question_name,question_link,level,type,topic_slug
-Number of factors,https://www.geeksforgeeks.org/problems/number-of-factors1435/1,EASY,CLASSWORK,intro-to-datastructure-algorithms
-Prime Number,https://www.geeksforgeeks.org/problems/prime-number2314/1,EASY,CLASSWORK,intro-to-datastructure-algorithms
-Bulb Switcher,https://leetcode.com/problems/bulb-switcher/,EASY,HOMEWORK,intro-to-datastructure-algorithms
+Number of factors,https://www.geeksforgeeks.org/problems/number-of-factors1435/1,EASY,CLASSWORK,intro-to-datastructure-and-algorithms
+Prime Number,https://www.geeksforgeeks.org/problems/prime-number2314/1,EASY,CLASSWORK,intro-to-datastructure-and-algorithms
+Bulb Switcher,https://leetcode.com/problems/bulb-switcher/,EASY,HOMEWORK,intro-to-datastructure-and-algorithms
 LOOP_CMPL,https://www.interviewbit.com/problems/loopcmpl/,EASY,CLASSWORK,big-o-introduction
 NESTED_CMPL,https://www.interviewbit.com/problems/nestedcmpl/,EASY,CLASSWORK,big-o-introduction
 NESTED_CMPL2,https://www.interviewbit.com/problems/nestedcmpl2/,EASY,CLASSWORK,big-o-introduction
