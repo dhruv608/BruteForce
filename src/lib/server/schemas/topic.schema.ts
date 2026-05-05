@@ -10,7 +10,7 @@ export const QuestionTypeEnum = z.enum(["HOMEWORK", "CLASSWORK"]);
  * POST /api/admin/topics
  */
 export const createTopicSchema = z.object({
-  topic_name: z.string().min(1, "Topic name is required"),
+  topic_name: z.string().min(1, "Topic name is required").max(150),
   photo: z.any().optional(),
 });
 
@@ -19,9 +19,9 @@ export const createTopicSchema = z.object({
  * PUT /api/admin/topics/:slug
  */
 export const updateTopicSchema = z.object({
-  topic_name: z.string().min(1, "Topic name is required").optional(),
+  topic_name: z.string().min(1, "Topic name is required").max(150).optional(),
   photo: z.any().optional(),
-  removePhoto: z.union([z.boolean(), z.string()]).optional(),
+  removePhoto: z.boolean().optional(),
 });
 
 /**
@@ -29,10 +29,10 @@ export const updateTopicSchema = z.object({
  * POST /api/admin/topics/:topicSlug/classes
  */
 export const createClassSchema = z.object({
-  class_name: z.string().min(1, "Class name is required"),
-  duration_minutes: z.string().optional(),
-  description: z.string().optional(),
-  pdf_url: z.string().optional(),
+  class_name: z.string().min(1, "Class name is required").max(50),
+  duration_minutes: z.coerce.number().int().min(1).optional(),
+  description: z.string().max(2000).optional(),
+  pdf_url: z.string().url("Invalid PDF URL").optional().or(z.literal('')),
 });
 
 /**
@@ -40,10 +40,10 @@ export const createClassSchema = z.object({
  * PUT /api/admin/classes/:id
  */
 export const updateClassSchema = z.object({
-  class_name: z.string().min(1, "Class name is required").optional(),
-  duration_minutes: z.string().optional(),
-  description: z.string().optional(),
-  pdf_url: z.string().optional(),
+  class_name: z.string().min(1, "Class name is required").max(50).optional(),
+  duration_minutes: z.coerce.number().int().min(1).optional(),
+  description: z.string().max(2000).optional(),
+  pdf_url: z.string().url("Invalid PDF URL").optional().or(z.literal('')),
 });
 
 /**
@@ -60,7 +60,7 @@ export const assignQuestionsSchema = z.object({
  * Topic Slug Param Schema
  */
 export const topicSlugParamSchema = z.object({
-  topicSlug: z.string().min(1, "Topic slug is required"),
+  topicSlug: z.string().min(1, "Topic slug is required").regex(/^[a-z0-9-]+$/, "Invalid slug format"),
 });
 
 /**
@@ -74,8 +74,8 @@ export const classIdParamSchema = z.object({
  * Class Slug Param Schema
  */
 export const classSlugParamSchema = z.object({
-  topicSlug: z.string().min(1, "Topic slug is required"),
-  classSlug: z.string().min(1, "Class slug is required"),
+  topicSlug: z.string().min(1, "Topic slug is required").regex(/^[a-z0-9-]+$/, "Invalid slug format"),
+  classSlug: z.string().min(1, "Class slug is required").regex(/^[a-z0-9-]+$/, "Invalid slug format"),
 });
 
 // Type exports

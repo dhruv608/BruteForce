@@ -5,9 +5,9 @@ import { z } from "zod";
  * For create student modal in admin/students page
  */
 export const createStudentSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email format"),
-  username: z.string().optional(),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
+  username: z.string().max(50).optional(),
   password: z.union([z.string().min(8, "Password must be at least 8 characters"), z.literal("")]).optional(),
   enrollment_id: z.string().min(1, "Enrollment ID is required"),
   batch_id: z.number().int().positive("Batch is required"),
@@ -20,9 +20,9 @@ export const createStudentSchema = z.object({
  * For edit student modal
  */
 export const updateStudentSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email format"),
-  username: z.string().optional(),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
+  username: z.string().max(50).optional(),
   enrollment_id: z.string().min(1, "Enrollment ID is required"),
   leetcode_id: z.string().optional(),
   gfg_id: z.string().optional(),
@@ -34,8 +34,8 @@ export const updateStudentSchema = z.object({
 export const updateProfileSchema = z.object({
   leetcode_id: z.string().optional(),
   gfg_id: z.string().optional(),
-  github: z.string().optional(),
-  linkedin: z.string().optional(),
+  github: z.string().url('Invalid GitHub URL').optional().or(z.literal('')),
+  linkedin: z.string().url('Invalid LinkedIn URL').optional().or(z.literal('')),
 });
 
 /**
@@ -43,7 +43,7 @@ export const updateProfileSchema = z.object({
  * For username update form
  */
 export const updateUsernameSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
+  username: z.string().min(3, "Username must be at least 3 characters").max(50),
 });
 
 /**

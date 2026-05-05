@@ -15,11 +15,11 @@ export const LevelEnum = z.enum(["EASY", "MEDIUM", "HARD"]);
  * POST /api/admin/questions
  */
 export const createQuestionSchema = z.object({
-  question_name: z.string().min(1, "Question name is required"),
+  question_name: z.string().min(1, "Question name is required").max(255),
   question_link: z.string().url("Question link must be a valid URL"),
   topic_id: z.number().int().positive("Topic ID is required"),
   platform: PlatformEnum.optional(),
-  level: LevelEnum.optional().default("EASY"),
+  level: LevelEnum.optional().default("MEDIUM"),
 });
 
 /**
@@ -49,7 +49,7 @@ export const questionQuerySchema = z.object({
   topicSlug: z.string().optional(),
   level: LevelEnum.optional(),
   platform: PlatformEnum.optional(),
-  search: z.string().optional(),
+  search: z.string().max(100).optional(),
   page: z.string().optional().transform((val) => (val ? Number(val) : 1)),
   limit: z.string().optional().transform((val) => (val ? Number(val) : 10)),
 });

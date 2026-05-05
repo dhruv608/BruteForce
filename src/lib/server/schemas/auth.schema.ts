@@ -5,9 +5,9 @@ import { z } from "zod";
  * POST /api/auth/student/register
  */
 export const registerStudentSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email format"),
-  username: z.string().min(3, "Username must be at least 3 characters"),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
+  username: z.string().min(3, "Username must be at least 3 characters").max(50),
   password: z.string().min(8, "Password must be at least 8 characters"),
   batch_id: z.number().int().positive("Batch ID is required"),
   enrollment_id: z.string().optional(),
@@ -22,8 +22,8 @@ export const registerStudentSchema = z.object({
  */
 export const loginStudentSchema = z
   .object({
-    email: z.string().email("Invalid email format").optional(),
-    username: z.string().min(3, "Username must be at least 3 characters").optional(),
+    email: z.string().email("Invalid email format").toLowerCase().trim().optional(),
+    username: z.string().min(3, "Username must be at least 3 characters").max(50).optional(),
     password: z.string().min(1, "Password is required"),
   })
   .refine((data) => data.email || data.username, {
@@ -36,7 +36,7 @@ export const loginStudentSchema = z
  * POST /api/auth/admin/login
  */
 export const loginAdminSchema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
   password: z.string().min(1, "Password is required"),
 });
 
@@ -45,7 +45,7 @@ export const loginAdminSchema = z.object({
  * POST /api/auth/forgot-password
  */
 export const forgotPasswordSchema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
 });
 
 /**
@@ -53,7 +53,7 @@ export const forgotPasswordSchema = z.object({
  * POST /api/auth/verify-otp
  */
 export const verifyOtpSchema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
   otp: z.string().length(6, "OTP must be 6 digits"),
 });
 
@@ -62,8 +62,8 @@ export const verifyOtpSchema = z.object({
  * POST /api/auth/reset-password
  */
 export const resetPasswordSchema = z.object({
-  email: z.string().email("Invalid email format"),
-  otp: z.string().min(1, "OTP is required"),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
+  otp: z.string().length(6, "OTP must be 6 digits"),
   newPassword: z.string().min(8, "Password must be at least 8 characters"),
 });
 
@@ -72,8 +72,8 @@ export const resetPasswordSchema = z.object({
  * POST /api/auth/admin/register (via superadmin)
  */
 export const registerAdminSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email format"),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
   password: z.string().min(8, "Password must be at least 8 characters"),
   role: z.enum(["SUPERADMIN", "TEACHER", "INTERN"]).optional(),
   city_id: z.number().int().positive().optional(),

@@ -5,9 +5,9 @@ import { z } from "zod";
  * POST /api/admin/students
  */
 export const createStudentSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email format"),
-  username: z.string().optional(),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
+  username: z.string().max(50).optional(),
   password: z.string().min(8, "Password must be at least 8 characters").optional(),
   enrollment_id: z.string().min(1, "Enrollment ID is required"),
   batch_id: z.number().int().positive("Batch ID is required"),
@@ -20,9 +20,9 @@ export const createStudentSchema = z.object({
  * PATCH /api/admin/students/:id
  */
 export const updateStudentSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters").optional(),
-  email: z.string().email("Invalid email format").optional(),
-  username: z.string().optional(),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100).optional(),
+  email: z.string().email("Invalid email format").toLowerCase().trim().optional(),
+  username: z.string().max(50).optional(),
   enrollment_id: z.string().optional(),
   leetcode_id: z.string().optional(),
   gfg_id: z.string().optional(),
@@ -44,7 +44,7 @@ export const updateProfileSchema = z.object({
  * PATCH /api/students/username
  */
 export const updateUsernameSchema = z.object({
-  username: z.string().min(3, "Username must be at least 3 characters"),
+  username: z.string().min(3, "Username must be at least 3 characters").max(50),
 });
 
 /**
@@ -62,7 +62,7 @@ export const studentIdParamSchema = z.object({
 export const studentQuerySchema = z.object({
   page: z.string().optional().transform((val) => (val ? Number(val) : 1)),
   limit: z.string().optional().transform((val) => (val ? Number(val) : 10)),
-  search: z.string().optional(),
+  search: z.string().max(100).optional(),
   batch_id: z.string().optional().transform((val) => (val ? Number(val) : undefined)),
 });
 

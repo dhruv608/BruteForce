@@ -5,9 +5,9 @@ import { z } from "zod";
  * For StudentRegistrationForm component
  */
 export const registerStudentSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email format"),
-  username: z.string().min(3, "Username must be at least 3 characters"),
+  name: z.string().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
+  username: z.string().min(3, "Username must be at least 3 characters").max(50),
   password: z.string().min(8, "Password must be at least 8 characters"),
   batch_id: z.number().int().positive("Batch is required"),
   enrollment_id: z.string().optional(),
@@ -21,8 +21,8 @@ export const registerStudentSchema = z.object({
  */
 export const loginStudentSchema = z
   .object({
-    email: z.string().email("Invalid email format").optional(),
-    username: z.string().min(3, "Username must be at least 3 characters").optional(),
+    email: z.string().email("Invalid email format").toLowerCase().trim().optional(),
+    username: z.string().min(3, "Username must be at least 3 characters").max(50).optional(),
     password: z.string().min(1, "Password is required"),
   })
   .refine((data) => data.email || data.username, {
@@ -35,7 +35,7 @@ export const loginStudentSchema = z
  * For admin login form
  */
 export const loginAdminSchema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
   password: z.string().min(1, "Password is required"),
 });
 
@@ -44,7 +44,7 @@ export const loginAdminSchema = z.object({
  * For forgot password form
  */
 export const forgotPasswordSchema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
 });
 
 /**
@@ -52,7 +52,7 @@ export const forgotPasswordSchema = z.object({
  * For OTP verification modal
  */
 export const verifyOtpSchema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.string().email("Invalid email format").toLowerCase().trim(),
   otp: z.string().length(6, "OTP must be 6 digits"),
 });
 
