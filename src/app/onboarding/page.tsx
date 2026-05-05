@@ -13,7 +13,7 @@ import { ThemeToggle } from '@/components/ui/theme-toggle';
 export default function OnboardingPage() {
   const router = useRouter();
   const [onboardingUser, setOnboardingUser] = useState<any>(null);
-  const { step, setStep, data, setData, confirmChecked, setConfirmChecked, loading, submitOnboarding } = useOnboarding();
+  const { step, setStep, data, confirmChecked, setConfirmChecked, loading, submitOnboarding } = useOnboarding();
 
   useEffect(() => {
     const stored = localStorage.getItem('onboardingUser');
@@ -24,18 +24,6 @@ export default function OnboardingPage() {
       router.push('/login');
     }
   }, [router]);
-
-  // Initialize data with stored user info
-  useEffect(() => {
-    if (onboardingUser) {
-      setData(prev => ({
-        ...prev,
-        username: onboardingUser.username || '',
-        leetcode_id: onboardingUser.leetcode_id || '',
-        gfg_id: onboardingUser.gfg_id || ''
-      }));
-    }
-  }, [onboardingUser, setData]);
 
   const handleSubmitOnboarding = async () => {
     await submitOnboarding();

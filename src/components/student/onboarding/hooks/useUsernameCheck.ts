@@ -14,8 +14,8 @@ export function useUsernameCheck() {
   return useMutation({
     mutationFn: async ({ username, userId }: UsernameCheckParams): Promise<UsernameCheckResponse> => {
       const params = new URLSearchParams({
-        username: encodeURIComponent(username.trim()),
-        ...(userId && { userId }) // Only include userId if provided
+        username: username.trim(),
+        ...(userId && { userId }),
       });
       
       const response = await fetch(

@@ -79,7 +79,8 @@ export function OnboardingStep1({
         },
       }
     );
-  }, [debouncedUsername, checkUsername, existingUsername]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedUsername, existingUsername]);
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
