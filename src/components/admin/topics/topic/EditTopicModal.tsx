@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { updateAdminTopic } from '@/services/admin.service';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -13,6 +13,7 @@ import {
    DialogDescription,
 } from "@/components/ui/dialog";
 import { Topic } from '@/types/admin/topic.types';
+import { ImageCropModal } from '@/components/ui/ImageCropModal';
 
 interface EditTopicModalProps {
    isOpen: boolean;
@@ -25,15 +26,18 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
    const [topicName, setTopicName] = useState('');
    const [photoFile, setPhotoFile] = useState<File | null>(null);
    const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+   const [pendingCropFile, setPendingCropFile] = useState<File | null>(null);
    const [removePhoto, setRemovePhoto] = useState(false);
    const [submitting, setSubmitting] = useState(false);
    const [formError, setFormError] = useState('');
+   const fileInputRef = useRef<HTMLInputElement>(null);
 
    useEffect(() => {
       if (topic) {
          setTopicName(topic.topic_name);
          setPhotoPreview(topic.photo_url ?? null);
          setPhotoFile(null);
+         setPendingCropFile(null);
          setRemovePhoto(false);
          setFormError('');
       }
@@ -41,28 +45,39 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
 
    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
+      if (fileInputRef.current) fileInputRef.current.value = '';
       setFormError('');
-      if (!file) {
-         setPhotoFile(null);
-         setPhotoPreview(null);
-         return;
-      }
+      if (!file) return;
+      if (!file.type.startsWith('image/')) { setFormError('File must be an image'); return; }
+      if (file.size > 5 * 1024 * 1024) { setFormError('Image size should be less than 5MB'); return; }
+      setPendingCropFile(file);
+   };
 
-      if (!file.type.startsWith('image/')) {
-         setFormError('File must be an image');
-         return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-         setFormError('Image size should be less than 5MB');
-         return;
-      }
+   const handleCropComplete = (blob: Blob) => {
+      const croppedFile = new File([blob], pendingCropFile?.name ?? 'topic.jpg', { type: 'image/jpeg' });
+      setPhotoFile(croppedFile);
+      setPhotoPreview(URL.createObjectURL(blob));
+      setRemovePhoto(false);
+      setPendingCropFile(null);
+   };
 
-      setPhotoFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-         setPhotoPreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+   const handleEditExistingPhoto = async () => {
+      if (!topic?.slug || !topic?.photo_url) return;
+      try {
+         setFormError('');
+         // Fetch via backend proxy — avoids needing CORS on the S3 bucket
+         const res = await fetch(`/api/admin/topics/${topic.slug}/photo`, {
+            credentials: 'include',
+            headers: { Authorization: `Bearer ${localStorage.getItem('accessToken') ?? ''}` },
+         });
+         if (!res.ok) throw new Error('Failed to load existing image');
+         const blob = await res.blob();
+         const fileName = topic.photo_url.split('/').pop() ?? 'topic.jpg';
+         const file = new File([blob], fileName, { type: blob.type || 'image/jpeg' });
+         setPendingCropFile(file);
+      } catch (err: any) {
+         setFormError(err.message ?? 'Could not load existing image for editing');
+      }
    };
 
    const handleSubmit = async (e: React.FormEvent) => {
@@ -95,6 +110,7 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
       setTopicName('');
       setPhotoFile(null);
       setPhotoPreview(null);
+      setPendingCropFile(null);
       setRemovePhoto(false);
       setFormError('');
    };
@@ -105,6 +121,7 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
    };
 
    return (
+      <>
       <Dialog open={isOpen} onOpenChange={handleClose}>
          <DialogContent className="rounded-2xl  overflow-hidden shadow-xl max-w-[600px]!">
             <DialogHeader className=" py-5 border-b border-border/40">
@@ -172,6 +189,7 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
                            Browse
                         </span>
                         <input
+                           ref={fileInputRef}
                            type="file"
                            accept="image/*"
                            onChange={handleFileChange}
@@ -182,14 +200,27 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
 
                      {photoPreview && !removePhoto && (
                         <div className="border border-border/40 rounded-2xl p-3 bg-muted/20 space-y-2">
-                           <p className="text-[11px] text-muted-foreground font-medium">
-                              Preview
-                           </p>
-                           <div className="overflow-hidden rounded-2xl relative">
+                           <div className="flex items-center justify-between">
+                              <p className="text-[11px] text-muted-foreground font-medium">
+                                 Preview
+                              </p>
+                              {/* Show "Crop" only for the existing saved photo (not for a freshly cropped one) */}
+                              {topic?.photo_url && !photoFile && (
+                                 <button
+                                    type="button"
+                                    onClick={handleEditExistingPhoto}
+                                    disabled={submitting}
+                                    className="text-[11px] font-medium text-primary hover:underline underline-offset-4"
+                                 >
+                                    Crop / Edit
+                                 </button>
+                              )}
+                           </div>
+                           <div className="aspect-video overflow-hidden rounded-2xl relative">
                               <img
                                  src={photoPreview}
                                  alt="Preview"
-                                 className="w-full h-36 object-cover transition-transform duration-300 hover:scale-[1.03]"
+                                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.03]"
                               />
                               <div className="absolute inset-0 bg-black/0 hover:bg-black/10 transition" />
                            </div>
@@ -218,5 +249,15 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
             </div>
          </DialogContent>
       </Dialog>
+
+      <ImageCropModal
+         file={pendingCropFile}
+         onCrop={handleCropComplete}
+         onClose={() => setPendingCropFile(null)}
+         aspectRatio={16 / 9}
+         cropShape="rect"
+         title="Crop Topic Cover"
+      />
+      </>
    );
 }

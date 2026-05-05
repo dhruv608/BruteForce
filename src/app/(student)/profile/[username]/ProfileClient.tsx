@@ -23,6 +23,7 @@ import { showSuccess } from '@/ui/toast';
 import { getErrorMessage } from '@/errors';
 import { useCanEditProfile } from '@/hooks/useCanEditProfile';
 import { useQueryClient } from '@tanstack/react-query';
+import { ImageCropModal } from '@/components/ui/ImageCropModal';
 
 interface ProfileClientProps {
   username: string;
@@ -72,6 +73,7 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [imageRemoved, setImageRemoved] = useState(false);
+  const [pendingCropFile, setPendingCropFile] = useState<File | null>(null);
 
   useEffect(() => {
     const initializeProfile = async () => {
@@ -172,25 +174,23 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files.length === 0) return;
     const file = e.target.files[0];
-    if (!canEdit) {
-      if (fileInputRef.current) fileInputRef.current.value = '';
-      return;
-    }
-    const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
-    if (!validImageTypes.includes(file.type)) {
-      if (fileInputRef.current) fileInputRef.current.value = '';
-      return;
-    }
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const previewUrl = event.target?.result as string;
-      setImagePreview(previewUrl);
-      setSelectedImage(file);
-      setImageRemoved(false);
-    };
-    reader.readAsDataURL(file);
     if (fileInputRef.current) fileInputRef.current.value = '';
+    if (!canEdit) return;
+    const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+    if (!validImageTypes.includes(file.type)) return;
+    // Open crop modal instead of using file directly
+    setPendingCropFile(file);
   };
+
+  const handleCropComplete = (blob: Blob) => {
+    const croppedFile = new File([blob], pendingCropFile?.name ?? 'profile.jpg', { type: 'image/jpeg' });
+    setSelectedImage(croppedFile);
+    setImagePreview(URL.createObjectURL(blob));
+    setImageRemoved(false);
+    setPendingCropFile(null);
+  };
+
+  const handleCropCancel = () => setPendingCropFile(null);
 
   const handleSaveProfile = async () => {
     try {
@@ -343,6 +343,15 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
         handleSaveProfile={handleSaveProfile}
         imagePreview={imagePreview}
         imageRemoved={imageRemoved}
+      />
+
+      <ImageCropModal
+        file={pendingCropFile}
+        onCrop={handleCropComplete}
+        onClose={handleCropCancel}
+        aspectRatio={1}
+        cropShape="round"
+        title="Crop Profile Photo"
       />
 
       <EditUsernameModal

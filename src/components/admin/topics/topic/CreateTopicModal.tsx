@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { createAdminTopic } from '@/services/admin.service';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -12,6 +12,7 @@ import {
    DialogFooter,
    DialogDescription,
 } from "@/components/ui/dialog";
+import { ImageCropModal } from '@/components/ui/ImageCropModal';
 
 interface CreateTopicModalProps {
    isOpen: boolean;
@@ -23,33 +24,26 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
    const [topicName, setTopicName] = useState('');
    const [photoFile, setPhotoFile] = useState<File | null>(null);
    const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+   const [pendingCropFile, setPendingCropFile] = useState<File | null>(null);
    const [submitting, setSubmitting] = useState(false);
    const [formError, setFormError] = useState('');
+   const fileInputRef = useRef<HTMLInputElement>(null);
 
    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
+      if (fileInputRef.current) fileInputRef.current.value = '';
       setFormError('');
-      if (!file) {
-         setPhotoFile(null);
-         setPhotoPreview(null);
-         return;
-      }
+      if (!file) return;
+      if (!file.type.startsWith('image/')) { setFormError('File must be an image'); return; }
+      if (file.size > 5 * 1024 * 1024) { setFormError('Image size should be less than 5MB'); return; }
+      setPendingCropFile(file);
+   };
 
-      if (!file.type.startsWith('image/')) {
-         setFormError('File must be an image');
-         return;
-      }
-      if (file.size > 5 * 1024 * 1024) {
-         setFormError('Image size should be less than 5MB');
-         return;
-      }
-
-      setPhotoFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-         setPhotoPreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
+   const handleCropComplete = (blob: Blob) => {
+      const croppedFile = new File([blob], pendingCropFile?.name ?? 'topic.jpg', { type: 'image/jpeg' });
+      setPhotoFile(croppedFile);
+      setPhotoPreview(URL.createObjectURL(blob));
+      setPendingCropFile(null);
    };
 
    const handleSubmit = async (e: React.FormEvent) => {
@@ -78,6 +72,7 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
       setTopicName('');
       setPhotoFile(null);
       setPhotoPreview(null);
+      setPendingCropFile(null);
       setFormError('');
    };
 
@@ -87,6 +82,7 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
    };
 
    return (
+      <>
       <Dialog open={isOpen} onOpenChange={handleClose}>
          <DialogContent className="rounded-2xl  overflow-hidden shadow-xl max-w-[520px]">
             <DialogHeader className=" py-5 border-b border-border/40">
@@ -131,6 +127,7 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
                            Browse
                         </span>
                         <input
+                           ref={fileInputRef}
                            type="file"
                            accept="image/*"
                            onChange={handleFileChange}
@@ -148,11 +145,11 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
                         <p className="text-[11px] text-muted-foreground font-medium">
                            Preview
                         </p>
-                        <div className="overflow-hidden rounded-lg">
+                        <div className="aspect-video overflow-hidden rounded-lg">
                            <img
                               src={photoPreview}
                               alt="Preview"
-                              className="w-full h-36 object-cover transition-transform duration-300 hover:scale-[1.03]"
+                              className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.03]"
                            />
                         </div>
                      </div>
@@ -179,5 +176,15 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
             </div>
          </DialogContent>
       </Dialog>
+
+      <ImageCropModal
+         file={pendingCropFile}
+         onCrop={handleCropComplete}
+         onClose={() => setPendingCropFile(null)}
+         aspectRatio={16 / 9}
+         cropShape="rect"
+         title="Crop Topic Cover"
+      />
+      </>
    );
 }
