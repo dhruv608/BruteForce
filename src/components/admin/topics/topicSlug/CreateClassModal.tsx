@@ -118,7 +118,7 @@ export default function CreateClassModal({ isOpen, onClose, onSuccess, batchSlug
     bg-gradient-to-br from-background via-background/95 to-background/90 
     backdrop-blur-2xl  shadow-2xl overflow-hidden flex flex-col"
          >
-            <div className="flex-shrink-0  border-b border-border/50 bg-background/80 backdrop-blur-xl">
+            <div className="flex-shrink-0  border-b border-border/50 bg-background/80 backdrop-blur-xl ">
                <DialogHeader className="space-y-1">
                   <DialogTitle className="text-3xl sm:text-2xl font-bold text-foreground">
                      Create <span className='text-primary'>Class</span>
@@ -129,7 +129,7 @@ export default function CreateClassModal({ isOpen, onClose, onSuccess, batchSlug
                </DialogHeader>
             </div>
 
-            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto no-scrollbar p-4 sm:p-6 space-y-4 sm:space-y-5">
+            <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto no-scrollbar  p-4 sm:p-6 space-y-4 sm:space-y-5 ">
                {formError && (
                   <div className="p-3 bg-destructive/10 border border-destructive/20 text-destructive text-xs sm:text-sm rounded-xl">
                      {formError}

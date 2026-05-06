@@ -6,7 +6,7 @@ import { ArrowRight, BookOpen, Calendar, FileQuestion, FolderEdit, ImageIcon, Tr
 import { useRouter } from "next/navigation";
 
 
-export default function   TopicCard({
+export default function TopicCard({
   topic,
   onEdit,
   onDelete,
@@ -30,7 +30,7 @@ export default function   TopicCard({
           <img
             src={topic.photo_url}
             alt={topic.topic_name}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-full object-cover transition-transform duration-500 "
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-muted/30">
@@ -50,7 +50,7 @@ export default function   TopicCard({
               e.stopPropagation();
               onEdit(topic);
             }}
-            className="h-8 w-8 rounded-full bg-background/80 backdrop-blur border-border hover:bg-primary/10"
+            className="h-8 w-8 rounded-full bg-background/80 backdrop-blur border-border "
           >
             <FolderEdit className="w-4 h-4" />
           </Button>
@@ -62,7 +62,7 @@ export default function   TopicCard({
               e.stopPropagation();
               onDelete(topic);
             }}
-            className="h-8 w-8 rounded-full bg-background/80 backdrop-blur border-border text-destructive hover:bg-destructive/10"
+            className="h-8 w-8 rounded-full bg-background/80 backdrop-blur border-border text-destructive "
           >
             <Trash2 className="w-4 h-4" />
           </Button>
@@ -100,8 +100,8 @@ export default function   TopicCard({
           <span>
             {topic.lastClassCreated_at
               ? new Date(topic.lastClassCreated_at)
-                  .toLocaleDateString("en-GB")
-                  .replace(/\//g, "-")
+                .toLocaleDateString("en-GB")
+                .replace(/\//g, "-")
               : "No Classes Yet"}
           </span>
         </div>
