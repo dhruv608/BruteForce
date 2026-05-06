@@ -18,7 +18,7 @@ export function startSyncJob() {
 
     while (attempt < maxRetries) {
       try {
-        // Self-heal: if a previous sync claims to be running but the lock is stale
+     
         // (>1h old, almost certainly orphaned by a crash/restart), reset it first.
         if (isSyncStale()) {
           console.warn('[CRON] Stale sync lock detected (>1h old). Resetting.');

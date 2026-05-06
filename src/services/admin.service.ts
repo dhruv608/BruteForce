@@ -196,7 +196,6 @@ export const bulkUploadStudents = async (formData: FormData, defaultPassword?: s
   const response = await apiClient.post('/api/admin/bulk-operations', formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   });
-  showSuccess('Students uploaded successfully!');
   return response.data;
 };
 
