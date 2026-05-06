@@ -12,6 +12,7 @@ import { ProfileProvider } from '@/contexts/ProfileContext';
 import { BruteForceLoader } from '@/components/ui/BruteForceLoader';
 import { DotPattern } from '@/components/ui/DotPattern';
 import { StudentLayoutProps } from '@/types/student/index.types';
+import { Footer } from '@/components/layout/Footer';
 
 export default function StudentLayout({
   children,
@@ -84,6 +85,7 @@ export default function StudentLayout({
           </main>
           
           <RecentQuestionsSidebar />
+          <Footer />
         </RecentQuestionsProvider>
       </ProfileProvider>
     </div>

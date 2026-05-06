@@ -6,8 +6,6 @@ import "./globals.css";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { Toaster } from "sonner";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
-import { ConditionalFooter } from "@/components/layout/ConditionalFooter";
-
 
 const geistSans = Geist({
 
@@ -79,7 +77,6 @@ export default function RootLayout({
               <main className="flex-1">
                 {children}
               </main>
-              <ConditionalFooter />
             </ErrorBoundary>
           </QueryProvider>
         </ThemeProvider>
