@@ -19,6 +19,8 @@ interface ImageCropModalProps {
   cropShape?: 'rect' | 'round';
   /** Modal title */
   title?: string;
+  /** Optional Tailwind max-width class (e.g. "sm:max-w-md", "max-w-[520px]"). Default: "sm:max-w-md" */
+  maxWidth?: string;
 }
 
 async function getCroppedBlob(
