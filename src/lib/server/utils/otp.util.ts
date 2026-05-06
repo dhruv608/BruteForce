@@ -55,17 +55,12 @@ export const validateOTP = async (email: string, inputOTP: string): Promise<bool
   }
 
   // Compare plain OTPs (since we're storing plain OTP now)
-  const isValid = inputOTP === otpRecord.otp;
-  
-  if (isValid) {
-    // Mark OTP as used
-    await prisma.passwordResetOTP.update({
-      where: { id: otpRecord.id },
-      data: { is_used: false }
-    });
-  }
-
-  return isValid;
+  // NOTE: We intentionally do NOT mark the OTP as used here.
+  // The password-reset flow has two steps: verify-otp (UX validation) and
+  // reset-password (the actual mutation). Marking the OTP used here would
+  // break reset-password since it calls validateOTP() again.
+  // The OTP is consumed in resetPassword() after the password is updated.
+  return inputOTP === otpRecord.otp;
 };
 
 // Clean up expired OTPs (can be called by a cron job)
