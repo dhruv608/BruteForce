@@ -37,121 +37,131 @@ export const sendOTPEmail = async (email: string, otp: string, userName?: string
   try {
     const transporter = createTransporter();
     
+    const year = new Date().getFullYear();
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: `"BruteForce" <${process.env.EMAIL_USER}>`,
       to: email,
-      subject: 'BruteForce - Secure Password Reset',
-      html: `
-      <!DOCTYPE html>
-<html>
-
+      subject: 'Your BruteForce password reset code',
+      html: `<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BruteForce | Secure Access</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <title>BruteForce password reset</title>
+  <style>
+    /* Light defaults — overridden when the email client is in dark mode */
+    body, .bf-bg          { background:#f4f5f7 !important; }
+    .bf-card              { background:#ffffff !important; border:1px solid #e5e7eb !important; box-shadow:0 6px 24px rgba(15,23,42,0.06) !important; }
+    .bf-h1, .bf-otp       { color:#0f172a !important; }
+    .bf-text              { color:#475569 !important; }
+    .bf-muted             { color:#94a3b8 !important; }
+    .bf-divider           { border-color:#eef2f6 !important; }
+    .bf-otp-box           { background:#f8fafc !important; border:1px solid #e5e7eb !important; }
+    .bf-otp-label         { color:#64748b !important; }
+    .bf-logo-text         { color:#0f172a !important; }
+    .bf-warning           { background:#fff5f5 !important; border:1px solid #fee2e2 !important; }
+    .bf-warning-text      { color:#dc2626 !important; }
+
+    @media (prefers-color-scheme: dark) {
+      body, .bf-bg        { background:#050505 !important; }
+      .bf-card            { background:#0a0a0a !important; border:1px solid #1f1f1f !important; box-shadow:0 20px 50px rgba(0,0,0,0.5) !important; }
+      .bf-h1, .bf-otp     { color:#ffffff !important; }
+      .bf-text            { color:#9b9b9b !important; }
+      .bf-muted           { color:#555 !important; }
+      .bf-divider         { border-color:#1a1a1a !important; }
+      .bf-otp-box         { background:#161616 !important; border:1px solid #262626 !important; }
+      .bf-otp-label       { color:#666 !important; }
+      .bf-logo-text       { color:#ffffff !important; }
+      .bf-warning         { background:rgba(255,90,90,0.06) !important; border:1px solid rgba(255,90,90,0.18) !important; }
+      .bf-warning-text    { color:#ff7a7a !important; }
+    }
+  </style>
 </head>
+<body class="bf-bg" style="margin:0; padding:0; background:#f4f5f7; font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
 
-<body
-    style="margin:0; padding:0; background-color:#050505; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <!-- Hidden preheader (preview text in inbox) -->
+  <div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">
+    Your one-time code: ${otp}. Valid for 10 minutes.
+  </div>
 
-    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background-color:#050505;">
-        <tr>
-            <td align="center" style="padding: 40px 10px;">
+  <table role="presentation" class="bf-bg" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f4f5f7;">
+    <tr>
+      <td align="center" style="padding:40px 16px;">
 
-                <div
-                    style="max-width: 440px; background: linear-gradient(145deg, #111111 0%, #0a0a0a 100%); border: 1px solid #222; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+        <table role="presentation" class="bf-card" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:480px; background:#ffffff; border:1px solid #e5e7eb; border-radius:20px; box-shadow:0 6px 24px rgba(15,23,42,0.06);">
+          <tr>
+            <td style="padding:36px 36px 24px 36px;">
 
+              <!-- Brand: text wordmark — works in every email client -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td align="center" style="padding-bottom:28px;">
+                    <span class="bf-logo-text" style="font-size:26px; font-weight:800; letter-spacing:-0.5px; color:#0f172a; font-family:'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+                      Brute<span style="color:#84cc16;">Force</span>
+                    </span>
+                  </td>
+                </tr>
+              </table>
 
-                    <div style="padding: 40px 30px;">
+              <!-- Heading -->
+              <h1 class="bf-h1" style="color:#0f172a; font-size:22px; font-weight:700; margin:0 0 8px 0; text-align:center; letter-spacing:-0.3px;">
+                Reset your password
+              </h1>
+              <p class="bf-text" style="color:#475569; font-size:14px; line-height:1.55; margin:0 0 28px 0; text-align:center;">
+                Hi <span style="color:#84cc16; font-weight:600;">${userName || 'there'}</span> - use the one-time code below to continue.
+              </p>
 
-                        <div style="text-align:center; margin-bottom:28px;">
-
-                            <div style="
-    display:inline-block;
-    padding:12px 22px;
-    border-radius:14px;
-
-    background:linear-gradient(135deg, rgba(204,255,0,0.08), rgba(204,255,0,0.02));
-    border:1px solid rgba(204,255,0,0.15);
-
-  ">
-
-                                <span style="
-      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      font-size:24px;
-      font-weight:900;
-      letter-spacing:-0.5px;
-
-      color:#ccff00;
-      text-transform:uppercase;
-    ">
-                                    Brute<span style="color:#ffffff;">Force</span>
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div style="text-align: center;">
-                            <h2 style="color: #ffffff; font-size: 24px; font-weight: 700; margin: 0 0 10px 0;">Verify
-                                your identity</h2>
-                            <p style="color: #999; font-size: 15px; line-height: 1.5; margin: 0 0 30px 0;">
-                                Hey <span style="color: #ccff00; font-weight: 600;">${userName || "User"}</span>, use
-                                the code below to complete your password reset.
-                            </p>
-                        </div>
-
-                        <div
-                            style="background: #1a1a1a; border-radius: 16px; padding: 30px; margin-bottom: 30px; border: 1px dashed #333; text-align: center;">
-                            <span
-                                style="display: block; color: #666; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px;">Your
-                                One-Time Code</span>
-                            <div
-                                style="font-family: 'Courier New', Courier, monospace; font-size: 38px; font-weight: 800; color: #ffffff; letter-spacing: 12px; margin-left: 12px;">
-                                ${otp}
-                            </div>
-                        </div>
-
-                        <div style="text-align: center; margin-bottom: 30px;">
-                            <p style="color: #555; font-size: 12px; margin: 0;">
-                                This code expires in <span style="color: #888; font-weight: 600;">10 minutes</span>.
-                            </p>
-                        </div>
-
-                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0"
-                            style="background: rgba(255, 50, 50, 0.05); border-radius: 12px;">
-                            <tr>
-                                <td style="padding: 15px; text-align: center;">
-                                    <p style="color: #ff5f5f; font-size: 12px; margin: 0; font-weight: 500;">
-                                        ⚠️ Never share this code with anyone, including BruteForce staff.
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
-
+              <!-- OTP block -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin-bottom:24px;">
+                <tr>
+                  <td class="bf-otp-box" style="background:#f8fafc; border:1px solid #e5e7eb; border-radius:14px; padding:24px; text-align:center;">
+                    <div class="bf-otp-label" style="color:#64748b; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;">
+                      One-time code
                     </div>
-
-                    <div style="padding: 0 30px 40px 30px; text-align: center;">
-                        <p style="color: #444; font-size: 12px; margin-bottom: 20px;">
-                            If you didn't request this, you can safely ignore this email.
-                        </p>
-                        <div style="height: 1px; background: #222; margin-bottom: 20px;"></div>
-                        <p style="color: #444; font-size: 11px; margin: 0;">
-                            &copy; 2026 BruteForce Security Systems Inc.<br>
-                            123 Cyber Suite, Digital Way.
-                        </p>
+                    <div class="bf-otp" style="font-family:'Courier New', Courier, monospace; font-size:34px; font-weight:800; color:#0f172a; letter-spacing:8px; text-align:center;">
+                      ${otp}
                     </div>
+                    <div class="bf-otp-label" style="color:#64748b; font-size:12px; margin-top:14px;">
+                      Expires in <span style="color:#84cc16; font-weight:600;">10 minutes</span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
 
-                </div>
+              <!-- Security notice -->
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                  <td class="bf-warning" style="background:#fff5f5; border:1px solid #fee2e2; border-radius:10px; padding:12px 14px;">
+                    <p class="bf-warning-text" style="color:#dc2626; font-size:12px; line-height:1.5; margin:0; text-align:center;">
+                      Never share this code with anyone!
+                    </p>
+                  </td>
+                </tr>
+              </table>
 
             </td>
-        </tr>
-    </table>
+          </tr>
 
+          <!-- Footer -->
+          <tr>
+            <td class="bf-divider" style="padding:20px 36px 32px 36px; border-top:1px solid #eef2f6; text-align:center;">
+              <p class="bf-text" style="color:#475569; font-size:12px; line-height:1.5; margin:0 0 6px 0;">
+                Didn't request this? You can safely ignore this email.
+              </p>
+              <p class="bf-muted" style="color:#94a3b8; font-size:11px; margin:0;">
+                Sent by BruteForce · &copy; ${year}
+              </p>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
 </body>
-
-</html>
-`
+</html>`,
     };
 
     await transporter.sendMail(mailOptions);

@@ -76,7 +76,7 @@ export function ForgotPasswordModal({ isOpen, onClose }: ForgotPasswordModalProp
                 Forgot <span className="text-[#CCFF00]">Password?</span>
               </h2>
               <p className="text-slate-500 text-sm mt-2 font-medium">
-                No worries, we'll send you reset instructions.
+                No worries, we'll send Otp for reset.
               </p>
 
               {/* CLOSE BUTTON */}
