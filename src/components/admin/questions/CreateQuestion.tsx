@@ -79,10 +79,10 @@ export default function CreateQuestion({
   const formErrors = form.formState.errors;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[95vh] p-0! overflow-y-auto!   rounded-2xl">
+      <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[95vh] p-0! overflow-y-auto!  rounded-2xl">
 
         {/* HEADER */}
-        <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50">
+        <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50 ">
           <DialogTitle className="flex items-center gap-1 text-xl font-semibold">
 
             Add <span className="text-primary" >Question</span>

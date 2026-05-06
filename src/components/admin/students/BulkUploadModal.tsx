@@ -90,7 +90,7 @@ export default function BulkUploadModal({
   // Get batches for selected city and year
   const getBatchesForCityYear = useCallback(() => {
     if (!selectedCity || !selectedYear) return [];
-    return batches.filter((b: Batch) => 
+    return batches.filter((b: Batch) =>
       b.city_id === Number(selectedCity) && b.year === Number(selectedYear)
     );
   }, [selectedCity, selectedYear, batches]);
@@ -115,7 +115,7 @@ export default function BulkUploadModal({
 
   // CSV Validation
   const validateCSV = useCallback((data: CsvRowData[]) => {
-    
+
     if (!data || data.length === 0) {
       return 'CSV file is empty or invalid';
     }
@@ -132,7 +132,7 @@ export default function BulkUploadModal({
     // Validate each row
     for (let i = 0; i < data.length; i++) {
       const row = data[i];
-      
+
       if (!row.name || !row.email || !row.enrollment_id) {
         return `Row ${i + 1}: Missing required data (name, email, enrollment_id)`;
       }
@@ -155,13 +155,13 @@ export default function BulkUploadModal({
   // Parse CSV file
   const parseCSV = useCallback((file: File) => {
     const reader = new FileReader();
-    
+
     reader.onload = (e) => {
       try {
         const text = e.target?.result as string;
-        
+
         const lines = text.trim().split('\n');
-        
+
         if (lines.length < 2) {
           setValidationError('CSV must contain at least a header and one data row');
           setValidationResult({
@@ -181,11 +181,11 @@ export default function BulkUploadModal({
         for (let i = 1; i < lines.length; i++) {
           const values = lines[i].split(',').map(v => v.trim().replace(/"/g, ''));
           const row: CsvRowData = {} as CsvRowData;
-          
+
           headers.forEach((header, index) => {
             row[header] = values[index] || '';
           });
-          
+
           data.push(row);
         }
 
@@ -239,7 +239,7 @@ export default function BulkUploadModal({
   // Handle file selection
   const handleFileChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
-    
+
     if (selectedFile) {
       if (!selectedFile.name.endsWith('.csv')) {
         setValidationError('Please select a CSV file');
@@ -297,7 +297,7 @@ export default function BulkUploadModal({
       ['John Doe', 'john.doe@pwioi.com', 'ENR001'],
       ['Jane Smith', 'jane.smith@pwioi.com', 'ENR002']
     ];
-    
+
     const csvContent = sampleData.map(row => row.join(',')).join('\n');
     const blob = new Blob([csvContent], { type: 'text/csv' });
     const url = window.URL.createObjectURL(blob);
@@ -316,15 +316,13 @@ export default function BulkUploadModal({
   return (
     <>
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[90vh] p-0 flex flex-col rounded-2xl">
+        <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[90vh] p-0 flex flex-col overflow-hidden rounded-2xl">
 
           {/* HEADER */}
           <DialogHeader className="px-4 sm:px-6 py-4 sm:py-5 border-b border-border/40">
-            <DialogTitle className="text-base sm:text-lg font-semibold flex items-center gap-2 sm:gap-3">
-              <div className="p-2 rounded-lg bg-primary/10 border border-primary/20">
-                <Upload className="w-4 h-4 text-primary" />
-              </div>
-              Bulk Upload Students
+            <DialogTitle className="text-3xl sm:text-3xl font-semibold flex items-center sm:gap-1">
+
+              Bulk <span className='text-primary' >Upload</span>
             </DialogTitle>
 
             <DialogDescription className="text-xs text-muted-foreground">
@@ -336,7 +334,7 @@ export default function BulkUploadModal({
           <div className="p-6 space-y-6 overflow-y-auto no-scrollbar">
 
             {/* LOCATION */}
-            <div className="space-y-4 sm:space-y-5 p-4 sm:p-5 rounded-2xl border border-border/40 bg-muted/20">
+            <div className="space-y-4 sm:space-y-5 p-4 sm:p-5 rounded-2xl border border-border bg-muted/20">
 
               <p className="text-[10px] sm:text-xs font-semibold text-muted-foreground">
                 Target Location
@@ -414,7 +412,7 @@ export default function BulkUploadModal({
                 CSV File <span className="text-destructive">*</span>
               </Label>
 
-              <div className="border-2 border-dashed border-border/60 rounded-2xl p-4 sm:p-6 text-center hover:border-primary/40 transition-colors">
+              <div className="border-2 border-dashed border-border rounded-2xl p-4 sm:p-6 text-center hover:border-logo/40 transition-colors">
                 <input
                   type="file"
                   accept=".csv"
@@ -427,8 +425,8 @@ export default function BulkUploadModal({
                   htmlFor="csv-upload"
                   className="cursor-pointer flex flex-col items-center gap-2"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                    <Upload className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-logo/10 flex items-center justify-center">
+                    <Upload className="w-4 h-4 sm:w-5 sm:h-5 text-logo" />
                   </div>
                   <div className="space-y-1">
                     <p className="text-xs sm:text-sm font-medium">
@@ -463,11 +461,10 @@ export default function BulkUploadModal({
 
             {/* VALIDATION RESULT */}
             {csvValidated && validationResult && (
-              <div className={`rounded-2xl p-3 sm:p-4 ${
-                validationResult.isValid 
-                  ? 'bg-green-500/10 border border-green-500/30 text-green-400' 
-                  : 'bg-red-500/10 border border-red-500/30 text-red-400'
-              }`}>
+              <div className={`rounded-2xl p-3 sm:p-4 ${validationResult.isValid
+                ? 'bg-green-500/10 border border-green-500/30 text-green-400'
+                : 'bg-red-500/10 border border-red-500/30 text-red-400'
+                }`}>
                 <div className="flex items-start gap-2 sm:gap-3">
                   {validationResult.isValid ? (
                     <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0" />
@@ -476,12 +473,12 @@ export default function BulkUploadModal({
                   )}
                   <div className="space-y-1.5 sm:space-y-2">
                     <p className="text-xs sm:text-sm font-medium">
-                      {validationResult.isValid 
+                      {validationResult.isValid
                         ? validationResult.message
                         : 'CSV Validation Failed'
                       }
                     </p>
-                    
+
                     {!validationResult.isValid && validationError && (
                       <div className="space-y-1">
                         <p className="text-[10px] sm:text-sm font-medium">Errors found:</p>
@@ -490,7 +487,7 @@ export default function BulkUploadModal({
                         </ul>
                       </div>
                     )}
-                    
+
                     {validationResult.isValid && validationResult.totalRows > 0 && (
                       <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-current/20">
                         <p className="text-[10px] sm:text-sm">
@@ -504,7 +501,7 @@ export default function BulkUploadModal({
             )}
 
             {/* GUIDE */}
-            <div className="rounded-2xl px-3 sm:px-4 py-2 sm:py-3 bg-muted/20 border border-border/40">
+            <div className="rounded-2xl px-3 sm:px-4 py-2 sm:py-3 bg-muted/20 border border-border">
               <div className="text-center mb-2 sm:mb-3">
                 <p className="text-[10px] sm:text-sm text-muted-foreground">
                   Need CSV format help?
@@ -521,7 +518,7 @@ export default function BulkUploadModal({
                   <Download className="w-4 h-4 mr-2" />
                   Download Sample CSV
                 </Button>
-                
+
                 <Button
                   variant="outline"
                   size="sm"
@@ -534,17 +531,17 @@ export default function BulkUploadModal({
               </div>
             </div>
 
-            
+
           </div>
 
           {/* FOOTER */}
           <DialogFooter className="px-4 sm:px-6 py-3 sm:py-4 border-t border-border/40 flex gap-2 sm:gap-3">
 
             <Button
-              variant="ghost"
+
               onClick={handleClose}
               disabled={loading}
-              className="h-10 sm:h-11"
+              className="h-10 sm:h-11 bg-secondary-foreground! text-secondary! !mb-3"
             >
               Cancel
             </Button>
@@ -552,7 +549,7 @@ export default function BulkUploadModal({
             <Button
               disabled={isUploadDisabled}
               onClick={handleUpload}
-              className="h-10 sm:h-11 w-full font-semibold bg-primary text-black hover:opacity-90 transition-all"
+              className="h-10 sm:h-11  font-semibold bg-primary text-black hover:opacity-90 transition-all"
             >
               {loading ? "Uploading..." : "Upload Students"}
             </Button>
@@ -641,7 +638,7 @@ export default function BulkUploadModal({
               <Download className="w-4 h-4 mr-2" />
               Download Sample CSV
             </Button>
-            
+
             <Button variant="ghost" onClick={() => setShowGuide(false)} className="w-full sm:w-auto">
               Close
             </Button>
@@ -653,7 +650,7 @@ export default function BulkUploadModal({
       {/* UPLOAD RESULT MODAL */}
       <Dialog open={showResult} onOpenChange={setShowResult}>
         <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[500px] max-h-[90vh] p-0 overflow-hidden rounded-2xl">
-          
+
           {/* HEADER */}
           <DialogHeader className="px-4 sm:px-6 py-3 sm:py-4 bg-muted/40">
             <DialogTitle className="flex items-center gap-2 text-base sm:text-lg font-semibold">
@@ -664,7 +661,7 @@ export default function BulkUploadModal({
 
           {/* BODY */}
           <div className="p-4 sm:p-6 space-y-3 sm:space-y-4 overflow-y-auto no-scrollbar">
-            
+
             {/* SUMMARY */}
             <div className="bg-green-500/10 border border-green-500/30 rounded-2xl p-3 sm:p-4">
               <p className="text-green-400 text-xs sm:text-sm font-medium mb-1 sm:mb-2">
@@ -678,12 +675,12 @@ export default function BulkUploadModal({
                 <span className="text-[10px] sm:text-sm text-muted-foreground">Total Rows in CSV</span>
                 <span className="text-xs sm:text-sm font-semibold">{uploadResult?.totalRows || 0}</span>
               </div>
-              
+
               <div className="flex justify-between items-center py-1.5 sm:py-2 border-b border-border/50">
                 <span className="text-[10px] sm:text-sm text-muted-foreground">Successfully Uploaded</span>
                 <span className="text-xs sm:text-sm font-semibold text-green-500">{uploadResult?.inserted || 0}</span>
               </div>
-              
+
               {(uploadResult?.duplicates && uploadResult.duplicates > 0) && (
                 <div className="flex justify-between items-center py-1.5 sm:py-2 border-b border-border/50">
                   <span className="text-[10px] sm:text-sm text-muted-foreground">Duplicate Students (Skipped)</span>
@@ -697,7 +694,7 @@ export default function BulkUploadModal({
                   <span className="text-xs sm:text-sm font-semibold text-red-500">{uploadResult.invalidRows}</span>
                 </div>
               )}
-              
+
               <div className="flex justify-between items-center py-1.5 sm:py-2">
                 <span className="text-[10px] sm:text-sm text-muted-foreground">Total Skipped</span>
                 <span className="text-xs sm:text-sm font-semibold text-orange-500">{uploadResult?.skipped || 0}</span>
@@ -713,12 +710,12 @@ export default function BulkUploadModal({
 
           {/* FOOTER */}
           <div className="px-4 sm:px-6 py-3 sm:py-4 border-t">
-            <Button 
+            <Button
               onClick={() => {
                 setShowResult(false);
                 setUploadResult(null);
                 handleClose();
-              }} 
+              }}
               className="w-full h-10 sm:h-11"
             >
               Done

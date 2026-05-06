@@ -30,8 +30,8 @@ export function Select({ value, options, onChange, placeholder = 'Select...', di
 
   return (
     <ShadcnSelect value={safeValue} onValueChange={(v) => onChange(getRealVal(v))} disabled={disabled}>
-      <SelectTrigger className={`w-full ${className || ''}`}>
-        <div className="flex items-center gap-2 truncate">
+      <SelectTrigger className={`w-full border border-border ${className || ''}`}>
+        <div className="flex items-center gap-2 truncate ">
           {icon && <span className="text-muted-foreground shrink-0">{icon}</span>}
           <SelectValue placeholder={placeholder} />
         </div>

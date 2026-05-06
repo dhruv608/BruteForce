@@ -1,4 +1,4 @@
-﻿import { Level, Platform } from "@prisma/client";
+import { Level, Platform } from "@prisma/client";
 import prisma from '@/lib/server/config/prisma';
 import csv from "csv-parser";
 import { Readable } from "stream";
@@ -74,13 +74,15 @@ export const bulkUploadQuestionsService = async (
     });
   }
 
-  await prisma.question.createMany({
+  const created = await prisma.question.createMany({
     data: dataToInsert,
     skipDuplicates: true,
   });
 
   return {
     totalRows: rows.length,
-    inserted: dataToInsert.length,
+    inserted: created.count,
+    duplicates: dataToInsert.length - created.count,
+    skipped: rows.length - dataToInsert.length
   };
 };
