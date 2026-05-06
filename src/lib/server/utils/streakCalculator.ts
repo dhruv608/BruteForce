@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Streak Calculation Utility
  * Calculates current streak and max streak based on student progress dates
  */
@@ -238,63 +238,71 @@ export function calculateStreakWithCompletionFreeze(
   // Remove duplicates (same day multiple submissions)
   const uniqueDates = [...new Set(dateStrings)];
   
-  // Calculate current streak
-  let currentStreak = 0;
-  let maxStreak = 0;
-  let tempStreak = 0;
-  
   // Use local timezone for today
-  const today = new Date().toLocaleDateString('en-CA');
-  let expectedDate = new Date(today);
+  const todayDate = new Date();
+  const today = todayDate.toLocaleDateString('en-CA');
   
-  // Check current streak from today backwards
-  for (const dateStr of uniqueDates) {
-    const expectedDateStr = expectedDate.toLocaleDateString('en-CA');
+  const yesterdayDate = new Date(todayDate);
+  yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+  const yesterday = yesterdayDate.toLocaleDateString('en-CA');
+
+  const lastActivityDate = uniqueDates[0];
+
+  // 1. Calculate the streak ending on the last activity date
+  let lastActivityStreak = 1;
+  for (let i = 0; i < uniqueDates.length - 1; i++) {
+    const curr = new Date(uniqueDates[i]);
+    const prev = new Date(uniqueDates[i+1]);
+    const diffDays = Math.round((curr.getTime() - prev.getTime()) / (1000 * 60 * 60 * 24));
     
-    if (dateStr === expectedDateStr) {
-      currentStreak++;
-      expectedDate.setDate(expectedDate.getDate() - 1);
+    if (diffDays === 1) {
+      lastActivityStreak++;
     } else {
-      // No activity on expected day
-      if (hasCompletedAllQuestions) {
-        // Student completed all questions → FREEZE DAY
-        expectedDate.setDate(expectedDate.getDate() - 1);
-        continue;
-      } else {
-        // Student has pending questions → BREAK STREAK
-        break;
-      }
+      break;
     }
   }
+
+  // 2. Determine current streak
+  let currentStreak = 0;
   
-  // Calculate max streak by going through all dates
-  let previousDate: Date | null = null;
-  
-  for (let i = 0; i < uniqueDates.length; i++) {
-    const currentDate = new Date(uniqueDates[i]);
-    
-    if (previousDate === null) {
-      // Start new streak
-      tempStreak = 1;
+  if (lastActivityDate === today || lastActivityDate === yesterday) {
+    // Student was active today or yesterday, streak is alive
+    currentStreak = lastActivityStreak;
+  } else {
+    // Gap exists between last activity and today (more than 1 day)
+    if (hasCompletedAllQuestions) {
+      // FREEZE: Student has no pending questions. Keep their streak alive.
+      currentStreak = lastActivityStreak;
     } else {
-      const daysDiff = Math.floor((previousDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24));
-      
-      if (daysDiff === 1) {
-        // Consecutive day - continue streak
-        tempStreak++;
-      } else {
-        // Break in streak - reset and start new streak
-        maxStreak = Math.max(maxStreak, tempStreak);
-        tempStreak = 1;
-      }
+      // BREAK: Student has pending questions but didn't practice.
+      currentStreak = 0;
     }
+  }
+
+  // 3. Calculate max streak overall (just looking at consecutive activity days)
+  let maxStreak = 0;
+  let tempStreak = 1;
+  
+  for (let i = 0; i < uniqueDates.length - 1; i++) {
+    const curr = new Date(uniqueDates[i]);
+    const prev = new Date(uniqueDates[i+1]);
+    const diffDays = Math.round((curr.getTime() - prev.getTime()) / (1000 * 60 * 60 * 24));
     
-    previousDate = currentDate;
+    if (diffDays === 1) {
+      tempStreak++;
+    } else {
+      // Break in streak - update max and reset temp
+      maxStreak = Math.max(maxStreak, tempStreak);
+      tempStreak = 1;
+    }
   }
   
   // Final check for max streak
   maxStreak = Math.max(maxStreak, tempStreak);
   
+  // If currentStreak is somehow higher due to freeze, ensure maxStreak reflects it
+  maxStreak = Math.max(maxStreak, currentStreak);
+
   return {
     currentStreak,
     maxStreak
