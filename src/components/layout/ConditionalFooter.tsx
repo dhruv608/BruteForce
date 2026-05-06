@@ -11,9 +11,10 @@ export function ConditionalFooter() {
   const isAdminPage = pathname.startsWith('/admin');
   const isSuperAdminPage = pathname.startsWith('/superadmin');
   const isOriginPage = pathname === '/origin';
-  
-  // Don't show footer on login pages, admin pages, superadmin pages, and origin page
-  if (isLoginPage || isAdminPage || isSuperAdminPage || isOriginPage) {
+  const isOnboardingPage = pathname.startsWith('/onboarding');
+
+  // Don't show footer on login pages, admin pages, superadmin pages, origin and onboarding
+  if (isLoginPage || isAdminPage || isSuperAdminPage || isOriginPage || isOnboardingPage) {
     return null;
   }
   

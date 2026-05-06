@@ -306,7 +306,7 @@ export function RecentQuestionsSidebar() {
                     </div>
                   ) : questions.length === 0 ? (
                     <div className="p-10 text-center text-muted-foreground">
-                      <Clock className="w-10 h-10 mx-auto mb-3 opacity-50" />
+                      <Clock className="w-10 h-10 mx-auto mb-3 opacity-50 text-logo" />
                       <p className="text-sm">
                         No recent questions
                       </p>

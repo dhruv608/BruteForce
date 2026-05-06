@@ -1,120 +1,56 @@
 "use client";
 
 import Link from 'next/link';
-import { MapPin, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import Logo from '@/components/Logo';
 
 export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <Link
+          href="/"
+          aria-label="BruteForce home"
+          className="inline-flex items-center transition-opacity hover:opacity-80 [&_svg]:!w-[100px] [&_svg]:!h-[39px] [&_svg]:-translate-y-[7px]"
+        >
+          <Logo />
+        </Link>
 
-          {/* Brand Section */}
-          <div className="space-y-4">
-            <div>
-              <div className="-mt-[43px] -ml-1">
-                <Logo />
-              </div>
-              <p className="text-sm text-muted-foreground mt-2 font-medium">
-                Solve Faster.<br />
-                Rank Higher.<br />
-                Stay Ahead.
-              </p>
-            </div>
+        <p className="text-sm text-muted-foreground">
+          Made By
+          <a
+            href="https://www.linkedin.com/in/dhruvnarang608"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Dhruv Narang on LinkedIn"
+            className="text-primary p-1 hover:underline underline-offset-4 transition-colors"
+          >
+            Dhruv Narang
+          </a>
+          and
+          <a
+            href="https://www.linkedin.com/in/ayush2006"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Ayush Chaurasiya on LinkedIn"
+            className="text-primary p-1 hover:underline underline-offset-4 transition-colors"
+          >
+            Ayush Chaurasiya
+          </a>
+        </p>
 
-            <a
-              href="https://www.pwioi.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
-              <MapPin className="w-4 h-4" />
-              <span>PW Institute of Innovation</span>
-            </a>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Quick Links</h4>
-            <nav className="space-y-2">
-              <Link href="/" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
-                Home
-              </Link>
-              <Link href="/topics" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
-                Topics
-              </Link>
-              <Link href="/leaderboard" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
-                Leaderboard
-              </Link>
-              <Link href="/profile" className="block text-sm text-muted-foreground hover:text-primary transition-colors">
-                Profile
-              </Link>
-
-            </nav>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Resources</h4>
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium">Study Material:</span> Comprehensive Class Notes
-              </p>
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium">Practice Problems:</span> 1000+ DSA Questions
-              </p>
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium">Progress Tracking:</span> Real-time analytics
-              </p>
-            </div>
-          </div>
-
-          {/* Bookmarks */}
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Bookmarks</h4>
-            <div className="space-y-2">
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium">Saved Topics:</span> Quick access to important topics
-              </p>
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium">Recent Progress:</span> Track your learning journey
-              </p>
-              <p className="text-sm text-muted-foreground">
-                <span className="font-medium">Favorite Problems:</span> Mark problems for later
-              </p>
-            </div>
-          </div>
-
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-8 pt-8 border-t border-border/40 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-muted-foreground">
-            © 2026
-
-            <span className='text-primary p-1 '>
-
-              BruteForce.
-            </span>
-
-            All rights reserved.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            Made By
-            <span className='text-primary p-1'>
-              Dhruv Narang
-            </span>
-            &&
-            <span className='text-primary p-1'>
-              Ayush Chaurasiya
-            </span>
-          </p>
-
-          <p className="flex items-center gap-1 text-sm text-muted-foreground">
-            Built with <Heart className="w-4 h-4 text-primary fill-primary" /> at PW Institute of Innovation
-          </p>
-        </div>
+        <p className="flex items-center gap-1 text-sm text-muted-foreground">
+          Built with <Heart className="w-4 h-4 text-primary fill-primary" /> at
+          <a
+            href="https://www.pwioi.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Visit PW Institute of Innovation"
+            className="text-primary p-1 hover:underline underline-offset-4 transition-colors"
+          >
+            PW Institute of Innovation
+          </a>
+        </p>
       </div>
     </footer>
   );

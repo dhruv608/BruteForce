@@ -1,6 +1,5 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Activity } from "lucide-react";
-import CustomTooltip from "./CustomTooltip";
 
 interface HeatmapData {
   date: string;
@@ -18,11 +17,6 @@ export default function ActivityHeatmap({
   currentStreak,
   maxStreak,
 }: Props) {
-  const [tooltip, setTooltip] = useState<{
-    x: number;
-    y: number;
-    text: string;
-  } | null>(null);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -143,29 +137,24 @@ export default function ActivityHeatmap({
 
                   const key = date.toLocaleDateString("en-CA");
                   const count = dataMap.get(key) ?? 0;
+                  const prettyDate = date.toLocaleDateString("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                  });
+                  const tooltipText =
+                    count === -1
+                      ? `Freeze day on ${prettyDate}`
+                      : `${count} ${count === 1 ? "submission" : "submissions"} on ${prettyDate}`;
                   return (
                     <div
                       key={di}
-                      className={`
-                    w-[14px] h-[14px] rounded-[3px]
-                    ${getColor(count)}
-                    transition-all duration-200
-                    hover:scale-100 hover:z-10
-                    cursor-pointer
-                  `}
-                      onMouseEnter={(e) => {
-                        const rect = e.currentTarget.getBoundingClientRect();
-                        const tooltipText = count === -1 
-                          ? `Freeze day on ${key} (no questions uploaded)` 
-                          : `${count} submissions on ${key}`;
-                        setTooltip({
-                          x: rect.left + rect.width / 2,
-                          y: rect.top - 8, // 8px spacing above the element
-                          text: tooltipText,
-                        });
-                      }}
-                      onMouseLeave={() => setTooltip(null)}
-                    />
+                      className={`relative group w-[14px] h-[14px] rounded-[3px] ${getColor(count)} cursor-pointer`}
+                    >
+                      <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-medium whitespace-nowrap bg-[#1f2937] text-white rounded-2xl border border-white/10 shadow-xl pointer-events-none z-[9999] opacity-0 group-hover:opacity-100 transition-opacity duration-150">
+                        {tooltipText}
+                      </div>
+                    </div>
                   );
                 })}
               </div>
@@ -199,14 +188,6 @@ export default function ActivityHeatmap({
         <span>Freeze day</span>
       </div>
 
-      {/* Custom Tooltip */}
-      {tooltip && (
-        <CustomTooltip
-          x={tooltip.x}
-          y={tooltip.y}
-          text={tooltip.text}
-        />
-      )}
     </div>
   );
 }
