@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ExternalLink, Edit2, Trash2, Loader2, ChevronDown, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HTMLRenderer } from '@/components/ui/HTMLRenderer';
@@ -17,13 +17,15 @@ interface BookmarkCardProps {
 export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: BookmarkCardProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Parse HTML description to extract bullet points
-  const parseDescriptionToBullets = (html: string): string[] => {
+  // Parse HTML description to extract bullet points — memoized so DOMParser
+  // only runs when the description changes, not on every render
+  const descriptionBullets = useMemo<string[]>(() => {
+    if (!bookmark.description) return [];
+
     const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
+    const doc = parser.parseFromString(bookmark.description, 'text/html');
     const bullets: string[] = [];
 
-    // Extract from <ul> or <ol> lists
     const lists = doc.querySelectorAll('ul, ol');
     lists.forEach(list => {
       const items = list.querySelectorAll('li');
@@ -33,7 +35,6 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
       });
     });
 
-    // If no lists found, extract from <p> tags
     if (bullets.length === 0) {
       const paragraphs = doc.querySelectorAll('p');
       paragraphs.forEach(p => {
@@ -42,7 +43,6 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
       });
     }
 
-    // If still no bullets, split by line breaks
     if (bullets.length === 0) {
       const text = doc.body.textContent?.trim();
       if (text) {
@@ -52,9 +52,8 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
     }
 
     return bullets;
-  };
+  }, [bookmark.description]);
 
-  const descriptionBullets = bookmark.description ? parseDescriptionToBullets(bookmark.description) : [];
   const hasDescription = descriptionBullets.length > 0;
 
   const getLevelColor = (level: string) => {

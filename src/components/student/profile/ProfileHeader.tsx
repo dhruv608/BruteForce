@@ -3,6 +3,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Edit2, BarChart3, GraduationCap, MapPin, Edit3 } from 'lucide-react';
 import { StudentProfile } from '@/types/student/index.types';
@@ -37,9 +38,12 @@ export function ProfileHeader({
                     <div className="relative">
                         <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-35 lg:h-35 overflow-hidden border-2 glass hover-glow transition-all duration-200 hover:scale-105 rounded-full border-[var(--border)]">
                             {student.profileImageUrl ? (
-                                <img
+                                <Image
                                     src={student.profileImageUrl}
                                     alt={student.name}
+                                    width={140}
+                                    height={140}
+                                    quality={85}
                                     className="w-full h-full object-cover"
                                 />
                             ) : (

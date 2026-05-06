@@ -22,7 +22,7 @@ export function Footer() {
             href="https://www.linkedin.com/in/dhruvnarang608"
             target="_blank"
             rel="noopener noreferrer"
-            title="Dhruv Narang on LinkedIn"
+            title="Dhruv Narang's LinkedIn"
             className="text-primary p-1 hover:underline underline-offset-4 transition-colors"
           >
             Dhruv Narang
@@ -32,7 +32,7 @@ export function Footer() {
             href="https://www.linkedin.com/in/ayush2006"
             target="_blank"
             rel="noopener noreferrer"
-            title="Ayush Chaurasiya on LinkedIn"
+            title="Ayush Chaurasiya's LinkedIn"
             className="text-primary p-1 hover:underline underline-offset-4 transition-colors"
           >
             Ayush Chaurasiya

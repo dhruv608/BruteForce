@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { isStudentToken } from '@/lib/auth-utils';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
@@ -283,7 +284,7 @@ export default function StudentHeader() {
                         style={{ borderRadius: 'var(--radius-full)', borderColor: 'var(--border)' }}
                       >
                         {profile.profileImageUrl ? (
-                          <img src={profile.profileImageUrl} alt="Profile" className="w-full h-full object-cover" />
+                          <Image src={profile.profileImageUrl} alt="Profile" width={40} height={40} quality={75} className="w-full h-full object-cover" />
                         ) : (
                           <div
                             className="w-full h-full bg-linear-to-br from-accent-primary to-accent-primary text-primary-foreground flex items-center justify-center text-sm font-bold"
@@ -384,13 +385,15 @@ export default function StudentHeader() {
             {/* PWIO Logo - Theme-aware - Hidden on Mobile */}
             {mounted && (
               <div className="ml-3 hidden sm:block">
-                <img
+                <Image
                   src={
                     theme === 'dark' || (theme === 'system' && systemTheme === 'dark')
                       ? '/pwioi_dark.jpg'
                       : '/pwioi_light.png'
                   }
                   alt="PWIO Logo"
+                  width={120}
+                  height={32}
                   className="h-8 w-auto object-contain"
                 />
               </div>

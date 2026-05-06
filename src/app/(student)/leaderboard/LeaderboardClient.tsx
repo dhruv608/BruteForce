@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { studentLeaderboardService } from "@/services/student/leaderboard.service";
 import { studentAuthService } from "@/services/student/auth.service";
@@ -67,17 +67,19 @@ export default function LeaderboardClient() {
   });
 
   // Compute year options similar to admin leaderboard
-  const yearOptions = leaderboardData?.available_cities ? (() => {
+  const yearOptions = useMemo(() => {
+    if (!leaderboardData?.available_cities) return [];
     if (lCity === 'all' || lCity === 'All Cities') {
-      // Extract years from "All Cities" entry
-      const allCitiesEntry = leaderboardData.available_cities.find((city: LeaderboardCity) => city.city_name === "All Cities");
+      const allCitiesEntry = leaderboardData.available_cities.find(
+        (city: LeaderboardCity) => city.city_name === "All Cities"
+      );
       return allCitiesEntry?.available_years || [];
-    } else {
-      // Find specific city and return its years
-      const cityData = leaderboardData.available_cities.find((city: LeaderboardCity) => city.city_name === lCity);
-      return cityData?.available_years || [];
     }
-  })() : [];
+    const cityData = leaderboardData.available_cities.find(
+      (city: LeaderboardCity) => city.city_name === lCity
+    );
+    return cityData?.available_years || [];
+  }, [leaderboardData?.available_cities, lCity]);
 
   // Set default city and year based on logged-in student
   useEffect(() => {

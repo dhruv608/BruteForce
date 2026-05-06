@@ -24,14 +24,13 @@ export const LeaderboardTableRow: React.FC<LeaderboardTableRowProps> = ({ entry,
         <div className="flex flex-row items-center gap-3">
           <div className={`w-10 h-10 rounded-full overflow-hidden border border-border shadow-sm group-hover:border-primary/50 transition-colors`}>
             {entry.profile_image_url ?
-              <Image 
-                src={entry.profile_image_url} 
-                alt={entry.name} 
-                width={40} 
+              <Image
+                src={entry.profile_image_url}
+                alt={entry.name}
+                width={40}
                 height={40}
                 className="w-full h-full object-cover"
-                loading="eager"
-                quality={100}
+                quality={75}
               />
               : <ProfileAvatar username={entry.username} size={40} />}
 

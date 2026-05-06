@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Lock } from "lucide-react";
 
 interface TopicCardProps {
@@ -50,10 +51,13 @@ export function TopicCard({
       {/* 🖼 IMAGE */}
       <div className="relative h-[150px] overflow-hidden border-b border-border/50">
         {photoUrl ? (
-          <img
+          <Image
             src={photoUrl}
             alt={topicName}
-            className={`w-full h-full object-cover transition-transform duration-500 ${
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+            quality={75}
+            className={`object-cover transition-transform duration-500 ${
               isLocked ? "scale-100" : "group-hover:scale-105"
             }`}
           />
