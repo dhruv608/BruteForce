@@ -4,6 +4,7 @@ import { withHandler } from '@/lib/server/route-handler';
 import { createQuestionSchema } from '@/lib/server/schemas/question.schema';
 import { getAllQuestionsService } from '@/lib/server/services/questions/question-query.service';
 import { createQuestionService } from '@/lib/server/services/questions/question-core.service';
+import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 
 export const GET = withHandler(
   async ({ query }) => {
@@ -23,6 +24,11 @@ export const GET = withHandler(
 export const POST = withHandler(
   async ({ body }) => {
     const question = await createQuestionService(body as any);
+    await Promise.all([
+      CacheInvalidation.invalidateAssignedQuestions(),
+      CacheInvalidation.invalidateTopics(),
+      CacheInvalidation.invalidateTopicOverviews(),
+    ]);
     return apiCreated({ question }, 'Question created successfully');
   },
   { requireAuth: true, requireRole: 'teacherOrAbove', rateLimit: 'api', bodySchema: createQuestionSchema }

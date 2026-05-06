@@ -6,6 +6,7 @@ import { resolveBatch } from '@/lib/server/batch-helper';
 import { updateQuestionVisibilityTypeService } from '@/lib/server/services/questions/visibility.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 
 export async function PATCH(
   req: NextRequest,
@@ -33,6 +34,8 @@ export async function PATCH(
       visibilityId: visibilityIdNum,
       type,
     });
+
+    await CacheInvalidation.invalidateBatch(batch.id);
 
     return apiOk({ data: updated }, 'Question visibility type updated successfully');
   } catch (err) {

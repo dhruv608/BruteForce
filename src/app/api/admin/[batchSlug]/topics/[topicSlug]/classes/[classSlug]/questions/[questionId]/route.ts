@@ -6,6 +6,7 @@ import { resolveBatch } from '@/lib/server/batch-helper';
 import { removeQuestionFromClassService } from '@/lib/server/services/questions/visibility.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 
 export async function DELETE(
   req: NextRequest,
@@ -26,6 +27,8 @@ export async function DELETE(
       classSlug,
       questionId: questionIdNum,
     });
+
+    await CacheInvalidation.invalidateBatch(batch.id);
 
     return apiMessage('Question removed successfully');
   } catch (err) {

@@ -5,6 +5,7 @@ import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/aut
 import { updateStudentDetailsService, deleteStudentDetailsService } from '@/lib/server/services/students/student.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 
 export async function PATCH(
   req: NextRequest,
@@ -19,6 +20,7 @@ export async function PATCH(
     if (isNaN(studentId)) throw new ApiError(400, 'Invalid student ID');
     const body = await req.json();
     const updated = await updateStudentDetailsService(studentId, body);
+    await CacheInvalidation.invalidateStudent(studentId);
     return apiOk({ data: updated }, 'Student updated successfully');
   } catch (err) {
     return handleError(err);
@@ -37,6 +39,7 @@ export async function DELETE(
     const studentId = Number(id);
     if (isNaN(studentId)) throw new ApiError(400, 'Invalid student ID');
     await deleteStudentDetailsService(studentId);
+    await CacheInvalidation.invalidateStudent(studentId);
     return apiMessage('Student deleted permanently');
   } catch (err) {
     return handleError(err);

@@ -5,6 +5,7 @@ import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/aut
 import { updateQuestionService, deleteQuestionService } from '@/lib/server/services/questions/question-core.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 
 export async function PATCH(
   req: NextRequest,
@@ -17,6 +18,11 @@ export async function PATCH(
     const { id } = await params;
     const body = await req.json();
     const updated = await updateQuestionService({ id: Number(id), ...body });
+    await Promise.all([
+      CacheInvalidation.invalidateAssignedQuestions(),
+      CacheInvalidation.invalidateTopics(),
+      CacheInvalidation.invalidateTopicOverviews(),
+    ]);
     return apiOk({ question: updated }, 'Question updated successfully');
   } catch (err) {
     return handleError(err);
@@ -34,6 +40,11 @@ export async function DELETE(
     const { id } = await params;
     if (isNaN(Number(id))) throw new ApiError(400, 'Invalid question ID');
     await deleteQuestionService({ id: Number(id) });
+    await Promise.all([
+      CacheInvalidation.invalidateAssignedQuestions(),
+      CacheInvalidation.invalidateTopics(),
+      CacheInvalidation.invalidateTopicOverviews(),
+    ]);
     return apiMessage('Question deleted successfully');
   } catch (err) {
     return handleError(err);

@@ -1,5 +1,11 @@
 export async function register() {
   if (process.env.NEXT_RUNTIME === 'nodejs') {
+    // Validate required env vars BEFORE anything else loads.
+    // Fails fast with a list of all missing vars rather than crashing at
+    // first use with a cryptic error.
+    const { validateEnv } = await import('./src/lib/server/utils/validate-env');
+    validateEnv();
+
     console.log('[INSTRUMENTATION] Initializing background workers and cron jobs...');
 
     // Initialize BullMQ worker (registers event listeners at import)

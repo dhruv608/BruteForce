@@ -8,6 +8,7 @@ import { updateClassService, deleteClassService } from '@/lib/server/services/to
 import { handleError } from '@/lib/server/error-response';
 import type { ParsedFile } from '@/lib/server/file-helper';
 import { sanitizeRichText } from '@/lib/server/utils/sanitize';
+import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 
 export async function GET(
   req: NextRequest,
@@ -85,6 +86,8 @@ export async function PATCH(
       class_date,
     });
 
+    await CacheInvalidation.invalidateBatch(batch.id);
+
     return apiOk({ class: updated }, 'Class updated successfully');
   } catch (err) {
     return handleError(err);
@@ -102,6 +105,7 @@ export async function DELETE(
     const { batchSlug, topicSlug, classSlug } = await params;
     const batch = await resolveBatch(batchSlug);
     await deleteClassService({ batchId: batch.id, topicSlug, classSlug });
+    await CacheInvalidation.invalidateBatch(batch.id);
     return apiMessage('Class deleted successfully');
   } catch (err) {
     return handleError(err);

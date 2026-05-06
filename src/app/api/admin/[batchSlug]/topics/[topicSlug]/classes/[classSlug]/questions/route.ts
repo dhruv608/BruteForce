@@ -7,6 +7,7 @@ import { getAssignedQuestionsOfClassService } from '@/lib/server/services/questi
 import { assignQuestionsToClassService } from '@/lib/server/services/questions/visibility.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 
 export async function GET(
   req: NextRequest,
@@ -56,6 +57,8 @@ export async function POST(
       classSlug,
       questions: body.questions,
     });
+
+    await CacheInvalidation.invalidateBatch(batch.id);
 
     return apiOk(result, 'Questions assigned successfully');
   } catch (err) {

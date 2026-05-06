@@ -5,6 +5,7 @@ import { getAuthUser, assertAdmin, assertTeacherOrAbove } from '@/lib/server/aut
 import { bulkUploadQuestionsService } from '@/lib/server/services/questions/questionBulk.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 
 export async function POST(req: NextRequest) {
   try {
@@ -26,6 +27,12 @@ export async function POST(req: NextRequest) {
 
     const buffer = Buffer.from(await fileField.arrayBuffer());
     const result = await bulkUploadQuestionsService(buffer, topic_id);
+
+    await Promise.all([
+      CacheInvalidation.invalidateAssignedQuestions(),
+      CacheInvalidation.invalidateTopics(),
+      CacheInvalidation.invalidateTopicOverviews(),
+    ]);
 
     return apiOk(result, 'Bulk upload successful');
   } catch (err) {

@@ -4,6 +4,7 @@ import { getAuthUser, assertAdmin } from '@/lib/server/auth-helper';
 import { bulkStudentUploadService } from '@/lib/server/services/bulk.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 
 export async function POST(req: NextRequest) {
   try {
@@ -23,6 +24,8 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(await fileField.arrayBuffer());
 
     const result = await bulkStudentUploadService(buffer, { batch_id: Number(batch_id) });
+    await CacheInvalidation.invalidateBatch(Number(batch_id));
+    await CacheInvalidation.invalidateAllLeaderboards();
     return NextResponse.json(
       { message: 'Students upload successful', ...(typeof result === 'object' && result ? result : {}) },
       { status: 201 }

@@ -30,11 +30,20 @@ export async function POST(req: NextRequest) {
     let topic_name: string;
     let photo: ParsedFile | undefined;
 
+    const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
+    const MAX_IMAGE_BYTES = 5 * 1024 * 1024; // 5MB
+
     if (contentType.includes('multipart/form-data')) {
       const formData = await req.formData();
       topic_name = formData.get('topic_name') as string;
       const photoFile = formData.get('photo') as File | null;
-      if (photoFile) {
+      if (photoFile && photoFile.size > 0) {
+        if (!ALLOWED_IMAGE_TYPES.includes(photoFile.type)) {
+          throw new ApiError(400, `Invalid image type. Allowed: ${ALLOWED_IMAGE_TYPES.join(', ')}`);
+        }
+        if (photoFile.size > MAX_IMAGE_BYTES) {
+          throw new ApiError(400, `Image too large. Max: ${MAX_IMAGE_BYTES / 1024 / 1024}MB`);
+        }
         const buf = await photoFile.arrayBuffer();
         photo = {
           buffer: Buffer.from(buf),
