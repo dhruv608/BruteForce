@@ -117,7 +117,7 @@ export function OnboardingStep1({
       case "typing":
         return (
           <div className={`${base} text-muted-foreground`}>
-            <BruteForceLoader size="sm" />
+            {/* <BruteForceLoader size="sm" /> */}
             <span>Checking...</span>
           </div>
         );
@@ -195,9 +195,7 @@ export function OnboardingStep1({
               <XCircle className="absolute right-3 top-1/2 -translate-y-1/2 text-red-500" />
             )}
 
-            {usernameStatus === "typing" && (
-              <BruteForceLoader className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin text-primary" />
-            )}
+           
           </div>
 
           {data.username?.trim() !== "" && (

@@ -17,7 +17,6 @@ import {
    DialogHeader,
    DialogTitle,
    DialogFooter,
-   DialogDescription,
 } from "@/components/ui/dialog";
 import { Search, AlertTriangle, ExternalLink, CheckCircle2, Circle, Home, GraduationCap } from 'lucide-react';
 import { LeetCodeIcon, GeeksforGeeksIcon } from '@/components/platform/PlatformIcons';
@@ -26,6 +25,25 @@ import { Question, QuestionFilters } from '@/types/admin/question.types';
 
 function BadgeByLevel({ level }: { level: string }) {
    return <span className="px-2 py-0.5 rounded text-xs font-semibold text-muted-foreground">{level}</span>;
+}
+
+function getErrorMessage(err: unknown, fallback: string) {
+   if (
+      err &&
+      typeof err === 'object' &&
+      'response' in err &&
+      err.response &&
+      typeof err.response === 'object' &&
+      'data' in err.response &&
+      err.response.data &&
+      typeof err.response.data === 'object' &&
+      'error' in err.response.data &&
+      typeof err.response.data.error === 'string'
+   ) {
+      return err.response.data.error;
+   }
+
+   return fallback;
 }
 
 export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batchSlug, topicSlug, classSlug, assignedQuestions }: AssignQuestionsModalProps) {
@@ -118,9 +136,9 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
          onClose();
          setSelectedQuestions([]);
          onSuccess();
-      } catch (err: any) {
+      } catch (err: unknown) {
          // Error is handled by API client interceptor
-         setErrorMsg(err.response?.data?.error || 'Failed to assign questions');
+         setErrorMsg(getErrorMessage(err, 'Failed to assign questions'));
       } finally {
          setSubmitting(false);
       }
@@ -301,15 +319,15 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                </div>
             </div>
 
-            <div className="p-4 border-t border-border flex items-center justify-between">
+            <DialogFooter className="!mx-0 !mb-0 !m-0 shrink-0 rounded-none bg-background/80 backdrop-blur-xl !px-4 !pt-4 !pb-6 border-t border-border flex-row items-center justify-between gap-3">
+               
                <span className="text-sm font-medium">
                   {selectedQuestions.length} Selected
                </span>
 
-               <div className="flex gap-3">
+               <div className="flex gap-3 ">
                   <Button
-                     variant="outline"
-                     className="rounded-xl px-5"
+                     className="!rounded-2xl !bg-secondary-foreground "
                      onClick={onClose}
                      disabled={submitting}
                   >
@@ -323,7 +341,8 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                      {submitting ? 'Assigning...' : `Assign ${selectedQuestions.length} Question${selectedQuestions.length !== 1 ? 's' : ''}`}
                   </Button>
                </div>
-            </div>
+            </DialogFooter>
+
          </DialogContent>
       </Dialog>
    );

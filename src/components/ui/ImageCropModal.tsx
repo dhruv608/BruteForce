@@ -138,7 +138,7 @@ export function ImageCropModal({
 
   return (
     <Dialog open={!!file} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-md p-0 overflow-hidden">
+      <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-md !p-3 ">
 
         <DialogHeader className="px-4 sm:px-6 py-3 sm:py-4 border-b border-border">
           <DialogTitle className="text-base sm:text-lg font-semibold tracking-tight">
@@ -186,7 +186,7 @@ export function ImageCropModal({
 
             {/* Slider */}
             <div className="relative flex-1 flex items-center">
-              <ZoomOut className="absolute left-0 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
+              {/* <ZoomOut className="!absolute !left-0 w-3.5 h-3.5 text-muted-foreground pointer-events-none" /> */}
               <input
                 type="range"
                 min={MIN_ZOOM}
@@ -197,7 +197,7 @@ export function ImageCropModal({
                 className="w-full accent-primary h-1.5 rounded-full cursor-pointer px-5"
                 style={{ paddingLeft: '20px', paddingRight: '20px' }}
               />
-              <ZoomIn className="absolute right-0 w-3.5 h-3.5 text-muted-foreground pointer-events-none" />
+              {/* <ZoomIn className="!absolute !right-0 w-3.5 h-3.5 text-muted-foreground pointer-events-none" /> */}
             </div>
 
             {/* + button */}

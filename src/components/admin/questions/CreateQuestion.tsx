@@ -33,7 +33,7 @@ export default function CreateQuestion({
   onSuccess,
 }: CreateQuestionProps) {
   type FormData = z.infer<typeof createQuestionSchema>;
-  
+
   const form = useForm<FormData>({
     resolver: zodResolver(createQuestionSchema),
     defaultValues: {
@@ -100,60 +100,58 @@ export default function CreateQuestion({
 
             {/* BASIC INFO */}
             <div className="p-4 sm:p-5 rounded-2xl border border-border/50 bg-muted/20 space-y-5">
-  
-  {/* Title */}
-  <h3 className="text-sm font-semibold text-muted-foreground">
-    Basic Information
-  </h3>
 
-  {/* Question Title */}
-  <div className="flex flex-col gap-2">
-    <Label className="text-sm text-muted-foreground">
-      Question Title
-    </Label>
+              {/* Title */}
+              <h3 className="text-sm font-semibold text-muted-foreground">
+                Basic Information
+              </h3>
 
-    <Input
-      className={`h-11 sm:h-12 w-full rounded-md border border-border/60 bg-background/60 
-      focus-visible:ring-2 focus-visible:ring-primary/40 transition ${
-        formErrors.question_name ? "border-red-500" : ""
-      }`}
-      {...form.register("question_name")}
-      placeholder="e.g. Two Sum"
-      disabled={loading}
-    />
+              {/* Question Title */}
+              <div className="flex flex-col gap-2">
+                <Label className="text-sm text-muted-foreground">
+                  Question Title
+                </Label>
 
-    {formErrors.question_name && (
-      <p className="text-xs text-red-400">
-        {formErrors.question_name.message}
-      </p>
-    )}
-  </div>
+                <Input
+                  className={`h-11 sm:h-12 w-full rounded-md border border-border/60 bg-background/60 
+      focus-visible:ring-2 focus-visible:ring-primary/40 transition ${formErrors.question_name ? "border-red-500" : ""
+                    }`}
+                  {...form.register("question_name")}
+                  placeholder="e.g. Two Sum"
+                  disabled={loading}
+                />
 
-  {/* Question Link */}
-  <div className="flex flex-col gap-2">
-    <Label className="text-sm text-muted-foreground">
-      Question Link
-    </Label>
+                {formErrors.question_name && (
+                  <p className="text-xs text-red-400">
+                    {formErrors.question_name.message}
+                  </p>
+                )}
+              </div>
 
-    <Input
-      className={`h-11 sm:h-12 w-full rounded-md border border-border/60 bg-background/60 
-      focus-visible:ring-2 focus-visible:ring-primary/40 transition ${
-        formErrors.question_link ? "border-red-500" : ""
-      }`}
-      {...form.register("question_link")}
-      placeholder="https://leetcode.com/..."
-      type="url"
-      disabled={loading}
-    />
+              {/* Question Link */}
+              <div className="flex flex-col gap-2">
+                <Label className="text-sm text-muted-foreground">
+                  Question Link
+                </Label>
 
-    {formErrors.question_link && (
-      <p className="text-xs text-red-400">
-        {formErrors.question_link.message}
-      </p>
-    )}
-  </div>
+                <Input
+                  className={`h-11 sm:h-12 w-full rounded-md border border-border/60 bg-background/60 
+      focus-visible:ring-2 focus-visible:ring-primary/40 transition ${formErrors.question_link ? "border-red-500" : ""
+                    }`}
+                  {...form.register("question_link")}
+                  placeholder="https://leetcode.com/..."
+                  type="url"
+                  disabled={loading}
+                />
 
-</div>
+                {formErrors.question_link && (
+                  <p className="text-xs text-red-400">
+                    {formErrors.question_link.message}
+                  </p>
+                )}
+              </div>
+
+            </div>
 
             {/* CONFIG */}
             <div className="p-5 rounded-2xl border border-border/50 bg-muted/20 space-y-4">
@@ -196,8 +194,8 @@ export default function CreateQuestion({
                         form.trigger('level');
                       }}
                       className={`flex-1 py-2 text-xs font-semibold rounded transition-all ${form.watch('level') === lvl
-                          ? "bg-primary text-primary-foreground shadow-sm"
-                          : "text-muted-foreground hover:bg-muted"
+                        ? "bg-primary text-primary-foreground shadow-sm"
+                        : "text-muted-foreground hover:bg-muted"
                         }`}
                     >
                       {lvl}

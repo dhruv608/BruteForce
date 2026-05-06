@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { OnboardingStep1 } from '@/components/student/onboarding/components/OnboardingStep1';
 import { OnboardingStep2 } from '@/components/student/onboarding/components/OnboardingStep2';
@@ -12,18 +11,8 @@ import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 export default function OnboardingPage() {
   const router = useRouter();
-  const [onboardingUser, setOnboardingUser] = useState<any>(null);
-  const { step, setStep, data, confirmChecked, setConfirmChecked, loading, submitOnboarding } = useOnboarding();
-
-  useEffect(() => {
-    const stored = localStorage.getItem('onboardingUser');
-    if (stored) {
-      setOnboardingUser(JSON.parse(stored));
-    } else {
-      // No onboarding data, redirect to login
-      router.push('/login');
-    }
-  }, [router]);
+  const { step, setStep, data, setData, confirmChecked, setConfirmChecked, loading, submitOnboarding } = useOnboarding();
+  const onboardingUser = data.originalUsername ? { username: data.originalUsername } : undefined;
 
   const handleSubmitOnboarding = async () => {
     await submitOnboarding();
@@ -63,7 +52,7 @@ export default function OnboardingPage() {
             Complete Your Profile
           </h2>
           <p className="text-sm text-muted-foreground mt-1">
-            Step {step} of 3 - Let's set up your BruteForce profile
+            Step {step} of 3 - Let&apos;s set up your BruteForce profile
           </p>
         </div>
 

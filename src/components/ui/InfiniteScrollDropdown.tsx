@@ -202,8 +202,8 @@ export function InfiniteScrollDropdown({
         <div
           className="
   absolute top-full mt-1 left-0 right-0 z-100 
-  rounded-2xl  border border-border p-2 shadow-lg 
-  max-h-72 flex flex-col backdrop-blur-3xl overflow-y-auto no-scrollbar
+  rounded-2xl border border-border p-2 shadow-lg 
+  max-h-72 flex flex-col bg-background/95 glass backdrop-blur-md overflow-y-auto no-scrollbar
 "
         >
           {/* Search */}

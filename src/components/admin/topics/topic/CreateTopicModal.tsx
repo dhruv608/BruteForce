@@ -83,108 +83,108 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
 
    return (
       <>
-      <Dialog open={isOpen} onOpenChange={handleClose}>
-         <DialogContent className="rounded-2xl  overflow-hidden shadow-xl max-w-[520px]">
-            <DialogHeader className=" py-5 border-b border-border/40">
-               <DialogTitle className="text-3xl font-semibold">
-                  Create <span className='text-primary' >Topic</span>
-               </DialogTitle>
-               <DialogDescription className="text-xs text-muted-foreground">
-                  Add a new topic to your curriculum
-               </DialogDescription>
-            </DialogHeader>
+         <Dialog open={isOpen} onOpenChange={handleClose}>
+            <DialogContent className="rounded-2xl  overflow-hidden shadow-xl max-w-[520px]">
+               <DialogHeader className=" py-5 border-b border-border/40">
+                  <DialogTitle className="text-3xl font-semibold">
+                     Create <span className='text-primary' >Topic</span>
+                  </DialogTitle>
+                  <DialogDescription className="text-xs text-muted-foreground">
+                     Add a new topic to your curriculum
+                  </DialogDescription>
+               </DialogHeader>
 
-            <div className=" space-y-6">
-               <form onSubmit={handleSubmit} className="space-y-6">
-                  {formError && (
-                     <div className="text-sm px-3 py-2 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400">
-                        {formError}
-                     </div>
-                  )}
-
-                  <div className="space-y-2">
-                     <label className="text-xs text-muted-foreground font-medium">
-                        Topic Name <span className="text-destructive">*</span>
-                     </label>
-                     <Input
-                        value={topicName}
-                        onChange={(e) => setTopicName(e.target.value)}
-                        placeholder="e.g. Arrays and Strings"
-                        disabled={submitting}
-                        className="h-11 w-full rounded-2xl bg-background/50 border-border focus-visible:ring-2 focus-visible:ring-primary/40 transition-all"
-                     />
-                  </div>
-
-                  <div className="space-y-2">
-                     <label className="text-xs text-muted-foreground font-medium">
-                        Cover Image
-                     </label>
-                     <label className="flex items-center justify-between border border-border rounded-2xl px-4 py-3 cursor-pointer bg-background/40 hover:border-primary/40 hover:bg-background/60 transition-all">
-                        <span className="text-sm text-muted-foreground truncate">
-                           {photoFile ? photoFile.name : "Choose file"}
-                        </span>
-                        <span className="px-3 py-1.5 rounded-2xl bg-primary text-black text-xs font-semibold">
-                           Browse
-                        </span>
-                        <input
-                           ref={fileInputRef}
-                           type="file"
-                           accept="image/*"
-                           onChange={handleFileChange}
-                           disabled={submitting}
-                           className="hidden"
-                        />
-                     </label>
-                     <p className="text-[11px] text-muted-foreground">
-                        Max file size: 5MB
-                     </p>
-                  </div>
-
-                  {photoPreview && (
-                     <div className="border border-border/40 rounded-xl p-3 bg-muted/20 space-y-2">
-                        <p className="text-[11px] text-muted-foreground font-medium">
-                           Preview
-                        </p>
-                        <div className="aspect-video overflow-hidden rounded-lg">
-                           <img
-                              src={photoPreview}
-                              alt="Preview"
-                              className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.03]"
-                           />
+               <div className=" space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                     {formError && (
+                        <div className="text-sm px-3 py-2 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400">
+                           {formError}
                         </div>
+                     )}
+
+                     <div className="space-y-2">
+                        <label className="text-xs text-muted-foreground font-medium">
+                           Topic Name <span className="text-destructive">*</span>
+                        </label>
+                        <Input
+                           value={topicName}
+                           onChange={(e) => setTopicName(e.target.value)}
+                           placeholder="e.g. Arrays and Strings"
+                           disabled={submitting}
+                           className="h-11 w-full rounded-2xl bg-background/50 border-border focus-visible:ring-2 focus-visible:ring-primary/40 transition-all"
+                        />
                      </div>
-                  )}
 
-                  <DialogFooter className="   pt-2">
-                     <Button
-                        type="button"
-                        onClick={handleClose}
-                        disabled={submitting}
-                        className="h-11 px-4 bg-foreground! text-secondary!"
-                     >
-                        Cancel
-                     </Button>
-                     <Button
-                        type="submit"
-                        disabled={submitting}
-                        className="h-11  font-semibold bg-primary text-black hover:opacity-90 transition-all"
-                     >
-                        {submitting ? "Creating..." : "Create Topic"}
-                     </Button>
-                  </DialogFooter>
-               </form>
-            </div>
-         </DialogContent>
-      </Dialog>
+                     <div className="space-y-2">
+                        <label className="text-xs text-muted-foreground font-medium">
+                           Cover Image
+                        </label>
+                        <label className="flex items-center justify-between border border-border rounded-2xl px-4 py-3 cursor-pointer bg-background/40 hover:border-primary/40 hover:bg-background/60 transition-all">
+                           <span className="text-sm text-muted-foreground truncate">
+                              {photoFile ? photoFile.name : "Choose file"}
+                           </span>
+                           <span className="px-3 py-1.5 rounded-2xl bg-primary text-black text-xs font-semibold">
+                              Browse
+                           </span>
+                           <input
+                              ref={fileInputRef}
+                              type="file"
+                              accept="image/*"
+                              onChange={handleFileChange}
+                              disabled={submitting}
+                              className="hidden"
+                           />
+                        </label>
+                        <p className="text-[11px] text-muted-foreground">
+                           Max file size: 5MB
+                        </p>
+                     </div>
 
-      <ImageCropModal
-         file={pendingCropFile}
-         onCrop={handleCropComplete}
-         onClose={() => setPendingCropFile(null)}
-         aspectRatio={16 / 9}
-         cropShape="rect"
-         title="Crop Topic Cover"
-      />
+                     {photoPreview && (
+                        <div className="border border-border/40 rounded-xl p-3 bg-muted/20 space-y-2">
+                           <p className="text-[11px] text-muted-foreground font-medium">
+                              Preview
+                           </p>
+                           <div className="aspect-video overflow-hidden rounded-lg">
+                              <img
+                                 src={photoPreview}
+                                 alt="Preview"
+                                 className="w-full h-full object-cover transition-transform duration-300 hover:scale-[1.03]"
+                              />
+                           </div>
+                        </div>
+                     )}
+
+                     <DialogFooter className="   pt-2">
+                        <Button
+                           type="button"
+                           onClick={handleClose}
+                           disabled={submitting}
+                           className="h-11 px-4 bg-foreground! text-secondary!"
+                        >
+                           Cancel
+                        </Button>
+                        <Button
+                           type="submit"
+                           disabled={submitting}
+                           className="h-11  font-semibold bg-primary text-black hover:opacity-90 transition-all"
+                        >
+                           {submitting ? "Creating..." : "Create Topic"}
+                        </Button>
+                     </DialogFooter>
+                  </form>
+               </div>
+            </DialogContent>
+         </Dialog>
+
+         <ImageCropModal
+            file={pendingCropFile}
+            onCrop={handleCropComplete}
+            onClose={() => setPendingCropFile(null)}
+            aspectRatio={16 / 9}
+            cropShape="rect"
+            title="Crop Topic Cover"
+         />
       </>
    );
 }
