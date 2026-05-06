@@ -1,6 +1,6 @@
 ﻿import prisma from '@/lib/server/config/prisma';
 import { generateOTP, saveOTP, validateOTP } from '@/lib/server/utils/otp.util';
-import { sendOTPEmail } from '@/lib/server/utils/email.util';
+import { sendOTPEmail, sendPasswordChangedEmail } from '@/lib/server/utils/email.util';
 import { validateEmail } from '@/lib/server/utils/emailValidation.util';
 import { validatePasswordForAuth } from '@/lib/server/utils/passwordValidator.util';
 import { hashPassword, comparePassword } from '@/lib/server/utils/password.util';
@@ -11,39 +11,39 @@ export const sendPasswordResetOTP = async (email: string) => {
     throw new ApiError(400, 'Email is required');
   }
 
-  // Validate email domain
+  // Validate email domain — domain rejection is fine to surface; it reveals
+  // nothing about specific users (anyone could check the domain via DNS).
   const emailValidation = validateEmail(email);
   if (!emailValidation.isValid) {
     throw new ApiError(400, emailValidation.error);
   }
 
-  // Check if user exists (student or admin)
-  let user = null;
-  user = await prisma.student.findUnique({ where: { email } });
+  // Same response for both registered and non-existent users — prevents
+  // attackers from enumerating valid student/admin emails.
+  const genericResponse = {
+    message: 'If this email is registered, a verification code has been sent.',
+  };
 
+  // Check if user exists (student or admin)
+  let user = await prisma.student.findUnique({ where: { email } });
   if (!user) {
     user = await prisma.admin.findUnique({ where: { email } });
   }
 
+  // Silently succeed for non-existent users — no DB write, no email, no OTP.
+  // Small delay so timing can't distinguish registered vs unregistered email.
   if (!user) {
-    throw new ApiError(404, 'No account found with this email address');
+    await new Promise(resolve => setTimeout(resolve, 300));
+    return genericResponse;
   }
 
-  // Generate and save OTP
+  // Generate, save, and email OTP
   const otp = generateOTP();
-  console.log(`Generated OTP for ${email}: ${otp}`);
   await saveOTP(email, otp);
-  console.log('OTP saved to database');
+  await sendOTPEmail(email, otp, user.name);
 
-  // Send OTP email
-  console.log('Attempting to send OTP email...');
-  await sendOTPEmail(email, otp, user?.name);
-  console.log('OTP email sent successfully!');
-
-  return {
-    message: 'OTP sent to your email address',
-    otp // Return OTP for testing
-  };
+  // OTP is NEVER returned in the response — caller must retrieve it from email.
+  return genericResponse;
 };
 
 export const verifyOTP = async (email: string, otp: string) => {
@@ -145,6 +145,9 @@ export const resetPassword = async (email: string, otp: string, newPassword: str
       data: { password_hash }
     });
   }
+
+  // Send confirmation email (non-blocking — failure doesn't affect the password reset itself)
+  await sendPasswordChangedEmail(email, user.name);
 
   return {
     message: 'Password reset successful. You can now login with your new password.'

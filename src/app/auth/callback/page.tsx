@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { studentAuthService } from '@/services/student/auth.service';
-import { showError } from '@/ui/toast';
+import { showError, showSuccess } from '@/ui/toast';
 import { BruteForceLoader } from '@/components/ui/BruteForceLoader';
 
 export default function AuthCallback() {
@@ -70,6 +70,7 @@ export default function AuthCallback() {
           // Store access token securely
           localStorage.setItem('accessToken', data.accessToken);
           document.cookie = `accessToken=${data.accessToken}; path=/; secure; samesite=strict`;
+          showSuccess('Welcome back!');
 
           // Handle post-login routing
           if (!data.user.leetcode_id || !data.user.gfg_id || !data.user.username) {

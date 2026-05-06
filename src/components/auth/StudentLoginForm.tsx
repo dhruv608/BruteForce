@@ -12,6 +12,7 @@ import { GoogleAuthButton } from '@/app/(auth)/login/components/GoogleAuthButton
 import { BruteForceLoader } from '@/components/ui/BruteForceLoader';
 import { handleError } from '@/errors';
 import { loginStudentSchema, LoginStudentInput } from '@/schemas/auth.schema';
+import { showSuccess } from '@/ui/toast';
 
 export function StudentLoginForm() {
   const router = useRouter();
@@ -65,6 +66,7 @@ export function StudentLoginForm() {
 
       if (data?.accessToken) {
         localStorage.setItem('accessToken', data.accessToken);
+        showSuccess('Welcome back!');
         processPostLogin(data.user);
       }
     } catch (err) {

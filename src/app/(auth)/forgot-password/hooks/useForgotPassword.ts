@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { studentAuthService } from '@/services/student/auth.service';
+import { showSuccess } from '@/ui/toast';
 
 export function useForgotPassword() {
   const router = useRouter();
@@ -39,6 +40,7 @@ export function useForgotPassword() {
     setError('');
     try {
       await studentAuthService.forgotPassword(email);
+      showSuccess('Check your email for a verification code.');
       router.push(`/verify-otp?email=${encodeURIComponent(email)}`);
     } catch (err: any) {
       const msg = err.response?.data?.error || err.response?.data?.message || 'Failed to send OTP.';

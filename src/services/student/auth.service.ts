@@ -1,6 +1,5 @@
 import { apiClient } from '@/api';
 import { isStudentToken } from '@/lib/auth-utils';
-import { showSuccess } from '@/ui/toast';
 import { StudentLoginCredentials, StudentRegisterData, ResetPasswordData } from '@/types/student/index.types';
 import { AuthError } from '@/types/student/auth.types';
 
@@ -25,13 +24,11 @@ export const studentAuthService = {
     if (!res) {
       return undefined;
     }
-    showSuccess('Let’s get started');
     return res.data;
   },
 
   register: async (data: StudentRegisterData) => {
     const res = await apiClient.post('/api/auth/student/register', data);
-    showSuccess('Register');
     return res.data;
   },
 
@@ -42,13 +39,11 @@ export const studentAuthService = {
 
   googleLogin: async (idToken: string) => {
     const res = await apiClient.post('/api/auth/google-login', { idToken });
-    showSuccess('Let’s get started');
     return res.data;
   },
 
   forgotPassword: async (email: string) => {
     const res = await apiClient.post('/api/auth/forgot-password', { email });
-    showSuccess('Password reset email sent!');
     return res.data;
   },
 

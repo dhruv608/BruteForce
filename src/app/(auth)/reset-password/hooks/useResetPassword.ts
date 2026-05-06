@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { studentAuthService } from '@/services/student/auth.service';
-import { showError } from '@/ui/toast';
+import { showError, showSuccess } from '@/ui/toast';
 
 export function useResetPassword() {
   const router = useRouter();
@@ -43,9 +43,10 @@ export function useResetPassword() {
         newPassword: fpNewPassword
       };
       
-      const response = await studentAuthService.resetPassword(resetData);
-      
-      setTimeout(() => router.push('/login'), 1000);
+      await studentAuthService.resetPassword(resetData);
+
+      showSuccess('Password reset successfully.');
+      setTimeout(() => router.push('/login'), 1500);
     } catch (err: any) {
       // Error is handled by API client interceptor for API errors
       const msg = err.response?.data?.error || err.response?.data?.message || 'Failed to reset password.';
