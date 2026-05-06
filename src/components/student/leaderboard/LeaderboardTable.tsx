@@ -29,9 +29,9 @@ export function LeaderboardTable({
         </div>
       ) : (
         <div className=" flex-1 px-3 glass mb-5 backdrop-blur-2xl rounded-2xl overflow-auto">
-          <Table >
+          <Table className="border-separate border-spacing-0">
             <TableHeader>
-              <TableRow className="backdrop-blur-sm glass rounded-2xl  p-5! ">
+              <TableRow>
                 <TableHead className="font-bold px-4">Student</TableHead>
                 <TableHead className=" text-center font-bold">{rankColumnName}</TableHead>
                 <TableHead className="font-bold">Location</TableHead>

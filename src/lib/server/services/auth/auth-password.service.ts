@@ -68,7 +68,7 @@ export const verifyOTP = async (email: string, otp: string) => {
   const isValidOTP = await validateOTP(email, otp);
 
   if (!isValidOTP) {
-    throw new ApiError(400, 'Invalid or expired OTP');
+    throw new ApiError(400, 'Invalid or expired OTP', [], 'INVALID_OTP');
   }
 
   return {
@@ -95,7 +95,7 @@ export const resetPassword = async (email: string, otp: string, newPassword: str
   const isValidOTP = await validateOTP(email, otp);
 
   if (!isValidOTP) {
-    throw new ApiError(400, 'Invalid or expired OTP');
+    throw new ApiError(400, 'Invalid or expired OTP', [], 'INVALID_OTP');
   }
 
   // Mark OTP as used

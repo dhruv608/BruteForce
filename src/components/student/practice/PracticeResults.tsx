@@ -17,7 +17,7 @@ import { PracticeQuestion, PracticeResultsProps } from '@/types/student/index.ty
 
 
 
-export function PracticeResults({ loading, questions, onRefresh }: PracticeResultsProps) {
+export function PracticeResults({ loading, questions, onRefresh, onBookmarkSuccess }: PracticeResultsProps) {
   const { addBookmark, loading: bookmarkLoading } = useBookmarks();
   const [bookmarkModal, setBookmarkModal] = useState<{
     isOpen: boolean;
@@ -36,11 +36,11 @@ export function PracticeResults({ loading, questions, onRefresh }: PracticeResul
 
   const handleBookmarkSubmit = async (description: string) => {
     if (bookmarkModal.question) {
-      await addBookmark(parseInt(bookmarkModal.question.id), description);
+      const questionId = parseInt(bookmarkModal.question.id);
+      const success = await addBookmark(questionId, description);
       setBookmarkModal({ isOpen: false, question: null });
-      // Refresh the questions data to update bookmark status
-      if (onRefresh) {
-        onRefresh();
+      if (success && onBookmarkSuccess) {
+        onBookmarkSuccess(questionId);
       }
     }
   };

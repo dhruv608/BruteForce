@@ -134,8 +134,7 @@ export const QuestionRow = ({
               onMouseEnter={() => setShowPopover(true)}
               onMouseLeave={() => setShowPopover(false)}
             >
-              <span className={`flex items-center justify-center h-9 w-9 rounded-2xl border border-border
-              ${isSolved ? 'bg-emerald-500/30 text-white cursor-not-allowed pointer-events-none opacity-70' : 'bg-muted text-foreground'}`}>
+              <span className="flex items-center justify-center h-9 w-9 rounded-2xl border border-border bg-muted text-foreground cursor-not-allowed pointer-events-none opacity-70">
                 <Bookmark className="w-4 h-4 fill-current" />
               </span>
 
@@ -155,11 +154,7 @@ export const QuestionRow = ({
           ) : (
             <button
               onClick={handleBookmarkClick}
-              className={`flex items-center justify-center h-9 w-9 rounded-2xl border border-border transition
-              ${isSolved
-                  ? 'bg-emerald-500/30 text-white hover:bg-emerald-500/40'
-                  : 'bg-muted text-foreground hover:bg-accent/50'
-                }`}
+              className="flex items-center justify-center h-9 w-9 rounded-2xl border border-border bg-muted text-foreground hover:bg-accent/50 transition"
             >
               <Bookmark className="w-4 h-4" />
             </button>
@@ -174,7 +169,7 @@ export const QuestionRow = ({
             rel="noopener noreferrer"
             className={`flex items-center justify-center gap-2 h-9 px-4 rounded-2xl text-xs font-medium transition whitespace-nowrap
             ${isSolved
-                ? 'bg-emerald-500/20 text-white'
+                ? 'bg-primary text-primary-foreground hover:opacity-90'
                 : 'bg-primary text-primary-foreground hover:opacity-90'
               }`}
           >

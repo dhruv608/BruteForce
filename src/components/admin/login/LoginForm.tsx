@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff, LogIn, Lock, Mail } from 'lucide-react';
 import { BruteForceLoader } from '@/components/ui/BruteForceLoader';
+import Logo from '@/components/Logo';
 import { loginAdmin } from '@/services/auth.service';
 import { handleError } from '@/errors';
 import { Button } from '@/components/ui/button';
@@ -44,9 +45,9 @@ export default function LoginForm() {
 
       {/* HEADER */}
       <div className="mb-10 text-center relative z-10">
-        <h1 className="font-serif  text-5xl font-bold bg-gradient-to-r from-white via-white to-slate-500 bg-clip-text text-foreground tracking-tighter">
-          Brute<span className="text-primary">Force</span>
-        </h1>
+        <div className="flex justify-center [&_svg]:!w-[180px] [&_svg]:!h-[70px]">
+          <Logo />
+        </div>
         <p className="text-slate-500 text-[11px] font-black uppercase tracking-[0.3em] mt-3">Admin Portal</p>
       </div>
 

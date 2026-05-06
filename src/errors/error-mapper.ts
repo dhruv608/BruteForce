@@ -158,10 +158,20 @@ export const ERROR_CODE_MAPPINGS: Record<string, ErrorMapping> = {
    * VALIDATION_ERROR - Generic validation failure
    * Action: inline - Form validation errors should show inline
    */
-  VALIDATION_ERROR: { 
-    message: 'Please check your input and try again.', 
+  VALIDATION_ERROR: {
+    message: 'Please check your input and try again.',
     type: 'error',
     action: 'inline',
+  },
+
+  /**
+   * INVALID_OTP - OTP verification failed (wrong code or expired)
+   * Action: toast - Show specific OTP error toast
+   */
+  INVALID_OTP: {
+    message: 'Invalid or expired OTP. Please try again.',
+    type: 'error',
+    action: 'toast',
   },
   
   /**

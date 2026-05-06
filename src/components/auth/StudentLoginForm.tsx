@@ -10,6 +10,7 @@ import { studentAuthService } from '@/services/student/auth.service';
 import { StudentLoginResponse } from '@/types/student/auth.types';
 import { GoogleAuthButton } from '@/app/(auth)/login/components/GoogleAuthButton';
 import { BruteForceLoader } from '@/components/ui/BruteForceLoader';
+import Logo from '@/components/Logo';
 import { handleError } from '@/errors';
 import { loginStudentSchema, LoginStudentInput } from '@/schemas/auth.schema';
 import { showSuccess } from '@/ui/toast';
@@ -80,11 +81,8 @@ export function StudentLoginForm() {
   return (
     <div className="w-full">
       {/* HEADER */}
-      <div className="text-center mb-8">
-        <h1 className="font-serif  text-4xl sm:text-5xl font-bold bg-gradient-to-r from-white via-white to-slate-500 bg-clip-text text-foreground tracking-tighter">
-          Brute<span className="text-primary">Force</span>
-        </h1>
-
+      <div className="flex justify-center mb-8 [&_svg]:!w-[230px] [&_svg]:!h-[89px]">
+        <Logo />
       </div>
 
       <GoogleAuthButton />

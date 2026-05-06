@@ -21,7 +21,7 @@ export default function TableShimmer() {
             {Array.from({ length: 10 }).map((_, i) => (
               <tr
                 key={i}
-                className="group  transition-all duration-200 hover:scale-[1.002] cursor-default bg-primary/2 rounded-2xl animate-in fade-in slide-in-from-bottom-2"
+                className="cursor-default rounded-2xl animate-in fade-in slide-in-from-bottom-2"
                 style={{ animationDelay: `${i * 50}ms`, animationFillMode: 'both' }}
               >
                 <td className="p-4">

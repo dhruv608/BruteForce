@@ -96,6 +96,11 @@ apiClient.interceptors.response.use(
     return response;
   },
   async (error: AxiosError) => {
+    // Cancelled requests (AbortController) are intentional — never toast
+    if (axios.isCancel(error)) {
+      return Promise.reject(error);
+    }
+
     const originalRequest = error.config as CustomAxiosRequestConfig;
 
     if (!originalRequest) {

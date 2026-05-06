@@ -52,6 +52,7 @@ export interface PracticeResultsProps {
   loading: boolean;
   questions: PracticeQuestion[];
   onRefresh?: () => void;
+  onBookmarkSuccess?: (questionId: number) => void;
 }
 
 export interface PracticeFiltersComponentProps {

@@ -136,6 +136,14 @@ export default function PracticePage() {
     setFilters({ search: '', topic: '', level: '', platform: '', type: '', solved: '', page: 1, limit: 10 });
   };
 
+  const handleBookmarkSuccess = useCallback((questionId: number) => {
+    setQuestions(prev =>
+      prev.map(q =>
+        parseInt(q.id) === questionId ? { ...q, isBookmarked: true } : q
+      )
+    );
+  }, []);
+
   // Extract unique topics from the current list (Ideally this comes from a dedicated endpoint in a real app)
   // But for MVP, we just use static options or let them search.
 
@@ -156,6 +164,7 @@ export default function PracticePage() {
           loading={loading}
           questions={questions}
           onRefresh={fetchQuestions}
+          onBookmarkSuccess={handleBookmarkSuccess}
         />
 
         {/* Pagination */}

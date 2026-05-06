@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Eye, EyeOff, Lock, Mail, Loader2, LogIn } from 'lucide-react';
 import { loginSuperAdmin } from '@/services/auth.service';
 import { handleError } from '@/errors';
+import Logo from '@/components/Logo';
 
 export function SuperAdminLoginForm() {
   const router = useRouter();
@@ -42,13 +43,13 @@ export function SuperAdminLoginForm() {
 
       {/* HEADER */}
       <div className="mb-10 text-center relative z-10">
-         <motion.h1 
+         <motion.div
            initial={{ scale: 0.9 }}
            animate={{ scale: 1 }}
-           className="font-serif  text-5xl font-bold bg-gradient-to-r from-white via-white to-slate-500 bg-clip-text text-foreground tracking-tighter"
+           className="flex justify-center [&_svg]:!w-[180px] [&_svg]:!h-[70px]"
          >
-           Brute<span className="text-primary">Force</span>
-         </motion.h1>
+           <Logo />
+         </motion.div>
          <p className="text-slate-500 text-[11px] font-black uppercase tracking-[0.3em] mt-3">Super Admin Portal</p>
       </div>
 

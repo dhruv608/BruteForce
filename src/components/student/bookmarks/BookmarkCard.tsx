@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { ExternalLink, Edit2, Trash2, Loader2, ChevronDown } from 'lucide-react';
+import { ExternalLink, Edit2, Trash2, Loader2, ChevronDown, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HTMLRenderer } from '@/components/ui/HTMLRenderer';
 import { LeetCodeIcon, GeeksforGeeksIcon } from '@/components/platform/PlatformIcons';
@@ -76,15 +76,14 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
         : { name: bookmark.question.platform, icon: null };
 
   return (
-    <div className={`flex flex-col rounded-2xl border px-6 py-5 transition-all duration-300 ${bookmark.isSolved
+    <div className={`flex flex-col rounded-2xl border px-5 py-3 transition-all duration-300 ${bookmark.isSolved
         ? 'bg-emerald-500/10 border-emerald-400/30 shadow-[0_0_20px_rgba(34,197,94,0.12)]'
         : 'border-border/60 hover:border-primary/30'
       }`}>
-      {/* FLEX ROW FOR LEFT AND RIGHT */}
-      <div className="flex justify-between items-start">
-        {/* LEFT SIDE */}
-        <div className="flex flex-col gap-3 flex-1">
-
+      {/* TOP SECTION */}
+      <div className="flex justify-between items-start gap-4">
+        {/* LEFT: title + badges */}
+        <div className="flex flex-col gap-2 flex-1 min-w-0">
           {/* TITLE + LINK */}
           <div
             className="flex items-center gap-2 cursor-pointer group w-fit"
@@ -97,14 +96,11 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
             <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition">
               {bookmark.question.question_name}
             </h3>
-
             <ExternalLink className="w-4 h-4 opacity-60 group-hover:opacity-100" />
           </div>
 
           {/* BADGES */}
-          <div className="flex items-center gap-3 flex-wrap text-[11px]">
-
-            {/* LEVEL */}
+          <div className="flex items-center gap-2 flex-wrap text-[11px]">
             <span
               className={`px-3 py-1 rounded-2xl border font-semibold ${getLevelColor(
                 bookmark.question.level
@@ -112,8 +108,6 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
             >
               {bookmark.question.level}
             </span>
-
-            {/* PLATFORM */}
             <span className="flex items-center gap-1.5 px-3 py-1 rounded-2xl border border-border bg-muted text-muted-foreground font-medium">
               {platformData.icon}
               {platformData.name}
@@ -121,77 +115,69 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
           </div>
         </div>
 
-        {/* RIGHT SIDE */}
-        <div className="flex flex-col items-end gap-3 ml-6">
-
-          {/* ACTIONS */}
+        {/* RIGHT: date + icon actions, then view-description toggle */}
+        <div className="flex flex-col items-end gap-2 shrink-0">
           <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => onEdit(bookmark)}
-              disabled={updatingBookmark}
-              className="rounded-2xl px-3"
-            >
-              {updatingBookmark ? (
-                <Loader2 className="w-4 h-4 animate-spin" />
-              ) : (
-                <>
-                  <Edit2 className="w-4 h-4 mr-1" />
-                  Edit
-                </>
-              )}
-            </Button>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => onDelete(bookmark)}
-              className="rounded-2xl px-3 text-destructive border-destructive/30 hover:bg-destructive/10"
-            >
-              <Trash2 className="w-4 h-4 mr-1" />
-              Delete
-            </Button>
+            <span className="flex items-center gap-1 text-[10px] text-muted-foreground whitespace-nowrap">
+              <Calendar className="w-3 h-3" />
+              {new Date(bookmark.created_at).toLocaleDateString()}
+            </span>
+            <div className="flex items-center gap-0.5">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => onEdit(bookmark)}
+                disabled={updatingBookmark}
+                className="rounded-full h-7 w-7"
+                aria-label="Edit bookmark"
+              >
+                {updatingBookmark ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Edit2 className="w-4 h-4" />
+                )}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => onDelete(bookmark)}
+                className="rounded-full h-7 w-7 text-destructive hover:bg-destructive/10"
+                aria-label="Delete bookmark"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
 
-          {/* DATE */}
-          <div className="text-xs px-3 py-1.5 rounded-2xl border border-border bg-muted text-muted-foreground">
-            Bookmarked on{" "}
-            {new Date(bookmark.created_at).toLocaleDateString()}
-          </div>
+          {hasDescription && (
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center gap-1.5 text-[11px] font-medium text-foreground px-3 py-1 rounded-2xl border border-border hover:bg-muted/40 transition"
+            >
+              <span>View Description</span>
+              <ChevronDown
+                className={`w-3.5 h-3.5 transition-transform duration-300 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          )}
         </div>
       </div>
 
-      {/* DESCRIPTION (optional) - Outside flex, on next line */}
+      {/* DESCRIPTION CONTENT (full-width, below) */}
       {hasDescription && (
-        <div className="mt-4 border border-border backdrop-blur-2xl rounded-2xl overflow-hidden">
-          {/* HEADER */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="w-full flex items-center justify-between px-4 py-3 text-xs font-medium text-primary hover:bg-muted/20 transition"
-          >
-            <span>View Description</span>
-
-            <ChevronDown
-              className={`w-4 h-4 text-primary transition-transform duration-300 ${
-                isOpen ? "rotate-180" : ""
-              }`}
-            />
-          </button>
-
-          {/* CONTENT */}
-          <div
-            className={`transition-all duration-300 ease-in-out ${
-              isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-            } overflow-hidden`}
-          >
-            <div className="px-4 pb-4 pt-1">
-              <ul className="space-y-2 text-muted-foreground text-xs leading-relaxed list-disc list-inside">
-                {descriptionBullets.map((bullet, index) => (
-                  <li key={index}>{bullet}</li>
-                ))}
-              </ul>
-            </div>
+        <div
+          className={`transition-all duration-300 ease-in-out overflow-hidden ${
+            isOpen ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="px-4 py-3 rounded-2xl border border-border bg-muted/20">
+            <ul className="space-y-2 text-muted-foreground text-xs leading-relaxed list-disc list-inside">
+              {descriptionBullets.map((bullet, index) => (
+                <li key={index}>{bullet}</li>
+              ))}
+            </ul>
           </div>
         </div>
       )}

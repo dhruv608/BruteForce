@@ -16,7 +16,6 @@ import {
 import axios from 'axios';
 import { apiClient } from '@/api';
 import { useRecentQuestions } from "@/contexts/RecentQuestionsContext";
-import { showError } from '@/ui/toast';
 import { PaginationState, ApiError } from '@/types/student/index.types';
 
 interface RecentQuestion {
@@ -108,7 +107,6 @@ export function RecentQuestionsSidebar() {
       const error = err as ApiError;
       const errorMsg = error.response?.data?.error || "Failed to fetch recent questions";
       setError(errorMsg);
-      showError(errorMsg);
       setLoading(false);
       setLoadingMore(false);
       return;

@@ -91,7 +91,7 @@ async function main() {
     skipDuplicates: true,
   });
 
-  console.log(`✅  Inserted ${result.count} / ${rows.length} questions  (${skipped} skipped — topic not found)`);
+  console.log(`Inserted ${result.count} / ${rows.length} questions  (${skipped} skipped — topic not found)`);
 }
 
 main()

@@ -23,8 +23,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname:
-          "dsa-tracker-student-images-471613014213-ap-south-1-an.s3.ap-south-1.amazonaws.com",
+        hostname: "*.s3.*.amazonaws.com",
       },
     ],
     qualities: [100, 75],

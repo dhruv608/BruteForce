@@ -80,18 +80,20 @@ export function YourRank({ yourRank }: YourRankProps) {
     );
   }
 
-  const totalSolved = Number(yourRank.total_solved) || 0;
-  const totalAssigned = yourRank.total_assigned || 1;
-  const progress = totalSolved / totalAssigned;
-
-  const radius = 45;
-  const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference * (1 - progress);
-
   const easy = yourRank.easy_solved || 0;
   const medium = yourRank.medium_solved || 0;
   const hard = yourRank.hard_solved || 0;
-  const total = easy + medium + hard || 1;
+  const totalSolved = Number(yourRank.total_solved) || (easy + medium + hard);
+  const totalAssigned = yourRank.total_assigned || 1;
+  const unsolved = Math.max(0, totalAssigned - totalSolved);
+
+  const radius = 52;
+  const circumference = 2 * Math.PI * radius;
+  const easyDash = (easy / totalAssigned) * circumference;
+  const mediumDash = (medium / totalAssigned) * circumference;
+  const hardDash = (hard / totalAssigned) * circumference;
+  const mediumOffset = easyDash;
+  const hardOffset = easyDash + mediumDash;
 
   return (
     <div ref={constraintsRef} className="fixed inset-0 pointer-events-none z-50">
@@ -158,72 +160,108 @@ export function YourRank({ yourRank }: YourRankProps) {
                 </div>
               </div>
 
-              {/* Progress Circle - Main Focus */}
+              {/* Unified Donut - Easy/Medium/Hard/Unsolved in one circle */}
               <div className="flex justify-center mb-4">
-                <div className="relative w-[100px] h-[100px]">
-                  <svg className="w-full h-full -rotate-90">
+                <div className="relative w-[140px] h-[140px]">
+                  <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                    {/* Base ring (= unsolved) */}
                     <circle
-                      cx="50"
-                      cy="50"
+                      cx="60"
+                      cy="60"
                       r={radius}
                       stroke="currentColor"
-                      strokeWidth="6"
+                      strokeWidth="10"
                       fill="none"
-                      className="text-muted/20"
+                      className="text-muted/30"
                     />
+                    {/* Easy segment */}
                     <motion.circle
-                      cx="50"
-                      cy="50"
+                      cx="60"
+                      cy="60"
                       r={radius}
-                      stroke="currentColor"
-                      strokeWidth="6"
+                      stroke="#22c55e"
+                      strokeWidth="10"
                       fill="none"
-                      strokeDasharray={circumference}
-                      strokeDashoffset={strokeDashoffset}
-                      className="text-primary"
-                      strokeLinecap="round"
-                      initial={{ strokeDashoffset: circumference }}
-                      animate={{ strokeDashoffset }}
-                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      strokeDasharray={`${easyDash} ${circumference}`}
+                      strokeDashoffset={0}
+                      strokeLinecap="butt"
+                      initial={{ strokeDasharray: `0 ${circumference}` }}
+                      animate={{ strokeDasharray: `${easyDash} ${circumference}` }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    />
+                    {/* Medium segment */}
+                    <motion.circle
+                      cx="60"
+                      cy="60"
+                      r={radius}
+                      stroke="#f59e0b"
+                      strokeWidth="10"
+                      fill="none"
+                      strokeDasharray={`${mediumDash} ${circumference}`}
+                      strokeDashoffset={-mediumOffset}
+                      strokeLinecap="butt"
+                      initial={{ strokeDasharray: `0 ${circumference}` }}
+                      animate={{ strokeDasharray: `${mediumDash} ${circumference}` }}
+                      transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+                    />
+                    {/* Hard segment */}
+                    <motion.circle
+                      cx="60"
+                      cy="60"
+                      r={radius}
+                      stroke="#ef4444"
+                      strokeWidth="10"
+                      fill="none"
+                      strokeDasharray={`${hardDash} ${circumference}`}
+                      strokeDashoffset={-hardOffset}
+                      strokeLinecap="butt"
+                      initial={{ strokeDasharray: `0 ${circumference}` }}
+                      animate={{ strokeDasharray: `${hardDash} ${circumference}` }}
+                      transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
                     />
                   </svg>
 
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-lg font-bold text-foreground">
+                    <span className="text-2xl font-bold text-foreground leading-none">
                       {totalSolved}
                     </span>
-                    <span className="text-xs text-muted-foreground">
-                      / {totalAssigned}
+                    <span className="text-[11px] text-muted-foreground mt-0.5">
+                      of {totalAssigned}
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Difficulty Breakdown */}
-              <div className="space-y-2 mb-3">
-                {[
-                  { label: "Easy", value: easy, color: "bg-green-500" },
-                  { label: "Medium", value: medium, color: "bg-yellow-500" },
-                  { label: "Hard", value: hard, color: "bg-red-500" },
-                ].map((item) => {
-                  const percent = (item.value / total) * 100;
-                  return (
-                    <div key={item.label} className="space-y-1">
-                      <div className="flex justify-between text-xs">
-                        <span className="text-muted-foreground">{item.label}</span>
-                        <span className="font-medium text-foreground">{item.value}</span>
-                      </div>
-                      <div className="h-1 bg-muted rounded-full overflow-hidden">
-                        <motion.div
-                          className={`${item.color} h-full`}
-                          initial={{ width: 0 }}
-                          animate={{ width: `${percent}%` }}
-                          transition={{ duration: 0.5, delay: 0.2 }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
+              {/* Compact legend */}
+              <div className="grid grid-cols-2 gap-x-3 gap-y-1.5 mb-3 px-1">
+                <div className="flex items-center justify-between text-xs">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#22c55e]" />
+                    <span className="text-muted-foreground">Easy</span>
+                  </span>
+                  <span className="font-semibold text-foreground">{easy}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#f59e0b]" />
+                    <span className="text-muted-foreground">Medium</span>
+                  </span>
+                  <span className="font-semibold text-foreground">{medium}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#ef4444]" />
+                    <span className="text-muted-foreground">Hard</span>
+                  </span>
+                  <span className="font-semibold text-foreground">{hard}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-muted/60 border border-border" />
+                    <span className="text-muted-foreground">Unsolved</span>
+                  </span>
+                  <span className="font-semibold text-foreground">{unsolved}</span>
+                </div>
               </div>
 
               {/* Bottom Stats */}
