@@ -27,34 +27,27 @@ export function startSyncJob() {
 
         // Check if sync is already running
         if (isSyncRunning()) {
-          console.log(`[CRON] Sync already running, skipping this cycle`);
+          console.warn(`[CRON] Sync already running, skipping this cycle`);
           return;
         }
-
-        console.log(`[CRON] Student sync cycle started (attempt ${attempt + 1}/${maxRetries})`);
 
         // Check if queue is empty before starting new sync
         const queueCount = await studentSyncQueue.count();
         if (queueCount > 0) {
-          console.log(`[CRON] Queue not empty (${queueCount} jobs), skipping new sync`);
+          console.warn(`[CRON] Queue not empty (${queueCount} jobs), skipping new sync`);
           return;
         }
-
 
         // Set sync status
         startSync();
 
         // STEP 1: Update all question links to handle redirects
-        console.log(`[CRON] Starting question link update process...`);
         try {
           linkUpdateResults = await LinkUpdateService.updateAllQuestionLinks();
           LinkUpdateService.generateReport(linkUpdateResults);
         } catch (error) {
           console.error('[CRON] Question link update failed:', error);
         }
-
-        // Load all batch questions once per sync cycle (after link updates)
-        console.log(`[CRON] Loading batch questions for optimized sync`);
         const batchQuestionsQuery = await prisma.$queryRaw`
             WITH CTE_BatchQuestions AS (
               SELECT DISTINCT 
@@ -87,7 +80,6 @@ export function startSyncJob() {
         });
 
         setBatchQuestions(batchQuestionsMap);
-        console.log(`[CRON] Loaded questions for ${batchQuestionsMap.size} batches`);
 
         // Get all students with batch assignments
         const students = await prisma.student.findMany({
@@ -99,8 +91,6 @@ export function startSyncJob() {
             batch_id: true
           }
         });
-
-        console.log(`[CRON] Adding ${students.length} students to sync queue`);
 
         const today = new Date().toISOString().slice(0, 10);
         const jobs = students.map(student => ({
@@ -117,19 +107,11 @@ export function startSyncJob() {
         }));
 
         await studentSyncQueue.addBulk(jobs);
-        console.log(`[CRON]❤️❤️❤️❤️ Successfully added ${students.length} students to sync queue`);
-
-        // STEP 3: Generate final completion report after student sync
-        console.log('\n=== CRON JOB COMPLETION REPORT ===');
-        console.log(`Question Links Updated: ${linkUpdateResults ? linkUpdateResults.updated : 'N/A'}`);
-        console.log(`Total Students Processed: ${students.length}`);
-        console.log(`Students w/ New Solved Qs: [Will be calculated after sync completes]`);
-        console.log(`Total New Questions Added: [Will be calculated after sync completes]`);
-        console.log(`Students Skipped (Optimized): [Will be calculated after sync completes]`);
-        console.log(`Students Failed / Errored: [Will be calculated after sync completes]`);
-        console.log(`Sync Status: SUCCESS`);
-        console.log(`Timestamp: ${new Date().toISOString()}`);
-        console.log('==================================================');
+        console.log('[CRON] Cycle started:', JSON.stringify({
+          studentsQueued: students.length,
+          linksUpdated: linkUpdateResults?.updated ?? 'N/A',
+          attempt: attempt + 1,
+        }));
 
         break;
 
@@ -146,7 +128,7 @@ export function startSyncJob() {
 
         // Exponential backoff: 2s, 4s, 8s
         const delay = Math.pow(2, attempt) * 1000;
-        console.log(`[CRON] Retrying student sync in ${delay}ms...`);
+        console.warn(`[CRON] Retrying student sync in ${delay}ms...`);
         await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
@@ -155,15 +137,11 @@ export function startSyncJob() {
   // Leaderboard Sync Cron: 9 AM, 6 PM, 11 PM
   cron.schedule("0 9,18,23 * * *", async () => {
     try {
-      console.log("[CRON] Leaderboard sync cycle started");
       await tryRunLeaderboard();
-      console.log("[CRON] Leaderboard sync cycle completed");
     } catch (error) {
       console.error("[CRON] Leaderboard sync failed:", error);
     }
   }, { timezone: 'Asia/Kolkata' });
 
-  console.log("[CRON] Student sync: 5 AM, 2 PM, 8 PM (0 5,14,20 * * *)");
-  console.log("[CRON] Leaderboard sync: 9 AM, 6 PM, 11 PM (0 9,18,23 * * *)");
-  console.log("[CRON] Queue-based system with rate limiting and retry logic initialized");
+  console.log("[CRON] Schedules — student: 5/14/20 IST · leaderboard: 9/18/23 IST");
 }

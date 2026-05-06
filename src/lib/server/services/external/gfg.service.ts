@@ -132,27 +132,14 @@ export async function fetchGfgData(
 
 
   // Use rate limiter with retry logic
-
   try {
-
-    console.log(`[GFG] Fetching data for user: ${handle}`);
-
     const result = await gfgLimiter.schedule(makeApiCall);
-
-    console.log(`[GFG] Successfully fetched data for user: ${handle}`);
-
     return result;
-
   } catch (error: any) {
-
     // Handle rate limiting (429) with exponential backoff
-
     if (error.response?.status === 429) {
-
-      console.log(`[GFG] Rate limited for user: ${handle}, will retry...`);
-
+      console.warn(`[GFG] Rate limited for user: ${handle}`);
       throw new ApiError(429, "GFG API rate limit exceeded");
-
     }
 
     
@@ -166,13 +153,8 @@ export async function fetchGfgData(
     
 
     // Handle 406 Not Acceptable (Invalid User Details)
-
     if (error.response?.status === 406) {
-
-      console.log(`[GFG] Invalid user or 406 for user: ${handle}`);
-
       throw new ApiError(400, "Invalid GFG handle");
-
     }
 
 

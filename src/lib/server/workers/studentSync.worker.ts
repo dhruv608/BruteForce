@@ -22,22 +22,12 @@ export const studentSyncWorker = new Worker(
 
     try {
 
-      console.log(`[WORKER] Processing sync job for student ${studentId} (batch ${batchId})`);
-
-      
-
       // Get batch questions from memory store
-
       const batchData = getBatchQuestions(batchId);
 
-      
-
       if (!batchData) {
-
-        console.log(`[WORKER] No batch questions found for batch ${batchId}, skipping student ${studentId}`);
-
+        console.warn(`[WORKER] No batch questions found for batch ${batchId}, skipping student ${studentId}`);
         return;
-
       }
 
       
@@ -60,14 +50,9 @@ export const studentSyncWorker = new Worker(
 
         
 
-        // Log based on the existing optimized logic results
-        if (result.hadNewSolutions) {
-          console.log(`[WORKER] Student ${studentId}: ${result.newSolved} new solutions added`);
-        } else {
-          console.log(`[WORKER] Student ${studentId}: No new solutions (skipped - optimized)`);
-        }
-        
-        return { 
+        // Per-student success is captured in the cycle summary log;
+        // no per-iteration log needed.
+        return {
           status: "SUCCESS", 
           studentId, 
           newSolved: result.newSolved,
@@ -89,11 +74,11 @@ export const studentSyncWorker = new Worker(
         
 
         // Handle invalid usernames and API errors
-        if (error.message?.includes('Invalid LeetCode username') || 
+        if (error.message?.includes('Invalid LeetCode username') ||
             error.message?.includes('Invalid GFG handle') ||
             error.status === 400 ||
             error.code === 'INVALID_USERNAME') {
-          console.log(`[WORKER] Student ${studentId}: Invalid username/API error, skipping user`);
+          // Counted in syncReport.failedCount via the queue events handler
           return {
             status: "ERROR",
             studentId,
@@ -154,27 +139,14 @@ studentSyncWorker.on('failed', (job, err) => {
 
 
 // Graceful shutdown
-
 process.on('SIGINT', async () => {
-
   await studentSyncWorker.close();
-
-  console.log('[WORKER] Student sync worker closed');
-
   process.exit(0);
-
 });
 
-
-
 process.on('SIGTERM', async () => {
-
   await studentSyncWorker.close();
-
-  console.log('[WORKER] Student sync worker closed');
-
   process.exit(0);
-
 });
 
 

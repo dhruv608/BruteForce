@@ -29,9 +29,9 @@ export class LinkUpdateService {
 
       // Return the final URL after all redirects
       return response.request.res.responseUrl || url;
-    } catch (error: any) {
-      console.log(`[LINK_UPDATE] Failed to follow redirect for ${url}:`, error.message);
-      return url; // Return original if redirect fails
+    } catch {
+      // Network/timeout error — fall back to the original URL
+      return url;
     }
   }
 
@@ -44,8 +44,6 @@ export class LinkUpdateService {
     failed: number;
     total: number;
   }> {
-    console.log('[LINK_UPDATE] Starting question link update process...');
-    
     try {
       // Fetch all questions from database
       const allQuestions = await prisma.question.findMany({
@@ -55,8 +53,6 @@ export class LinkUpdateService {
         }
       });
 
-      console.log(`[LINK_UPDATE] Found ${allQuestions.length} questions to process`);
-
       let updated = 0;
       let skipped = 0;
       let failed = 0;
@@ -64,33 +60,20 @@ export class LinkUpdateService {
       // Process in batches to avoid memory issues
       for (let i = 0; i < allQuestions.length; i += this.BATCH_SIZE) {
         const batch = allQuestions.slice(i, i + this.BATCH_SIZE);
-        console.log(`[LINK_UPDATE] Processing batch ${Math.floor(i / this.BATCH_SIZE) + 1}/${Math.ceil(allQuestions.length / this.BATCH_SIZE)}`);
 
         const batchResults = await Promise.allSettled(
           batch.map(async (question) => {
             try {
               const newLink = await this.followRedirect(question.question_link);
-              
               const shouldUpdate = newLink !== question.question_link;
-              
-              if (shouldUpdate) {
-                console.log(`[LINK_UPDATE] Question ${question.id}: ${question.question_link} → ${newLink}`);
-                return {
-                  id: question.id,
-                  question_link: question.question_link,
-                  new_link: newLink,
-                  should_update: true
-                };
-              } else {
-                console.log(`[LINK_UPDATE] Question ${question.id}: No redirect needed`);
-                return {
-                  id: question.id,
-                  question_link: question.question_link,
-                  should_update: false
-                };
-              }
+              return {
+                id: question.id,
+                question_link: question.question_link,
+                new_link: shouldUpdate ? newLink : undefined,
+                should_update: shouldUpdate,
+              };
             } catch (error: any) {
-              console.error(`[LINK_UPDATE] Error processing question ${question.id}:`, error);
+              console.error(`[LINK_UPDATE] Error processing question ${question.id}:`, error.message);
               return {
                 id: question.id,
                 question_link: question.question_link,
@@ -116,8 +99,6 @@ export class LinkUpdateService {
 
         // Batch update questions that need new links
         if (updates.length > 0) {
-          console.log(`[LINK_UPDATE] Processing ${updates.length} updates`);
-
           const dbUpdateResults = await Promise.allSettled(
             updates.map(async (update) => {
               try {
@@ -127,14 +108,12 @@ export class LinkUpdateService {
                 });
                 return { success: true, id: update.id };
               } catch (error: any) {
-                // Handle unique constraint violation gracefully
+                // Handle unique constraint violation gracefully — silent skip
                 if (error.code === 'P2002') {
-                  console.log(`[LINK_UPDATE] Skipping question ${update.id} - target link already exists: ${update.new_link}`);
                   return { success: false, id: update.id, error: 'duplicate_link', skipped: true };
-                } else {
-                  console.error(`[LINK_UPDATE] Failed to update question ${update.id}:`, error);
-                  return { success: false, id: update.id, error };
                 }
+                console.error(`[LINK_UPDATE] Failed to update question ${update.id}:`, error.message);
+                return { success: false, id: update.id, error };
               }
             })
           );
@@ -160,13 +139,6 @@ export class LinkUpdateService {
       }
 
       const total = allQuestions.length;
-      
-      console.log(`[LINK_UPDATE] Question link update completed:`);
-      console.log(`  - Updated: ${updated}`);
-      console.log(`  - Skipped: ${skipped}`);
-      console.log(`  - Failed: ${failed}`);
-      console.log(`  - Total: ${total}`);
-
       return { updated, skipped, failed, total };
 
     } catch (error: any) {
@@ -176,15 +148,9 @@ export class LinkUpdateService {
   }
 
   /**
-   * Generate completion report
+   * Generate completion report (single-line structured log).
    */
   static generateReport(results: { updated: number; skipped: number; failed: number; total: number }) {
-    console.log('\n=== QUESTION LINK UPDATE REPORT ===');
-    console.log(`Questions Updated: ${results.updated}`);
-    console.log(`Questions Skipped: ${results.skipped}`);
-    console.log(`Questions Failed: ${results.failed}`);
-    console.log(`Total Questions Processed: ${results.total}`);
-    console.log(`Success Rate: ${((results.updated / results.total) * 100).toFixed(1)}%`);
-    console.log('=====================================\n');
+    console.log('[LINK_UPDATE] Report:', JSON.stringify(results));
   }
 }

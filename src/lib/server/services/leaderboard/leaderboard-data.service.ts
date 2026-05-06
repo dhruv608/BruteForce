@@ -33,14 +33,11 @@ export const getCityYearMapping = async () => {
       ORDER BY c.city_name, b.year DESC
     `;
     
-    console.log("Executing city-year mapping query:", query);
     const results = await prisma.$queryRawUnsafe(query) as Array<{
       city_name: string;
       year: number;
     }>;
-    
-    console.log("City-year mapping query results:", results);
-    
+
     // Group by city
     const cityMap: { [key: string]: number[] } = {};
     results.forEach((row: any) => {
@@ -71,7 +68,6 @@ export const getCityYearMapping = async () => {
         })
     ];
     
-    console.log("Final city-year array:", cityYearArray);
     return cityYearArray;
     
   } catch (error) {

@@ -225,8 +225,6 @@ async function updateBatchQuestionCounts(batchId: number) {
       }
     });
 
-    console.log(`Updated batch ${batchId} question counts: H=${hardCount}, M=${mediumCount}, E=${easyCount}`);
-    
   } catch (error) {
     console.error(`Failed to update batch ${batchId} question counts:`, error);
     throw error;

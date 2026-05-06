@@ -44,8 +44,6 @@ export async function syncOneStudent(
   }
   
   // Use pre-loaded batch data from memory (optimized)
-  console.log(`[SYNC_CORE] Using pre-loaded batch data for batch ${student.batch_id}`);
-  
   const questionMap = new Map<string, number[]>();
   batchData.question_links.forEach((link, index) => {
     const questionId = batchData.question_ids[index];

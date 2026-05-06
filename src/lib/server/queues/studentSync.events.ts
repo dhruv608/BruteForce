@@ -31,45 +31,29 @@ function resetReport() {
 
 // Handle queue drained event (all jobs completed)
 studentSyncQueueEvents.on("drained", async () => {
-  console.log("\n==================================================");
-  console.log("[SYNC REPORT] SYNCHRONIZATION CYCLE COMPLETED");
-  console.log("==================================================");
-  console.log(`Total Students Processed:     ${syncReport.totalProcessed}`);
-  console.log(`Students w/ New Solved Qs:    ${syncReport.studentsWithAddedQuestions.length}`);
-  console.log(`Total New Questions Added:    ${syncReport.addedQuestionsCount}`);
-  console.log(`Students Skipped (Optimized): ${syncReport.studentsSkippedCount}`);
-  console.log(`Students Failed / Errored:    ${syncReport.failedCount}`);
-  console.log("--------------------------------------------------");
-  
+  console.log('[SYNC] Cycle completed:', JSON.stringify({
+    totalProcessed: syncReport.totalProcessed,
+    studentsWithNewSolved: syncReport.studentsWithAddedQuestions.length,
+    newQuestionsAdded: syncReport.addedQuestionsCount,
+    skipped: syncReport.studentsSkippedCount,
+    failed: syncReport.failedCount,
+  }));
+
+  // Log errors only if any occurred
   if (syncReport.errors.length > 0) {
-    console.log("[SYNC REPORT] ERRORS LOG:");
-    syncReport.errors.forEach(err => {
-      console.log(`   - Student ID: ${err.id} | Reason: ${err.reason}`);
-    });
-    console.log("--------------------------------------------------");
-  }
-  
-  if (syncReport.studentsWithAddedQuestions.length > 0) {
-    console.log("[SYNC REPORT] ADDED QUESTIONS LOG:");
-    syncReport.studentsWithAddedQuestions.forEach(stu => {
-      console.log(`   - Student ID: ${stu.id} | Added: ${stu.added}`);
-    });
-    console.log("--------------------------------------------------");
+    console.warn('[SYNC] Errors:', JSON.stringify(syncReport.errors));
   }
 
   // Mark sync as completed
   completeSync();
-  
+
   // NOTE: We do NOT clearBatchQuestions() here anymore.
-  // Because if any jobs failed and went into 'delayed' for exponential backoff retry,
-  // the 'drained' event still fires. If we clear the memory here, when those jobs
-  // retry, they will find an empty memory store and instantly skip/fail.
-  // The memory will cleanly overwrite itself at the start of the next cron cycle.
-  
-  // Reset report for next cron cycle
+  // If any jobs went into 'delayed' for exponential backoff retry, the 'drained'
+  // event still fires. Clearing memory here would make retried jobs find an empty
+  // store and instantly skip. The memory cleanly overwrites itself at the start
+  // of the next cron cycle.
+
   resetReport();
-  
-  console.log("[SYNC] Sync cycle completed and memory cleared\n");
 });
 
 // Handle job completion for detailed logging
@@ -110,12 +94,10 @@ studentSyncQueueEvents.on("failed", ({ jobId, failedReason }) => {
 // Graceful shutdown
 process.on("SIGINT", async () => {
   await studentSyncQueueEvents.close();
-  console.log("[SYNC] Queue events closed");
 });
 
 process.on("SIGTERM", async () => {
   await studentSyncQueueEvents.close();
-  console.log("[SYNC] Queue events closed");
 });
 
 export default studentSyncQueueEvents;

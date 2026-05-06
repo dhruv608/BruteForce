@@ -21,14 +21,12 @@ export function startSync(): void {
   syncStatus.isRunning = true;
   syncStatus.startedAt = new Date();
   syncStatus.completedAt = null;
-  console.log('[SYNC_STATUS] Sync started at:', syncStatus.startedAt.toISOString());
 }
 
 // Complete sync process
 export function completeSync(): void {
   syncStatus.isRunning = false;
   syncStatus.completedAt = new Date();
-  console.log('[SYNC_STATUS] Sync completed at:', syncStatus.completedAt.toISOString());
 }
 
 // Reset sync status (for error cases)
@@ -36,7 +34,6 @@ export function resetSync(): void {
   syncStatus.isRunning = false;
   syncStatus.startedAt = null;
   syncStatus.completedAt = null;
-  console.log('[SYNC_STATUS] Sync status reset');
 }
 
 // Check if sync is currently running

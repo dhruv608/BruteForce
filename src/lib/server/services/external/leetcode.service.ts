@@ -77,14 +77,12 @@ export async function fetchLeetcodeData(
 
   // Use rate limiter with retry logic
   try {
-    console.log(`[LeetCode] Fetching data for user: ${username}`);
     const result = await leetcodeLimiter.schedule(makeApiCall);
-    console.log(`[LeetCode] Successfully fetched data for user: ${username}`);
     return result;
   } catch (error: any) {
     // Handle rate limiting (429) with exponential backoff
     if (error.response?.status === 429) {
-      console.log(`[LeetCode] Rate limited for user: ${username}, will retry...`);
+      console.warn(`[LeetCode] Rate limited for user: ${username}`);
       throw new ApiError(429, "LeetCode API rate limit exceeded");
     }
     

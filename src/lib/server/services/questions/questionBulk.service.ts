@@ -45,9 +45,7 @@ export const bulkUploadQuestionsService = async (
     const level = Level[row.level as keyof typeof Level];
 
     if (!level) {
-      console.log(
-        `Skipping invalid enum row → ${row.question_name}`
-      );
+      // Skip rows with invalid level enum — caller decides whether to surface this
       continue;
     }
 

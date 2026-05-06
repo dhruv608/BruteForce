@@ -73,13 +73,9 @@ export const bulkStudentUploadService = async (
           // Validate required fields from CSV
 
           if (!row.name || !row.email || !row.enrollment_id) {
-
-            console.log("Missing required fields for:", row.name || 'Unknown');
-
+            // Row missing required fields — counted in skippedCount, surfaced via response
             skippedCount++;
-
             continue;
-
           }
 
 
@@ -185,7 +181,7 @@ export const publicBulkStudentUploadService = async (
         for (const row of rows) {
           // Validate required fields from CSV
           if (!row.name || !row.email || !row.enrollment_id) {
-            console.log("Missing required fields for:", row.name || 'Unknown');
+            // Row missing required fields — counted in skippedCount, surfaced via response
             skippedCount++;
             continue;
           }

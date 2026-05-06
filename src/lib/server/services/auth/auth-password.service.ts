@@ -24,10 +24,17 @@ export const sendPasswordResetOTP = async (email: string) => {
     message: 'If this email is registered, a verification code has been sent.',
   };
 
-  // Check if user exists (student or admin)
-  let user = await prisma.student.findUnique({ where: { email } });
+  // Check if user exists (student or admin) — only need `name` for the email greeting,
+  // matching shapes lets TypeScript narrow the union cleanly.
+  let user = await prisma.student.findUnique({
+    where: { email },
+    select: { name: true },
+  });
   if (!user) {
-    user = await prisma.admin.findUnique({ where: { email } });
+    user = await prisma.admin.findUnique({
+      where: { email },
+      select: { name: true },
+    });
   }
 
   // Silently succeed for non-existent users — no DB write, no email, no OTP.
@@ -58,9 +65,7 @@ export const verifyOTP = async (email: string, otp: string) => {
   }
 
   // Verify OTP
-  console.log(`Attempting to validate OTP: ${otp} for email: ${email}`);
   const isValidOTP = await validateOTP(email, otp);
-  console.log(`OTP validation result: ${isValidOTP}`);
 
   if (!isValidOTP) {
     throw new ApiError(400, 'Invalid or expired OTP');
@@ -87,9 +92,7 @@ export const resetPassword = async (email: string, otp: string, newPassword: str
   validatePasswordForAuth(newPassword);
 
   // Verify OTP
-  console.log(`Attempting to validate OTP: ${otp} for email: ${email}`);
   const isValidOTP = await validateOTP(email, otp);
-  console.log(`OTP validation result: ${isValidOTP}`);
 
   if (!isValidOTP) {
     throw new ApiError(400, 'Invalid or expired OTP');

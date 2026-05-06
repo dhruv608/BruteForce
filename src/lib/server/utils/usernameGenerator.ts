@@ -149,24 +149,18 @@ async function fixExistingNullUsernames(): Promise<void> {
     }
   });
 
-  console.log(`Found ${studentsWithNullUsername.length} students with null usernames`);
-
   for (const student of studentsWithNullUsername) {
     try {
       const result = await generateUsername(student.name, student.enrollment_id || undefined);
-      
+
       await prisma.student.update({
         where: { id: student.id },
         data: { username: result.finalUsername }
       });
-
-      console.log(`Updated student ${student.name} (${student.id}) with username: ${result.finalUsername}`);
     } catch (error) {
       console.error(`Failed to update username for student ${student.id}:`, error);
     }
   }
-
-  console.log("Username migration completed");
 }
 
 export {

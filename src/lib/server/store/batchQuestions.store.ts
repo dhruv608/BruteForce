@@ -19,8 +19,6 @@ export function setBatchQuestions(batchData: Map<number, BatchQuestionData>): vo
   for (const [batchId, data] of batchData.entries()) {
     batchQuestionsStore.set(batchId, data);
   }
-  
-  console.log(`[BATCH_STORE] Loaded batch questions for ${batchData.size} batches`);
 }
 
 /**
@@ -42,5 +40,4 @@ export function getAllBatchQuestions(): Map<number, BatchQuestionData> {
  */
 export function clearBatchQuestions(): void {
   batchQuestionsStore.clear();
-  console.log('[BATCH_STORE] Cleared batch questions store');
 }

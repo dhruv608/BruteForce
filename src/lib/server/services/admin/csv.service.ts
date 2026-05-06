@@ -118,9 +118,6 @@ export const generateBatchReportCSV = async (batchId: number | string) => {
 
     const filename = `${sanitizedCityName}-${sanitizedBatchName}-${year}.csv`;
 
-    console.log('Generated filename:', filename);
-    console.log('Original values:', { cityName, batchName, year });
-
     return {
         csvContent: csvString,
         filename

@@ -18,12 +18,10 @@ export const studentSyncQueue = new Queue('student-sync', {
 // Graceful shutdown
 process.on('SIGINT', async () => {
   await studentSyncQueue.close();
-  console.log('[QUEUE] Student sync queue closed');
 });
 
 process.on('SIGTERM', async () => {
   await studentSyncQueue.close();
-  console.log('[QUEUE] Student sync queue closed');
 });
 
 export default studentSyncQueue;

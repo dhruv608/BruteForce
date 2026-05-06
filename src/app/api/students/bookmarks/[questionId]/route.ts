@@ -21,7 +21,8 @@ export async function PUT(
 
     const body = await req.json();
     const { description } = body;
-    const cleanDescription = description !== undefined ? sanitizeRichText(description) : undefined;
+    // sanitizeRichText returns '' for null/undefined input, so this is always a string
+    const cleanDescription = sanitizeRichText(description);
 
     const updated = await updateBookmarkService(user.id, questionIdNum, cleanDescription);
 
