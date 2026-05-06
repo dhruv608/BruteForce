@@ -48,3 +48,12 @@ export function isSyncRunning(): boolean {
 export function getSyncCompletionTime(): Date | null {
   return syncStatus.completedAt;
 }
+
+// Stale-lock detection: a single sync cycle should never legitimately run > 1 hour.
+// If it has, the lock is almost certainly orphaned (worker crash, restart, etc.).
+const STALE_SYNC_THRESHOLD_MS = 60 * 60 * 1000;
+
+export function isSyncStale(): boolean {
+  if (!syncStatus.isRunning || !syncStatus.startedAt) return false;
+  return Date.now() - syncStatus.startedAt.getTime() > STALE_SYNC_THRESHOLD_MS;
+}
