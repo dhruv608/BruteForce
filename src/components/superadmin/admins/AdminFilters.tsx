@@ -54,7 +54,7 @@ export function AdminFilters({
               placeholder="Search admins..."
               value={search}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="!pl-10 w-full h-10! rounded-2xl  dark:bg-transparent! border! border-border/50! placeholder:text-foreground  focus-visible:ring-primary/40"
+              className="!pl-10 w-full h-10! rounded-2xl  dark:bg-transparent! border! border-border/50! placeholder:text-foreground  focus-visible:ring-logo/40"
             />
           </div>
 

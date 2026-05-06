@@ -156,7 +156,7 @@ interface Topic {
               </Label>
 
               <Input
-                className="col-span-2 h-11 rounded-xl bg-background/60 border-border/60 focus-visible:ring-2 focus-visible:ring-primary/40"
+                className="col-span-2 h-11 rounded-xl bg-background/60 border-border/60 focus-visible:ring-2 focus-visible:ring-logo/40"
                 value={formData.question_name}
                 onChange={(e) => handleInputChange('question_name', e.target.value)}
                 placeholder="Enter question name"
@@ -171,7 +171,7 @@ interface Topic {
                 Question Link
               </Label>
               <Input
-                className="col-span-2 h-11 rounded border-border/60 bg-background/60 focus-visible:ring-2 focus-visible:ring-primary/40"
+                className="col-span-2 h-11 rounded border-border/60 bg-background/60 focus-visible:ring-2 focus-visible:ring-logo/40"
                 value={formData.question_link}
                 onChange={(e) => handleInputChange('question_link', e.target.value)}
                 placeholder="https://leetcode.com/problems/..."

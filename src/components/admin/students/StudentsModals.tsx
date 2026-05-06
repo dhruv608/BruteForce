@@ -77,7 +77,7 @@ export default function StudentsModals({
 }: StudentsModalsProps) {
   const formPassword = createForm.watch('password') || '';
   const passwordValidation = usePasswordValidation(formPassword);
-  
+
   const createFormErrors = createForm.formState.errors;
   const editFormErrors = editForm.formState.errors;
 
@@ -88,11 +88,8 @@ export default function StudentsModals({
         <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[90vh] p-0 overflow-y-auto no-scrollbar rounded-2xl">
           {/* HEADER */}
           <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50">
-            <DialogTitle className="flex items-center gap-3 text-lg font-semibold">
-              <div className="p-2 rounded bg-primary/10 border border-primary/20">
-                <Plus className="w-4 h-4 text-primary" />
-              </div>
-              Add Student
+            <DialogTitle className="flex items-center gap-3 text-3xl font-bold">
+              Add <span className='text-primary' >Student</span>
             </DialogTitle>
             <DialogDescription className="text-sm text-muted-foreground">
               Onboard a new student to the batch
@@ -235,19 +232,18 @@ export default function StudentsModals({
               <DialogFooter className="pt-2 flex gap-2">
                 <Button
                   type="button"
-                  variant="ghost"
                   onClick={() => setIsCreateOpen(false)}
                   disabled={submitting}
-                  className="h-11"
+                  className="h-11 text-secondary! bg-secondary-foreground!"
                 >
                   Cancel
                 </Button>
                 <Button
                   type="submit"
                   disabled={submitting || !createForm.formState.isValid}
-                  className="h-11 w-full font-semibold bg-primary text-black hover:opacity-90 transition-all"
+                  className="h-11  font-semibold bg-primary text-black hover:opacity-90 transition-all"
                 >
-                  
+
                   {submitting ? "Adding..." : "Add Student"}
                 </Button>
               </DialogFooter>

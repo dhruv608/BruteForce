@@ -8,13 +8,12 @@ function Input({ className, type, onFocus, onBlur, ...props }: React.ComponentPr
       type={type}
       data-slot="input"
       className={cn(
-        "file:border-border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 md:text-sm",
+        "file:border-border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-hard aria-invalid:ring-3 aria-invalid:ring-hard/20 md:text-sm focus-visible:border-0 focus-visible:ring-2 focus-visible:ring-logo/20 border border-border",
         className
       )}
       style={{
         height: 'var(--spacing-lg)',
         borderRadius: '10px',
-        border: '1px solid var(--border)',
         backgroundColor: 'rgba(0,0,0,0)',
         color: 'var(--foreground)',
         fontSize: 'var(--text-base)',
@@ -23,16 +22,8 @@ function Input({ className, type, onFocus, onBlur, ...props }: React.ComponentPr
         transition: 'all 0.2s ease',
       }}
       {...props}
-      onFocus={(e) => {
-        e.currentTarget.style.borderColor = 'var(--accent-primary)';
-        e.currentTarget.style.boxShadow = '0 0 0 2px rgba(204, 255, 0, 0.2)';
-        onFocus?.(e);
-      }}
-      onBlur={(e) => {
-        e.currentTarget.style.borderColor = 'var(--border)';
-        e.currentTarget.style.boxShadow = 'none';
-        onBlur?.(e);
-      }}
+      onFocus={onFocus}
+      onBlur={onBlur}
     />
   )
 }

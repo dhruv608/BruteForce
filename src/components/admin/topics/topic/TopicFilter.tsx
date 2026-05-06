@@ -30,7 +30,7 @@ export default function TopicFilter({ search, onSearchChange, sortBy, onSortChan
                placeholder="Search topics..."
                value={search}
                onChange={(e) => onSearchChange(e.target.value)}
-               className="pl-9! w-full h-11! rounded-2xl  placeholder:text-foreground border! border-border/60! focus-visible:ring-primary/40"
+               className="pl-9! w-full h-11! rounded-2xl  placeholder:text-foreground border! border-border/60! focus-visible:ring-logo/40"
             />
          </div>
 

@@ -85,7 +85,7 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
       <>
          <Dialog open={isOpen} onOpenChange={handleClose}>
             <DialogContent className="rounded-2xl  overflow-hidden shadow-xl max-w-[520px]">
-               <DialogHeader className=" py-5 border-b border-border/40">
+               <DialogHeader className="  border-b border-border/40">
                   <DialogTitle className="text-3xl font-semibold">
                      Create <span className='text-primary' >Topic</span>
                   </DialogTitle>
@@ -94,7 +94,7 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
                   </DialogDescription>
                </DialogHeader>
 
-               <div className=" space-y-6">
+               <div className=" space-y-6 p-4">
                   <form onSubmit={handleSubmit} className="space-y-6">
                      {formError && (
                         <div className="text-sm px-3 py-2 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400">
@@ -111,7 +111,7 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
                            onChange={(e) => setTopicName(e.target.value)}
                            placeholder="e.g. Arrays and Strings"
                            disabled={submitting}
-                           className="h-11 w-full rounded-2xl bg-background/50 border-border focus-visible:ring-2 focus-visible:ring-primary/40 transition-all"
+                           className="h-11 w-full rounded-2xl bg-background/50 border-border focus-visible:ring-2 focus-visible:ring-logo/40 transition-all"
                         />
                      </div>
 
@@ -155,7 +155,7 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
                         </div>
                      )}
 
-                     <DialogFooter className="   pt-2">
+                     <DialogFooter className="">
                         <Button
                            type="button"
                            onClick={handleClose}

@@ -125,7 +125,7 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
          <Dialog open={isOpen} onOpenChange={handleClose}>
             <DialogContent className="rounded-2xl   shadow-xl max-w-[600px]!">
                <DialogHeader className=" py-5 border-b p-4!  border-border/40">
-                  <DialogTitle className="text-3xl font-semibold">
+                  <DialogTitle className="text-3xl font-bold">
                      Edit <span className='text-primary' >Topic</span>
                   </DialogTitle>
                   <DialogDescription className="text-xs text-muted-foreground">
@@ -149,7 +149,7 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
                            value={topicName}
                            onChange={(e) => setTopicName(e.target.value)}
                            disabled={submitting}
-                           className="h-11 rounded-2xl w-full bg-background/40 border-border focus-visible:ring-2 focus-visible:ring-primary/40"
+                           className="h-11 rounded-2xl w-full bg-background/40 border-border focus-visible:ring-2 focus-visible:ring-logo/40"
                            placeholder='Arrays'
                         />
                      </div>

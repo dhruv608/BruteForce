@@ -114,7 +114,7 @@ export default function CreateQuestion({
 
                 <Input
                   className={`h-11 sm:h-12 w-full rounded-md border border-border/60 bg-background/60 
-      focus-visible:ring-2 focus-visible:ring-primary/40 transition ${formErrors.question_name ? "border-red-500" : ""
+      focus-visible:ring-2 focus-visible:ring-logo/40 transition ${formErrors.question_name ? "border-red-500" : ""
                     }`}
                   {...form.register("question_name")}
                   placeholder="e.g. Two Sum"
@@ -136,7 +136,7 @@ export default function CreateQuestion({
 
                 <Input
                   className={`h-11 sm:h-12 w-full rounded-md border border-border/60 bg-background/60 
-      focus-visible:ring-2 focus-visible:ring-primary/40 transition ${formErrors.question_link ? "border-red-500" : ""
+      focus-visible:ring-2 focus-visible:ring-logo/40 transition ${formErrors.question_link ? "border-red-500" : ""
                     }`}
                   {...form.register("question_link")}
                   placeholder="https://leetcode.com/..."
