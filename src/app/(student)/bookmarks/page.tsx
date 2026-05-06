@@ -91,10 +91,12 @@ export default function BookmarksPage() {
 
   const confirmDeleteBookmark = async () => {
     if (!deletingBookmark) return;
+    const deletedId = deletingBookmark.id;
 
     try {
       await bookmarkService.deleteBookmark(deletingBookmark.question.id);
-      fetchBookmarks();
+      setBookmarks(prev => prev.filter(b => b.id !== deletedId));
+      setPagination(prev => ({ ...prev, total: Math.max(0, prev.total - 1) }));
     } catch (error) {
       console.error('Failed to delete bookmark:', error);
     } finally {
@@ -110,13 +112,16 @@ export default function BookmarksPage() {
 
   const handleUpdateBookmark = async (description: string) => {
     if (!editingBookmark) return;
+    const editedId = editingBookmark.id;
 
     try {
       setUpdatingBookmark(true);
       await bookmarkService.updateBookmark(editingBookmark.question.id, description);
+      setBookmarks(prev =>
+        prev.map(b => (b.id === editedId ? { ...b, description } : b))
+      );
       setShowEditModal(false);
       setEditingBookmark(null);
-      fetchBookmarks();
     } catch (error) {
       console.error('Failed to update bookmark:', error);
     } finally {

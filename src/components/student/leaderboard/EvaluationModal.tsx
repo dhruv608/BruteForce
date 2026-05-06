@@ -13,18 +13,13 @@ export function EvaluationModal() {
           <HelpCircle className="w-5! h-5! text-muted-foreground hover:text-foreground" />
         </Button>
       </DialogTrigger>
-      <DialogContent className=" h-[90vh]  overflow-hidden max-w-2xl! p-2 rounded-2xl">
-        <DialogHeader className="p-4 h-15!  border-b border-border">
-          <DialogTitle className="text-2xl  font-bold flex items-center gap-2">
+      <DialogContent className="max-h-[90vh] overflow-hidden max-w-2xl! p-0 rounded-2xl flex flex-col">
+        <DialogHeader className="p-4 border-b border-border">
+          <DialogTitle className="text-2xl font-bold flex items-center gap-2">
             Evaluation <span className='text-primary'>Logic</span>
           </DialogTitle>
         </DialogHeader>
-        <div className="h-full p-6 overflow-y-auto" style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '1.5rem',
-          alignContent: 'start'
-        }}>
+        <div className="p-6 overflow-y-auto">
 
           <div className="space-y-6">
             {/* Ranking System */}

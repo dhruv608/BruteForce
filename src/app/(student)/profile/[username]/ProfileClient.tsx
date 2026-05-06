@@ -77,33 +77,39 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
 
   useEffect(() => {
     const initializeProfile = async () => {
-      // Skip profile fetch if initialData was provided (SSR pre-fetched)
-      if (!initialData) {
-        await fetchProfileByUsername();
-      } else {
-        // Still populate edit form from initialData
-        if (initialData?.student) {
-          const formValues = {
-            name: initialData.student.name || '',
-            github: initialData.student.github || '',
-            linkedin: initialData.student.linkedin || '',
-            leetcode: initialData.student.leetcode || '',
-            gfg: initialData.student.gfg || ''
-          };
-          setEditForm(formValues);
-          setOriginalEditForm(formValues);
-        }
+      // Populate edit form from SSR data synchronously
+      if (initialData?.student) {
+        const formValues = {
+          name: initialData.student.name || '',
+          github: initialData.student.github || '',
+          linkedin: initialData.student.linkedin || '',
+          leetcode: initialData.student.leetcode || '',
+          gfg: initialData.student.gfg || ''
+        };
+        setEditForm(formValues);
+        setOriginalEditForm(formValues);
       }
+
       const { isStudentToken } = await import('@/lib/auth-utils');
-      if (isStudentToken()) {
-        await fetchCurrentUser().catch(() => {
-          setCurrentUser(null);
-          setAuthChecked(true);
-        });
-      } else {
-        setCurrentUser(null);
-        setAuthChecked(true);
-      }
+      const isStudent = isStudentToken();
+
+      // Run profile fetch and current-user fetch in parallel instead of sequentially
+      const profilePromise = initialData
+        ? Promise.resolve()
+        : fetchProfileByUsername();
+
+      const userPromise = isStudent
+        ? fetchCurrentUser().catch(() => {
+            setCurrentUser(null);
+            setAuthChecked(true);
+          })
+        : (() => {
+            setCurrentUser(null);
+            setAuthChecked(true);
+            return Promise.resolve();
+          })();
+
+      await Promise.all([profilePromise, userPromise]);
     };
     initializeProfile();
   }, [username]);
