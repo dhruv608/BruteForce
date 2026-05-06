@@ -2,16 +2,6 @@ question_name,question_link,level,type,topic_slug
 Number of factors,https://www.geeksforgeeks.org/problems/number-of-factors1435/1,EASY,CLASSWORK,intro-to-datastructure-and-algorithms
 Prime Number,https://www.geeksforgeeks.org/problems/prime-number2314/1,EASY,CLASSWORK,intro-to-datastructure-and-algorithms
 Bulb Switcher,https://leetcode.com/problems/bulb-switcher/,EASY,HOMEWORK,intro-to-datastructure-and-algorithms
-LOOP_CMPL,https://www.interviewbit.com/problems/loopcmpl/,EASY,CLASSWORK,big-o-introduction
-NESTED_CMPL,https://www.interviewbit.com/problems/nestedcmpl/,EASY,CLASSWORK,big-o-introduction
-NESTED_CMPL2,https://www.interviewbit.com/problems/nestedcmpl2/,EASY,CLASSWORK,big-o-introduction
-CHOOSE4,https://www.interviewbit.com/problems/choose4/,EASY,CLASSWORK,big-o-introduction
-WHILE_CMPL,https://www.interviewbit.com/problems/whilecmpl/,EASY,CLASSWORK,big-o-introduction
-NESTED_CMPL3,https://www.interviewbit.com/problems/nestedcmpl3/,MEDIUM,CLASSWORK,big-o-introduction
-LOOP_CMPL2,https://www.interviewbit.com/problems/loopcmpl2/,MEDIUM,CLASSWORK,big-o-introduction
-CHOOSE3,https://www.interviewbit.com/problems/choose3/,MEDIUM,CLASSWORK,big-o-introduction
-CHOOSE2,https://www.interviewbit.com/problems/choose2/,MEDIUM,CLASSWORK,big-o-introduction
-CHOOSE1,https://www.interviewbit.com/problems/choose1/,MEDIUM,CLASSWORK,big-o-introduction
 Two Sum,https://leetcode.com/problems/two-sum/,EASY,CLASSWORK,array-basics
 Count Pairs Whose Sum is Less than Target,https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/,EASY,CLASSWORK,array-basics
 Largest Positive Integer That Exists With Its Negative,https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/,EASY,HOMEWORK,array-basics
@@ -44,9 +34,7 @@ Minimum distance in an Array,https://www.geeksforgeeks.org/problems/minimum-dist
 Max Sum Subarray of size K,https://www.geeksforgeeks.org/problems/max-sum-subarray-of-size-k5313/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,MEDIUM,CLASSWORK,subarray
 Maximum average subarray I,https://leetcode.com/problems/maximum-average-subarray-i/description/,MEDIUM,HOMEWORK,subarray
 Increasing Triplet Sequence,https://leetcode.com/problems/increasing-triplet-subsequence/description/,MEDIUM,HOMEWORK,subarray
-Pick from both sides!,https://www.interviewbit.com/problems/pick-from-both-sides/,MEDIUM,HOMEWORK,subarray
 Maximum Subarray,https://leetcode.com/problems/maximum-subarray/description/,EASY,CLASSWORK,subarray
-Max Non Negative SubArray,https://www.interviewbit.com/problems/max-non-negative-subarray/,MEDIUM,HOMEWORK,subarray
 Smallest sum contiguous subarray,https://www.geeksforgeeks.org/problems/smallest-sum-contiguous-subarray/1,EASY,HOMEWORK,subarray
 Diagonal sum,https://www.geeksforgeeks.org/problems/diagonal-sum0158/1?page=1&category=Matrix&sortBy=difficulty,EASY,CLASSWORK,2d-matrices
 Sum of elements in a matrix,https://www.geeksforgeeks.org/problems/sum-of-elements-in-a-matrix2000/1?page=1&category=Matrix&sortBy=difficulty,EASY,CLASSWORK,2d-matrices
@@ -186,9 +174,6 @@ Recamans sequence,https://www.geeksforgeeks.org/problems/recamans-sequence4856/1
 Print Pattern,https://www.geeksforgeeks.org/problems/print-pattern3549/1?page=1&category=Recursion&sortBy=difficulty,MEDIUM,HOMEWORK,recursion
 Josephus problem,https://www.geeksforgeeks.org/problems/josephus-problem/1?page=1&category=Recursion&sortBy=difficulty,HARD,HOMEWORK,recursion
 Juggler Sequence,https://www.geeksforgeeks.org/problems/juggler-sequence3930/1?page=1&category=Recursion&sortBy=difficulty,HARD,HOMEWORK,recursion
-REC_CMPL1,https://www.interviewbit.com/problems/reccmpl1/,HARD,CLASSWORK,recursion
-REC_CMPL2,https://www.interviewbit.com/problems/reccmpl2/,HARD,CLASSWORK,recursion
-REC_CMPL3,https://www.interviewbit.com/problems/reccmpl3/,HARD,CLASSWORK,recursion
 Tower Of Hanoi,https://www.geeksforgeeks.org/problems/tower-of-hanoi-1587115621/1,EASY,CLASSWORK,recursion
 Modular Exponentiation,https://www.geeksforgeeks.org/problems/modular-exponentiation-for-large-numbers5537/1,EASY,CLASSWORK,recursion
 Super Pow,https://leetcode.com/problems/super-pow/,MEDIUM,HOMEWORK,recursion
@@ -497,7 +482,6 @@ Construct Binary Tree from String with bracket representation,https://www.geeksf
 Leaves to DLL,https://www.geeksforgeeks.org/problems/leaves-to-dll/1?page=4&category=Tree&sortBy=difficulty,MEDIUM,HOMEWORK,trees
 All Nodes Distance K in Binary Tree,https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/description/,HARD,CLASSWORK,trees
 Amount of Time for Binary Tree to Be Infected,https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/,MEDIUM,HOMEWORK,trees
-Path to Given Node,https://www.interviewbit.com/problems/path-to-given-node/,MEDIUM,CLASSWORK,trees
 Find Bottom Left Tree Value,https://leetcode.com/problems/find-bottom-left-tree-value/description/,MEDIUM,HOMEWORK,trees
 Find Largest Value in Each Tree Row,https://leetcode.com/problems/find-largest-value-in-each-tree-row/description/,MEDIUM,HOMEWORK,trees
 Maximum Level Sum of a Binary Tree,https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/description/,MEDIUM,HOMEWORK,trees
@@ -522,7 +506,6 @@ All Elements in Two Binary Search Trees,https://leetcode.com/problems/all-elemen
 Largest BST,https://www.geeksforgeeks.org/problems/largest-bst/1,MEDIUM,CLASSWORK,binary-search-tree
 Maximum Sum BST in Binary Tree,https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/,MEDIUM,HOMEWORK,binary-search-tree
 Recover Binary Search Tree,https://leetcode.com/problems/recover-binary-search-tree/description/,MEDIUM,CLASSWORK,binary-search-tree
-Valid BST from Preorder,https://www.interviewbit.com/problems/valid-bst-from-preorder/,MEDIUM,HOMEWORK,binary-search-tree
 Lowest Common Ancestor of a Binary Tree,https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/,MEDIUM,CLASSWORK,binary-search-tree
 Lowest Common Ancestor of a Binary Search Tree,https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/,EASY,CLASSWORK,binary-search-tree
 Insert into a Binary Search Tree,https://leetcode.com/problems/insert-into-a-binary-search-tree/,EASY,CLASSWORK,binary-search-tree
@@ -568,7 +551,6 @@ Kth Largest Element in an Array,https://leetcode.com/problems/kth-largest-elemen
 Last Stone Weight,https://leetcode.com/problems/last-stone-weight/description/,EASY,CLASSWORK,heaps
 Minimum Cost of ropes,https://www.geeksforgeeks.org/problems/minimum-cost-of-ropes-1587115620/1?itm_source=geeksforgeeks&itm_medium=article&itm_campaign=practice_card,EASY,CLASSWORK,heaps
 Relative Ranks,https://leetcode.com/problems/relative-ranks/description/,EASY,HOMEWORK,heaps
-K Largest Elements,https://www.interviewbit.com/problems/k-largest-elements/,MEDIUM,HOMEWORK,heaps
 Nearly sorted,https://www.geeksforgeeks.org/problems/nearly-sorted-1587115620/1,MEDIUM,HOMEWORK,heaps
 Relative Ranks,https://leetcode.com/problems/relative-ranks/,EASY,HOMEWORK,heaps
 Ugly Number II,https://leetcode.com/problems/ugly-number-ii/,MEDIUM,HOMEWORK,heaps

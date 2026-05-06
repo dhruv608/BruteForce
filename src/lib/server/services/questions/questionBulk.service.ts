@@ -57,8 +57,6 @@ export const bulkUploadQuestionsService = async (
       platform = Platform.LEETCODE;
     } else if (link.includes("geeksforgeeks.org")) {
       platform = Platform.GFG;
-    } else if (link.includes("interviewbit.com")) {
-      platform = Platform.INTERVIEWBIT;
     } else {
       platform = Platform.OTHER;
     }

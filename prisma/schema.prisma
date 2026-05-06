@@ -209,7 +209,6 @@ enum Platform {
   LEETCODE
   GFG
   OTHER
-  INTERVIEWBIT
 }
 
 enum Level {

@@ -13,7 +13,7 @@ export interface CreateQuestionDTO {
   level?: "EASY" | "MEDIUM" | "HARD";
   difficulty?: "EASY" | "MEDIUM" | "HARD";
   topic_id: number;
-  platform?: "LEETCODE" | "GFG" | "OTHER" | "INTERVIEWBIT";
+  platform?: "LEETCODE" | "GFG" | "OTHER";
   tags?: string[];
 }
 
@@ -24,7 +24,7 @@ export interface UpdateQuestionDTO {
   level?: "EASY" | "MEDIUM" | "HARD";
   difficulty?: "EASY" | "MEDIUM" | "HARD";
   topic_id?: number;
-  platform?: "LEETCODE" | "GFG" | "OTHER" | "INTERVIEWBIT";
+  platform?: "LEETCODE" | "GFG" | "OTHER";
   tags?: string[];
 }
 

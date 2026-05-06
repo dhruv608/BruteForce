@@ -3,7 +3,7 @@ import { z } from "zod";
 /**
  * Platform enum
  */
-export const PlatformEnum = z.enum(["LEETCODE", "GFG", "INTERVIEWBIT", "OTHER"]);
+export const PlatformEnum = z.enum(["LEETCODE", "GFG", "OTHER"]);
 
 /**
  * Level enum

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Pencil, Trash2, ExternalLink, Code, BookOpen, Brain, HelpCircle } from 'lucide-react';
+import { Pencil, Trash2, ExternalLink, Code, BookOpen, HelpCircle } from 'lucide-react';
 import { LeetCodeIcon, GeeksforGeeksIcon } from '@/components/platform/PlatformIcons';
 import { Button } from '@/components/ui/button';
 import {
@@ -62,10 +62,6 @@ function PlatformBadge({ platform }: { platform: string }) {
     GFG: {
       icon: GeeksforGeeksIcon,
       color: " text-gfg border-0 ",
-    },
-    INTERVIEWBIT: {
-      icon: Brain,
-      color: "text-[#3B82F6] border-0",
     },
     OTHER: {
       icon: HelpCircle,

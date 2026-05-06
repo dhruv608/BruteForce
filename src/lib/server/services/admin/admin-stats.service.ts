@@ -38,8 +38,8 @@ export const getAdminStatsService = async (batchId: number) => {
     `,
 
     // All question aggregations in single SQL query with FILTER
-    prisma.$queryRaw<{ total_questions: BigInt; homework: BigInt; classwork: BigInt; easy: BigInt; medium: BigInt; hard: BigInt; leetcode: BigInt; gfg: BigInt; other: BigInt; interviewbit: BigInt; }[]>`
-      SELECT 
+    prisma.$queryRaw<{ total_questions: BigInt; homework: BigInt; classwork: BigInt; easy: BigInt; medium: BigInt; hard: BigInt; leetcode: BigInt; gfg: BigInt; other: BigInt; }[]>`
+      SELECT
         COUNT(*) as total_questions,
         COUNT(*) FILTER (WHERE qv.type = 'HOMEWORK') as homework,
         COUNT(*) FILTER (WHERE qv.type = 'CLASSWORK') as classwork,
@@ -48,8 +48,7 @@ export const getAdminStatsService = async (batchId: number) => {
         COUNT(*) FILTER (WHERE q.level = 'HARD') as hard,
         COUNT(*) FILTER (WHERE q.platform = 'LEETCODE') as leetcode,
         COUNT(*) FILTER (WHERE q.platform = 'GFG') as gfg,
-        COUNT(*) FILTER (WHERE q.platform = 'OTHER') as other,
-        COUNT(*) FILTER (WHERE q.platform = 'INTERVIEWBIT') as interviewbit
+        COUNT(*) FILTER (WHERE q.platform = 'OTHER') as other
       FROM "QuestionVisibility" qv
       JOIN "Class" c ON qv.class_id = c.id
       JOIN "Question" q ON qv.question_id = q.id
@@ -80,8 +79,7 @@ export const getAdminStatsService = async (batchId: number) => {
     questions_by_platform: {
       leetcode: Number(stats.leetcode),
       gfg: Number(stats.gfg),
-      other: Number(stats.other),
-      interviewbit: Number(stats.interviewbit)
+      other: Number(stats.other)
     },
     total_topics_discussed: Number(totalTopicsResult[0].count)
   };

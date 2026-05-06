@@ -212,13 +212,12 @@ export default function CreateQuestion({
                 <Select
                   value={form.watch('platform') || "LEETCODE"}
                   onChange={(val: string | number) => {
-                    form.setValue('platform', val.toString() as "LEETCODE" | "GFG" | "INTERVIEWBIT" | "OTHER");
+                    form.setValue('platform', val.toString() as "LEETCODE" | "GFG" | "OTHER");
                     form.trigger('platform');
                   }}
                   options={[
                     { label: "LeetCode", value: "LEETCODE" },
                     { label: "GeeksforGeeks", value: "GFG" },
-                    { label: "InterviewBit", value: "INTERVIEWBIT" },
                     { label: "Other", value: "OTHER" },
                   ]}
                   disabled={loading}

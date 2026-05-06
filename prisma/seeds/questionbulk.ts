@@ -17,7 +17,6 @@ function detectPlatform(link: string): Platform {
   const l = link.toLowerCase();
   if (l.includes('leetcode.com')) return Platform.LEETCODE;
   if (l.includes('geeksforgeeks.org')) return Platform.GFG;
-  if (l.includes('interviewbit.com')) return Platform.INTERVIEWBIT;
   return Platform.OTHER;
 }
 

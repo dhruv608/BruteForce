@@ -6,7 +6,6 @@ type Props = {
   data?: {
     leetcode?: number;
     gfg?: number;
-    interviewbit?: number;
     other?: number;
   };
 };
@@ -15,13 +14,11 @@ export default function PlatformChart({ data }: Props) {
   const total =
     (data?.leetcode || 0) +
     (data?.gfg || 0) +
-    (data?.interviewbit || 0) +
     (data?.other || 0);
 
   const items = [
     { name: "LeetCode", value: data?.leetcode || 0, color: "var(--leetcode)" },
     { name: "GFG", value: data?.gfg || 0, color: "var(--gfg)" },
-    { name: "Interview", value: data?.interviewbit || 0, color: "#4999e9" },
     { name: "Other", value: data?.other || 0, color: "#EF4444" },
   ];
 

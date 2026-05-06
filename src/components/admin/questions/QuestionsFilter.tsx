@@ -120,7 +120,7 @@ export default function QuestionsFilter({
               { label: 'All Platforms', value: '' },
               { label: 'LeetCode', value: 'LEETCODE' },
               { label: 'GFG', value: 'GFG' },
-              { label: 'InterviewBit', value: 'INTERVIEWBIT' },
+              { label: 'Other', value: 'OTHER' },
             ]}
             className="w-full sm:w-auto min-w-[140px]"
           />

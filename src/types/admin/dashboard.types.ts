@@ -14,7 +14,6 @@ export interface AdminStats {
   questions_by_platform?: {
     leetcode?: number;
     gfg?: number;
-    interviewbit?: number;
     other?: number;
   };
 }

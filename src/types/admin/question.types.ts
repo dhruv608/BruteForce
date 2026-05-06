@@ -3,7 +3,7 @@ export type Question = {
   question_name: string;
   question_link: string;
   topic_id: number;
-  platform: 'LEETCODE' | 'GFG' | 'INTERVIEWBIT' | 'OTHER';
+  platform: 'LEETCODE' | 'GFG' | 'OTHER';
   level: 'EASY' | 'MEDIUM' | 'HARD';
   // type removed - now in QuestionVisibility
   topic?: {

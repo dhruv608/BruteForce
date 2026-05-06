@@ -287,7 +287,7 @@ export const getAllQuestionsWithFiltersService = async ({
   
   // Include all available enum values for complete filter options
   const allLevels = ['EASY', 'MEDIUM', 'HARD'];
-  const allPlatforms = ['LEETCODE', 'GFG', 'OTHER', 'INTERVIEWBIT'];
+  const allPlatforms = ['LEETCODE', 'GFG', 'OTHER'];
   const allTypes = ['HOMEWORK', 'CLASSWORK'];
 
 // ...
