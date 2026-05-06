@@ -13,6 +13,7 @@ import {
   Loader2,
   Calendar,
 } from "lucide-react";
+import axios from 'axios';
 import { apiClient } from '@/api';
 import { useRecentQuestions } from "@/contexts/RecentQuestionsContext";
 import { showError } from '@/ui/toast';
@@ -103,15 +104,17 @@ export function RecentQuestionsSidebar() {
         setPage(prev => prev + 1);
       }
     } catch (err: unknown) {
-      // Error is handled by API client interceptor
+      if (axios.isCancel(err)) return;
       const error = err as ApiError;
       const errorMsg = error.response?.data?.error || "Failed to fetch recent questions";
       setError(errorMsg);
       showError(errorMsg);
-    } finally {
       setLoading(false);
       setLoadingMore(false);
+      return;
     }
+    setLoading(false);
+    setLoadingMore(false);
   };
 
   // Load more on scroll
