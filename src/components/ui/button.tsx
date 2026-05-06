@@ -5,7 +5,7 @@ import { Slot } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center transition-all outline-none select-none focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover-glow",
+  "group/button inline-flex shrink-0 items-center justify-center transition-all outline-none select-none focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 hover-glow cursor-pointer",
   {
     variants: {
       variant: {
@@ -15,7 +15,7 @@ const buttonVariants = cva(
         secondary:
           "bg-accent-secondary text-secondary-foreground hover:bg-accent-secondary/80 aria-expanded:bg-accent-secondary aria-expanded:text-secondary-foreground",
         ghost:
-          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
+          "hover:bg-muted hover:text-foreground dark:hover:bg-muted/50",
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-accent-primary underline-offset-4 hover:underline",
@@ -68,13 +68,13 @@ function Button({
         transition: "all 0.2s ease",
       }}
       onMouseEnter={(e) => {
-        if (variant === "default") {
+        if (variant === "default" && !props.disabled) {
           e.currentTarget.style.transform = "scale(1.02)";
           e.currentTarget.style.filter = "brightness(1.1)";
         }
       }}
       onMouseLeave={(e) => {
-        if (variant === "default") {
+        if (variant === "default" && !props.disabled) {
           e.currentTarget.style.transform = "scale(1)";
           e.currentTarget.style.filter = "brightness(1)";
         }

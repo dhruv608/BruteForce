@@ -1,4 +1,4 @@
-﻿import csv from "csv-parser";
+import csv from "csv-parser";
 
 import { Readable } from "stream";
 
@@ -151,15 +151,10 @@ export const bulkStudentUploadService = async (
 
 
         resolve({
-
           inserted: created.count,
-
           totalRows: rows.length,
-
-          skipped: skippedCount,
-
+          skipped: skippedCount + (studentsData.length - created.count),
           message: `Successfully uploaded ${created.count} students`
-
         });
 
       })
@@ -233,7 +228,7 @@ export const publicBulkStudentUploadService = async (
         resolve({
           inserted: created.count,
           totalRows: rows.length,
-          skipped: skippedCount,
+          skipped: skippedCount + (studentsData.length - created.count),
           message: `Successfully uploaded ${created.count} students`
         });
       })
