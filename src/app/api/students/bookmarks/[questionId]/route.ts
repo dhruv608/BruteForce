@@ -6,6 +6,7 @@ import { updateBookmarkService, deleteBookmarkService } from '@/lib/server/servi
 import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import { sanitizeRichText } from '@/lib/server/utils/sanitize';
 
 export async function PUT(
   req: NextRequest,
@@ -20,8 +21,9 @@ export async function PUT(
 
     const body = await req.json();
     const { description } = body;
+    const cleanDescription = description !== undefined ? sanitizeRichText(description) : undefined;
 
-    const updated = await updateBookmarkService(user.id, questionIdNum, description);
+    const updated = await updateBookmarkService(user.id, questionIdNum, cleanDescription);
 
     await Promise.all([
       CacheInvalidation.invalidateBookmarksForStudent(user.id),

@@ -5,6 +5,7 @@ import { bookmarkQuerySchema, createBookmarkSchema } from '@/lib/server/schemas/
 import { getBookmarksService } from '@/lib/server/services/bookmarks/bookmark-query.service';
 import { addBookmarkService } from '@/lib/server/services/bookmarks/bookmark-crud.service';
 import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
+import { sanitizeRichText } from '@/lib/server/utils/sanitize';
 
 export const GET = withHandler(
   async ({ user, query }) => {
@@ -22,7 +23,8 @@ export const GET = withHandler(
 export const POST = withHandler(
   async ({ user, body }) => {
     const { question_id, description } = body as { question_id: number; description?: string };
-    const bookmark = await addBookmarkService(user!.id, question_id, description);
+    const cleanDescription = description ? sanitizeRichText(description) : undefined;
+    const bookmark = await addBookmarkService(user!.id, question_id, cleanDescription);
 
     await Promise.all([
       CacheInvalidation.invalidateBookmarksForStudent(user!.id),

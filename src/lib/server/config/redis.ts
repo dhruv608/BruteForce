@@ -1,11 +1,11 @@
 import 'server-only';
 import Redis, { RedisOptions } from 'ioredis';
 
-const USE_CLOUD_REDIS = process.env.USE_CLOUD_REDIS === 'true';
-const CLOUD_REDIS_URL = process.env.CLOUD_REDIS_URL ?? '';
-
-const redisUrl = USE_CLOUD_REDIS && CLOUD_REDIS_URL ? CLOUD_REDIS_URL : 'redis://localhost:6379';
-const connectionType = USE_CLOUD_REDIS && CLOUD_REDIS_URL ? 'CLOUD' : 'LOCAL';
+const CLOUD_REDIS_URL = process.env.CLOUD_REDIS_URL;
+if (!CLOUD_REDIS_URL) {
+  throw new Error('[REDIS] CLOUD_REDIS_URL is required — set it in .env');
+}
+const redisUrl = CLOUD_REDIS_URL;
 
 const redisOptions: RedisOptions = {
   // Required by BullMQ — workers reuse this connection
@@ -28,14 +28,14 @@ const createRedisClient = () => {
   const client = new Redis(redisUrl, redisOptions);
 
   client.on('connect', () => {
-    console.log(`[REDIS] Connected to ${connectionType} (${redisUrl.replace(/\/\/.*@/, '//***@')})`);
+    console.log(`[REDIS] Connected to CLOUD (${redisUrl.replace(/\/\/.*@/, '//***@')})`);
   });
 
   client.on('error', (err: Error) => {
     // Suppress noisy ECONNREFUSED logs in dev — keep one warning
     if ((err as any).code === 'ECONNREFUSED' && process.env.NODE_ENV !== 'production') {
       if (!(client as any).__loggedECONN) {
-        console.warn(`[REDIS] Cannot reach ${connectionType} Redis — caching disabled until reconnect`);
+        console.warn(`[REDIS] Cannot reach CLOUD Redis — caching disabled until reconnect`);
         (client as any).__loggedECONN = true;
       }
       return;

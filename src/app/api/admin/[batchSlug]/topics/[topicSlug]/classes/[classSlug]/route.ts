@@ -7,6 +7,7 @@ import { getClassDetailsWithFullQuestionsService } from '@/lib/server/services/t
 import { updateClassService, deleteClassService } from '@/lib/server/services/topics/class.service';
 import { handleError } from '@/lib/server/error-response';
 import type { ParsedFile } from '@/lib/server/file-helper';
+import { sanitizeRichText } from '@/lib/server/utils/sanitize';
 
 export async function GET(
   req: NextRequest,
@@ -76,7 +77,7 @@ export async function PATCH(
       topicSlug,
       classSlug,
       class_name,
-      description,
+      description: description !== undefined ? sanitizeRichText(description) : undefined,
       pdf_url,
       pdf_file: pdf_file as any,
       remove_pdf,

@@ -9,6 +9,7 @@ import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
 import type { ParsedFile } from '@/lib/server/file-helper';
+import { sanitizeRichText } from '@/lib/server/utils/sanitize';
 
 export async function GET(
   req: NextRequest,
@@ -78,7 +79,7 @@ export async function POST(
       batchId: batch.id,
       topicSlug,
       class_name,
-      description,
+      description: description ? sanitizeRichText(description) : undefined,
       pdf_url,
       pdf_file: pdf_file as any,
       duration_minutes,
