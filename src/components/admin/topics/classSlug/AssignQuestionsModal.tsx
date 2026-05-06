@@ -147,13 +147,13 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
    return (
       <Dialog open={isOpen} onOpenChange={onClose}>
          <DialogContent className="max-w-[600px] h-[90vh] overflow-hidden flex flex-col p-0 rounded-2xl border border-border bg-background/95 backdrop-blur-xl">
-            <div className="p-6 border-border shrink-0 space-y-4">
-               <DialogHeader className="space-y-1">
-                  <DialogTitle className="text-xl font-semibold">
-                     Assign <span className='text-primary'>Questions</span>
-                  </DialogTitle>
-               </DialogHeader>
 
+            <DialogHeader className="space-y-1 p-4">
+               <DialogTitle className="text-xl font-semibold ">
+                  Assign <span className='text-primary'>Questions</span>
+               </DialogTitle>
+            </DialogHeader>
+            <div className="px-4 py-2 border-border shrink-0 space-y-4 ">
                {errorMsg && (
                   <div className="p-3 bg-destructive/10 border border-destructive/20 text-destructive text-sm rounded-lg">
                      {errorMsg}
@@ -166,7 +166,7 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                      placeholder="Search questions by name..."
                      value={bankSearch}
                      onChange={(e) => setBankSearch(e.target.value)}
-                     className="!pl-12 w-full h-12 rounded-xl text-base focus-visible:ring-2 focus-visible:ring-primary/40 transition"
+                     className="!pl-12 w-full h-12 rounded-xl text-base focus-visible:ring-2 focus-visible:ring-logo/40 transition"
                   />
                </div>
 
@@ -319,15 +319,15 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                </div>
             </div>
 
-            <DialogFooter className="!mx-0 !mb-0 !m-0 shrink-0 rounded-none bg-background/80 backdrop-blur-xl !px-4 !pt-4 !pb-6 border-t border-border flex-row items-center justify-between gap-3">
-               
+            <DialogFooter className="!m-0 p-4! shrink-0 rounded-none bg-background/80 backdrop-blur-xl border-t border-border flex-row items-center justify-between gap-3">
+
                <span className="text-sm font-medium">
                   {selectedQuestions.length} Selected
                </span>
 
                <div className="flex gap-3 ">
                   <Button
-                     className="!rounded-2xl !bg-secondary-foreground "
+                     className=" !bg-secondary-foreground text-secondary!"
                      onClick={onClose}
                      disabled={submitting}
                   >

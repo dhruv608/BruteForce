@@ -68,7 +68,7 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({
       <DialogContent className="max-w-md overflow-hidden p-0">
         <DialogHeader className="px-6 py-4 border-b border-border/40">
           <div className="flex items-center gap-1">
-           
+
             <DialogTitle className="text-3xl font-semibold text-foreground">Edit <span className='text-primary' >Bookmark</span></DialogTitle>
           </div>
         </DialogHeader>
@@ -111,7 +111,7 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({
                   type="button"
                   onClick={handleClose}
                   disabled={loading}
-                  className=" col-span-1 bg-foreground! text-white!"
+                  className=" col-span-1 bg-foreground! text-secondary!"
                 >
                   Cancel
                 </Button>

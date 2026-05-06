@@ -159,7 +159,7 @@ export default function DownloadReportModal({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="w-[95vw] max-w-[520px] p-0 overflow-hidden flex flex-col rounded-2xl">
+      <DialogContent className="w-[95vw] max-w-[520px] h-[545px] p-0 overflow-hidden flex flex-col rounded-2xl">
 
         {/* HEADER */}
         <DialogHeader className="px-6 py-5 border-b border-border">
@@ -173,7 +173,7 @@ export default function DownloadReportModal({
         </DialogHeader>
 
         {/* BODY */}
-        <div className="p-6 space-y-6">
+        <div className="px-4 ">
 
           {/* LOCATION */}
           <div className="space-y-5 p-5 rounded-2xl border border-border bg-muted/20">

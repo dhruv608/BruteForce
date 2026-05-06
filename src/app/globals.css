@@ -82,7 +82,6 @@
   --glass-bg: rgba(22, 24, 33, 0.522);
   --glass-border: rgba(255, 255, 255, 0.06);
   --hover-glow: rgba(204, 255, 0, 0.15);
-  --dialog-bg: rgba(0, 0, 0, 0.4);
 
   /* ===== TEXT VARIABLES ===== */
   --text-primary: var(--foreground);
@@ -153,9 +152,8 @@
   --input: #F1F5F9;
   --ring: #CCFF00;
   --glass-bg: rgba(255, 255, 255, 0.7);  
-  --glass-border: rgba(0, 0, 0, 0.08);
+   --glass-border: rgba(0, 0, 0, 0.08);
   --hover-glow: rgba(204, 255, 0, 0.15);
-  --dialog-bg: rgba(0, 0, 0, 0.04);
   
   /* Solid card backgrounds for content blocking */
   --card-solid: rgba(255, 255, 255, 0.95);

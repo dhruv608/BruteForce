@@ -23,7 +23,7 @@ export function StudentLoginForm() {
 
   const form = useForm<LoginStudentInput>({
     resolver: zodResolver(loginStudentSchema),
-    mode: "onChange", 
+    mode: "onChange",
     defaultValues: {
       email: '',
       username: '',
@@ -113,34 +113,34 @@ export function StudentLoginForm() {
           <div className="relative">
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
 
-           <input
-  type="text"
-  disabled={loading || form.formState.isSubmitting}
-  className='w-full h-12 pl-11 pr-4 border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-logo/40 transition-all'
-  placeholder="Enter your email or username"
-  value={form.watch("email") || form.watch("username") || ""}
-  onChange={(e) => {
-    const value = e.target.value;
+            <input
+              type="text"
+              disabled={loading || form.formState.isSubmitting}
+              className='w-full h-12 pl-11 pr-4 border border-border rounded-xl text-sm text-foreground placeholder:text-slate-600 focus:outline-none focus:ring-4 focus:ring-primary/5 focus:border-logo/40 transition-all'
+              placeholder="Enter your email or username"
+              value={form.watch("email") || form.watch("username") || ""}
+              onChange={(e) => {
+                const value = e.target.value;
 
-    if (value.includes('@')) {
-      form.setValue('email', value, { shouldValidate: true });
-      form.setValue('username', undefined, { shouldValidate: false });
-    } else {
-      form.setValue('username', value, { shouldValidate: true });
-      form.setValue('email', undefined, { shouldValidate: false });
-    }
-  }}
-/>
+                if (value.includes('@')) {
+                  form.setValue('email', value, { shouldValidate: true });
+                  form.setValue('username', undefined, { shouldValidate: false });
+                } else {
+                  form.setValue('username', value, { shouldValidate: true });
+                  form.setValue('email', undefined, { shouldValidate: false });
+                }
+              }}
+            />
           </div>
 
           <AnimatePresence mode="wait">
             {(emailError || form.formState.errors.email || form.formState.errors.username) && (
-  <p className="text-xs text-red-400">
-    {emailError ||
-      form.formState.errors.email?.message ||
-      form.formState.errors.username?.message}
-  </p>
-)}
+              <p className="text-xs text-red-400">
+                {emailError ||
+                  form.formState.errors.email?.message ||
+                  form.formState.errors.username?.message}
+              </p>
+            )}
           </AnimatePresence>
         </div>
 
@@ -174,7 +174,7 @@ export function StudentLoginForm() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-white/50 hover:text-white"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary-foreground/50 hover:text-secondary-foregorund"
             >
               {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
             </button>
@@ -190,12 +190,12 @@ export function StudentLoginForm() {
         {/* LOGIN BUTTON */}
         <button
           type="submit"
-         disabled={
-  loading ||
-  form.formState.isSubmitting ||
-  (!form.watch("email") && !form.watch("username")) ||
-  !form.watch("password")
-}
+          disabled={
+            loading ||
+            form.formState.isSubmitting ||
+            (!form.watch("email") && !form.watch("username")) ||
+            !form.watch("password")
+          }
           className="w-full h-14 bg-[#CCFF00] hover:bg-[#D9FF33] text-black font-black text-xs uppercase tracking-[0.2em] rounded-2xl transition-all disabled:opacity-50 flex items-center justify-center gap-2"
         >
           {loading || form.formState.isSubmitting ? (
