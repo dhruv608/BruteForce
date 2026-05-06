@@ -55,5 +55,5 @@ export const questionQuerySchema = z.object({
 });
 
 // Type exports
-type CreateQuestionInput = z.infer<typeof createQuestionSchema>;
-type UpdateQuestionInput = z.infer<typeof updateQuestionSchema>;
+export type CreateQuestionInput = z.infer<typeof createQuestionSchema>;
+export type UpdateQuestionInput = z.infer<typeof updateQuestionSchema>;

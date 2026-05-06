@@ -1,18 +1,13 @@
 ﻿import prisma from '@/lib/server/config/prisma';
 import { createAdminService } from '@/lib/server/services/admin/admin-crud.service';
+import type { CreateAdminInput } from '@/lib/server/schemas/admin.schema';
 import { hashPassword } from '@/lib/server/utils/password.util';
 import { generateAccessToken, generateRefreshToken } from '@/lib/server/utils/jwt.util';
 import { validateEmail } from '@/lib/server/utils/emailValidation.util';
 import { validatePasswordForAuth } from '@/lib/server/utils/passwordValidator.util';
 import { ApiError } from '@/lib/server/utils/ApiError';
 
-export const registerAdmin = async (data: {
-  name: string;
-  email: string;
-  password: string;
-  role?: string;
-  city_id?: number;
-  batch_id?: number;
+export const registerAdmin = async (data: CreateAdminInput & {
   currentUserRole?: string;
 }): Promise<{
   user: {

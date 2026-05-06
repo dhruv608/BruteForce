@@ -81,10 +81,10 @@ export const registerAdminSchema = z.object({
 });
 
 // Type exports
-type RegisterStudentInput = z.infer<typeof registerStudentSchema>;
-type LoginStudentInput = z.infer<typeof loginStudentSchema>;
-type LoginAdminInput = z.infer<typeof loginAdminSchema>;
-type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
-type VerifyOtpInput = z.infer<typeof verifyOtpSchema>;
-type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
-type RegisterAdminInput = z.infer<typeof registerAdminSchema>;
+export type RegisterStudentInput = z.infer<typeof registerStudentSchema>;
+export type LoginStudentInput = z.infer<typeof loginStudentSchema>;
+export type LoginAdminInput = z.infer<typeof loginAdminSchema>;
+export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
+export type VerifyOtpInput = z.infer<typeof verifyOtpSchema>;
+export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
+export type RegisterAdminInput = z.infer<typeof registerAdminSchema>;

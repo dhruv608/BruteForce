@@ -1,7 +1,7 @@
 import 'server-only';
 import { apiOk, apiCreated } from '@/lib/server/api-response';
 import { withHandler } from '@/lib/server/route-handler';
-import { createAdminSchema } from '@/lib/server/schemas/admin.schema';
+import { createAdminSchema, type CreateAdminInput } from '@/lib/server/schemas/admin.schema';
 import { getAllAdminsService } from '@/lib/server/services/admin/admin-query.service';
 import { createAdminService } from '@/lib/server/services/admin/admin-crud.service';
 
@@ -19,7 +19,7 @@ export const GET = withHandler(
 
 export const POST = withHandler(
   async ({ body }) => {
-    const admin = await createAdminService(body as any);
+    const admin = await createAdminService(body as CreateAdminInput);
     return apiCreated(admin, 'Admin created successfully');
   },
   { requireAuth: true, requireRole: 'superadmin', rateLimit: 'api', bodySchema: createAdminSchema }

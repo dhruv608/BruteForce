@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
       maxSizeBytes: 5 * 1024 * 1024,
     });
 
-    const result = await ProfileImageService.uploadProfileImage(user.id, file as any);
+    const result = await ProfileImageService.uploadProfileImage(user.id, file);
     await CacheInvalidation.invalidateStudentProfile(user.id);
 
     return apiCreated({ profileImageUrl: result.url }, 'Profile image uploaded successfully');

@@ -67,7 +67,7 @@ export const studentQuerySchema = z.object({
 });
 
 // Type exports
-type CreateStudentInput = z.infer<typeof createStudentSchema>;
-type UpdateStudentInput = z.infer<typeof updateStudentSchema>;
-type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
-type UpdateUsernameInput = z.infer<typeof updateUsernameSchema>;
+export type CreateStudentInput = z.infer<typeof createStudentSchema>;
+export type UpdateStudentInput = z.infer<typeof updateStudentSchema>;
+export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;
+export type UpdateUsernameInput = z.infer<typeof updateUsernameSchema>;

@@ -3,8 +3,9 @@ import { hashPassword } from '@/lib/server/utils/password.util';
 import { validatePasswordForAuth } from '@/lib/server/utils/passwordValidator.util';
 import { AdminRole } from "@prisma/client";
 import { ApiError } from '@/lib/server/utils/ApiError';
+import type { CreateAdminInput } from '@/lib/server/schemas/admin.schema';
 
-export const createAdminService = async (adminData: any) => {
+export const createAdminService = async (adminData: CreateAdminInput) => {
     try {
         // Check if email already exists (removed username check)
         const existingAdmin = await prisma.admin.findFirst({

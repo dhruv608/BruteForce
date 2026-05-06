@@ -50,7 +50,7 @@ export interface StudentData {
   name: string;
   email: string;
   username?: string;
-  password: string;
+  password?: string;
   enrollment_id?: string;
   leetcode_id?: string;
   gfg_id?: string;

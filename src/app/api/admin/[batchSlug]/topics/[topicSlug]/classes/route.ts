@@ -81,7 +81,7 @@ export async function POST(
       class_name,
       description: description ? sanitizeRichText(description) : undefined,
       pdf_url,
-      pdf_file: pdf_file as any,
+      pdf_file,
       duration_minutes,
       class_date,
     });

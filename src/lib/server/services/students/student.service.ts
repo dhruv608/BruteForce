@@ -12,6 +12,7 @@ import { HTTP_STATUS } from '@/lib/server/utils/errorMapper';
 import { ApiError } from '@/lib/server/utils/ApiError';
 import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 import { StudentData, StudentUpdateData, PrismaKnownError } from '@/lib/server/types/common.types';
+import type { StudentResponseData } from '@/lib/server/types/student.types';
 import redis from '@/lib/server/config/redis';
 import { CACHE_TTL } from '@/lib/server/config/cache.config';
 import { buildCacheKey, setWithTTL, deleteByPattern, safeGet } from '@/lib/server/utils/redisUtils';
@@ -194,14 +195,14 @@ export const deleteStudentDetailsService = async (id: number) => {
     }
 };
 
-export const getCurrentStudentService = async (studentId: number) => {
+export const getCurrentStudentService = async (studentId: number): Promise<StudentResponseData> => {
   // Generate stable deterministic cache key
   const cacheKey = buildCacheKey(`student:me:${studentId}`, {});
-  
+
   // 1. Try cache first
   const cached = await safeGet(cacheKey);
   if (cached) {
-    return JSON.parse(cached);
+    return JSON.parse(cached) as StudentResponseData;
   }
   
 

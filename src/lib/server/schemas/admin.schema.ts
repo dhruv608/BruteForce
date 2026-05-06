@@ -53,5 +53,5 @@ export const adminQuerySchema = z.object({
 });
 
 // Type exports
-type CreateAdminInput = z.infer<typeof createAdminSchema>;
-type UpdateAdminInput = z.infer<typeof updateAdminSchema>;
+export type CreateAdminInput = z.infer<typeof createAdminSchema>;
+export type UpdateAdminInput = z.infer<typeof updateAdminSchema>;

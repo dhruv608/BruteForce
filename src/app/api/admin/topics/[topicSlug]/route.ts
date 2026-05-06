@@ -47,7 +47,7 @@ export async function PUT(
       removePhoto = body.removePhoto === true;
     }
 
-    const updated = await updateTopicService({ topicSlug, topic_name, photo: photo as any, removePhoto });
+    const updated = await updateTopicService({ topicSlug, topic_name, photo, removePhoto });
 
     await Promise.all([
       CacheInvalidation.invalidateAdminTopics(),

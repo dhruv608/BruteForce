@@ -80,7 +80,7 @@ export async function PATCH(
       class_name,
       description: description !== undefined ? sanitizeRichText(description) : undefined,
       pdf_url,
-      pdf_file: pdf_file as any,
+      pdf_file,
       remove_pdf,
       duration_minutes,
       class_date,

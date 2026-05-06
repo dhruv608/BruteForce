@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
 
     if (!topic_name) throw new ApiError(400, 'topic_name is required');
 
-    const topic = await createTopicService({ topic_name, photo: photo as any });
+    const topic = await createTopicService({ topic_name, photo });
 
     await Promise.all([
       CacheInvalidation.invalidateAdminTopics(),
