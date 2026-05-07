@@ -91,9 +91,9 @@ export function ProfileHeader({
                                 </span>
                             )}
 
-                            <span className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[var(--muted)] text-[var(--muted-foreground)]">
+                            {/* <span className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-[var(--muted)] text-[var(--muted-foreground)]">
                                 ID: {student.enrollmentId}
-                            </span>
+                            </span> */}
                         </div>
                     </div>
                 </div>
