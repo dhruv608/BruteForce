@@ -62,7 +62,11 @@ export function EditProfileModal({
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-md overflow-hidden p-0">
         <DialogHeader className="px-4 sm:px-6 py-3 sm:py-4 border-b border-border">
-          <DialogTitle className="text-base sm:text-lg font-semibold tracking-tight">Edit Profile</DialogTitle>
+          <DialogTitle className="text-base sm:text-2xl font-semibold tracking-tight">Edit
+            <span className='text-primary px-1 '>
+              Profile
+            </span>
+          </DialogTitle>
           <DialogDescription className="hidden">Update your profile information</DialogDescription>
 
         </DialogHeader>
@@ -76,16 +80,12 @@ export function EditProfileModal({
                 {imagePreview ? (
                   <img src={imagePreview} alt="Profile Preview" className="object-cover" />
                 ) : imageRemoved ? (
-                  // <div className="w-full h-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
-                  //   {student.name?.charAt(0)?.toUpperCase() || 'U'}
-                  // </div>
+
                   <ProfileAvatar username={student.name} size={85} />
                 ) : student.profileImageUrl ? (
                   <img src={student.profileImageUrl} alt="Profile" className=" object-cover" />
                 ) : (
-                  // <div className="w-full h-full bg-gradient-to-br from-primary to-amber-600 flex items-center justify-center text-white text-xl sm:text-2xl font-bold">
-                  //   {student.name?.charAt(0)?.toUpperCase() || 'U'}
-                  // </div>
+
                   <ProfileAvatar username={student.name} size={85} />
 
                 )}

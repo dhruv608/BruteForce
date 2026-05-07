@@ -46,7 +46,7 @@ export function EditUsernameModal({
       return;
     }
 
-    // 2️⃣ Same as existing username ✅
+    // 2️⃣ Same as existing username 
     if (username === original) {
       setUsernameStatus("same");
       return;
@@ -215,7 +215,7 @@ export function EditUsernameModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-sm overflow-hidden p-0" showCloseButton={false}>
+      <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-sm overflow-hidden " showCloseButton={false}>
         <DialogHeader className="p-4 sm:p-6 border-b border-border">
           <div className="flex items-center gap-3">
             <div>

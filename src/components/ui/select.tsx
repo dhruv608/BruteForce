@@ -142,8 +142,8 @@ export function SelectItem({
         `
         relative flex items-center gap-2
 
-        px-3 py-2 rounded-lg
-        text-white 
+        px-3 py-2 rounded-2xl
+        text-white
         text-sm font-medium
          
         cursor-pointer select-none outline-none

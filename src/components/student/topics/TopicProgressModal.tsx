@@ -109,17 +109,17 @@ export default function TopicProgressModal({
     return topics;
   };
 
- const colorMap: Record<string, string> = {
-  hard: "bg-hard",
-  medium: "bg-medium",
-  easy: "bg-easy",
-};
+  const colorMap: Record<string, string> = {
+    hard: "bg-hard",
+    medium: "bg-medium",
+    easy: "bg-easy",
+  };
 
-const getColor = (progress: number) => {
-  if (progress < 30) return "hard";
-  if (progress < 70) return "medium";
-  return "easy";
-};
+  const getColor = (progress: number) => {
+    if (progress < 30) return "hard";
+    if (progress < 70) return "medium";
+    return "easy";
+  };
 
   const getTopicIcon = (name: string) => {
     const n = name.toLowerCase();
@@ -137,17 +137,16 @@ const getColor = (progress: number) => {
         <DialogHeader className="px-4 sm:px-6 py-3 sm:py-4 border-b border-border/50">
           <div className="flex items-center justify-between gap-3">
             <div className="flex-1">
-              <DialogTitle className="text-lg sm:text-xl font-bold flex items-center gap-2">
-                <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                Topic Progress
+              <DialogTitle className="text-2xl sm:text-2xl font-bold flex items-center gap-2">
+
+                Topic
+
+                <span className="text-primary ">
+
+                  Progress
+                </span>
               </DialogTitle>
-              {loading ? (
-                <Skeleton className="h-4 w-32 sm:w-48 rounded-md mt-1" />
-              ) : (
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  {data?.student?.name} • {data?.student?.batch?.name || data?.student?.batch?.batch_name || 'No batch'}
-                </p>
-              )}
+   
             </div>
             <DialogClose />
           </div>
@@ -160,15 +159,15 @@ const getColor = (progress: number) => {
           {data ? (
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               <Stat icon={<BookOpen />} label="Topics" value={data.topics.length} />
-              <Stat 
-                icon={<Target />} 
-                label="Assigned" 
-                value={data.topics.reduce((sum, topic) => sum + topic.totalQuestions, 0)} 
+              <Stat
+                icon={<Target />}
+                label="Assigned"
+                value={data.topics.reduce((sum, topic) => sum + topic.totalQuestions, 0)}
               />
-              <Stat 
-                icon={<TrendingUp />} 
-                label="Solved" 
-                value={data.topics.reduce((sum, topic) => sum + topic.solvedQuestions, 0)} 
+              <Stat
+                icon={<TrendingUp />}
+                label="Solved"
+                value={data.topics.reduce((sum, topic) => sum + topic.solvedQuestions, 0)}
               />
               <Stat
                 icon={<Award />}
@@ -176,8 +175,8 @@ const getColor = (progress: number) => {
                 value={
                   data.topics.reduce((sum, topic) => sum + topic.totalQuestions, 0) > 0
                     ? `${Math.round(
-                      (data.topics.reduce((sum, topic) => sum + topic.solvedQuestions, 0) / 
-                       data.topics.reduce((sum, topic) => sum + topic.totalQuestions, 0)) * 100
+                      (data.topics.reduce((sum, topic) => sum + topic.solvedQuestions, 0) /
+                        data.topics.reduce((sum, topic) => sum + topic.totalQuestions, 0)) * 100
                     )}%`
                     : "0%"
                 }
@@ -227,14 +226,14 @@ const getColor = (progress: number) => {
                     <div className="flex items-center gap-2 sm:gap-3">
                       {/* Icon skeleton */}
                       <Skeleton className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg" />
-                      
+
                       {/* Title and subtitle skeleton */}
                       <div className="space-y-1.5 sm:space-y-2">
                         <Skeleton className="h-3 sm:h-4 w-20 sm:w-24 rounded-md" />
                         <Skeleton className="h-2.5 sm:h-3 w-12 sm:w-16 rounded-md" />
                       </div>
                     </div>
-                    
+
                     {/* Percentage skeleton */}
                     <Skeleton className="h-3 sm:h-4 w-6 sm:w-8 rounded-md" />
                   </div>

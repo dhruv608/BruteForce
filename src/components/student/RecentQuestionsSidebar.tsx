@@ -47,13 +47,13 @@ export function RecentQuestionsSidebar() {
     yesterday.setDate(yesterday.getDate() - 1);
     const ereyesterday = new Date(today);
     ereyesterday.setDate(ereyesterday.getDate() - 2);
-    
+
     const formatDate = (date: Date) => {
-      return date.getFullYear() + '-' + 
-        String(date.getMonth() + 1).padStart(2, '0') + '-' + 
+      return date.getFullYear() + '-' +
+        String(date.getMonth() + 1).padStart(2, '0') + '-' +
         String(date.getDate()).padStart(2, '0');
     };
-    
+
     return {
       today: formatDate(today),
       yesterday: formatDate(yesterday),
@@ -193,15 +193,18 @@ export function RecentQuestionsSidebar() {
 
           {/* Sidebar */}
           <div className="absolute right-0 top-0 h-full w-[85%] sm:w-[380px] md:w-[420px] max-w-[450px] border border-border shadow-2xl animate-in slide-in-from-right duration-300">
-            
+
             <Card className="h-full rounded-none border-none shadow-none bg-transparent">
 
               {/* Header */}
               <CardHeader className="backdrop-blur-sm border-b border-border/40  ">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                    <Clock className="w-5 h-5 text-primary" />
-                    Recent Questions
+                  <CardTitle className="text-2xl font-bold flex items-center gap-2">
+                    Recent
+                    <span className="text-primary">
+
+                      Questions
+                    </span>
                   </CardTitle>
 
                   <Button
@@ -279,7 +282,7 @@ export function RecentQuestionsSidebar() {
                               <div className="flex-1 min-w-0">
                                 <div className="h-4 w-full bg-muted/50 rounded mb-2 animate-pulse" />
                                 <div className="h-4 w-3/4 bg-muted/40 rounded animate-pulse" />
-                                
+
                                 <div className="flex items-center gap-2 mt-3">
                                   <div className="h-5 w-12 bg-muted/40 rounded-full animate-pulse" />
                                   <div className="h-3 w-16 bg-muted/30 rounded animate-pulse" />
