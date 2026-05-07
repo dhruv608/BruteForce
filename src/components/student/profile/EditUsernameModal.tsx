@@ -35,6 +35,17 @@ export function EditUsernameModal({
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const lastCheckedUsernameRef = useRef<string>("");
 
+  // SYNC FORM TO CURRENT USERNAME WHEN MODAL OPENS
+  useEffect(() => {
+    if (isOpen && currentUsername) {
+      setUsernameForm({ username: currentUsername });
+      setUsernameStatus("same");
+      setDebouncedUsername(currentUsername);
+      lastCheckedUsernameRef.current = currentUsername;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen, currentUsername]);
+
   // API CALL (after debounce) - Updated with same logic as OnboardingStep1
   useEffect(() => {
     const username = debouncedUsername.trim();
@@ -195,21 +206,19 @@ export function EditUsernameModal({
     }
   };
 
-  // HANDLE CLOSE WITH RESET
+  // HANDLE CLOSE — restore form back to current username on close/cancel
   const handleClose = () => {
-    // Reset form when closing
-    setUsernameForm({ username: '' });
-    setUsernameStatus('idle');
-    setDebouncedUsername('');
+    setUsernameForm({ username: currentUsername || '' });
+    setUsernameStatus(currentUsername ? 'same' : 'idle');
+    setDebouncedUsername(currentUsername || '');
     onClose();
   };
 
-  // HANDLE CANCEL
+  // HANDLE CANCEL — same restore behavior
   const handleCancel = () => {
-    // Reset form when cancelling
-    setUsernameForm({ username: '' });
-    setUsernameStatus('idle');
-    setDebouncedUsername('');
+    setUsernameForm({ username: currentUsername || '' });
+    setUsernameStatus(currentUsername ? 'same' : 'idle');
+    setDebouncedUsername(currentUsername || '');
     onClose();
   };
 

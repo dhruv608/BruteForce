@@ -33,7 +33,7 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
    const fileInputRef = useRef<HTMLInputElement>(null);
 
    useEffect(() => {
-      if (topic) {
+      if (isOpen && topic) {
          setTopicName(topic.topic_name);
          setPhotoPreview(topic.photo_url ?? null);
          setPhotoFile(null);
@@ -41,7 +41,7 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
          setRemovePhoto(false);
          setFormError('');
       }
-   }, [topic]);
+   }, [topic, isOpen]);
 
    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
