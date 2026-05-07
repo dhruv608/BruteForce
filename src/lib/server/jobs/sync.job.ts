@@ -8,10 +8,13 @@ import { LinkUpdateService } from '@/lib/server/services/linkUpdate/linkUpdate.s
 
 export function startSyncJob() {
 
-  console.log("[CRON] Sync cron job system started");
+  // Schedules read from .env — falls back to production defaults if unset.
+  // Format: standard cron expression. Timezone is fixed to Asia/Kolkata below.
+  const STUDENT_SCHEDULE = process.env.CRON_STUDENT_SYNC ?? "0 5,14,20 * * *";       // 5 AM / 2 PM / 8 PM IST
+  const LEADERBOARD_SCHEDULE = process.env.CRON_LEADERBOARD_SYNC ?? "0 9,18,23 * * *"; // 9 AM / 6 PM / 11 PM IST
 
-  // Student Sync Cron: 5 AM, 2 PM, 8 PM
-  cron.schedule("0 5,14,20 * * *", async () => {
+  cron.schedule(STUDENT_SCHEDULE, async () => {
+    console.log(`[CRON] ⏰ Student sync tick fired at ${new Date().toISOString()}`);
     const maxRetries = 3;
     let attempt = 0;
     let linkUpdateResults: { updated: number; skipped: number; failed: number; total: number } | null = null;
@@ -92,12 +95,16 @@ export function startSyncJob() {
           }
         });
 
-        const today = new Date().toISOString().slice(0, 10);
+        // Unique cycle ID prevents jobId collision with completed jobs from
+        // previous cycles still cached in Redis (removeOnComplete: 100).
+        // Without this, addBulk silently dedupes against old jobIds and the
+        // worker has nothing to process — the lock stays stuck forever.
+        const cycleId = Date.now();
         const jobs = students.map(student => ({
           name: 'sync-student',
           data: { studentId: student.id, batchId: student.batch_id },
           opts: {
-            jobId: `sync-${student.id}-${today}`,
+            jobId: `sync-${student.id}-${cycleId}`,
             attempts: 3,
             backoff: {
               type: 'exponential',
@@ -134,8 +141,8 @@ export function startSyncJob() {
     }
   }, { timezone: 'Asia/Kolkata' });
 
-  // Leaderboard Sync Cron: 9 AM, 6 PM, 11 PM
-  cron.schedule("0 9,18,23 * * *", async () => {
+  cron.schedule(LEADERBOARD_SCHEDULE, async () => {
+    console.log(`[CRON] ⏰ Leaderboard tick fired at ${new Date().toISOString()}`);
     try {
       await tryRunLeaderboard();
     } catch (error) {
@@ -143,5 +150,5 @@ export function startSyncJob() {
     }
   }, { timezone: 'Asia/Kolkata' });
 
-  console.log("[CRON] Schedules — student: 5/14/20 IST · leaderboard: 9/18/23 IST");
+  console.log(`[CRON] ✓ Schedules registered — student: "${STUDENT_SCHEDULE}" · leaderboard: "${LEADERBOARD_SCHEDULE}" · timezone: Asia/Kolkata`);
 }

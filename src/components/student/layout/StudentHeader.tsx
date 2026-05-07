@@ -284,7 +284,7 @@ export default function StudentHeader() {
                         style={{ borderRadius: 'var(--radius-full)', borderColor: 'var(--border)' }}
                       >
                         {profile.profileImageUrl ? (
-                          <Image src={profile.profileImageUrl} alt="Profile" width={40} height={40} quality={75} className="w-full h-full object-cover" />
+                          <Image src={profile.profileImageUrl} alt="Profile" width={40} height={40} quality={75} priority className="w-full h-full object-cover" />
                         ) : (
                           <div
                             className="w-full h-full bg-linear-to-br from-accent-primary to-accent-primary text-primary-foreground flex items-center justify-center text-sm font-bold"
@@ -394,7 +394,8 @@ export default function StudentHeader() {
                   alt="PWIO Logo"
                   width={120}
                   height={32}
-                  className="h-8 w-auto object-contain"
+                  style={{ width: 'auto', height: '32px' }}
+                  className="object-contain"
                 />
               </div>
             )}
