@@ -9,11 +9,11 @@ import { ApiError } from '@/lib/server/utils/ApiError';
 
 export async function POST(req: NextRequest) {
   try {
-    const limited = await applyRateLimit(req, 'heavy');
-    if (limited) return limited;
-
     const user = getAuthUser(req);
     assertStudent(user);
+
+    const limited = await applyRateLimit(req, 'heavy', { userId: user.id });
+    if (limited) return limited;
 
     if (!user.id || !user.cityId || !user.batchId) {
       throw new ApiError(400, 'Student data not found in JWT.');

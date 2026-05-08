@@ -5,11 +5,15 @@ import { getAuthUser, assertStudent } from '@/lib/server/auth-helper';
 import { getRecentQuestionsService } from '@/lib/server/services/questions/recentQuestions.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import { applyRateLimit } from '@/lib/server/rate-limiter';
 
 export async function GET(req: NextRequest) {
   try {
     const user = getAuthUser(req);
     assertStudent(user);
+
+    const limited = await applyRateLimit(req, 'api', { userId: user.id });
+    if (limited) return limited;
 
     if (!user.batchId) {
       throw new ApiError(400, 'Student is not assigned to any batch');

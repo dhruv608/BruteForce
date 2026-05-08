@@ -11,5 +11,5 @@ export const POST = withHandler(
 
     return apiOk(result);
   },
-  { bodySchema: forgotPasswordSchema }
+  { rateLimit: 'loginIP', rateLimitEmail: true, bodySchema: forgotPasswordSchema }
 );

@@ -11,5 +11,5 @@ export const POST = withHandler(
 
     return apiOk(result);
   },
-  { rateLimit: 'auth', bodySchema: verifyOtpSchema }
+  { rateLimit: 'loginIP', rateLimitEmail: true, bodySchema: verifyOtpSchema }
 );

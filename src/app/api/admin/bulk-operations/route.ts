@@ -5,11 +5,15 @@ import { bulkStudentUploadService } from '@/lib/server/services/bulk.service';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
 import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
+import { applyRateLimit } from '@/lib/server/rate-limiter';
 
 export async function POST(req: NextRequest) {
   try {
     const user = getAuthUser(req);
     assertAdmin(user);
+
+    const limited = await applyRateLimit(req, 'bulk', { userId: user.id });
+    if (limited) return limited;
 
     const formData = await req.formData().catch(() => {
       throw new ApiError(400, 'Invalid multipart form data');

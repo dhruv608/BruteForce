@@ -9,11 +9,11 @@ import { applyRateLimit } from '@/lib/server/rate-limiter';
 
 export async function GET(req: NextRequest) {
   try {
-    const limited = await applyRateLimit(req, 'heavy');
-    if (limited) return limited;
-
     const user = getAuthUser(req);
     assertStudent(user);
+
+    const limited = await applyRateLimit(req, 'heavy', { userId: user.id });
+    if (limited) return limited;
 
     if (!user.batchId) {
       throw new ApiError(400, 'Student is not assigned to any batch');

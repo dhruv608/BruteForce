@@ -11,5 +11,5 @@ export const POST = withHandler(
     setRefreshTokenCookie(response, refreshToken);
     return response;
   },
-  { rateLimit: 'auth', bodySchema: loginStudentSchema }
+  { rateLimit: 'loginIP', rateLimitEmail: true, bodySchema: loginStudentSchema }
 );

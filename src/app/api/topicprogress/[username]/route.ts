@@ -3,12 +3,15 @@ import { NextRequest } from 'next/server';
 import { getTopicProgressByUsernameService } from '@/lib/server/services/topics/topic-progress.service';
 import { apiOk } from '@/lib/server/api-response';
 import { handleError } from '@/lib/server/error-response';
+import { applyRateLimit } from '@/lib/server/rate-limiter';
 
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ username: string }> }
 ) {
   try {
+    const limited = await applyRateLimit(req, 'public');
+    if (limited) return limited;
     const { username } = await params;
     const sortBy = new URL(req.url).searchParams.get('sortBy') ?? 'solved';
 

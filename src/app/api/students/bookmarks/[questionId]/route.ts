@@ -7,6 +7,7 @@ import { CacheInvalidation } from '@/lib/server/utils/cacheInvalidation';
 import { handleError } from '@/lib/server/error-response';
 import { ApiError } from '@/lib/server/utils/ApiError';
 import { sanitizeRichText } from '@/lib/server/utils/sanitize';
+import { applyRateLimit } from '@/lib/server/rate-limiter';
 
 export async function PUT(
   req: NextRequest,
@@ -15,6 +16,8 @@ export async function PUT(
   try {
     const user = getAuthUser(req);
     assertStudent(user);
+    const limited = await applyRateLimit(req, 'api', { userId: user.id });
+    if (limited) return limited;
     const { questionId } = await params;
     const questionIdNum = Number(questionId);
     if (isNaN(questionIdNum)) throw new ApiError(400, 'Invalid question ID');
@@ -45,6 +48,8 @@ export async function DELETE(
   try {
     const user = getAuthUser(req);
     assertStudent(user);
+    const limited = await applyRateLimit(req, 'api', { userId: user.id });
+    if (limited) return limited;
     const { questionId } = await params;
     const questionIdNum = Number(questionId);
     if (isNaN(questionIdNum)) throw new ApiError(400, 'Invalid question ID');

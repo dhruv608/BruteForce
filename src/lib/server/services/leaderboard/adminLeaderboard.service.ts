@@ -4,6 +4,8 @@ import {
   getCachedCityYearMapping,
   handleLeaderboardError,
 } from "./leaderboard.shared";
+import { CACHE_TTL } from '@/lib/server/config/cache.config';
+import { buildCacheKey, safeGet, setWithTTL } from '@/lib/server/utils/redisUtils';
 
 interface Filters {
   city?: string;
@@ -40,8 +42,22 @@ export async function getAdminLeaderboard(
     const effectiveFilters = {
       city: filters.city || "all",
       year: filters.year || new Date().getFullYear(),
-      search,
+      search: search || '',
     };
+
+    // Try Redis cache first
+    const cacheKey = buildCacheKey('leaderboard:admin', {
+      city: effectiveFilters.city,
+      year: effectiveFilters.year,
+      search: effectiveFilters.search,
+      page: pagination.page,
+      limit: pagination.limit,
+    });
+    const cached = await safeGet(cacheKey);
+    if (cached) {
+      console.log(`[REDIS] Cache hit — ${cacheKey}`);
+      return JSON.parse(cached);
+    }
 
     // Look up city ID from city name when a specific city is selected
     let effectiveCityId: number | undefined = undefined;
@@ -148,7 +164,7 @@ export async function getAdminLeaderboard(
       Promise.resolve(leaderboard[0]?.last_calculated || new Date().toISOString()),
     ]);
 
-    return {
+    const result = {
       leaderboard,
       pagination: {
         page,
@@ -159,6 +175,9 @@ export async function getAdminLeaderboard(
       available_cities: availableCities,
       last_calculated: lastCalculated,
     };
+
+    await setWithTTL(cacheKey, JSON.stringify(result), CACHE_TTL.adminLeaderboard);
+    return result;
   } catch (error) {
     handleLeaderboardError(error, "Admin leaderboard");
   }

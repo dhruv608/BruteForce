@@ -8,11 +8,11 @@ import { applyRateLimit } from '@/lib/server/rate-limiter';
 
 export async function POST(req: NextRequest) {
   try {
-    const limited = await applyRateLimit(req, 'heavy');
-    if (limited) return limited;
-
     const user = getAuthUser(req);
     assertAdmin(user);
+
+    const limited = await applyRateLimit(req, 'heavy', { userId: user.id });
+    if (limited) return limited;
 
     const body = await req.json().catch(() => ({}));
     const sp = new URL(req.url).searchParams;

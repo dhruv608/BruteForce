@@ -9,7 +9,7 @@ import { applyRateLimit } from '@/lib/server/rate-limiter';
 
 export async function POST(req: NextRequest) {
   try {
-    const limited = await applyRateLimit(req, 'auth');
+    const limited = await applyRateLimit(req, 'loginIP');
     if (limited) return limited;
 
     const body = await req.json().catch(() => ({}));

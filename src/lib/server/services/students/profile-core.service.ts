@@ -112,8 +112,8 @@ export const getStudentProfileService = async (studentId: number) => {
         completedAll
       });
       
-      // 6 Store in cache (5 minutes TTL)
-      await setWithTTL(cacheKey, JSON.stringify(heatmap), 300);
+      // 6 Store in cache
+      await setWithTTL(cacheKey, JSON.stringify(heatmap), CACHE_TTL.studentProfile);
     }
 
     // 7 Calculate today's stats

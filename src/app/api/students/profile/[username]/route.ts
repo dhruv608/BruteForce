@@ -4,12 +4,15 @@ import { apiOk } from '@/lib/server/api-response';
 import { getOptionalAuthUser } from '@/lib/server/auth-helper';
 import { getPublicStudentProfileService } from '@/lib/server/services/students/profile-public.service';
 import { handleError } from '@/lib/server/error-response';
+import { applyRateLimit } from '@/lib/server/rate-limiter';
 
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ username: string }> }
 ) {
   try {
+    const limited = await applyRateLimit(req, 'public');
+    if (limited) return limited;
     const { username } = await params;
     const currentUser = getOptionalAuthUser(req);
     const profile = await getPublicStudentProfileService(username);

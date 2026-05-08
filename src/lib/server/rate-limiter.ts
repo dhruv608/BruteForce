@@ -2,12 +2,21 @@ import 'server-only';
 import { NextRequest, NextResponse } from 'next/server';
 import { redisConnection as redis } from '@/lib/server/config/redis';
 
-type LimiterName = 'api' | 'auth' | 'heavy';
+export type LimiterName = 'loginIP' | 'loginEmail' | 'heavy' | 'api' | 'bulk' | 'public';
 
 const LIMITERS: Record<LimiterName, { windowSec: number; max: number }> = {
-  api:   { windowSec: 15 * 60, max: 100 },
-  auth:  { windowSec: 15 * 60, max: 50  },
-  heavy: { windowSec: 60,       max: 20  },
+  // Auth — IP based (classroom-safe: 1000 logins per 5 min per IP)
+  loginIP:    { windowSec: 5 * 60,  max: 1000 },
+  // Auth — email based (brute force protection: 10 attempts per 15 min per email)
+  loginEmail: { windowSec: 15 * 60, max: 10   },
+  // Authenticated heavy routes — per userId (practice, leaderboard)
+  heavy:      { windowSec: 60,      max: 20   },
+  // Authenticated regular routes — per userId (topics, bookmarks, recent)
+  api:        { windowSec: 15 * 60, max: 100  },
+  // Bulk upload — per userId/IP (slow ops, low limit)
+  bulk:       { windowSec: 15 * 60, max: 5    },
+  // Public unauthenticated routes — per IP
+  public:     { windowSec: 15 * 60, max: 200  },
 };
 
 const SLIDING_WINDOW_SCRIPT = `
@@ -25,17 +34,41 @@ const SLIDING_WINDOW_SCRIPT = `
   return 1
 `;
 
+interface RateLimitOptions {
+  userId?: string | number;
+  email?: string;
+}
+
+/**
+ * Apply rate limiting to a route.
+ *
+ * Key priority:
+ *  1. userId  → rl:{limiter}:{userId}   (authenticated routes)
+ *  2. email   → rl:{limiter}:{email}    (login brute-force)
+ *  3. IP      → rl:{limiter}:{ip}       (fallback / public)
+ */
 export async function applyRateLimit(
   req: NextRequest,
-  limiterName: LimiterName
+  limiterName: LimiterName,
+  options: RateLimitOptions = {}
 ): Promise<NextResponse | null> {
   const config = LIMITERS[limiterName];
+
   const ip =
     req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
     req.headers.get('x-real-ip') ??
     'unknown';
 
-  const key = `rl:${limiterName}:${ip}`;
+  let identifier: string;
+  if (options.userId !== undefined) {
+    identifier = String(options.userId);
+  } else if (options.email) {
+    identifier = options.email.toLowerCase().trim();
+  } else {
+    identifier = ip;
+  }
+
+  const key = `rl:${limiterName}:${identifier}`;
   const now = Date.now();
   const windowMs = config.windowSec * 1000;
 
@@ -53,7 +86,7 @@ export async function applyRateLimit(
       return NextResponse.json(
         {
           success: false,
-          message: 'Too many requests, please try again later',
+          message: 'Too many requests. Please wait a moment and try again.',
           code: 'RATE_LIMIT_EXCEEDED',
         },
         {
@@ -63,7 +96,7 @@ export async function applyRateLimit(
       );
     }
   } catch (err) {
-    // If Redis is down, allow through (fail open)
+    // Redis down — fail open, never block users due to infra issue
     console.error('[RATE_LIMITER] Redis error, failing open:', err);
   }
 
