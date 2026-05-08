@@ -23,6 +23,7 @@ export default function PracticePage() {
     platform: searchParams.get('platform') || '',
     type: searchParams.get('type') || '',
     solved: searchParams.get('solved') || '',
+    sort: searchParams.get('sort') || 'recent',
     page: Number(searchParams.get('page')) || 1,
     limit: 10
   });
@@ -47,7 +48,7 @@ export default function PracticePage() {
   });
 
   // Check if any filters are active (excluding page and limit)
-  const hasActiveFilters = !!(filters.search || filters.topic || filters.level || filters.platform || filters.type || filters.solved);
+  const hasActiveFilters = !!(filters.search || filters.topic || filters.level || filters.platform || filters.type || filters.solved || (filters.sort && filters.sort !== 'recent'));
 
   // Refs to dedupe calls (prevents Strict Mode double-fire + same-param refetches)
   const isFetching = useRef(false);
@@ -65,6 +66,7 @@ export default function PracticePage() {
       platform: currentFilters.platform,
       type: currentFilters.type,
       solved: currentFilters.solved,
+      sort: currentFilters.sort,
     });
 
     // Skip if same params already in flight or just completed
@@ -117,7 +119,7 @@ export default function PracticePage() {
     }
   // router is stable from useRouter() — excluded from deps to avoid callback recreation
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters.topic, filters.level, filters.platform, filters.type, filters.solved, debouncedSearch, debouncedPage, debouncedLimit]);
+  }, [filters.topic, filters.level, filters.platform, filters.type, filters.solved, filters.sort, debouncedSearch, debouncedPage, debouncedLimit]);
 
   useEffect(() => {
     fetchQuestions();
@@ -133,7 +135,7 @@ export default function PracticePage() {
   };
 
   const clearFilters = () => {
-    setFilters({ search: '', topic: '', level: '', platform: '', type: '', solved: '', page: 1, limit: 10 });
+    setFilters({ search: '', topic: '', level: '', platform: '', type: '', solved: '', sort: 'recent', page: 1, limit: 10 });
   };
 
   const handleBookmarkSuccess = useCallback((questionId: number) => {

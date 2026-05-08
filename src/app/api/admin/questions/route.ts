@@ -13,6 +13,10 @@ export const GET = withHandler(
       level: query.get('level') ?? undefined,
       platform: query.get('platform') ?? undefined,
       search: query.get('search') ?? undefined,
+      assignmentStatus: query.get('assignmentStatus') ?? undefined,
+      assignmentBatchSlug: query.get('assignmentBatchSlug') ?? undefined,
+      assignmentTopicSlug: query.get('assignmentTopicSlug') ?? undefined,
+      assignmentClassSlug: query.get('assignmentClassSlug') ?? undefined,
       page: Number(query.get('page') ?? '1'),
       limit: Number(query.get('limit') ?? '10'),
     });

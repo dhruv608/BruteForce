@@ -31,6 +31,7 @@ export async function GET(req: NextRequest) {
         platform: sp.get('platform') ?? undefined,
         type: sp.get('type') ?? undefined,
         solved: sp.get('solved') ?? undefined,
+        sort: sp.get('sort') ?? undefined,
         page: Number(sp.get('page') ?? '1'),
         limit: Number(sp.get('limit') ?? '20'),
       },

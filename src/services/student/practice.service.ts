@@ -21,6 +21,7 @@ export const studentPracticeService = {
     if (filters.platform) params.append('platform', filters.platform);
     if (filters.type) params.append('type', filters.type);
     if (filters.solved) params.append('solved', filters.solved);
+    if (filters.sort) params.append('sort', filters.sort);
     if (filters.page) params.append('page', String(filters.page));
     if (filters.limit) params.append('limit', String(filters.limit));
 

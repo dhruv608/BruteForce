@@ -1,11 +1,16 @@
-﻿import prisma from '@/lib/server/config/prisma';
+import prisma from '@/lib/server/config/prisma';
 import { ApiError } from '@/lib/server/utils/ApiError';
+import type { Prisma } from '@prisma/client';
 
 interface GetAllQuestionsInput {
   topicSlug?: string;
   level?: string;
   platform?: string;
   search?: string;
+  assignmentStatus?: string;
+  assignmentBatchSlug?: string;
+  assignmentTopicSlug?: string;
+  assignmentClassSlug?: string;
   page?: number;
   limit?: number;
 }
@@ -15,15 +20,41 @@ export const getAllQuestionsService = async ({
   level,
   platform,
   search,
+  assignmentStatus = 'unassigned',
+  assignmentBatchSlug,
+  assignmentTopicSlug,
+  assignmentClassSlug,
   page = 1,
   limit = 10,
 }: GetAllQuestionsInput) => {
 
-  const where: any = {};
+  const where: Prisma.QuestionWhereInput = {};
+  let assignmentClassId: number | undefined;
 
   //  Pagination safety - enforce max limit
   const validatedLimit = Math.min(Math.max(limit, 1), 100);
   const skip = (page - 1) * validatedLimit;
+
+  const normalizedAssignmentStatus = ['assigned', 'unassigned'].includes(assignmentStatus)
+    ? assignmentStatus
+    : 'all';
+
+  if (assignmentBatchSlug && assignmentTopicSlug && assignmentClassSlug) {
+    const cls = await prisma.class.findFirst({
+      where: {
+        slug: assignmentClassSlug,
+        batch: { slug: assignmentBatchSlug },
+        topic: { slug: assignmentTopicSlug },
+      },
+      select: { id: true },
+    });
+
+    if (!cls) {
+      throw new ApiError(400, "Class not found in this topic and batch");
+    }
+
+    assignmentClassId = cls.id;
+  }
 
   //  Topic filter (using relation filter instead of separate query)
   if (topicSlug && topicSlug !== 'all') {
@@ -48,6 +79,12 @@ export const getAllQuestionsService = async ({
     };
   }
 
+  if (assignmentClassId && normalizedAssignmentStatus !== 'all') {
+    where.visibility = normalizedAssignmentStatus === 'assigned'
+      ? { some: { class_id: assignmentClassId } }
+      : { none: { class_id: assignmentClassId } };
+  }
+
   const [questions, total] = await prisma.$transaction([
     prisma.question.findMany({
       where,
@@ -58,6 +95,14 @@ export const getAllQuestionsService = async ({
             slug: true,
           },
         },
+        ...(assignmentClassId
+          ? {
+              visibility: {
+                where: { class_id: assignmentClassId },
+                select: { id: true },
+              },
+            }
+          : {}),
       },
       orderBy: {
         created_at: "desc",
@@ -68,6 +113,17 @@ export const getAllQuestionsService = async ({
 
     prisma.question.count({ where }),
   ]);
+
+  const questionsWithVisibility = questions as Array<(typeof questions)[number] & {
+    visibility: Array<{ id: number }>;
+  }>;
+
+  const data = assignmentClassId
+    ? questionsWithVisibility.map(({ visibility, ...question }) => ({
+        ...question,
+        isAssignedToClass: visibility.length > 0,
+      }))
+    : questions;
 
   //  Validate topic exists if topic filter was applied but no results
   if (topicSlug && topicSlug !== 'all' && questions.length === 0) {
@@ -81,7 +137,7 @@ export const getAllQuestionsService = async ({
   }
 
   return {
-    data: questions,
+    data,
     pagination: {
       total,
       page,

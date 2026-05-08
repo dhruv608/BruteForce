@@ -52,6 +52,7 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
    const [bankSearch, setBankSearch] = useState('');
    const [bankLevel, setBankLevel] = useState('all');
    const [bankPlatform, setBankPlatform] = useState('all');
+   const [assignmentStatus, setAssignmentStatus] = useState<'all' | 'assigned' | 'unassigned'>('unassigned');
    const [bankPage, setBankPage] = useState(1);
    const [bankTotalPages, setBankTotalPages] = useState(1);
    const [selectedQuestions, setSelectedQuestions] = useState<Array<{ id: number; type: 'HOMEWORK' | 'CLASSWORK' }>>([]);
@@ -64,6 +65,7 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
          setBankSearch('');
          setBankLevel('all');
          setBankPlatform('all');
+         setAssignmentStatus('unassigned');
          setSelectedQuestions([]);
          setErrorMsg('');
          fetchBankQuestions();
@@ -74,7 +76,7 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
       if (isOpen) {
          fetchBankQuestions();
       }
-   }, [bankPage, bankSearch, bankLevel, bankPlatform]);
+   }, [bankPage, bankSearch, bankLevel, bankPlatform, assignmentStatus]);
 
    // Handle Enter key to trigger submit
    useEffect(() => {
@@ -97,6 +99,10 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
          if (bankLevel && bankLevel !== 'all') params.level = bankLevel;
          if (bankPlatform && bankPlatform !== 'all') params.platform = bankPlatform;
          params.topicSlug = topicSlug;
+         params.assignmentStatus = assignmentStatus;
+         params.assignmentBatchSlug = batchSlug;
+         params.assignmentTopicSlug = topicSlug;
+         params.assignmentClassSlug = classSlug;
 
          const res = await getAdminQuestions(params);
          setBankQuestions(res.data);
@@ -146,9 +152,9 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
 
    return (
       <Dialog open={isOpen} onOpenChange={onClose}>
-         <DialogContent className="max-w-[600px] h-[90vh] overflow-hidden flex flex-col p-0 rounded-2xl border border-border bg-background/95 backdrop-blur-xl">
+         <DialogContent className="max-w-[600px] h-[90vh] flex flex-col p-0 rounded-2xl border border-border bg-background/95 backdrop-blur-xl overflow-hidden">
 
-            <DialogHeader className="space-y-1 p-4">
+            <DialogHeader className="space-y-1 p-4 shrink-0 border-b border-border/40">
                <DialogTitle className="text-xl font-semibold ">
                   Assign <span className='text-primary'>Questions</span>
                </DialogTitle>
@@ -170,8 +176,8 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                   />
                </div>
 
-               <div className="flex gap-3">
-                  <Select value={bankLevel} onValueChange={(v) => setBankLevel(v)}>
+               <div className="flex flex-wrap gap-3">
+                  <Select value={bankLevel} onValueChange={(v) => { setBankLevel(v); setBankPage(1); }}>
                      <SelectTrigger className="h-10 rounded-xl w-[160px]">
                         <SelectValue placeholder="Difficulty" />
                      </SelectTrigger>
@@ -183,8 +189,8 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                      </SelectContent>
                   </Select>
 
-                  <Select value={bankPlatform} onValueChange={(v) => setBankPlatform(v)}>
-                     <SelectTrigger className="h-10 rounded-2xl">
+                  <Select value={bankPlatform} onValueChange={(v) => { setBankPlatform(v); setBankPage(1); }}>
+                     <SelectTrigger className="h-10 rounded-2xl w-[170px]">
                         <SelectValue placeholder="Platform" />
                      </SelectTrigger>
                      <SelectContent className="rounded-2xl w-full">
@@ -198,6 +204,17 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                         <SelectItem value="OTHER">Other</SelectItem>
                      </SelectContent>
                   </Select>
+
+                  <Select value={assignmentStatus} onValueChange={(v) => { setAssignmentStatus(v as 'all' | 'assigned' | 'unassigned'); setBankPage(1); }}>
+                     <SelectTrigger className="h-10 rounded-2xl w-[170px]">
+                        <SelectValue placeholder="Assignment" />
+                     </SelectTrigger>
+                     <SelectContent className="rounded-2xl w-full">
+                        <SelectItem value="unassigned">Unassigned</SelectItem>
+                        <SelectItem value="all">All</SelectItem>
+                        <SelectItem value="assigned">Assigned</SelectItem>
+                     </SelectContent>
+                  </Select>
                </div>
 
                <div className="p-3  bg-primary/5 border border-primary/20 rounded-2xl">
@@ -208,7 +225,7 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto no-scrollbar min-h-[320px]">
+            <div className="flex-1 overflow-y-auto no-scrollbar min-h-0">
                <div className="grid gap-3 p-4">
                   {bankLoading ? (
                      <div className="flex items-center justify-center h-32">
@@ -224,7 +241,7 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                      </div>
                   ) : (
                      bankQuestions.map((q) => {
-                        const isAssigned = assignedQuestions.some(
+                        const isAssigned = q.isAssignedToClass ?? assignedQuestions.some(
                            (aq) => (aq.question?.id || aq.id) === q.id
                         );
                         const selectedQ = selectedQuestions.find(sq => sq.id === q.id);
@@ -319,7 +336,7 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
                </div>
             </div>
 
-            <DialogFooter className="!m-0 p-4! shrink-0 rounded-none bg-background/80 backdrop-blur-xl border-t border-border flex-row items-center justify-between gap-3">
+            <DialogFooter className="!m-0 !p-4 shrink-0 rounded-none bg-background/80 backdrop-blur-xl border-t border-border flex-row items-center justify-between gap-3">
 
                <span className="text-sm font-medium">
                   {selectedQuestions.length} Selected
