@@ -5,7 +5,7 @@ import { PodiumCard } from "./PodiumCard";
 import { PodiumShimmer } from "./PodiumShimmer";
 import { PodiumSectionProps } from '@/types/student/index.types';
 
-export default function PodiumSection({ top3, loading, selectedCity }: PodiumSectionProps) {
+export default function PodiumSection({ top3, loading, selectedCity, onCardDragged }: PodiumSectionProps) {
   if (loading) {
     return <PodiumShimmer />;
   }
@@ -25,22 +25,25 @@ export default function PodiumSection({ top3, loading, selectedCity }: PodiumSec
       <div className="flex items-center gap-6 md:gap-12">
 
         {/* Rank 2 */}
-        <PodiumCard 
-          student={top3?.[1]} 
-          rank={isGlobalView ? (top3?.[1]?.global_rank || 2) : (top3?.[1]?.city_rank || 2)} 
+        <PodiumCard
+          student={top3?.[1]}
+          rank={isGlobalView ? (top3?.[1]?.global_rank || 2) : (top3?.[1]?.city_rank || 2)}
+          onDragStart={onCardDragged}
         />
 
         {/* Rank 1 (Center Hero) */}
-        <PodiumCard 
-          student={top3?.[0]} 
-          rank={isGlobalView ? (top3?.[0]?.global_rank || 1) : (top3?.[0]?.city_rank || 1)} 
-          isCenter 
+        <PodiumCard
+          student={top3?.[0]}
+          rank={isGlobalView ? (top3?.[0]?.global_rank || 1) : (top3?.[0]?.city_rank || 1)}
+          isCenter
+          onDragStart={onCardDragged}
         />
 
         {/* Rank 3 */}
-        <PodiumCard 
-          student={top3?.[2]} 
-          rank={isGlobalView ? (top3?.[2]?.global_rank || 3) : (top3?.[2]?.city_rank || 3)} 
+        <PodiumCard
+          student={top3?.[2]}
+          rank={isGlobalView ? (top3?.[2]?.global_rank || 3) : (top3?.[2]?.city_rank || 3)}
+          onDragStart={onCardDragged}
         />
 
       </div>

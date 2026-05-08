@@ -15,12 +15,21 @@ import { LeaderboardHeader } from "@/components/student/leaderboard/LeaderboardH
 import { LeaderboardCity, LeaderboardData } from '@/types/student/index.types';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 
-export default function LeaderboardClient() {
+import { SyncTime } from './page';
+
+export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?: SyncTime[] }) {
   const [lCity, setLCity] = useState<LeaderboardCity['city_name']>('All Cities');
   const [lYear, setLYear] = useState<number | null>(null);
   const [lSearch, setLSearch] = useState('');
   const debouncedSearch = useDebouncedValue(lSearch, 500);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [podiumDirty, setPodiumDirty] = useState(false);
+  const [podiumKey, setPodiumKey] = useState(0);
+
+  const handleResetPodium = useCallback(() => {
+    setPodiumDirty(false);
+    setPodiumKey(k => k + 1);
+  }, []);
 
   // Get current student data to set default city and year
   const { data: studentData } = useQuery({
@@ -115,6 +124,8 @@ export default function LeaderboardClient() {
           lCity={lCity}
           lYear={lYear}
           lastUpdated={data?.last_calculated}
+          syncSchedule={syncSchedule}
+          onResetPodium={podiumDirty ? handleResetPodium : undefined}
           lSearch={lSearch}
           setLSearch={setLSearch}
           setLCity={setLCity}
@@ -140,6 +151,7 @@ export default function LeaderboardClient() {
         {/* Mobile Podium - Vertical Layout */}
         <div className="md:hidden">
           <MobilePodiumSection
+            key={podiumKey}
             top3={data?.top10?.slice(0, 3) || []}
             loading={combinedLoading}
             error={error?.message}
@@ -150,10 +162,12 @@ export default function LeaderboardClient() {
         {/* Desktop Podium - Horizontal Layout */}
         <div className="hidden md:block">
           <PodiumSection
+            key={podiumKey}
             top3={data?.top10?.slice(0, 3) || []}
             loading={combinedLoading}
             error={error?.message}
             selectedCity={lCity === 'All Cities' ? 'all' : lCity}
+            onCardDragged={() => setPodiumDirty(true)}
           />
         </div>
         <div className="flex flex-col space-y-6">

@@ -77,6 +77,7 @@ export interface PodiumSectionProps {
   loading: boolean;
   error?: string;
   selectedCity: string;
+  onCardDragged?: () => void;
 }
 
 export interface YourRankProps {

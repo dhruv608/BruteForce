@@ -65,14 +65,15 @@ export default function StudentLayout({
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary/20 relative ">
       {/* Dot Pattern Background - Only in light theme */}
       {mounted && theme === 'dark' && (
-        <DotPattern 
+        <DotPattern
           baseColor="#64748B"
           glowColor="#CCFF00"
           dotSize={2}
           gap={25}
-          proximity={80}
-          glowIntensity={1.2}
+          proximity={100}
+          glowIntensity={2.5}
           waveSpeed={0.4}
+          scatterStrength={5}
         />
       )}
       

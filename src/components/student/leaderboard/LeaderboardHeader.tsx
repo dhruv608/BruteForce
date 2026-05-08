@@ -7,17 +7,19 @@ import { TimerLeaderboard } from './TimerLeaderboard';
 import { Input } from '@/components/ui/input';
 import { Select } from '@/components/Select';
 import { FilterBarProps } from '@/types/student/index.types';
+import { SyncTime } from '@/app/(student)/leaderboard/page';
 
 interface LeaderboardHeaderProps extends FilterBarProps {
   lCity: string;
   lYear: number | null;
   lastUpdated?: string;
+  syncSchedule?: SyncTime[];
   onResetPodium?: () => void;
 }
 
-export function LeaderboardHeader({ 
-  lCity, lYear, lastUpdated,
-  lSearch, setLSearch, 
+export function LeaderboardHeader({
+  lCity, lYear, lastUpdated, syncSchedule,
+  lSearch, setLSearch,
   setLCity, cityOptionsObj, setLYear,
   yearOptionsObj, allYears,
   mode = 'admin',
@@ -43,7 +45,7 @@ export function LeaderboardHeader({
         </div>
 
         {/* RIGHT */}
-        <TimerLeaderboard lastUpdated={lastUpdated} />
+        <TimerLeaderboard lastUpdated={lastUpdated} syncSchedule={syncSchedule} />
       </div>
 
       
@@ -70,7 +72,7 @@ export function LeaderboardHeader({
           {onResetPodium && (
             <button
               onClick={onResetPodium}
-              className="flex items-center gap-1 px-2 py-1.5 h-8 text-xs sm:text-sm bg-primary/10 hover:bg-primary/20 text-primary rounded-md border border-primary/20"
+              className="flex items-center gap-1 px-2 py-1.5 h-8 text-xs sm:text-sm text-primary rounded-md border border-border"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               Reset
