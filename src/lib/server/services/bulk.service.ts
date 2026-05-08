@@ -1,10 +1,8 @@
 import csv from "csv-parser";
-
 import { Readable } from "stream";
-
 import bcryptjs from "bcryptjs";
-
 import prisma from '@/lib/server/config/prisma';
+import { generateBulkUsername } from '@/lib/server/utils/usernameGenerator';
 
 
 
@@ -80,15 +78,8 @@ export const bulkStudentUploadService = async (
 
 
 
-          // Generate username from email (take only word before first '.') + last 4 digits of enrollment_id
-
-          const namePart = row.email.split("@")[0].split(".")[0];
-
-          const enrollmentLast4 = row.enrollment_id.slice(-4);
-
-          const username = `${namePart}_${enrollmentLast4}`;
-
-
+          // Phase 1: generate unique username with retry loop (up to 10 attempts)
+          const username = await generateBulkUsername(row.name, row.enrollment_id);
 
 
 
@@ -186,10 +177,8 @@ export const publicBulkStudentUploadService = async (
             continue;
           }
 
-          // Generate username from email (take only word before first '.') + last 4 digits of enrollment_id
-          const namePart = row.email.split("@")[0].split(".")[0];
-          const enrollmentLast4 = row.enrollment_id.slice(-4);
-          const username = `${namePart}_${enrollmentLast4}`;
+          // Phase 1: generate unique username with retry loop (up to 10 attempts)
+          const username = await generateBulkUsername(row.name, row.enrollment_id);
 
           studentsData.push({
             name: row.name,

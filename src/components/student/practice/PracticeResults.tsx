@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react';
 
-import { Search } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import { QuestionRow } from '../questions/QuestionRow';
 
@@ -58,13 +58,9 @@ export function PracticeResults({ loading, questions, onRefresh, onBookmarkSucce
     return (
 
       <div className="flex-1 flex flex-col items-center justify-center text-muted-foreground bg-card rounded-2xl border border-border border-dashed p-10">
-
-        <Search className="w-10 h-10 mb-4 opacity-50 text-muted-foreground" />
-
+        <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
         <div className="font-semibold text-foreground mb-1">No questions found</div>
-
         <div className="text-[13px]">Try adjusting your search or filters.</div>
-
       </div>
 
     );

@@ -7,12 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-  Clock,
   X,
   ChevronRight,
   Loader2,
   Calendar,
 } from "lucide-react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import axios from 'axios';
 import { apiClient } from '@/api';
 import { useRecentQuestions } from "@/contexts/RecentQuestionsContext";
@@ -309,11 +309,14 @@ export function RecentQuestionsSidebar() {
                       </Button>
                     </div>
                   ) : questions.length === 0 ? (
-                    <div className="p-10 text-center text-muted-foreground">
-                      <Clock className="w-10 h-10 mx-auto mb-3 opacity-50 text-logo" />
-                      <p className="text-sm">
-                        No recent questions
-                      </p>
+                    <div className="flex flex-col items-center justify-center py-10 text-muted-foreground">
+                      <DotLottieReact
+                        src="/Empty.json"
+                        loop
+                        autoplay
+                        className="w-48 h-48"
+                      />
+                      <p className="text-sm mt-2">No recent questions</p>
                     </div>
                   ) : (
                     <div className="space-y-4">

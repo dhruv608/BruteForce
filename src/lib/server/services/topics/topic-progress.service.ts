@@ -38,9 +38,9 @@ export const getTopicsWithBatchProgressService = async ({
   const noClassTierLogic = 'CASE WHEN COUNT(DISTINCT c.id) = 0 THEN 1 ELSE 0 END ASC';
 
   // Build ORDER BY clause safely
-  let orderByClause = `ORDER BY ${noClassTierLogic}, last_class_created_at DESC NULLS LAST`;
+  let orderByClause = `ORDER BY ${noClassTierLogic}, last_class_created_at DESC NULLS LAST, t.created_at DESC`;
   if (sortBy === 'oldest') {
-    orderByClause = `ORDER BY ${noClassTierLogic}, last_class_created_at ASC NULLS LAST`;
+    orderByClause = `ORDER BY ${noClassTierLogic}, last_class_created_at ASC NULLS LAST, t.created_at ASC`;
   } else if (sortBy === 'classes') {
     orderByClause = `ORDER BY ${noClassTierLogic}, class_count DESC NULLS LAST, t.created_at DESC`;
   } else if (sortBy === 'questions') {

@@ -33,7 +33,7 @@ export function YourRank({ yourRank }: YourRankProps) {
           dragElastic={0.2}
           dragMomentum={false}
           className="pointer-events-auto absolute"
-          initial={{ x: 80, y: 160 }}
+          initial={{ x: 80, y: 220 }}
         >
           <Popover>
             <PopoverTrigger asChild>
@@ -124,7 +124,7 @@ export function YourRank({ yourRank }: YourRankProps) {
         dragElastic={0.2}
         dragMomentum={false}
         className="pointer-events-auto absolute"
-        initial={{ x:280, y: 220 }}
+        initial={{ x:80, y: 220 }}
       >
         <Popover>
           <PopoverTrigger asChild>

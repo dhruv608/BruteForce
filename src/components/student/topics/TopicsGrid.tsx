@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { TopicCard } from './TopicCard';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 interface Topic {
   slug: string;
@@ -24,8 +25,11 @@ interface TopicsGridProps {
 export function TopicsGrid({ topics, searchQuery, pagination }: TopicsGridProps) {
   if (topics.length === 0) {
     return (
-      <div className="col-span-full py-16 text-center text-muted-foreground bg-card rounded-2xl border-border border-border border-dashed">
-        {searchQuery ? "No topics matched your search." : "No topics assigned to your batch yet."}
+      <div className="col-span-full flex flex-col items-center justify-center py-10 text-muted-foreground bg-card rounded-2xl border border-border border-dashed">
+        <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
+        <p className="text-sm mt-2">
+          {searchQuery ? "No topics matched your search." : "No topics assigned to your batch yet."}
+        </p>
       </div>
     );
   }

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from "next/link";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { FolderEdit, Trash2, Award, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -89,8 +90,11 @@ export default function StudentsTable({
               </>
             ) : students.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={4} className="h-[300px] text-center text-muted-foreground">
-                  No students found
+                <TableCell colSpan={4}>
+                  <div className="flex flex-col items-center justify-center py-6">
+                    <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
+                    <p className="text-muted-foreground text-sm">No students found</p>
+                  </div>
                 </TableCell>
               </TableRow>
             ) : (

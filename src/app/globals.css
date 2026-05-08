@@ -2,6 +2,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+::selection {
+  background-color: #CCFF0040;
+  color: #CCFF00;
+}
+
 :root {
   --background: #090A0F;
   --foreground: #E2E8F0;

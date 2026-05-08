@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Pencil, Trash2, ExternalLink, Code, BookOpen, HelpCircle } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { LeetCodeIcon, GeeksforGeeksIcon } from '@/components/platform/PlatformIcons';
 import { Button } from '@/components/ui/button';
 import {
@@ -137,8 +138,11 @@ export default function QuestionsTable({
               ) : questions.length === 0 ? (
                 /* EMPTY STATE */
                 <TableRow>
-                  <TableCell colSpan={6} className="py-24 text-center text-muted-foreground">
-                    No questions found
+                  <TableCell colSpan={6}>
+                    <div className="flex flex-col items-center justify-center py-6">
+                      <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
+                      <p className="text-muted-foreground text-sm">No questions found</p>
+                    </div>
                   </TableCell>
                 </TableRow>
               ) : (

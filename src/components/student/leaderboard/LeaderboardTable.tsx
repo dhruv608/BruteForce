@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import { Trophy } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Pagination } from '@/components/Pagination';
 import TableShimmer from '@/components/leaderboard/shimmers/TableShimmer';
@@ -53,9 +53,9 @@ export function LeaderboardTable({
               ) : leaderboard.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={6} className="h-[300px] text-center text-muted-foreground">
-                    <div className="flex flex-col items-center justify-center opacity-70">
-                      <Trophy className="w-12 h-12 mb-4 text-primary/60" />
-                      <p>No students found for the current filters.</p>
+                    <div className="flex flex-col items-center justify-center">
+                      <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
+                      <p className="text-muted-foreground">No students found for the current filters.</p>
                     </div>
                   </TableCell>
                 </TableRow>

@@ -2,6 +2,49 @@
 import { UsernameGenerationOptions, GeneratedUsername } from '@/lib/server/types/utility.types';
 
 /**
+ * Generates a unique bulk username.
+ * Format: {firstname}{fullsurname if exists}_{last4enroll}{2random}
+ *
+ * Collision retry (up to 10 attempts):
+ *   Attempt 0 : last 4 enroll + 2 random  → aryankhan_003282
+ *   Attempt 1 : last 6 enroll + 2 random  → aryankhan_01003282
+ *   Attempt 2+: last 6 enroll + (attempt×2) random → aryankhan_010032824791...
+ */
+export async function generateBulkUsername(
+  name: string,
+  enrollmentId: string
+): Promise<string> {
+  const parts = name.trim().toLowerCase().split(/\s+/);
+  const firstName = parts[0].replace(/[^a-z]/g, '');
+  const lastName  = (parts[1] || '').replace(/[^a-z]/g, '');
+  const namePart  = lastName ? `${firstName}${lastName}` : firstName;
+
+  const cleanEnroll = enrollmentId.replace(/[^a-zA-Z0-9]/g, '');
+
+  const rand = (digits: number): string => {
+    const min = Math.pow(10, digits - 1);
+    const max = Math.pow(10, digits) - 1;
+    return String(Math.floor(Math.random() * (max - min + 1) + min));
+  };
+
+  for (let attempt = 0; attempt <= 10; attempt++) {
+    const enrollPart  = attempt === 0 ? cleanEnroll.slice(-4) : cleanEnroll.slice(-6);
+    const randomDigits = attempt <= 1 ? 2 : attempt * 2;
+    const username    = `${namePart}_${enrollPart}${rand(randomDigits)}`;
+
+    const exists = await prisma.student.findFirst({
+      where: { username },
+      select: { username: true },
+    });
+
+    if (!exists) return username;
+  }
+
+  // Absolute fallback — virtually unreachable
+  return `${namePart}_${cleanEnroll}${Date.now()}`;
+}
+
+/**
  * Generates a username from student's name and enrollment ID
  * Format: first3_lastname_enrollmentId
  * Example: "Ayush Chaurasiya" + "375" → "ayu_cha_375"

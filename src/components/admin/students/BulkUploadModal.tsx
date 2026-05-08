@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { Upload, FileText, AlertCircle, CheckCircle2, Info, Download } from 'lucide-react';
+import { Upload, FileText, AlertCircle, CheckCircle2, Info, Download, KeyRound } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from "@/components/ui/label";
@@ -328,6 +328,11 @@ export default function BulkUploadModal({
             <DialogDescription className="text-xs text-muted-foreground">
               Upload multiple students via CSV file
             </DialogDescription>
+            <div className="flex items-center gap-1.5 mt-1 text-[11px] text-muted-foreground">
+              <KeyRound className="w-3 h-3 text-primary shrink-0" />
+              Default password for all students:
+              <span className="font-mono font-semibold text-primary">bruteforce@123</span>
+            </div>
           </DialogHeader>
 
           {/* BODY */}
