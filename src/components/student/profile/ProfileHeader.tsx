@@ -36,18 +36,18 @@ export function ProfileHeader({
 
                     {/* PROFILE IMAGE */}
                     <div className="relative">
-                        <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-35 lg:h-35 overflow-hidden border-2 glass hover-glow transition-all duration-200 hover:scale-105 rounded-full border-[var(--border)]">
+                        <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 shrink-0 overflow-hidden border-2 glass hover-glow transition-all duration-200 hover:scale-105 rounded-full border-[var(--border)]">
                             {student.profileImageUrl ? (
                                 <Image
                                     src={student.profileImageUrl}
                                     alt={student.name}
-                                    width={140}
-                                    height={140}
+                                    width={144}
+                                    height={144}
                                     quality={85}
                                     className="w-full h-full object-cover"
                                 />
                             ) : (
-                                <ProfileAvatar username={student.name} size={140} />
+                                <ProfileAvatar username={student.name} size={null} className="text-3xl sm:text-4xl lg:text-5xl" />
                             )}
                         </div>
                     </div>
