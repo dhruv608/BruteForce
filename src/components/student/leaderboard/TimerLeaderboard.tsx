@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Clock, RefreshCw } from "lucide-react";
-import { SyncTime } from "@/app/(student)/leaderboard/page";
+import { SyncTime } from "@/lib/utils/cronUtils";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface TimerLeaderboardProps {
@@ -94,12 +94,15 @@ export const TimerLeaderboard: React.FC<TimerLeaderboardProps> = ({
       </div>
 
       {/* Next sync countdown */}
-      {syncSchedule.length > 0 && countdown && (
+      {syncSchedule.length > 0 && (
         <div className="relative group/nextsync">
           <div className="flex items-center gap-1 text-muted-foreground bg-muted/30 px-2 py-1 sm:px-3 sm:py-1.5 border border-border rounded-full shadow-sm cursor-default select-none">
             <RefreshCw className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
             <span className="hidden sm:inline">Next:</span>
-            <span className="font-bold text-primary">{countdown}</span>
+            {lastUpdated
+              ? <span className="font-bold text-primary">{countdown}</span>
+              : <Skeleton className="h-3 w-12 sm:w-14 rounded-full" />
+            }
           </div>
 
           {/* Tooltip */}

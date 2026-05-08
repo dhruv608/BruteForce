@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef } from "react";
-import { MapPin, GraduationCap } from "lucide-react";
-import { motion } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import { MapPin, GraduationCap, MousePointerClick } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Popover,
   PopoverContent,
@@ -13,6 +13,7 @@ import { YourRankProps } from '@/types/student/index.types';
 
 export function YourRank({ yourRank }: YourRankProps) {
   const constraintsRef = useRef(null);
+  const [showHint, setShowHint] = useState(true);
 
   if (!yourRank) return null;
 
@@ -32,13 +33,33 @@ export function YourRank({ yourRank }: YourRankProps) {
           dragElastic={0.2}
           dragMomentum={false}
           className="pointer-events-auto absolute"
-          initial={{ x: 20, y: 120 }}
+          initial={{ x: 80, y: 160 }}
         >
           <Popover>
             <PopoverTrigger asChild>
-              <button className="px-3 py-1.5 rounded-lg  bg-primary text-black text-sm font-semibold shadow hover:scale-105 transition">
-                Rank #{yourRank.rank}
-              </button>
+              <div className="relative">
+                <AnimatePresence>
+                  {showHint && (
+                    <motion.div
+                      key="hint"
+                      initial={{ opacity: 0, scale: 0.75, y: 6 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.75, y: 6 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 pointer-events-none whitespace-nowrap"
+                    >
+                      <div className="relative bg-background border border-border rounded-2xl px-6 py-3 text-sm font-semibold text-primary shadow-md select-none flex items-center gap-2">
+                        <MousePointerClick className="w-4 h-4" />
+                        Click me
+                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-[6px] w-3 h-3 rotate-45 bg-background border-b border-r border-border" />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                <button onClick={() => setShowHint(false)} className="px-3 py-1.5 rounded-lg bg-primary text-black text-sm font-semibold shadow hover:scale-105 transition">
+                  Rank #{yourRank.rank}
+                </button>
+              </div>
             </PopoverTrigger>
 
             <PopoverContent
@@ -103,13 +124,33 @@ export function YourRank({ yourRank }: YourRankProps) {
         dragElastic={0.2}
         dragMomentum={false}
         className="pointer-events-auto absolute"
-        initial={{ x: 20, y: 120 }}
+        initial={{ x:280, y: 220 }}
       >
-        <Popover >
+        <Popover>
           <PopoverTrigger asChild>
-            <button className="px-3 py-1.5 rounded-lg  bg-primary text-black text-sm font-semibold shadow hover:scale-105 transition">
-            Your Rank #{yourRank.rank}
-            </button>
+            <div className="relative">
+              <AnimatePresence>
+                {showHint && (
+                  <motion.div
+                    key="hint"
+                    initial={{ opacity: 0, scale: 0.75, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.75, y: 6 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 pointer-events-none whitespace-nowrap"
+                  >
+                    <div className="relative bg-background glass group backdrop-blur-2xl border border-border rounded-2xl px-3 py-2 text-xs font-bold text-primary shadow-md select-none flex items-center gap-2">
+                      <MousePointerClick className="w-4 h-4" />
+                      Click me
+                      <div className="absolute right-1/5 -translate-x-1/2 -bottom-[6px]  glass group backdrop-blur-2xl  w-3 h-3 rotate-45 bg-background border-b border-r border-border" />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <button onClick={() => setShowHint(false)} className="px-5 py-3 rounded-lg bg-primary text-black text-lg font-semibold shadow hover:scale-105 transition">
+                Your Rank #{yourRank.rank} 
+              </button>
+            </div>
           </PopoverTrigger>
 
           <PopoverContent

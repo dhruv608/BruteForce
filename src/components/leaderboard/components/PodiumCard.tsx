@@ -14,7 +14,7 @@ interface PodiumCardProps {
 }
 
 export const PodiumCard = ({ student, rank, isCenter }: PodiumCardProps) => {
-    if (!student) return null;
+    if (!student || rank > 3) return null;
 
     // 🎨 Color logic (ONLY using your theme vars)
     const ringColor =
@@ -61,17 +61,11 @@ export const PodiumCard = ({ student, rank, isCenter }: PodiumCardProps) => {
 
     return (
         <motion.div
-            drag
-            dragElastic={0.4}
-            dragMomentum={false}
-            whileDrag={{ scale: 1.08, rotate: isCenter ? 3 : -3 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            animate={{ x: 0, y: 0 }}
+            whileHover={{ scale: 1.03 }}
             transition={{ type: "spring", stiffness: 250, damping: 18 }}
             className={`
-        relative backdrop-blur-sm cursor-grab active:cursor-grabbing
-        ${isCenter ? "scale-110 z-20" : "scale-95 opacity-80 z-20"}
+        relative backdrop-blur-sm cursor-default
+        ${isCenter ? "scale-110 z-30" : rank === 2 ? "scale-95 opacity-80 z-20" : "scale-95 opacity-80 z-10"}
       `}
         >
 

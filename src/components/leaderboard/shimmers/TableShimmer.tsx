@@ -1,9 +1,8 @@
 import React from 'react';
-import { Flame } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-export default function TableShimmer() {
+export default function TableShimmer({ rows = 10 }: { rows?: number }) {
   return (
     <div className="flex-1 px-3 glass mb-5 backdrop-blur-2xl rounded-2xl overflow-auto">
       <Table className="border-separate border-spacing-0">
@@ -18,7 +17,7 @@ export default function TableShimmer() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Array.from({ length: 10 }).map((_, i) => (
+          {Array.from({ length: rows }).map((_, i) => (
             <TableRow
               key={i}
               className="cursor-default animate-in fade-in slide-in-from-bottom-2 [&>td:first-child]:rounded-l-2xl [&>td:last-child]:rounded-r-2xl"
@@ -55,9 +54,7 @@ export default function TableShimmer() {
               {/* Max Streak */}
               <TableCell className="text-center">
                 <div className="flex justify-center">
-                  <div className="px-2.5 py-1 rounded-full bg-muted/40 w-12 h-6 flex items-center justify-center">
-                    <Flame className="w-3.5 h-3.5 text-muted-foreground/50" />
-                  </div>
+                  <Skeleton className="h-6 w-12 rounded-full mx-auto" />
                 </div>
               </TableCell>
 

@@ -6,10 +6,11 @@
  */
 export const CACHE_TTL = {
   
-  // HIGH FREQUENCY CHANGES (5 minutes)
-  // Data that changes frequently - rankings, stats
-  studentLeaderboard: 300,      // 5 minutes - API: /api/students/leaderboard (Student side)
-  adminLeaderboard: 300,        // 5 minutes - API: /api/admin/leaderboard (Admin side)
+  // LEADERBOARD — syncs 3×/day (9 AM, 6 PM, 11 PM IST)
+  // Cache is explicitly busted after each sync, so TTL is just a safety net.
+  // 8h > longest gap between syncs (11 PM → 9 AM = 10h, covered by next sync bust).
+  studentLeaderboard: 14400,    // 4 hours - API: /api/students/leaderboard
+  adminLeaderboard: 14400,      // 4 hours - API: /api/admin/leaderboard
   adminStats: 300,              // 5 minutes - API: /api/admin/stats (Admin side)
   
   // MEDIUM FREQUENCY CHANGES (10 minutes)

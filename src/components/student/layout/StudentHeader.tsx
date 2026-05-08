@@ -188,7 +188,7 @@ export default function StudentHeader() {
           {/* Center Navigation - Desktop Only */}
           <nav
             className="
-    hidden md:flex items-center gap-1 px-3 py-2 rounded-2xl 
+    hidden md:flex items-center gap-1 px-3 py-2 rounded-full 
       backdrop-blur-md
     border border-border
     transition-all duration-200
@@ -207,7 +207,7 @@ export default function StudentHeader() {
                   href={link.path}
                   className={`
           relative flex items-center gap-2
-          px-3 py-1.5 rounded-full text-sm font-medium
+          px-3 py-1.5 rounded-2xl text-sm font-medium
           transition-all duration-200 ease-in-out
           ${isActive
                       ? `

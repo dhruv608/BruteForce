@@ -25,7 +25,7 @@ export function LeaderboardTable({
     <>
       {loading ? (
         <div className="w-full flex-1 p-0">
-          <TableShimmer />
+          <TableShimmer rows={7} />
         </div>
       ) : (
         <div className=" flex-1 px-3 glass mb-5 backdrop-blur-2xl rounded-2xl overflow-auto">
@@ -54,7 +54,7 @@ export function LeaderboardTable({
                 <TableRow>
                   <TableCell colSpan={6} className="h-[300px] text-center text-muted-foreground">
                     <div className="flex flex-col items-center justify-center opacity-70">
-                      <Trophy className="w-12 h-12 mb-4 text-muted-foreground/50" />
+                      <Trophy className="w-12 h-12 mb-4 text-primary/60" />
                       <p>No students found for the current filters.</p>
                     </div>
                   </TableCell>

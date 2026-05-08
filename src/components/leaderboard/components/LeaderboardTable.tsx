@@ -26,7 +26,7 @@ export function LeaderboardTable({
   mode = 'admin'
 }: LeaderboardTableProps) {
   const leaderboard = data?.leaderboard || [];
-  const totalRecords = data?.total_students || 0;
+  const totalRecords = data?.total || data?.total_students || 0;
   const errorMsg = error;
   
   // Determine rank column name based on city selection
@@ -66,7 +66,7 @@ export function LeaderboardTable({
                 <TableRow>
                   <TableCell colSpan={6} className="h-[300px] text-center text-muted-foreground">
                     <div className="flex flex-col items-center justify-center opacity-70">
-                      <Trophy className="w-12 h-12 mb-4 text-muted-foreground/50" />
+                      <Trophy className="w-12 h-12 mb-4 text-primary/60" />
                       <p>No students found for the current filters.</p>
                     </div>
                   </TableCell>

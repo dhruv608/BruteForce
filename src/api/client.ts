@@ -155,11 +155,14 @@ apiClient.interceptors.response.use(
         // Use raw `axios` (not apiClient) to avoid recursive 401-handling.
         // Because we bypass apiClient, the auto-unwrap interceptor does NOT run —
         // the response shape is the full envelope: { success, data: { accessToken } }.
-        const res = await axios.post(
-          `/api/auth/refresh-token`,
-          {},
-          { withCredentials: true }
-        );
+        let res;
+        try {
+          res = await axios.post(`/api/auth/refresh-token`, {}, { withCredentials: true });
+        } catch {
+          // One retry on network error — a single hiccup shouldn't log the admin out
+          await new Promise(r => setTimeout(r, 800));
+          res = await axios.post(`/api/auth/refresh-token`, {}, { withCredentials: true });
+        }
 
         const accessToken: string | undefined =
           res.data?.data?.accessToken ?? res.data?.accessToken;
@@ -178,8 +181,12 @@ apiClient.interceptors.response.use(
         throw new Error('Refresh response did not include accessToken');
       } catch (refreshError) {
         processQueue(refreshError, null);
-        // Refresh failed → Logout
-        executeLogout();
+        // Only logout if the refresh token is genuinely invalid (401/403),
+        // not on transient network failures
+        const refreshStatus = (refreshError as AxiosError)?.response?.status;
+        if (!refreshStatus || refreshStatus === 401 || refreshStatus === 403) {
+          executeLogout();
+        }
         return Promise.reject(handleErrorSilent(refreshError));
       } finally {
         isRefreshing = false;

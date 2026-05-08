@@ -68,8 +68,10 @@ export async function getStudentLeaderboard(
     // 1. Try cache first
     const cached = await safeGet(cacheKey);
     if (cached) {
+      console.log(`[REDIS] Cache hit — ${cacheKey}`);
       return JSON.parse(cached);
     }
+    console.log(`[REDIS] Cache miss — ${cacheKey}`);
     
     
     // Look up city ID from city name when a specific city is selected

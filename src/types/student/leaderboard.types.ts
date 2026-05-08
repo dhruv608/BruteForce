@@ -112,8 +112,3 @@ export interface LeaderboardHeaderProps {
   lYear: number | null;
   lastUpdated?: string;
 }
-
-export interface TimerLeaderboardProps {
-  lastUpdated?: string;
-  onRefresh?: () => void;
-}

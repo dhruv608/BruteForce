@@ -7,7 +7,7 @@ import { TimerLeaderboard } from './TimerLeaderboard';
 import { Input } from '@/components/ui/input';
 import { Select } from '@/components/Select';
 import { FilterBarProps } from '@/types/student/index.types';
-import { SyncTime } from '@/app/(student)/leaderboard/page';
+import { SyncTime } from '@/lib/utils/cronUtils';
 
 interface LeaderboardHeaderProps extends FilterBarProps {
   lCity: string;

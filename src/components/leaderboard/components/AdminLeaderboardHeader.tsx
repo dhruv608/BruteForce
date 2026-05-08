@@ -3,7 +3,8 @@
 import React from 'react';
 import { Search, MapPin, CalendarDays, RefreshCw } from 'lucide-react';
 import { EvaluationModal } from '@/components/student/leaderboard/EvaluationModal';
-import { TimerLeaderboard } from './TimerLeaderboard';
+import { TimerLeaderboard } from '@/components/student/leaderboard/TimerLeaderboard';
+import { SyncTime } from '@/lib/utils/cronUtils';
 import { Input } from '@/components/ui/input';
 import { Select } from '@/components/Select';
 
@@ -28,12 +29,14 @@ interface FilterBarProps {
 
 interface AdminLeaderboardHeaderProps extends FilterBarProps {
   lastCalculated?: string | null;
+  syncSchedule?: SyncTime[];
   onRefresh: () => Promise<void>;
   onResetPodium?: () => void;
 }
 
-export function AdminLeaderboardHeader({ 
-  lastCalculated, 
+export function AdminLeaderboardHeader({
+  lastCalculated,
+  syncSchedule,
   onRefresh,
   lSearch, setLSearch, 
   lCity, setLCity, cityOptionsObj, setLYear,
@@ -62,8 +65,7 @@ export function AdminLeaderboardHeader({
         {/* RIGHT */}
         <TimerLeaderboard
           lastUpdated={lastCalculated ?? undefined}
-          refreshInterval={4}
-          onRefresh={onRefresh}
+          syncSchedule={syncSchedule}
         />
       </div>
 

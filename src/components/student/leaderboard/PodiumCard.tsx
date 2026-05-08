@@ -10,7 +10,7 @@ import { PodiumCardProps } from '@/types/student/index.types';
 
 export const PodiumCard = ({ student, rank, isCenter, onDragStart }: PodiumCardProps & { onDragStart?: () => void }) => {
     const router = useRouter();
-    if (!student) return null;
+    if (!student || rank > 3) return null;
 
     // 🎨 Color logic (ONLY using your theme vars)
     const ringColor =

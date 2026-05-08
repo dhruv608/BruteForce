@@ -28,7 +28,8 @@ export interface LeaderboardEntry {
 
 export interface LeaderboardData {
   leaderboard: LeaderboardEntry[];
-  total_students: number;
+  total: number;
+  total_students?: number;
   last_calculated: string;
   available_cities: Array<{
     city_name: string;
@@ -69,12 +70,6 @@ export interface LeaderboardTableProps {
 
 export interface EvaluationModalProps {
   // No props needed - standalone modal
-}
-
-export interface TimerLeaderboardProps {
-  lastUpdated: string | undefined;
-  refreshInterval: number;
-  onRefresh: () => void;
 }
 
 export interface LeaderboardQueryFilters {

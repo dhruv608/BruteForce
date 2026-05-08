@@ -19,7 +19,7 @@ export const LeaderboardTableRow: React.FC<LeaderboardTableRowProps> = ({ entry,
   const rankValue = isGlobalView ? (entry.global_rank || 0) : (entry.city_rank || 0);
 
   return (
-    <TableRow className={`backdrop-blur-sm scrollbar-none hover:bg-muted/40 transition-all duration-200 hover:scale-[1.002] cursor-default  bg-primary/2 hover:bg-primary/12 rounded-2xl`}>
+    <TableRow className="scrollbar-none transition-all duration-200 cursor-default [&>td:first-child]:rounded-l-2xl [&>td:last-child]:rounded-r-2xl">
 
 
       <TableCell>

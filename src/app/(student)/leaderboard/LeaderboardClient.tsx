@@ -4,9 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { studentLeaderboardService } from "@/services/student/leaderboard.service";
 import { studentAuthService } from "@/services/student/auth.service";
-import { EvaluationModal } from "@/components/student/leaderboard/EvaluationModal";
 import { LeaderboardTable } from "@/components/student/leaderboard/LeaderboardTable";
-import { TimerLeaderboard } from "@/components/student/leaderboard/TimerLeaderboard";
 import { YourRank } from "@/components/student/leaderboard/YourRank";
 import { isStudentToken, clearAuthTokens } from "@/lib/auth-utils";
 import PodiumSection from "@/components/student/leaderboard/PodiumSection";
@@ -15,7 +13,7 @@ import { LeaderboardHeader } from "@/components/student/leaderboard/LeaderboardH
 import { LeaderboardCity, LeaderboardData } from '@/types/student/index.types';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 
-import { SyncTime } from './page';
+import { SyncTime } from '@/lib/utils/cronUtils';
 
 export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?: SyncTime[] }) {
   const [lCity, setLCity] = useState<LeaderboardCity['city_name']>('All Cities');
@@ -25,6 +23,11 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
   const [isInitialLoading, setIsInitialLoading] = useState(true);
   const [podiumDirty, setPodiumDirty] = useState(false);
   const [podiumKey, setPodiumKey] = useState(0);
+  const [podiumData, setPodiumData] = useState<any[] | null>(null);
+  const [lastCalculated, setLastCalculated] = useState<string | undefined>(undefined);
+
+  // Reset podium when city or year changes so it re-locks from new filter's top 3
+  useEffect(() => { setPodiumData(null); }, [lCity, lYear]);
 
   const handleResetPodium = useCallback(() => {
     setPodiumDirty(false);
@@ -108,11 +111,20 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
     }
   }, [lCity, yearOptions, lYear]);
 
+  // Lock podium from first successful no-search result per city+year
+  useEffect(() => {
+    if (!debouncedSearch && leaderboardData?.top10?.length) {
+      setPodiumData(prev => prev ?? leaderboardData.top10.slice(0, 3));
+    }
+  }, [leaderboardData?.top10, debouncedSearch]);
+
+  // Persist last_calculated — never goes back to undefined on re-fetch
+  useEffect(() => {
+    if (leaderboardData?.last_calculated) setLastCalculated(leaderboardData.last_calculated);
+  }, [leaderboardData?.last_calculated]);
+
   const data = leaderboardData;
   const combinedLoading = isLoading || isInitialLoading;
-  const handleRefresh = useCallback(() => {
-    refetch();
-  }, [refetch]);
 
   return (
     <>
@@ -123,7 +135,7 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
         <LeaderboardHeader
           lCity={lCity}
           lYear={lYear}
-          lastUpdated={data?.last_calculated}
+          lastUpdated={lastCalculated}
           syncSchedule={syncSchedule}
           onResetPodium={podiumDirty ? handleResetPodium : undefined}
           lSearch={lSearch}
@@ -148,23 +160,23 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
           allYears={isLoading ? [] : yearOptions}
           isLoading={combinedLoading}
         />
-        {/* Mobile Podium - Vertical Layout */}
+        {/* Mobile Podium - fixed, never re-shimmers on search/filter changes */}
         <div className="md:hidden">
           <MobilePodiumSection
             key={podiumKey}
-            top3={data?.top10?.slice(0, 3) || []}
-            loading={combinedLoading}
+            top3={podiumData || []}
+            loading={!podiumData}
             error={error?.message}
             selectedCity={lCity === 'All Cities' ? 'all' : lCity}
           />
         </div>
 
-        {/* Desktop Podium - Horizontal Layout */}
+        {/* Desktop Podium - fixed, never re-shimmers on search/filter changes */}
         <div className="hidden md:block">
           <PodiumSection
             key={podiumKey}
-            top3={data?.top10?.slice(0, 3) || []}
-            loading={combinedLoading}
+            top3={podiumData || []}
+            loading={!podiumData}
             error={error?.message}
             selectedCity={lCity === 'All Cities' ? 'all' : lCity}
             onCardDragged={() => setPodiumDirty(true)}
@@ -173,7 +185,14 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
         <div className="flex flex-col space-y-6">
 
           <LeaderboardTable
-            data={{ leaderboard: data?.top10 || [], total: data?.top10?.length || 0 }}
+            data={{
+              leaderboard: debouncedSearch
+                ? (data?.top10 || [])
+                : (data?.top10?.slice(3) || []),
+              total: debouncedSearch
+                ? (data?.top10?.length || 0)
+                : Math.max(0, (data?.top10?.length || 0) - 3)
+            }}
             loading={combinedLoading}
             error={error?.message}
             selectedCity={lCity === 'All Cities' ? 'all' : lCity}

@@ -3,7 +3,6 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { studentPracticeService } from '@/services/student/practice.service';
 import { PracticeFilters } from '@/types/student/index.types';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { Pagination } from '@/components/Pagination';
 import { PracticeResults } from '@/components/student/practice/PracticeResults';
 import { PracticeFilters as PracticeFiltersComponent } from '@/components/student/practice/PracticeFilters';
@@ -12,19 +11,15 @@ import { PracticeQuestion, PracticeFilterOptions } from '@/types/student/index.t
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 
 export default function PracticePage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  // Initialize filters from URL
   const [filters, setFilters] = useState<PracticeFilters>({
-    search: searchParams.get('search') || '',
-    topic: searchParams.get('topic') || '',
-    level: searchParams.get('level') || '',
-    platform: searchParams.get('platform') || '',
-    type: searchParams.get('type') || '',
-    solved: searchParams.get('solved') || '',
-    sort: searchParams.get('sort') || 'recent',
-    page: Number(searchParams.get('page')) || 1,
+    search: '',
+    topic: '',
+    level: '',
+    platform: '',
+    type: '',
+    solved: '',
+    sort: 'recent',
+    page: 1,
     limit: 10
   });
 
@@ -100,13 +95,6 @@ export default function PracticePage() {
           types: data.filters.types || []
         });
       }
-
-      // Update URL safely
-      const params = new URLSearchParams();
-      Object.entries(debouncedFilters).forEach(([key, val]) => {
-        if (val) params.set(key, String(val));
-      });
-      router.replace(`?${params.toString()}`, { scroll: false });
 
     } catch (e) {
       // Error is handled by API client interceptor
