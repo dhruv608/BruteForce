@@ -10,6 +10,7 @@ export type Question = {
     topic_name: string;
     slug: string;
   };
+  isAssignedToClass?: boolean;
   created_at?: string;
   updated_at?: string;
 };
@@ -33,6 +34,10 @@ export interface QuestionFilters {
   level?: string;
   platform?: string;
   type?: string;
+  assignmentStatus?: 'all' | 'assigned' | 'unassigned';
+  assignmentBatchSlug?: string;
+  assignmentTopicSlug?: string;
+  assignmentClassSlug?: string;
 }
 
 // New type for assigned questions with visibility info

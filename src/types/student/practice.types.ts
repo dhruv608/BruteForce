@@ -25,6 +25,7 @@ export interface PracticeFilters {
   platform?: string;
   type?: string;
   solved?: string;
+  sort?: string;
   page?: number;
   limit?: number;
 }

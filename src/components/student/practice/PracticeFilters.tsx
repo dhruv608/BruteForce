@@ -138,9 +138,23 @@ export function PracticeFilters({
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent className="z-[9999]">
-              <SelectItem value="ALL">All</SelectItem>
+              <SelectItem value="ALL">All Status</SelectItem>
               <SelectItem value="true">Solved</SelectItem>
               <SelectItem value="false">Unsolved</SelectItem>
+            </SelectContent>
+          </Select>
+
+          {/* SORT */}
+          <Select
+            value={filters.sort || "recent"}
+            onValueChange={(val) => handleFilterChange("sort", val)}
+          >
+            <SelectTrigger className="h-11 w-full sm:w-auto px-4 bg-transparent text-sm rounded-2xl border border-border/50">
+              <SelectValue placeholder="Sort By" />
+            </SelectTrigger>
+            <SelectContent className="z-[9999]">
+              <SelectItem value="recent">Recent</SelectItem>
+              <SelectItem value="oldest">Oldest</SelectItem>
             </SelectContent>
           </Select>
 

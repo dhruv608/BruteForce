@@ -16,6 +16,7 @@ interface GetAllQuestionsWithFiltersInput {
     platform?: string;
     type?: string;
     solved?: string;
+    sort?: string;
     page: number;
     limit: number;
   };
@@ -202,9 +203,12 @@ export const getAllQuestionsWithFiltersService = async ({
   // Count query params: filter params + 2 studentIds (no limit/offset)
   const countParams = [...params, studentId, studentId];
   
-  // Main data query with single JOIN
+  // Sorting direction
+  const sortDirection = filters.sort === 'oldest' ? 'ASC' : 'DESC';
+
+  // Main data query using GROUP BY instead of DISTINCT to allow ORDER BY MAX(assigned_at)
   const dataQuery = `
-    SELECT DISTINCT 
+    SELECT 
       q.id,
       q.question_name,
       q.question_link,
@@ -217,7 +221,8 @@ export const getAllQuestionsWithFiltersService = async ({
       t.slug,
       CASE WHEN sp.question_id IS NOT NULL THEN true ELSE false END as "isSolved",
       CASE WHEN b.question_id IS NOT NULL THEN true ELSE false END as "isBookmarked",
-      sp.sync_at
+      sp.sync_at,
+      MAX(qv.assigned_at) as latest_assigned_at
     FROM "QuestionVisibility" qv
     JOIN "Class" c ON qv.class_id = c.id
     JOIN "Question" q ON qv.question_id = q.id
@@ -225,7 +230,11 @@ export const getAllQuestionsWithFiltersService = async ({
     LEFT JOIN "StudentProgress" sp ON q.id = sp.question_id AND sp.student_id = $${studentIdParamIndex}
     LEFT JOIN "Bookmark" b ON q.id = b.question_id AND b.student_id = $${bookmarkIdParamIndex}
     WHERE ${whereClause}
-    ORDER BY q.created_at DESC
+    GROUP BY 
+      q.id, q.question_name, q.question_link, q.level, q.platform, 
+      qv.type, q.created_at, t.id, t.topic_name, t.slug, 
+      sp.question_id, b.question_id, sp.sync_at
+    ORDER BY MAX(qv.assigned_at) ${sortDirection}
     LIMIT $${limitParamIndex} OFFSET $${offsetParamIndex}
   `;
   

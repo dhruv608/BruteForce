@@ -33,18 +33,22 @@ export const getTopicsWithBatchProgressService = async ({
   }
   
 
+  // Base tiering logic: 0 classes at bottom (2), 0 questions next (1), others top (0)
+  const tierLogic = 'CASE WHEN COUNT(DISTINCT c.id) = 0 THEN 2 WHEN COUNT(DISTINCT q.id) = 0 THEN 1 ELSE 0 END ASC';
+  const noClassTierLogic = 'CASE WHEN COUNT(DISTINCT c.id) = 0 THEN 1 ELSE 0 END ASC';
+
   // Build ORDER BY clause safely
-  let orderByClause = 'ORDER BY last_class_created_at DESC NULLS LAST';
+  let orderByClause = `ORDER BY ${noClassTierLogic}, last_class_created_at DESC NULLS LAST`;
   if (sortBy === 'oldest') {
-    orderByClause = 'ORDER BY last_class_created_at ASC NULLS LAST';
+    orderByClause = `ORDER BY ${noClassTierLogic}, last_class_created_at ASC NULLS LAST`;
   } else if (sortBy === 'classes') {
-    orderByClause = 'ORDER BY class_count DESC NULLS LAST, t.created_at DESC';
+    orderByClause = `ORDER BY ${noClassTierLogic}, class_count DESC NULLS LAST, t.created_at DESC`;
   } else if (sortBy === 'questions') {
-    orderByClause = 'ORDER BY question_count DESC NULLS LAST, t.created_at DESC';
+    orderByClause = `ORDER BY ${noClassTierLogic}, question_count DESC NULLS LAST, t.created_at DESC`;
   } else if (sortBy === 'strongest') {
-    orderByClause = 'ORDER BY progress_percentage DESC NULLS LAST, t.created_at DESC';
+    orderByClause = `ORDER BY ${tierLogic}, progress_percentage DESC NULLS LAST, question_count DESC NULLS LAST`;
   } else if (sortBy === 'weakest') {
-    orderByClause = 'ORDER BY progress_percentage ASC NULLS LAST, t.created_at DESC';
+    orderByClause = `ORDER BY ${tierLogic}, progress_percentage ASC NULLS LAST, question_count DESC NULLS LAST`;
   }
 
   // Build queries dynamically based on search presence
