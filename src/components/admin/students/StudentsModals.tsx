@@ -85,9 +85,9 @@ export default function StudentsModals({
     <>
       {/* CREATE MODAL */}
       <Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
-        <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[90vh] p-0 overflow-y-auto no-scrollbar rounded-2xl">
+        <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[90vh] p-0 flex flex-col overflow-hidden rounded-2xl gap-0">
           {/* HEADER */}
-          <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50">
+          <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50 shrink-0">
             <DialogTitle className="flex items-center gap-3 text-3xl font-bold">
               Add <span className='text-primary' >Student</span>
             </DialogTitle>
@@ -97,8 +97,8 @@ export default function StudentsModals({
           </DialogHeader>
 
           {/* BODY */}
-          <div className="p-6 space-y-6">
-            <form onSubmit={createForm.handleSubmit(handleCreateSubmit)} className="space-y-5">
+          <div className="flex-1 overflow-y-auto p-6">
+            <form id="create-student-form" onSubmit={createForm.handleSubmit(handleCreateSubmit)} className="space-y-5">
               {/* ERROR */}
               {formError && (
                 <div className="flex items-center gap-2 text-sm px-3 py-2 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400">
@@ -228,35 +228,35 @@ export default function StudentsModals({
                 </div>
               </div>
 
-              {/* FOOTER */}
-              <DialogFooter className="pt-2 flex gap-2">
-                <Button
-                  type="button"
-                  onClick={() => setIsCreateOpen(false)}
-                  disabled={submitting}
-                  className="h-11 text-secondary! bg-secondary-foreground!"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  disabled={submitting || !createForm.formState.isValid}
-                  className="h-11  font-semibold bg-primary text-black hover:opacity-90 transition-all"
-                >
-
-                  {submitting ? "Adding..." : "Add Student"}
-                </Button>
-              </DialogFooter>
             </form>
           </div>
+          {/* FOOTER */}
+          <DialogFooter className="px-6 py-4 bg-background border-t border-border/50 shrink-0 flex gap-2">
+            <Button
+              type="button"
+              onClick={() => setIsCreateOpen(false)}
+              disabled={submitting}
+              className="h-11 text-secondary! bg-secondary-foreground!"
+            >
+              Cancel
+            </Button>
+            <Button
+              form="create-student-form"
+              type="submit"
+              disabled={submitting || !createForm.formState.isValid}
+              className="h-11 font-semibold bg-primary text-black hover:opacity-90 transition-all"
+            >
+              {submitting ? "Adding..." : "Add Student"}
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
 
       {/* EDIT MODAL */}
       <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-        <DialogContent className="sm:max-w-[520px] p-0 overflow-hidden rounded-2xl">
+        <DialogContent className="sm:max-w-[520px] max-h-[90vh] p-0 flex flex-col overflow-hidden rounded-2xl gap-0">
           {/* HEADER */}
-          <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50">
+          <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50 shrink-0">
             <DialogTitle className="flex items-center gap-3 text-lg font-semibold">
               <div className="p-2 rounded bg-primary/10 border border-primary/20">
                 <FolderEdit className="w-4 h-4 text-primary" />
@@ -269,8 +269,8 @@ export default function StudentsModals({
           </DialogHeader>
 
           {/* BODY */}
-          <div className="p-6 space-y-6">
-            <form onSubmit={editForm.handleSubmit(handleEditSubmit)} className="space-y-5">
+          <div className="flex-1 overflow-y-auto p-6">
+            <form id="edit-student-form" onSubmit={editForm.handleSubmit(handleEditSubmit)} className="space-y-5">
               {/* ERROR */}
               {formError && (
                 <div className="flex items-center gap-2 text-sm px-3 py-2 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400">
@@ -380,27 +380,28 @@ export default function StudentsModals({
                 </div>
               </div>
 
-              {/* FOOTER */}
-              <DialogFooter className="pt-2 flex gap-2">
-                <Button
-                  type="button"
-                  variant="ghost"
-                  onClick={() => setIsEditOpen(false)}
-                  disabled={submitting}
-                  className="h-11"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  type="submit"
-                  disabled={submitting || !editForm.formState.isValid}
-                  className="h-11 w-full font-semibold bg-primary text-black hover:opacity-90 transition-all"
-                >
-                  {submitting ? "Saving..." : "Save Changes"}
-                </Button>
-              </DialogFooter>
             </form>
           </div>
+          {/* FOOTER */}
+          <DialogFooter className="px-6 py-4 bg-background border-t border-border/50 shrink-0 flex gap-2">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => setIsEditOpen(false)}
+              disabled={submitting}
+              className="h-11"
+            >
+              Cancel
+            </Button>
+            <Button
+              form="edit-student-form"
+              type="submit"
+              disabled={submitting || !editForm.formState.isValid}
+              className="h-11 w-full font-semibold bg-primary text-black hover:opacity-90 transition-all"
+            >
+              {submitting ? "Saving..." : "Save Changes"}
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
 

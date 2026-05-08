@@ -73,65 +73,65 @@ export function PracticeResults({ loading, questions, onRefresh, onBookmarkSucce
 
 
 
-return (
-  <>
-    <div className="flex flex-col gap-3 min-h-[400px] glass rounded-2xl px-9 py-6 backdrop-blur-sm">
+  return (
+    <>
+      <div className="flex flex-col gap-3 min-h-[400px] glass rounded-2xl p-4 backdrop-blur-sm">
 
-      {questions.length > 0 ? (
-        questions.map((q: PracticeQuestion, idx) => (
-          <div
-            key={q.id}
-            className="animate-in fade-in slide-in-from-bottom-2"
-            style={{
-              animationDelay: `${idx * 25}ms`,
-              animationFillMode: 'both'
-            }}
-          >
-            <QuestionRow
-              questionName={q.question_name || q.questionName || ''}
-              platform={q.platform}
-              level={q.level}
-              type={q.type}
-              isSolved={q.isSolved || false}
-              link={q.question_link || q.questionLink}
-              topicName={q.topic?.topic_name}
-              questionId={parseInt(q.id)}
-              isBookmarked={q.isBookmarked || false}
-              onBookmarkClick={handleBookmarkClick}
-            />
+        {questions.length > 0 ? (
+          questions.map((q: PracticeQuestion, idx) => (
+            <div
+              key={q.id}
+              className="animate-in fade-in slide-in-from-bottom-2"
+              style={{
+                animationDelay: `${idx * 25}ms`,
+                animationFillMode: 'both'
+              }}
+            >
+              <QuestionRow
+                questionName={q.question_name || q.questionName || ''}
+                platform={q.platform}
+                level={q.level}
+                type={q.type}
+                isSolved={q.isSolved || false}
+                link={q.question_link || q.questionLink}
+                topicName={q.topic?.topic_name}
+                questionId={parseInt(q.id)}
+                isBookmarked={q.isBookmarked || false}
+                onBookmarkClick={handleBookmarkClick}
+              />
+            </div>
+          ))
+        ) : (
+          /* 🔥 EMPTY STATE */
+          <div className="flex flex-col items-center justify-center py-16 text-center rounded-2xl border border-dashed border-border/50 bg-background/30">
+
+            <div className="text-sm text-muted-foreground mb-1">
+              No questions found
+            </div>
+
+            <div className="text-xs text-muted-foreground/70">
+              Try changing filters or come back later.
+            </div>
+
           </div>
-        ))
-      ) : (
-        /* 🔥 EMPTY STATE */
-        <div className="flex flex-col items-center justify-center py-16 text-center rounded-2xl border border-dashed border-border/50 bg-background/30">
+        )}
 
-          <div className="text-sm text-muted-foreground mb-1">
-            No questions found
-          </div>
+      </div>
 
-          <div className="text-xs text-muted-foreground/70">
-            Try changing filters or come back later.
-          </div>
-
-        </div>
+      {/* 🔥 MODAL */}
+      {bookmarkModal.question && (
+        <BookmarkModal
+          isOpen={bookmarkModal.isOpen}
+          onClose={() =>
+            setBookmarkModal({ isOpen: false, question: null })
+          }
+          question={bookmarkModal.question}
+          onSubmit={handleBookmarkSubmit}
+          loading={bookmarkLoading}
+        />
       )}
-
-    </div>
-
-    {/* 🔥 MODAL */}
-    {bookmarkModal.question && (
-      <BookmarkModal
-        isOpen={bookmarkModal.isOpen}
-        onClose={() =>
-          setBookmarkModal({ isOpen: false, question: null })
-        }
-        question={bookmarkModal.question}
-        onSubmit={handleBookmarkSubmit}
-        loading={bookmarkLoading}
-      />
-    )}
-  </>
-);
+    </>
+  );
 
 }
 

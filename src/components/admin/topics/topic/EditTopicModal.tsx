@@ -123,8 +123,8 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
    return (
       <>
          <Dialog open={isOpen} onOpenChange={handleClose}>
-            <DialogContent className="rounded-2xl   shadow-xl max-w-[600px]!">
-               <DialogHeader className=" py-5 border-b p-4!  border-border/40">
+            <DialogContent className="rounded-2xl max-w-[600px]! shadow-xl flex flex-col p-0 max-h-[90vh] overflow-hidden gap-0">
+               <DialogHeader className="p-6 pb-4 border-b border-border/40 shrink-0 bg-background">
                   <DialogTitle className="text-3xl font-bold">
                      Edit <span className='text-primary' >Topic</span>
                   </DialogTitle>
@@ -133,8 +133,8 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
                   </DialogDescription>
                </DialogHeader>
 
-               <div className=" space-y-6 p-4">
-                  <form onSubmit={handleSubmit} className="space-y-6">
+               <div className="flex-1 overflow-y-auto p-6">
+                  <form id="edit-topic-form" onSubmit={handleSubmit} className="space-y-6">
                      {formError && (
                         <div className="text-sm px-3 py-2 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400">
                            {formError}
@@ -228,25 +228,26 @@ export default function EditTopicModal({ isOpen, onClose, onSuccess, topic }: Ed
                         )}
                      </div>
 
-                     <DialogFooter className="flex gap-2 pt-2">
-                        <Button
-                           type="button"
-                           onClick={handleClose}
-                           disabled={submitting}
-                           className="h-11 px-4 bg-foreground! text-secondary!"
-                        >
-                           Cancel
-                        </Button>
-                        <Button
-                           type="submit"
-                           disabled={submitting}
-                           className="h-11  font-semibold bg-primary text-black hover:opacity-90 transition-all"
-                        >
-                           {submitting ? "Saving..." : "Save Changes"}
-                        </Button>
-                     </DialogFooter>
                   </form>
                </div>
+               <DialogFooter className="p-6 pt-4 border-t border-border/40 shrink-0 bg-background flex gap-2">
+                  <Button
+                     type="button"
+                     onClick={handleClose}
+                     disabled={submitting}
+                     className="h-11 px-4 bg-foreground! text-secondary!"
+                  >
+                     Cancel
+                  </Button>
+                  <Button
+                     form="edit-topic-form"
+                     type="submit"
+                     disabled={submitting}
+                     className="h-11 font-semibold bg-primary text-black hover:opacity-90 transition-all"
+                  >
+                     {submitting ? "Saving..." : "Save Changes"}
+                  </Button>
+               </DialogFooter>
             </DialogContent>
          </Dialog>
 

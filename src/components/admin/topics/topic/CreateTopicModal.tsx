@@ -84,8 +84,8 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
    return (
       <>
          <Dialog open={isOpen} onOpenChange={handleClose}>
-            <DialogContent className="rounded-2xl max-w-[600px]!  shadow-xl ">
-               <DialogHeader className="  border-b border-border/40">
+            <DialogContent className="rounded-2xl max-w-[600px]! shadow-xl flex flex-col p-0 max-h-[90vh] overflow-hidden gap-0">
+               <DialogHeader className="p-6 pb-4 border-b border-border/40 shrink-0">
                   <DialogTitle className="text-3xl font-semibold">
                      Create <span className='text-primary' >Topic</span>
                   </DialogTitle>
@@ -94,8 +94,8 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
                   </DialogDescription>
                </DialogHeader>
 
-               <div className=" space-y-6 p-4">
-                  <form onSubmit={handleSubmit} className="space-y-6">
+               <div className="flex-1 overflow-y-auto p-6">
+                  <form id="create-topic-form" onSubmit={handleSubmit} className="space-y-6">
                      {formError && (
                         <div className="text-sm px-3 py-2 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400">
                            {formError}
@@ -155,25 +155,26 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
                         </div>
                      )}
 
-                     <DialogFooter className="">
-                        <Button
-                           type="button"
-                           onClick={handleClose}
-                           disabled={submitting}
-                           className="h-11 px-4 bg-foreground! text-secondary!"
-                        >
-                           Cancel
-                        </Button>
-                        <Button
-                           type="submit"
-                           disabled={submitting}
-                           className="h-11  font-semibold bg-primary text-black hover:opacity-90 transition-all"
-                        >
-                           {submitting ? "Creating..." : "Create Topic"}
-                        </Button>
-                     </DialogFooter>
                   </form>
                </div>
+               <DialogFooter className="p-6 pt-4 border-t border-border/40 shrink-0 bg-background">
+                  <Button
+                     type="button"
+                     onClick={handleClose}
+                     disabled={submitting}
+                     className="h-11 px-4 bg-foreground! text-secondary!"
+                  >
+                     Cancel
+                  </Button>
+                  <Button
+                     form="create-topic-form"
+                     type="submit"
+                     disabled={submitting}
+                     className="h-11 font-semibold bg-primary text-black hover:opacity-90 transition-all"
+                  >
+                     {submitting ? "Creating..." : "Create Topic"}
+                  </Button>
+               </DialogFooter>
             </DialogContent>
          </Dialog>
 
