@@ -38,13 +38,13 @@ function ResetPasswordModalContent({ isOpen, onClose }: ResetPasswordModalProps)
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const router = useRouter();
-  
+
   // Progressive validation for new password
   const { isComplete: isPasswordComplete } = useProgressivePasswordValidation(fpNewPassword);
-  
+
   // Check if passwords match
   const doPasswordsMatch = fpNewPassword && fpConfirmPassword && fpNewPassword === fpConfirmPassword;
-  
+
   // Form validation
   const isFormValid = fpNewPassword && fpConfirmPassword && isPasswordComplete && doPasswordsMatch;
 
@@ -81,7 +81,7 @@ function ResetPasswordModalContent({ isOpen, onClose }: ResetPasswordModalProps)
 
         {/* HEADER */}
         <div className="relative px-8 pt-10 pb-6 text-center">
-          <motion.div 
+          <motion.div
             initial={{ rotate: -10, scale: 0.9 }}
             animate={{ rotate: 0, scale: 1 }}
             className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-logo/10 border border-logo/20 mb-6"
@@ -97,7 +97,10 @@ function ResetPasswordModalContent({ isOpen, onClose }: ResetPasswordModalProps)
           </p>
 
           <button
-            onClick={onClose}
+            onClick={() => {
+              onClose();
+              router.push("/login");
+            }}
             className="absolute right-6 top-6 p-2 rounded-full text-slate-500 hover:text-white hover:bg-white/5 transition-all"
           >
             <X size={18} />
@@ -107,7 +110,7 @@ function ResetPasswordModalContent({ isOpen, onClose }: ResetPasswordModalProps)
         {/* BODY */}
         <div className="px-8 pb-10">
           <form onSubmit={handleResetPassword} className="space-y-5">
-            
+
             {/* ERROR UI */}
             <AnimatePresence mode="wait">
               {error && (
@@ -144,9 +147,9 @@ function ResetPasswordModalContent({ isOpen, onClose }: ResetPasswordModalProps)
                 Confirm Password
               </label>
               <div className="relative">
-                <Lock 
-                  size={16} 
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-logo transition-colors" 
+                <Lock
+                  size={16}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-logo transition-colors"
                 />
                 <Input
                   type={showConfirm ? "text" : "password"}
@@ -169,12 +172,11 @@ function ResetPasswordModalContent({ isOpen, onClose }: ResetPasswordModalProps)
                   {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-              
+
               {/* Password match indicator */}
               {fpConfirmPassword && (
-                <div className={`text-xs font-medium flex items-center gap-2 ${
-                  doPasswordsMatch ? 'text-green-400' : 'text-red-400'
-                }`}>
+                <div className={`text-xs font-medium flex items-center gap-2 ${doPasswordsMatch ? 'text-green-400' : 'text-red-400'
+                  }`}>
                   {doPasswordsMatch ? (
                     <>
                       <ShieldCheck size={14} />
@@ -219,16 +221,16 @@ function ResetPasswordModalContent({ isOpen, onClose }: ResetPasswordModalProps)
                 "
               >
                 {loading ? (
-                   <span className="flex items-center gap-2">
-                     <BruteForceLoader size="sm" />
-                     Processing
-                   </span>
+                  <span className="flex items-center gap-2">
+                    <BruteForceLoader size="sm" />
+                    Resetting...
+                  </span>
                 ) : "Reset Password"}
               </Button>
             </div>
           </form>
         </div>
-        
+
       </motion.div>
     </div>
   );

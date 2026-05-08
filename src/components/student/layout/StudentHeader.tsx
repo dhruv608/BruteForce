@@ -165,7 +165,7 @@ export default function StudentHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 backdrop-blur-sm  h-16 flex items-center lg:px-10" style={{ boxShadow: 'var(--shadow-sm)' }}>
+      <header className="sticky top-0 z-50 h-16 flex items-center lg:px-10 bg-background/80 backdrop-blur-md border-b border-border/40 shadow-sm">
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
 
           {/* Left Side - Hamburger Menu + Logo */}
@@ -298,10 +298,10 @@ export default function StudentHeader() {
                     <DropdownMenuContent
                       align="end"
                       side="bottom"
-                      className="w-56 p-2 rounded-2xl  backdrop-blur-2xl "
+                      className="w-56 p-2 rounded-2xl border border-border  backdrop-blur-2xl "
                     >
                       {/* PROFILE HEADER */}
-                      <div className="px-3 py-2 mb-1 rounded-2xl">
+                      <div className="px-3 py-2 mb-1 rounded-2xl ">
                         <div className="flex flex-col">
 
                           <p className="text-sm font-semibold text-foreground truncate leading-none m-0 p-1">
@@ -315,10 +315,10 @@ export default function StudentHeader() {
                         </div>
                       </div>
 
-                      <DropdownMenuSeparator className="bg-border/30 my-1" />
+                      <DropdownMenuSeparator className="border border-border/20 my-1" />
 
                       {/* PROFILE BUTTON */}
-                      <DropdownMenuItem asChild className="cursor-pointer rounded-2xl text-sm p-3">
+                      <DropdownMenuItem asChild className="cursor-pointer rounded-2xl border border-border/30 shadow-sm mb-1 text-sm p-3">
                         <Link
                           href={profile.username ? `/profile/${profile.username}` : '/profile'}
                           className="flex items-center gap-2"
@@ -329,19 +329,19 @@ export default function StudentHeader() {
                       </DropdownMenuItem>
 
                       {/* BOOKMARKS BUTTON */}
-                      <DropdownMenuItem asChild className="cursor-pointer rounded-2xl text-sm p-3">
+                      <DropdownMenuItem asChild className="cursor-pointer border border-border/30 shadow-sm rounded-2xl text-sm p-3">
                         <Link href="/bookmarks" className="flex items-center gap-2">
                           <Bookmark className="w-4 h-4" />
                           My Bookmarks
                         </Link>
                       </DropdownMenuItem>
 
-                      <DropdownMenuSeparator className="bg-border/30 my-1" />
+                      <DropdownMenuSeparator className="border border-border/20 my-1" />
 
                       {/* LOGOUT */}
                       <DropdownMenuItem
                         onClick={handleLogout}
-                        className="cursor-pointer rounded-2xl p-3 text-sm text-destructive "
+                        className="cursor-pointer rounded-2xl border border-border/30 shadow-sm p-3 text-sm text-destructive"
                       >
                         <LogOut className="w-4 h-4 mr-2" />
                         Log out
