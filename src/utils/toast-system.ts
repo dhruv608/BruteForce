@@ -9,9 +9,6 @@ import {
   X
 } from 'lucide-react';
 
-// =============================================================================
-// TOAST DEDUPLICATION SYSTEM
-// =============================================================================
 
 // Set to track currently active toast IDs for deduplication
 const activeToastIds = new Set<string>();
@@ -46,32 +43,33 @@ const PremiumToastRenderer = ({ toast: toastObj, title, description, icon, id }:
   const isLoading = toastObj.type === 'loading';
 
   const getIcon = () => {
-    if (isLoading) return React.createElement(Loader2, { className: "w-5 h-5 animate-spin text-blue-400" });
-    if (isSuccess) return React.createElement(CheckCircle, { className: "w-5 h-5 text-primary" });
-    if (isError) return React.createElement(XCircle, { className: "w-5 h-5 text-red-400" });
+    if (isLoading) return React.createElement(Loader2, { className: "w-5 h-5 animate-spin text-blue-400", strokeWidth: 3 });
+    if (isSuccess) return React.createElement(CheckCircle, { className: "w-5 h-5 text-logo", strokeWidth: 3 });
+    if (isError) return React.createElement(XCircle, { className: "w-5 h-5 text-hard", strokeWidth: 3 });
     return icon;
   };
 
-
-
   const getTextColorClass = () => {
-    if (isSuccess) return 'text-primary';
-    if (isError) return 'text-red-400';
-    return 'text-gray-300';
+    if (isSuccess) return 'text-logo';
+    if (isError) return 'text-hard sm:text-red-500';
+    return 'text-foreground';
   };
 
   const duration = toastObj.duration || 4000;
 
   return React.createElement('div', {
     className: `
-      dark:bg-glass-bg 
-      border border-border     
+      bg-background
+      dark:bg-background/80
+      border-2 border-border/60     
       rounded-2xl
       p-4
+      shadow-2xl drop-shadow-xl
       flex items-center gap-3
       min-w-[320px]
       max-w-[400px]
       relative
+      overflow-hidden
     `
   },
     // Icon
@@ -84,7 +82,7 @@ const PremiumToastRenderer = ({ toast: toastObj, title, description, icon, id }:
       className: "flex-1 min-w-0"
     },
       React.createElement('div', {
-        className: `font-semibold text-sm ${getTextColorClass()} truncate`
+        className: `font-bold text-[15px] ${getTextColorClass()} truncate tracking-tight`
       }, title || description)
     ),
 
@@ -95,18 +93,24 @@ const PremiumToastRenderer = ({ toast: toastObj, title, description, icon, id }:
         flex-shrink-0
         w-6 h-6
         flex items-center justify-center
-        rounded
+        rounded-md
         border-none
         bg-transparent
         cursor-pointer 
-        text-foreground/60
-        hover:text-white/90
-        hover:bg-white/10
+        text-muted-foreground
+        hover:text-foreground
+        hover:bg-muted
         transition-all duration-200
       `
     },
-      React.createElement(X, { className: "w-4 h-4" })
-    )
+      React.createElement(X, { className: "w-4 h-4", strokeWidth: 3 })
+    ),
+
+    // Progress Bar
+    !isLoading && duration !== Infinity && React.createElement('div', {
+      className: `absolute bottom-0 left-0 h-1 ${isError ? 'bg-destructive sm:bg-red-500' : 'bg-primary'}`,
+      style: { animation: `toastProgress ${duration}ms linear forwards` }
+    })
   );
 };
 

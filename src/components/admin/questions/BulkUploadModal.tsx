@@ -419,7 +419,7 @@ export default function BulkUploadModal({
             <Button
               disabled={isUploadDisabled}
               onClick={handleUpload}
-              className="w-full h-12 text-sm font-semibold bg-primary"
+              className=" h-12 text-sm font-semibold bg-primary"
             >
               {loading ? "Creating Questions..." : "Create Questions"}
             </Button>

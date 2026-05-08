@@ -82,7 +82,10 @@ function VerifyOtpModalContent({ isOpen, onClose }: VerifyOtpModalProps) {
 
         {/* CLOSE BUTTON */}
         <button
-          onClick={onClose}
+          onClick={() => {
+            onClose();
+            router.push("/login");
+          }}
           className="absolute right-6 top-6 p-2 rounded-full text-slate-500 hover:text-white hover:bg-white/5 transition-all z-20"
         >
           <X size={18} />

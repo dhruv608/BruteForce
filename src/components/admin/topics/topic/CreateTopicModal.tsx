@@ -84,7 +84,7 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
    return (
       <>
          <Dialog open={isOpen} onOpenChange={handleClose}>
-            <DialogContent className="rounded-2xl  overflow-hidden shadow-xl max-w-[520px]">
+            <DialogContent className="rounded-2xl max-w-[600px]!  shadow-xl ">
                <DialogHeader className="  border-b border-border/40">
                   <DialogTitle className="text-3xl font-semibold">
                      Create <span className='text-primary' >Topic</span>
