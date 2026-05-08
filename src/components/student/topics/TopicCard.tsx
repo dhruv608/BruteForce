@@ -41,9 +41,10 @@ export function TopicCard({
     >
       {/* 🔒 LOCK OVERLAY */}
       {isLocked && (
-        <div className="absolute inset-0 z-20 flex items-center justify-center bg-secondary/60  rounded-2xl">
+        <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm rounded-2xl">
           <div className="flex flex-col items-center gap-2">
-            <Lock className="w-10 h-10 text-logo" />
+            <Lock className="w-10 h-10 text-primary" />
+            <span className="text-sm font-semibold text-muted-foreground">Topic Locked</span>
           </div>
         </div>
       )}
@@ -81,9 +82,7 @@ export function TopicCard({
 
         {/* STATS */}
         {isLocked ? (
-          <div className="text-[14px] text-muted-foreground">
-           No classes added yet
-          </div>
+          <div />
         ) : (
           <div className="flex items-center justify-between text-[12px] text-muted-foreground">
             <div className="flex items-center gap-1.5">
