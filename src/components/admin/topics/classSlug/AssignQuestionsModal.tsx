@@ -228,10 +228,10 @@ export default function AssignQuestionsModal({ isOpen, onClose, onSuccess, batch
             <div className="flex-1 overflow-y-auto no-scrollbar min-h-0">
                <div className="grid gap-3 p-4">
                   {bankLoading ? (
-                     <div className="flex items-center justify-center h-32">
-                        <span className="ml-2 text-sm text-muted-foreground">
-                           Loading questions...
-                        </span>
+                     <div className="space-y-3">
+                        {[1, 2, 3, 4, 5].map((i) => (
+                           <div key={i} className="h-[76px] w-full bg-muted/50 animate-pulse rounded-2xl border border-border/40" />
+                        ))}
                      </div>
                   ) : bankQuestions.length === 0 ? (
                      <div className="flex items-center justify-center h-32">

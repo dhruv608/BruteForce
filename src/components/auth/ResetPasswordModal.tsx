@@ -101,7 +101,7 @@ function ResetPasswordModalContent({ isOpen, onClose }: ResetPasswordModalProps)
               onClose();
               router.push("/login");
             }}
-            className="absolute right-6 top-6 p-2 rounded-full text-slate-500 hover:text-white hover:bg-white/5 transition-all"
+            className="absolute right-6 top-6 p-2 rounded-full text-slate-500  hover:bg-white/5 transition-all"
           >
             <X size={18} />
           </button>

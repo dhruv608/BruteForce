@@ -267,10 +267,10 @@ export default function BulkUploadModal({
     <>
       {/* MAIN MODAL */}
       <Dialog open={open} onOpenChange={handleClose}>
-        <DialogContent className="w-[95vw]   max-w-[1500px] p-0  flex flex-col rounded-2xl">
+        <DialogContent className="w-[95vw] max-w-[1500px] p-0 flex flex-col max-h-[90vh] overflow-hidden rounded-2xl gap-0">
 
           {/* HEADER */}
-          <DialogHeader className="px-6 py-5 bg-muted/40">
+          <DialogHeader className="px-6 py-5 bg-muted/40 shrink-0 border-b border-border/40">
             <DialogTitle className="text-xl font-semibold flex items-center gap-2">
               <Upload className="w-5 h-5 text-primary" />
               Bulk Upload Questions
@@ -282,7 +282,7 @@ export default function BulkUploadModal({
           </DialogHeader>
 
           {/* BODY */}
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-6 flex-1 overflow-y-auto">
 
             {/* TOPIC */}
             <div className="space-y-2">
@@ -411,7 +411,7 @@ export default function BulkUploadModal({
           </div>
 
           {/* FOOTER */}
-          <DialogFooter className="px-6 py-4 mb-1 border-t flex gap-3">
+          <DialogFooter className="px-6 py-4 bg-background shrink-0 border-t border-border/40 flex gap-3">
             <Button variant="ghost" onClick={handleClose}>
               Cancel
             </Button>
@@ -430,10 +430,10 @@ export default function BulkUploadModal({
 
       {/* GUIDE MODAL */}
       <Dialog open={showGuide} onOpenChange={setShowGuide}>
-        <DialogContent className="w-[95vw] max-w-[920px] p-0 overflow-hidden rounded-2xl">
+        <DialogContent className="w-[95vw] max-w-[920px] p-0 flex flex-col max-h-[90vh] overflow-hidden rounded-2xl gap-0">
 
           {/* HEADER */}
-          <DialogHeader className="px-6 py-4 bg-muted/40">
+          <DialogHeader className="px-6 py-4 bg-muted/40 shrink-0 border-b border-border/40">
             <DialogTitle className="flex items-center gap-2 text-lg font-semibold">
               <FileText className="w-5 h-5 text-primary" />
               CSV Format Guide
@@ -441,7 +441,7 @@ export default function BulkUploadModal({
           </DialogHeader>
 
           {/* BODY */}
-          <div className="p-6 space-y-6">
+          <div className="p-6 space-y-6 flex-1 overflow-y-auto">
 
             {/* REQUIRED COLUMNS */}
             <div className="space-y-2">
@@ -483,7 +483,7 @@ export default function BulkUploadModal({
           </div>
 
           {/* FOOTER */}
-          <div className="px-6 py-4 border-t flex justify-between">
+          <div className="px-6 py-4 bg-background shrink-0 border-t border-border/40 flex justify-between">
             <Button
               variant="outline"
               onClick={downloadSampleCSV}
@@ -503,10 +503,10 @@ export default function BulkUploadModal({
 
       {/* UPLOAD RESULT MODAL */}
       <Dialog open={showResult} onOpenChange={setShowResult}>
-        <DialogContent className="w-[95vw] max-w-[500px]   rounded-2xl">
+        <DialogContent className="w-[95vw] max-w-[500px] p-0 flex flex-col max-h-[90vh] overflow-hidden rounded-2xl gap-0">
 
           {/* HEADER */}
-          <DialogHeader className="px-6 py-4 bg-muted/40">
+          <DialogHeader className="px-6 py-4 bg-muted/40 shrink-0 border-b border-border/40">
             <DialogTitle className="flex items-center gap-2 text-lg font-semibold">
               <CheckCircle2 className="w-5 h-5 text-green-500" />
               Upload Complete
@@ -514,7 +514,7 @@ export default function BulkUploadModal({
           </DialogHeader>
 
           {/* BODY */}
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-4 flex-1 overflow-y-auto">
 
             {/* SUMMARY */}
             <div className="bg-green-500/10 border border-green-500/30 rounded-2xl p-4">
@@ -563,7 +563,7 @@ export default function BulkUploadModal({
           </div>
 
           {/* FOOTER */}
-          <div className="px-6 py-4 border-t">
+          <div className="px-6 py-4 bg-background shrink-0 border-t border-border/40">
             <Button
               onClick={() => {
                 setShowResult(false);

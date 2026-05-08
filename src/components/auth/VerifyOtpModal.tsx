@@ -86,7 +86,7 @@ function VerifyOtpModalContent({ isOpen, onClose }: VerifyOtpModalProps) {
             onClose();
             router.push("/login");
           }}
-          className="absolute right-6 top-6 p-2 rounded-full text-slate-500 hover:text-white hover:bg-white/5 transition-all z-20"
+          className="absolute right-6 top-6 p-2 rounded-full text-slate-500  hover:bg-white/5 transition-all z-20"
         >
           <X size={18} />
         </button>
@@ -112,32 +112,32 @@ function VerifyOtpModalContent({ isOpen, onClose }: VerifyOtpModalProps) {
         {/* BODY */}
         <div className="px-8 pb-10 pt-4">
           <form id="otp-form" onSubmit={handleVerifyOtpLocal} className="space-y-8">
-            
+
 
             {/* 🔥 ENHANCED OTP INPUT GRID */}
             <div className="flex justify-center gap-3">
-  {fpOtpArray.map((digit, idx) => (
-    <input
-      key={idx}
-      ref={(el) => {
-        localInputRefs.current[idx] = el;
-        inputRefs.current[idx] = el;
-        if (idx === 0 && firstOtpInputRef) {
-          (firstOtpInputRef as any).current = el;
-        }
-      }}
-      type="text"
-      inputMode="numeric"
-      pattern="[0-9]*"
-      maxLength={1}
-      value={digit}
-      disabled={loading}
-      onChange={(e) => handleOtpChange(idx, e.target.value)}
-      onKeyDown={(e) => handleOtpKeyDown(idx, e)}
-      onPaste={idx === 0 ? handlePaste : undefined}
-      className={`
+              {fpOtpArray.map((digit, idx) => (
+                <input
+                  key={idx}
+                  ref={(el) => {
+                    localInputRefs.current[idx] = el;
+                    inputRefs.current[idx] = el;
+                    if (idx === 0 && firstOtpInputRef) {
+                      (firstOtpInputRef as any).current = el;
+                    }
+                  }}
+                  type="text"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                  maxLength={1}
+                  value={digit}
+                  disabled={loading}
+                  onChange={(e) => handleOtpChange(idx, e.target.value)}
+                  onKeyDown={(e) => handleOtpKeyDown(idx, e)}
+                  onPaste={idx === 0 ? handlePaste : undefined}
+                  className={`
         w-12 h-14 sm:w-14 sm:h-16
-        rounded-md border border-input
+        rounded-md border border-border
         bg-background
 
         text-center text-xl font-semibold
@@ -154,9 +154,9 @@ function VerifyOtpModalContent({ isOpen, onClose }: VerifyOtpModalProps) {
 
         ${digit ? "border-ring" : ""}
       `}
-    />
-  ))}
-</div>
+                />
+              ))}
+            </div>
 
             {/* ACTION BUTTONS */}
             <div className="flex flex-col gap-4">
@@ -227,7 +227,7 @@ function VerifyOtpModalContent({ isOpen, onClose }: VerifyOtpModalProps) {
 
 export function VerifyOtpModal(props: VerifyOtpModalProps) {
   return (
-    <Suspense 
+    <Suspense
       fallback={
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#090A0F]">
           <BruteForceLoader size="md" />

@@ -10,10 +10,10 @@ export default function ClassDetailHeader({ selectedBatch, topicSlug, classSlug,
 
    const formattedDate = classDetails?.class_date
       ? new Date(classDetails.class_date).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric'
-        })
+         year: 'numeric',
+         month: 'short',
+         day: 'numeric'
+      })
       : null;
 
    // Parse HTML description to extract bullet points
@@ -122,22 +122,20 @@ export default function ClassDetailHeader({ selectedBatch, topicSlug, classSlug,
                      {/* HEADER */}
                      <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-primary hover:bg-muted/20 transition"
+                        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-logo hover:bg-muted/20 transition"
                      >
                         <span>View Description</span>
 
                         <ChevronDown
-                           className={`w-4 h-4 text-primary transition-transform duration-300 ${
-                              isOpen ? "rotate-180" : ""
-                           }`}
+                           className={`w-4 h-4 text-logo transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                              }`}
                         />
                      </button>
 
                      {/* CONTENT */}
                      <div
-                        className={`transition-all duration-300 ease-in-out ${
-                           isOpen ? "max-h-125 opacity-100" : "max-h-0 opacity-0"
-                        } overflow-hidden`}
+                        className={`transition-all duration-300 ease-in-out ${isOpen ? "max-h-125 opacity-100" : "max-h-0 opacity-0"
+                           } overflow-hidden`}
                      >
                         <div className="px-4 pb-4 pt-1">
                            <ul className="space-y-2 text-muted-foreground text-sm max-w-3xl leading-relaxed list-disc list-inside">

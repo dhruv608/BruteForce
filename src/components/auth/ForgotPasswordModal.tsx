@@ -18,11 +18,11 @@ interface ForgotPasswordModalProps {
 const validateEmailDomain = (email: string): boolean => {
   const allowedDomain = "pwioi.com";
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  
+
   if (!emailRegex.test(email)) {
     return false;
   }
-  
+
   const domain = email.split('@')[1];
   return domain === allowedDomain;
 };
@@ -64,7 +64,7 @@ export function ForgotPasswordModal({ isOpen, onClose }: ForgotPasswordModalProp
 
             {/* HEADER */}
             <div className="relative px-8 pt-10 pb-6 text-center">
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0.5, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-logo/10 border border-border mb-6 "
@@ -85,7 +85,7 @@ export function ForgotPasswordModal({ isOpen, onClose }: ForgotPasswordModalProp
                   onClose();
                   router.push("/login");
                 }}
-                className="absolute right-6 top-6 p-2 rounded-full text-slate-500 hover:text-white hover:bg-white/5 transition-all"
+                className="absolute right-6 top-6 p-2 rounded-full text-slate-500  hover:bg-white/5 transition-all"
               >
                 <X size={18} />
               </button>
@@ -94,7 +94,7 @@ export function ForgotPasswordModal({ isOpen, onClose }: ForgotPasswordModalProp
             {/* BODY */}
             <div className="px-8 pb-10">
               <form onSubmit={handleSendOtp} className="space-y-6">
-                
+
                 {/* ERROR MESSAGE */}
                 <AnimatePresence mode="wait">
                   {error && (
@@ -116,9 +116,9 @@ export function ForgotPasswordModal({ isOpen, onClose }: ForgotPasswordModalProp
                     Email Address
                   </label>
                   <div className="relative">
-                    <Mail 
-                      size={16} 
-                      className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-logo transition-colors" 
+                    <Mail
+                      size={16}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-logo transition-colors"
                     />
                     <Input
                       type="email"
@@ -134,7 +134,7 @@ export function ForgotPasswordModal({ isOpen, onClose }: ForgotPasswordModalProp
                       "
                       required
                     />
-                    
+
                   </div>
                 </div>
 
@@ -153,22 +153,22 @@ export function ForgotPasswordModal({ isOpen, onClose }: ForgotPasswordModalProp
                 >
                   <div className="relative z-10 flex items-center justify-center gap-2">
                     {loading ? (
-                       <>
+                      <>
                         <BruteForceLoader size="sm" />
                         Sending Code...
-                       </>
+                      </>
                     ) : (
                       <>
                         Get Verification OTP <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
                       </>
                     )}
                   </div>
-                  
+
                   {/* BUTTON SHINE EFFECT */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 ease-in-out" />
                 </Button>
 
-               
+
               </form>
             </div>
 
