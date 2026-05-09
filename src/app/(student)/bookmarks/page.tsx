@@ -147,7 +147,7 @@ export default function BookmarksPage() {
       {loading ? (
         <BookmarkShimmer />
       ) : bookmarks.length === 0 ? (
-        <div className="flex-1 flex flex-col items-center justify-center text-muted-foreground glass backdrop-blur-sm rounded-2xl border border-border border-dashed p-10">
+        <div className="flex-1 flex flex-col items-center justify-center text-muted-foreground glass backdrop-blur-sm rounded-2xl p-10">
           <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
           <div className="font-semibold text-foreground mb-1">No bookmarks found</div>
           <div className="text-[13px]">Start bookmarking questions.</div>

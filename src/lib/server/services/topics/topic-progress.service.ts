@@ -75,7 +75,7 @@ export const getTopicsWithBatchProgressService = async ({
         COUNT(DISTINCT c.id) as class_count,
         COUNT(DISTINCT q.id) as question_count,
         COUNT(DISTINCT CASE WHEN sp.student_id IS NOT NULL THEN q.id END) as solved_questions,
-        MAX(c.created_at) as last_class_created_at,
+        MAX(COALESCE(c.class_date, c.created_at)) as last_class_created_at,
         CASE 
           WHEN COUNT(DISTINCT q.id) = 0 THEN 0
           ELSE ROUND((COUNT(DISTINCT CASE WHEN sp.student_id IS NOT NULL THEN q.id END)::float / COUNT(DISTINCT q.id)) * 100)
@@ -112,7 +112,7 @@ export const getTopicsWithBatchProgressService = async ({
         COUNT(DISTINCT c.id) as class_count,
         COUNT(DISTINCT q.id) as question_count,
         COUNT(DISTINCT CASE WHEN sp.student_id IS NOT NULL THEN q.id END) as solved_questions,
-        MAX(c.created_at) as last_class_created_at,
+        MAX(COALESCE(c.class_date, c.created_at)) as last_class_created_at,
         CASE 
           WHEN COUNT(DISTINCT q.id) = 0 THEN 0
           ELSE ROUND((COUNT(DISTINCT CASE WHEN sp.student_id IS NOT NULL THEN q.id END)::float / COUNT(DISTINCT q.id)) * 100)

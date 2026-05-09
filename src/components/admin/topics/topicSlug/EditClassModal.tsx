@@ -129,7 +129,7 @@ export default function EditClassModal({ isOpen, onClose, onSuccess, batchSlug, 
    return (
       <Dialog open={isOpen} onOpenChange={handleClose}>
          <DialogContent
-            className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[90vh] rounded-3xl border border-white/10 
+            className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[90vh] rounded-3xl border border-border/10 
     bg-gradient-to-br from-background via-background/95 to-background/90 
     backdrop-blur-2xl shadow-2xl overflow-hidden flex flex-col"
          >
@@ -334,10 +334,9 @@ export default function EditClassModal({ isOpen, onClose, onSuccess, batchSlug, 
                <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
                   <Button
                      type="button"
-                     variant="ghost"
                      onClick={handleClose}
                      disabled={submitting}
-                     className="rounded-2xl px-4 sm:px-5 h-10 sm:h-11 flex-1 sm:flex-none"
+                     className="rounded-2xl px-4 sm:px-5 h-10 sm:h-11 flex-1 sm:flex-none text-secondary! bg-foreground!"
                   >
                      Cancel
                   </Button>

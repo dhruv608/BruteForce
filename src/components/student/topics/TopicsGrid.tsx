@@ -25,7 +25,7 @@ interface TopicsGridProps {
 export function TopicsGrid({ topics, searchQuery, pagination }: TopicsGridProps) {
   if (topics.length === 0) {
     return (
-      <div className="col-span-full flex flex-col items-center justify-center py-10 text-muted-foreground bg-card rounded-2xl border border-border border-dashed">
+      <div className="col-span-full flex flex-col items-center justify-center py-10 text-muted-foreground glass backdrop-blur-sm rounded-2xl ">
         <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
         <p className="text-sm mt-2">
           {searchQuery ? "No topics matched your search." : "No topics assigned to your batch yet."}
@@ -51,7 +51,7 @@ export function TopicsGrid({ topics, searchQuery, pagination }: TopicsGridProps)
           </div>
         ))}
       </div>
-      
+
       {pagination && (
         <div className="mt-8">
           {pagination}

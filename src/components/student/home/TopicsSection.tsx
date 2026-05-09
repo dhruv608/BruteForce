@@ -19,16 +19,16 @@ export function TopicsSection({ topics, loading = false }: TopicsSectionProps) {
     <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-10 py-10">
       {/* Section with subtle gradient background */}
       <div className=" glass backdrop-blur-sm rounded-2xl border border-border/40 p-8 mb-8">
-       <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center">
           <div>
             <h2 className="text-[18px] sm:text-2xl font-bold text-foreground mb-1.5 font-serif ">
-               Learning <span className='text-primary'>Path</span>
+              Learning <span className='text-primary'>Path</span>
             </h2>
             <p className="text-[13px] text-muted-foreground">Jump back into your assigned topics</p>
           </div>
           <Link
             href="/topics"
-            className="text-[13px] font-semibold text-primary hover:text-primary/80 transition-colors hidden sm:flex items-center gap-1"
+            className="text-[13px] font-semibold text-logo hover:text-logo/80 transition-colors hidden sm:flex items-center gap-1"
           >
             View all <span>→</span>
           </Link>

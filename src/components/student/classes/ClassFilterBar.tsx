@@ -26,7 +26,7 @@ export function ClassFilterBar({ filter, onFilterChange, totalQuestions }: Class
       </div>
 
       {/* RIGHT */}
-      <div className="text-primary flex items-center gap-1">
+      <div className="text-logo flex items-center gap-1">
         <span className="text-xs">
           Showing
         </span>

@@ -1,6 +1,7 @@
 "use client";
 
 import { FolderEdit, Trash2, CalendarDays, Link as LinkIcon } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { Button } from '@/components/ui/button';
 import {
    Table,
@@ -35,8 +36,12 @@ export default function ClassTable({ classesList, loading, search, topicSlug, on
                      <ClassesTableRowsShimmer />
                   ) : filteredClasses.length === 0 ? (
                      <TableRow>
-                        <TableCell colSpan={5} className="h-48 text-center text-muted-foreground">
-                           No classes mapped to this batch and topic yet.
+                        <TableCell colSpan={5} className="p-0 border-0 h-48">
+                           <div className="flex-1 flex flex-col items-center justify-center text-muted-foreground glass backdrop-blur-sm rounded-2xl p-10 m-4">
+                              <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
+                              <div className="font-semibold text-foreground mb-1">No classes found</div>
+                              <div className="text-[13px]">No classes mapped to this batch and topic yet.</div>
+                           </div>
                         </TableCell>
                      </TableRow>
                   ) : (
@@ -48,7 +53,7 @@ export default function ClassTable({ classesList, loading, search, topicSlug, on
                         >
                            <TableCell>
                               <div className="font-semibold  text-foreground text-base">{cls.class_name}</div>
-                             
+
                            </TableCell>
                            <TableCell>
                               <div className="flex items-center gap-2 text-foreground font-medium text-sm">
@@ -57,7 +62,7 @@ export default function ClassTable({ classesList, loading, search, topicSlug, on
                            </TableCell>
                            <TableCell className="text-center">
                               <div className="flex items-center justify-center gap-1">
-                                 <span className="inline-flex items-center justify-center bg-primary/10 text-primary font-medium px-2.5 py-1 rounded-2xl text-sm">
+                                 <span className="inline-flex items-center justify-center bg-logo/10 text-logo font-medium px-2.5 py-1 rounded-2xl text-sm">
                                     {cls.questionCount || 0}
                                  </span>
                               </div>
@@ -76,7 +81,7 @@ export default function ClassTable({ classesList, loading, search, topicSlug, on
                                  <Button
                                     variant="outline"
                                     size="sm"
-                                    className="h-8 gap-1.5 font-medium bg-primary/5 border-primary/20 hover:bg-primary/10 hover:border-primary/30 text-primary"
+                                    className="h-8 gap-1.5 font-medium bg-logo/5 border border-logo/20 hover:bg-logo/10 hover:border-logo/30 text-logo"
                                     onClick={(e) => {
                                        e.stopPropagation();
                                        onViewQuestions(cls);

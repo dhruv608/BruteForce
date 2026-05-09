@@ -20,7 +20,7 @@ export default function TopicHeader({ totalRecords }: TopicHeaderProps) {
          </div>
 
          {/* RIGHT BADGE */}
-         <div className="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mt-3 sm:mt-0 w-full sm:w-auto text-center sm:text-left">
+         <div className="px-4 py-1.5 rounded-full bg-logo/10 text-logo text-sm font-medium mt-3 sm:mt-0 w-full sm:w-auto text-center sm:text-left">
             {totalRecords} Topics
          </div>
 

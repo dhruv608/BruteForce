@@ -1,4 +1,4 @@
-﻿import prisma from '@/lib/server/config/prisma';
+import prisma from '@/lib/server/config/prisma';
 import { HTTP_STATUS } from '@/lib/server/utils/errorMapper';
 import { ApiError } from '@/lib/server/utils/ApiError';
 import { GetTopicsForBatchInput } from '@/lib/server/types/topic.types';
@@ -57,7 +57,7 @@ export const getTopicsForBatchService = async ({ batchId, query }: GetTopicsForB
       t.updated_at,
       COUNT(DISTINCT c.id)::int as class_count,
       COUNT(DISTINCT qv.question_id)::int as question_count,
-      MAX(c.created_at) as last_class_created_at
+      MAX(COALESCE(c.class_date, c.created_at)) as last_class_created_at
     FROM "Topic" t
     LEFT JOIN "Class" c ON t.id = c.topic_id AND c.batch_id = $1
     LEFT JOIN "QuestionVisibility" qv ON c.id = qv.class_id

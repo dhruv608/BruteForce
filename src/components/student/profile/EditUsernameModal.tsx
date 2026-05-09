@@ -244,7 +244,7 @@ export function EditUsernameModal({
           </DialogClose>
         </DialogHeader>
 
-        <div className="px-4 sm:px-6 space-y-4 ">
+        <div >
           <div className="space-y-2">
             <label className="text-xs sm:text-sm font-medium flex items-center gap-2">
               Username
@@ -298,14 +298,11 @@ export function EditUsernameModal({
               </div>
             </div>
 
-            <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/50 p-2  rounded-2xl">
-              <Shield className="w-3 h-3" />
-              <span>This will be your unique identifier for profile URLs</span>
-            </div>
+
           </div>
         </div>
 
-        <DialogFooter className="!p-4 sm:!p-6 !pt-2 border-0! ">
+        <DialogFooter className="!pt-2 border-0! ">
           <div className="flex gap-2 w-full">
             <Button
               onClick={handleSaveWithToast}
@@ -318,11 +315,11 @@ export function EditUsernameModal({
                 </>
               ) : (
                 <>
-                  Save Username
+                  Save
                 </>
               )}
             </Button>
-            <Button onClick={handleCancel}  className="flex-1 bg-background! border border-border text-foreground!">
+            <Button onClick={handleCancel} className="flex-1 bg-background! border border-border text-foreground!">
               Cancel
             </Button>
           </div>

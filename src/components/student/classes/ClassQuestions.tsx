@@ -3,6 +3,7 @@
 
 
 import React, { useState } from 'react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 import { QuestionRow } from '../questions/QuestionRow';
 
@@ -83,16 +84,14 @@ export function ClassQuestions({ questions, onRefresh }: ClassQuestionsProps) {
             </div>
           ))
         ) : (
-          <div className="flex flex-col items-center justify-center py-14 text-center rounded-xl border border-dashed border-border/50 bg-background/30">
-            
-            <div className="text-sm text-muted-foreground mb-1">
+          <div className="flex flex-col items-center justify-center py-14 text-center rounded-2xl glass backdrop-blur-sm p-10">
+            <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
+            <div className="font-semibold text-foreground mb-1">
               No questions assigned
             </div>
-
-            <div className="text-xs text-muted-foreground/70">
+            <div className="text-[13px] text-muted-foreground">
               Once questions are added, they’ll appear here.
             </div>
-
           </div>
         )}
 

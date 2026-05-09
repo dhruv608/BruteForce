@@ -329,9 +329,9 @@ export default function BulkUploadModal({
               Upload multiple students via CSV file
             </DialogDescription>
             <div className="flex items-center gap-1.5 mt-1 text-[11px] text-muted-foreground">
-              <KeyRound className="w-3 h-3 text-primary shrink-0" />
+              <KeyRound className="w-3 h-3 text-logo shrink-0" />
               Default password for all students:
-              <span className="font-mono font-semibold text-primary">bruteforce@123</span>
+              <span className="font-mono font-semibold text-logo">bruteforce@123</span>
             </div>
           </DialogHeader>
 
@@ -540,13 +540,13 @@ export default function BulkUploadModal({
           </div>
 
           {/* FOOTER */}
-          <DialogFooter className="px-4 sm:px-6 py-3 sm:py-4 border-t border-border/40 flex gap-2 sm:gap-3">
+          <DialogFooter className=" border-t border-border/40 flex gap-2 sm:gap-3">
 
             <Button
 
               onClick={handleClose}
               disabled={loading}
-              className="h-10 sm:h-11 bg-secondary-foreground! text-secondary! !mb-3"
+              className="h-10 sm:h-11 bg-secondary-foreground! text-secondary! "
             >
               Cancel
             </Button>

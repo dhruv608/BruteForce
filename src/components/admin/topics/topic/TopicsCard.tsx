@@ -82,13 +82,11 @@ export default function TopicCard({
         {/* STATS */}
         <div className="flex flex-wrap gap-3 text-xs">
 
-          <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-muted/40">
-            <BookOpen className="w-3.5 h-3.5 text-primary" />
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-2xl bg-muted/40">
             <span>{topic.classCount || 0} Classes</span>
           </div>
 
-          <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-muted/40">
-            <FileQuestion className="w-3.5 h-3.5 text-primary" />
+          <div className="flex items-center gap-1.5 px-2 py-1 rounded-2xl bg-muted/40">
             <span>{topic.questionCount || 0} Questions</span>
           </div>
 
@@ -109,7 +107,7 @@ export default function TopicCard({
         {/* CTA */}
         <Button
           variant="secondary"
-          className="w-full h-10 rounded-xl font-medium flex items-center justify-center gap-2 group-hover:bg-primary/10 group-hover:text-primary transition-all"
+          className="w-full h-10 rounded-xl font-medium flex items-center justify-center gap-2 group-hover:bg-logo/10 group-hover:text-logo transition-all"
           onClick={(e) => {
             e.stopPropagation();
             router.push(`/admin/topics/${topic.slug}`);

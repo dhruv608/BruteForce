@@ -77,7 +77,7 @@ export const TimerLeaderboard: React.FC<TimerLeaderboardProps> = ({
           <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
           <span className="hidden sm:inline">Last updated at:</span>
           {lastUpdated
-            ? <span className="font-bold text-primary">{formatLastUpdated()}</span>
+            ? <span className="font-bold text-logo">{formatLastUpdated()}</span>
             : <Skeleton className="h-3 w-24 sm:w-28 rounded-full" />
           }
         </div>
@@ -100,7 +100,7 @@ export const TimerLeaderboard: React.FC<TimerLeaderboardProps> = ({
             <RefreshCw className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
             <span className="hidden sm:inline">Next:</span>
             {lastUpdated
-              ? <span className="font-bold text-primary">{countdown}</span>
+              ? <span className="font-bold text-logo">{countdown}</span>
               : <Skeleton className="h-3 w-12 sm:w-14 rounded-full" />
             }
           </div>

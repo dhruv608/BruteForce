@@ -74,7 +74,7 @@ export const EditBookmarkModal: React.FC<EditBookmarkModalProps> = ({
         </DialogHeader>
 
         {/* CONTENT */}
-        <div className="p-6">
+        <div className="px-4">
           {/* QUESTION INFO */}
           <div className="mb-6 p-4 rounded-2xl bg-accent/20 border border-border/40">
             <div className="flex items-start justify-between mb-2">

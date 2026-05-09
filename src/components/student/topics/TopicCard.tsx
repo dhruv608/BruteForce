@@ -28,8 +28,8 @@ export function TopicCard({
     progressPercentage !== undefined
       ? progressPercentage
       : totalQuestions === 0
-      ? 0
-      : (solvedQuestions / totalQuestions) * 100;
+        ? 0
+        : (solvedQuestions / totalQuestions) * 100;
 
   const isLocked = totalClasses === 0;
 
@@ -58,9 +58,8 @@ export function TopicCard({
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
             quality={75}
-            className={`object-cover transition-transform duration-500 ${
-              isLocked ? "scale-100" : "group-hover:scale-105"
-            }`}
+            className={`object-cover transition-transform duration-500 ${isLocked ? "scale-100" : "group-hover:scale-105"
+              }`}
           />
         ) : (
           <div className="w-full h-full bg-muted" />
@@ -71,11 +70,10 @@ export function TopicCard({
       <div className="p-4 flex flex-col justify-between flex-1 gap-3">
         {/* TITLE */}
         <h3
-          className={`text-base font-semibold line-clamp-1 transition-colors ${
-            isLocked
+          className={`text-base font-semibold line-clamp-1 transition-colors ${isLocked
               ? "text-muted-foreground"
-              : "text-foreground group-hover:text-primary"
-          }`}
+              : "text-foreground group-hover:text-logo"
+            }`}
         >
           {topicName}
         </h3>
@@ -99,11 +97,10 @@ export function TopicCard({
         {/* 📊 PROGRESS (same height always) */}
         <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden mt-1">
           <div
-            className={`h-full rounded-full transition-all duration-500 ease-out ${
-              isLocked
+            className={`h-full rounded-full transition-all duration-500 ease-out ${isLocked
                 ? "bg-muted-foreground/30"
                 : "bg-primary shadow-[0_0_6px_rgba(34,197,94,0.4)]"
-            }`}
+              }`}
             style={{ width: `${isLocked ? 0 : progress}%` }}
           />
         </div>
