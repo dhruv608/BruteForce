@@ -69,7 +69,5 @@ export function extractStudentContext(user: AccessTokenPayload) {
 }
 
 export function getRefreshTokenFromRequest(req: NextRequest): string | null {
-  const cookieHeader = req.headers.get('cookie') ?? '';
-  const match = cookieHeader.split(';').find(c => c.trim().startsWith('refreshToken='));
-  return match?.split('=').slice(1).join('=').trim() ?? null;
+  return req.cookies.get('refreshToken')?.value ?? null;
 }
