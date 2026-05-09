@@ -31,7 +31,7 @@ export function LeaderboardHeader({
     <div className="glass backdrop-blur-sm rounded-2xl px-4 py-3 mb-4 relative z-10">
 
       {/* 🔥 ROW 1 → TITLE + TIMER */}
-      <div className="flex items-center justify-between gap-2 mb-1">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-2 mb-3 sm:mb-1">
 
         {/* LEFT */}
         <div className="flex items-center gap-2 flex-wrap">
@@ -48,7 +48,7 @@ export function LeaderboardHeader({
         <TimerLeaderboard lastUpdated={lastUpdated} syncSchedule={syncSchedule} />
       </div>
 
-      
+
 
       {/* 🔥 ROW 2 → SEARCH + RESET + FILTERS */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
@@ -57,14 +57,14 @@ export function LeaderboardHeader({
         <div className="flex items-center gap-2 w-full sm:w-auto">
 
           {/* Search */}
-          <div className="relative w-full sm:w-[260px] md:w-[300px]">
+          <div className="relative flex-1 sm:flex-none sm:w-[260px] md:w-[300px]">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-foreground" />
 
-            <Input 
+            <Input
               placeholder="Search by name and username..."
               value={lSearch}
               onChange={(e) => setLSearch(e.target.value)}
-              className="!pl-8 w-full h-8 text-xs sm:text-sm"
+              className="!pl-8 w-full h-8 text-xs sm:text-sm!"
             />
           </div>
 
@@ -81,10 +81,10 @@ export function LeaderboardHeader({
         </div>
 
         {/* RIGHT → FILTERS */}
-        <div className="flex items-center gap-2 flex-wrap sm:justify-end relative z-20">
+        <div className="flex items-center gap-2 flex-wrap w-full sm:w-auto sm:justify-end relative z-20">
 
-          <Select 
-            value={lCity} 
+          <Select
+            value={lCity}
             onChange={(v: string | number) => setLCity(String(v))}
             options={cityOptionsObj}
             className="w-auto h-8 text-xs sm:text-sm border border-border/40"
@@ -92,8 +92,8 @@ export function LeaderboardHeader({
             placeholder="City"
           />
 
-          <Select 
-            value={lYear?.toString() || ''} 
+          <Select
+            value={lYear?.toString() || ''}
             onChange={(v: string | number) => setLYear(Number(v))}
             options={yearOptionsObj}
             className="w-auto h-8 text-xs sm:text-sm border border-border/40"

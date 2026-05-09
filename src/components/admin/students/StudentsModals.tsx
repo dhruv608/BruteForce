@@ -257,11 +257,9 @@ export default function StudentsModals({
         <DialogContent className="sm:max-w-[520px] max-h-[90vh] p-0 flex flex-col overflow-hidden rounded-2xl gap-0">
           {/* HEADER */}
           <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50 shrink-0">
-            <DialogTitle className="flex items-center gap-3 text-lg font-semibold">
-              <div className="p-2 rounded bg-primary/10 border border-primary/20">
-                <FolderEdit className="w-4 h-4 text-primary" />
-              </div>
-              Edit Student
+            <DialogTitle className="flex items-center gap-3 text-2xl font-semibold">
+
+              Edit <span className='text-primary'>Student</span>
             </DialogTitle>
             <DialogDescription className="text-sm text-muted-foreground">
               Update student information
@@ -386,10 +384,10 @@ export default function StudentsModals({
           <DialogFooter className="px-6 py-4 bg-background border-t border-border/50 shrink-0 flex gap-2">
             <Button
               type="button"
-              variant="ghost"
+
               onClick={() => setIsEditOpen(false)}
               disabled={submitting}
-              className="h-11"
+              className="h-11 text-secondary! bg-muted-foreground!"
             >
               Cancel
             </Button>
@@ -397,7 +395,7 @@ export default function StudentsModals({
               form="edit-student-form"
               type="submit"
               disabled={submitting || !editForm.formState.isValid}
-              className="h-11 w-full font-semibold bg-primary text-black hover:opacity-90 transition-all"
+              className="h-11 font-semibold bg-primary text-black hover:opacity-90 transition-all"
             >
               {submitting ? "Saving..." : "Save Changes"}
             </Button>

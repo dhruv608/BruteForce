@@ -142,6 +142,21 @@ export function RecentQuestionsSidebar() {
     };
   }, [isOpen, selectedDate]);
 
+  // Lock body scroll when sidebar is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
+
   // Time formatting
   const formatTimeAgo = (assigned_at: string) => {
     const now = new Date();
@@ -163,6 +178,7 @@ export function RecentQuestionsSidebar() {
   };
 
   const handleViewClass = (question: RecentQuestion) => {
+    setIsOpen(false);
     router.push(
       `/topics/${question.topic_slug}/classes/${question.class_slug}`
     );
@@ -192,7 +208,7 @@ export function RecentQuestionsSidebar() {
           />
 
           {/* Sidebar */}
-          <div className="absolute right-0 top-0 h-full w-[85%] sm:w-[380px] md:w-[420px] max-w-[450px] border border-border shadow-2xl animate-in slide-in-from-right duration-300">
+          <div className="absolute right-0 top-0 h-full w-[85%] sm:w-[380px] md:w-[420px] max-w-[450px] border border-border shadow-2xl animate-in slide-in-from-right duration-300 overscroll-contain">
 
             <Card className="h-full rounded-none border-none shadow-none bg-transparent">
 

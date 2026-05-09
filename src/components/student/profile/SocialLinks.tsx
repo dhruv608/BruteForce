@@ -14,64 +14,64 @@ export function SocialLinks({ student, canEdit, onEditSocialLinks }: SocialLinks
   return (
     <div className="glass backdrop-blur-sm p-6 rounded-(--radius-lg)">
       <h3 className="font-bold mb-6 flex items-center gap-2 text-[var(--text-base)] text-[var(--foreground)]">
-        <LinkIcon className="w-5 h-5 text-[var(--accent-primary)]" />
+        <LinkIcon className="w-5 h-5 text-logo" />
         Social Links
       </h3>
 
       <div className="space-y-4">
-        <a 
-          href={student.github || '#'} 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        <a
+          href={student.github || '#'}
+          target="_blank"
+          rel="noopener noreferrer"
           className={`flex items-center gap-4 p-4 hover-glow transition-all duration-200 ${student.github ? '' : 'opacity-60 pointer-events-none'} rounded-(--radius-lg) border-border border-[var(--border)]`}
           style={{
             backgroundColor: student.github ? 'var(--accent-secondary)' : 'var(--muted)'
           }}
         >
-          <div 
+          <div
             className="w-10 h-10 rounded-lg flex items-center justify-center font-bold rounded-[var(--radius-md)]"
-            
+
           >
-            <Github className="w-8! h-8! text-primary" />
+            <Github className="w-8! h-8! text-logo" />
           </div>
           <div className="flex-1">
             <div className="font-bold text-[var(--text-sm)] text-[var(--foreground)]">GitHub</div>
             <div className="font-mono text-[var(--text-xs)] text-[var(--text-secondary)]">{student.github ? 'Connected' : 'Not connected'}</div>
           </div>
           {student.github && (
-            <ExternalLink className="w-4 h-4 text-[var(--accent-primary)] hover:text-[var(--accent-primary)]/80 transition-colors duration-200" />
+            <ExternalLink className="w-4 h-4 text-logo hover:text-logo/80 transition-colors duration-200" />
           )}
         </a>
 
-        <a 
-          href={student.linkedin || '#'} 
-          target="_blank" 
-          rel="noopener noreferrer" 
+        <a
+          href={student.linkedin || '#'}
+          target="_blank"
+          rel="noopener noreferrer"
           className={`flex items-center gap-4 p-4 hover-glow transition-all duration-200 ${student.linkedin ? '' : 'opacity-60 pointer-events-none'} rounded-(--radius-lg) border-border border-[var(--border)]`}
           style={{
             backgroundColor: student.linkedin ? 'var(--accent-secondary)' : 'var(--muted)'
           }}
         >
-          <div 
+          <div
             className="w-10 h-10 rounded-lg flex items-center justify-center font-bold rounded-[var(--radius-md)]"
-            
+
           >
-            <Linkedin className="w-8! h-8! text-primary" />
+            <Linkedin className="w-8! h-8! text-logo" />
           </div>
           <div className="flex-1">
             <div className="font-bold text-[var(--text-sm)] text-[var(--foreground)]">LinkedIn</div>
             <div className="font-mono text-[var(--text-xs)] text-[var(--text-secondary)]">{student.linkedin ? 'Connected' : 'Not linked'}</div>
           </div>
           {student.linkedin && (
-            <ExternalLink className="w-4 h-4 text-[var(--accent-primary)] hover:text-[var(--accent-primary)]/80 transition-colors duration-200" />
+            <ExternalLink className="w-4 h-4 text-logo hover:text-logo/80 transition-colors duration-200" />
           )}
         </a>
       </div>
 
       {canEdit && (
-        <Button 
-          variant="outline" 
-          className="w-full mt-6 hover-glow transition-all duration-200 rounded-2xl  py-6!" 
+        <Button
+          variant="outline"
+          className="w-full mt-6 hover-glow transition-all duration-200 rounded-2xl  py-6!"
           onClick={onEditSocialLinks}
         >
           Edit Social Links

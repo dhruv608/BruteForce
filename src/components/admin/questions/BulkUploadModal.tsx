@@ -271,8 +271,7 @@ export default function BulkUploadModal({
 
           {/* HEADER */}
           <DialogHeader className="px-6 py-5 bg-muted/40 shrink-0 border-b border-border/40">
-            <DialogTitle className="text-xl font-semibold flex items-center gap-2">
-              <Upload className="w-5 h-5 text-primary" />
+            <DialogTitle className="text-2xl font-semibold flex items-center gap-2">
               Bulk Upload Questions
             </DialogTitle>
 
@@ -282,7 +281,7 @@ export default function BulkUploadModal({
           </DialogHeader>
 
           {/* BODY */}
-          <div className="p-6 space-y-6 flex-1 overflow-y-auto">
+          <div className="px-4  py-2 space-y-6 flex-1 overflow-y-auto">
 
             {/* TOPIC */}
             <div className="space-y-2">
@@ -307,8 +306,8 @@ export default function BulkUploadModal({
               <label className="w-full flex items-center justify-between rounded-2xl px-5 py-4 cursor-pointer bg-muted/30 hover:bg-muted/50 border border-border/50 transition">
 
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded bg-primary/10">
-                    <Upload className="w-4 h-4 text-primary" />
+                  <div className="p-2 rounded-2xl bg-logo/10">
+                    <Upload className="w-4 h-4 text-logo" />
                   </div>
 
                   <span className="text-sm text-muted-foreground">
@@ -316,7 +315,7 @@ export default function BulkUploadModal({
                   </span>
                 </div>
 
-                <span className="text-xs font-semibold bg-primary/10 text-primary px-3 py-1 rounded">
+                <span className="text-xs font-semibold bg-logo/10 text-logo rounded-2xl px-3 py-1 rounded">
                   Browse
                 </span>
 
@@ -411,15 +410,15 @@ export default function BulkUploadModal({
           </div>
 
           {/* FOOTER */}
-          <DialogFooter className="px-6 py-4 bg-background shrink-0 border-t border-border/40 flex gap-3">
-            <Button variant="ghost" onClick={handleClose}>
+          <DialogFooter className=" bg-background shrink-0 border-t border-border/40 flex gap-3">
+            <Button onClick={handleClose} className='text-secondary! bg-muted-foreground! '>
               Cancel
             </Button>
 
             <Button
               disabled={isUploadDisabled}
               onClick={handleUpload}
-              className=" h-12 text-sm font-semibold bg-primary"
+              className=" h-12 text-sm font-semibold bg-primary "
             >
               {loading ? "Creating Questions..." : "Create Questions"}
             </Button>

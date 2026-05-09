@@ -24,12 +24,12 @@ export const PodiumCard = ({ student, rank, isCenter, onDragStart }: PodiumCardP
 
     const borderColor =
         rank === 1
-            ? "border-[color:var(--chart-1)]"
+            ? "!border-[color:var(--chart-1)]"
             : rank === 2
-                ? "border-[color:var(--chart-2)]"
+                ? "!border-[color:var(--chart-2)]"
                 : rank === 3
-                    ? "border-[color:var(--chart-5)]"
-                    : "border-[color:var(--chart-3)]";
+                    ? "!border-[color:var(--chart-5)]"
+                    : "!border-[color:var(--chart-3)]";
     const textColor =
         rank === 1
             ? "text-[color:var(--chart-1)]"

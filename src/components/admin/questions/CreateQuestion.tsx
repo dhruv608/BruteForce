@@ -79,10 +79,10 @@ export default function CreateQuestion({
   const formErrors = form.formState.errors;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[95vh] p-0! overflow-y-auto!  rounded-2xl">
+      <DialogContent className="w-full max-w-[calc(100%-1rem)] sm:max-w-[520px] max-h-[95vh] p-0! overflow-hidden! flex flex-col rounded-2xl">
 
         {/* HEADER */}
-        <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50 ">
+        <DialogHeader className="px-6 py-5 bg-muted/30 border-b border-border/50 shrink-0">
           <DialogTitle className="flex items-center gap-1 text-xl font-semibold">
 
             Add <span className="text-primary" >Question</span>
@@ -94,12 +94,15 @@ export default function CreateQuestion({
         </DialogHeader>
 
         {/* BODY */}
-        <div className="p-3 space-y-6 overflow-hidden">
+        <div className="flex-1 overflow-hidden flex flex-col">
 
-          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="flex-1 overflow-hidden flex flex-col">
 
-            {/* BASIC INFO */}
-            <div className="p-4 sm:p-5 rounded-2xl border border-border/50 bg-muted/20 space-y-5">
+            {/* SCROLLABLE CONTENT */}
+            <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6 custom-scrollbar">
+
+              {/* BASIC INFO */}
+              <div className="p-4 sm:p-5 rounded-2xl border border-border/50 bg-muted/20 space-y-5">
 
               {/* Title */}
               <h3 className="text-sm font-semibold text-muted-foreground">
@@ -225,15 +228,17 @@ export default function CreateQuestion({
                 />
               </div>
             </div>
+            </div>
 
             {/* FOOTER */}
-            <DialogFooter className="flex gap-2 pt-2">
+            <DialogFooter className="p-4 sm:p-6 mb-0 bg-background shrink-0 border-t border-border/40 flex gap-3 items-center justify-end">
 
               <Button
                 type="button"
+                variant="ghost"
                 onClick={() => onOpenChange(false)}
                 disabled={loading}
-                className="h-11 rounded bg-foreground! text-secondary!"
+                className="h-11 rounded hover:bg-muted"
               >
                 Cancel
               </Button>
@@ -241,7 +246,7 @@ export default function CreateQuestion({
               <Button
                 type="submit"
                 disabled={loading || !form.formState.isValid}
-                className="h-11  font-semibold rounded transition-all hover:scale-[1.02] active:scale-[0.97]"
+                className="h-11 font-semibold rounded bg-primary text-black transition-all hover:scale-[1.02] active:scale-[0.97]"
               >
                 {loading ? (
                   "Creating..."

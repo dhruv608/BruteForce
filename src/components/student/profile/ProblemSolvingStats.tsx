@@ -101,7 +101,7 @@ export function ProblemSolvingStats({ codingStats }: ProblemSolvingStatsProps) {
       <div className="flex items-end justify-between mb-10">
         <div>
           <h2 className="font-bold mb-2 flex items-center gap-3 text-[var(--text-3xl)] text-[var(--foreground)]">
-            <TrendingUp className="w-8 h-8 text-[var(--accent-primary)]" />
+            <TrendingUp className="w-8 h-8 text-logo" />
             Problem Solving Stats
           </h2>
           <p className="text-[var(--text-sm)] text-[var(--text-secondary)]">

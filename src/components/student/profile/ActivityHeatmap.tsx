@@ -95,11 +95,11 @@ export default function ActivityHeatmap({
 
   return (
     <div className="glass backdrop-blur-sm p-6 rounded-[var(--radius-lg)] border border-[var(--border)] w-full">
-     
+
       {/* Header */}
       <div className="flex justify-between items-center ">
         <h3 className="font-bold mb-6 flex items-center gap-2 text-[var(--text-base)] text-[var(--foreground)]">
-          <Activity className="w-5 h-5 text-[var(--accent-primary)]" />
+          <Activity className="w-5 h-5 text-logo" />
           Activity
         </h3>
       </div>
@@ -183,7 +183,7 @@ export default function ActivityHeatmap({
         <div className="w-[14px] h-[14px] bg-[var(--primary)] rounded-[3px]" />
         <span>More</span>
         <span className="ml-4 text-[var(--muted-foreground)]">|</span>
-        
+
         <div className="w-[14px] h-[14px] bg-blue-100/50 border border-blue-200/50 rounded-[3px]" />
         <span>Freeze day</span>
       </div>

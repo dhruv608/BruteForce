@@ -149,7 +149,7 @@ export function ImageCropModal({
         </DialogHeader>
 
         {/* Crop canvas */}
-        <div className="relative w-full bg-black" style={{ height: '360px' }}>
+        <div className="relative w-full" style={{ height: '280px' }}>
           {imageSrc && (
             <Cropper
               image={imageSrc}
@@ -167,10 +167,6 @@ export function ImageCropModal({
           )}
         </div>
 
-        {/* Hint */}
-        <p className="text-center text-[11px] text-muted-foreground pt-3 px-5">
-          Drag to reposition · Scroll or pinch to zoom
-        </p>
 
         {/* Controls */}
         <div className="px-5 py-3 space-y-3">

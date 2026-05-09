@@ -61,7 +61,7 @@ export const LeaderboardTableRow: React.FC<LeaderboardTableRowProps> = ({ entry,
       </TableCell>
 
       <TableCell className="text-center">
-        <span className="font-black text-primary text-xl tracking-tight ">{entry.score}</span>
+        <span className="font-black text-logo text-m tracking-tight ">{entry.score}</span>
       </TableCell>
 
       <TableCell className="text-center">

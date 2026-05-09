@@ -63,18 +63,18 @@ export function ClassHeader({
 
         {/* LEFT META */}
         <div className="flex flex-wrap items-center gap-3">
-         
+
 
           {formattedDate && (
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Calendar className="w-4 h-4" />
+            <div className="flex items-center gap-1.5 text-xs font-bold bg-black/10 px-3 py-2 rounded-2xl text-muted-foreground">
+              <Calendar className="w-4 h-4 " strokeWidth={3} />
               {formattedDate}
             </div>
           )}
 
           {classData.duration_minutes && (
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Clock className="w-4 h-4" />
+            <div className="flex items-center font-bold bg-black/10 px-3 py-2 rounded-2xl gap-1.5 text-xs text-muted-foreground">
+              <Clock className="w-4 h-4" strokeWidth={3} />
               {classData.duration_minutes} min
             </div>
           )}
@@ -86,7 +86,7 @@ export function ClassHeader({
             href={classData.pdf_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-medium bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-200"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-medium text-black bg-primary dark:bg-primary/10 hover:bg-logo/20 dark:text-primary transition-all duration-200"
           >
             <FileText className="w-4 h-4" />
             View Notes
@@ -107,13 +107,14 @@ export function ClassHeader({
         </h1>
 
         {/* PROGRESS */}
-        <div className="w-full lg:w-[260px] border border-border/40 p-4 backdrop-blur-3xl rounded-2xl">
+        <div className="w-full lg:w-[260px] border border-border p-4 backdrop-blur-3xl rounded-2xl">
           <div className="flex items-center justify-between text-xs mb-1">
-            <span className="text-muted-foreground">
-              {solvedQuestions}/{totalQuestions}
+
+            <span className="text-muted-foreground font-bold">
+              Progress {solvedQuestions}/{totalQuestions}
             </span>
 
-            <span className="text-primary font-medium">
+            <span className="text-logo font-medium">
               {Math.round(progress)}%
             </span>
           </div>
@@ -134,22 +135,20 @@ export function ClassHeader({
           {/* HEADER */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-primary hover:bg-muted/20 transition"
+            className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-logo hover:bg-muted/20 transition"
           >
             <span>View Description</span>
 
             <ChevronDown
-              className={`w-4 h-4 text-primary transition-transform duration-300 ${
-                isOpen ? "rotate-180" : ""
-              }`}
+              className={`w-4 h-4 text-logo transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                }`}
             />
           </button>
 
           {/* CONTENT */}
           <div
-            className={`transition-all duration-300 ease-in-out ${
-              isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-            } overflow-hidden`}
+            className={`transition-all duration-300 ease-in-out ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+              } overflow-hidden`}
           >
             <div className="px-4 pb-4 pt-1">
               <ul className="space-y-2 text-muted-foreground text-sm max-w-3xl leading-relaxed list-disc list-inside">

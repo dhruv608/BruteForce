@@ -32,8 +32,8 @@ export function YourRank({ yourRank }: YourRankProps) {
           dragConstraints={constraintsRef}
           dragElastic={0.2}
           dragMomentum={false}
-          className="pointer-events-auto absolute"
-          initial={{ x: 80, y: 220 }}
+          className="pointer-events-auto absolute md:left-2"
+          initial={{ x: 0, y: 220 }}
         >
           <Popover>
             <PopoverTrigger asChild>
@@ -56,7 +56,7 @@ export function YourRank({ yourRank }: YourRankProps) {
                     </motion.div>
                   )}
                 </AnimatePresence>
-                <button onClick={() => setShowHint(false)} className="px-3 py-1.5 rounded-lg bg-primary text-black text-sm font-semibold shadow hover:scale-105 transition">
+                <button onClick={() => setShowHint(false)} className="px-3 py-2 md:px-5 md:py-3 rounded-lg bg-primary text-black text-sm md:text-lg font-semibold shadow hover:scale-105 transition">
                   Rank #{yourRank.rank}
                 </button>
               </div>
@@ -123,8 +123,8 @@ export function YourRank({ yourRank }: YourRankProps) {
         dragConstraints={constraintsRef}
         dragElastic={0.2}
         dragMomentum={false}
-        className="pointer-events-auto absolute"
-        initial={{ x:80, y: 220 }}
+        className="pointer-events-auto absolute md:left-2"
+        initial={{ x: 0, y: 220 }}
       >
         <Popover>
           <PopoverTrigger asChild>
@@ -139,7 +139,7 @@ export function YourRank({ yourRank }: YourRankProps) {
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 pointer-events-none whitespace-nowrap"
                   >
-                    <div className="relative bg-background glass group backdrop-blur-2xl border border-border rounded-2xl px-3 py-2 text-xs font-bold text-primary shadow-md select-none flex items-center gap-2">
+                    <div className="relative bg-background glass group backdrop-blur-2xl border border-border rounded-2xl px-3 py-2 text-xs font-bold text-logo shadow-md select-none flex items-center gap-2">
                       <MousePointerClick className="w-4 h-4" />
                       Click me
                       <div className="absolute right-1/5 -translate-x-1/2 -bottom-[6px]  glass group backdrop-blur-2xl  w-3 h-3 rotate-45 bg-background border-b border-r border-border" />
@@ -147,8 +147,8 @@ export function YourRank({ yourRank }: YourRankProps) {
                   </motion.div>
                 )}
               </AnimatePresence>
-              <button onClick={() => setShowHint(false)} className="px-5 py-3 rounded-lg bg-primary text-black text-lg font-semibold shadow hover:scale-105 transition">
-                Your Rank #{yourRank.rank} 
+              <button onClick={() => setShowHint(false)} className="px-3 py-2 md:px-5 md:py-3 rounded-lg bg-primary text-black text-sm md:text-lg font-semibold shadow hover:scale-105 transition">
+                Your Rank #{yourRank.rank}
               </button>
             </div>
           </PopoverTrigger>
@@ -175,8 +175,8 @@ export function YourRank({ yourRank }: YourRankProps) {
                       className="w-12 h-12 rounded-full border-2 border-primary/30 object-cover"
                     />
                     :
-                    <ProfileAvatar username={yourRank.username || ""}  />
-                }
+                    <ProfileAvatar username={yourRank.username || ""} />
+                  }
 
                   <div className="absolute -bottom-1 -right-1 bg-primary text-black text-[10px] font-bold px-1.5 py-0.5 rounded-full">
                     #{yourRank.rank}
@@ -307,9 +307,9 @@ export function YourRank({ yourRank }: YourRankProps) {
 
               {/* Bottom Stats */}
               <div className="grid grid-cols-2 gap-2">
-                <div className="bg-primary/10 rounded-2xl p-2.5 text-center border border-primary/20">
+                <div className="bg-logo/10 rounded-2xl p-2.5 text-center border border-logo/20">
                   <div className="text-xs text-muted-foreground">Score</div>
-                  <div className="font-bold text-sm text-primary">
+                  <div className="font-bold text-sm text-logo">
                     {yourRank.score}
                   </div>
                 </div>

@@ -28,7 +28,7 @@ export default function ClassFilter({ search, onSearchChange, totalRecords }: Cl
                />
             </div>
             {/* COUNT BADGE */}
-            <div className="  text-xs font-semibold tracking-wide  px-3 py-1.5 rounded-full  bg-primary/10 text-primary  border border-primary/20  shadow-[0_0_10px_var(--hover-glow)]   ">
+            <div className="  text-xs font-semibold tracking-wide  px-3 py-1.5 rounded-full  bg-primary text-black  border border-primary/20     ">
                {totalRecords} Classes
             </div>
 

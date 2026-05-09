@@ -11,14 +11,14 @@ export function OverviewStats({ leaderboard, streak }: OverviewStatsProps) {
   return (
     <div className="glass backdrop-blur-sm p-6 rounded-[var(--radius-lg)]">
       <h3 className="font-bold mb-6 flex items-center gap-2 text-[var(--text-base)] text-[var(--foreground)]">
-        <Award className="w-5 h-5 text-[var(--accent-primary)]" />
+        <Award className="w-5 h-5 text-logo" />
         Overview
       </h3>
 
       <div className="space-y-4">
         <div className="flex justify-between items-center p-4 hover-glow transition-all duration-200 bg-[var(--accent-secondary)] rounded-[var(--radius-lg)]">
           <span className="font-medium flex items-center gap-2 text-[var(--text-sm)] text-[var(--text-secondary)]">
-            <Trophy className="w-4 h-4 text-[var(--accent-primary)]" />
+            <Trophy className="w-4 h-4 text-logo" />
             Global Rank
           </span>
           <span className="font-bold font-mono text-[var(--text-xl)] text-[var(--foreground)]">
@@ -27,7 +27,7 @@ export function OverviewStats({ leaderboard, streak }: OverviewStatsProps) {
         </div>
         <div className="flex justify-between items-center p-4 hover-glow transition-all duration-200 bg-[var(--accent-secondary)] rounded-[var(--radius-lg)]">
           <span className="font-medium flex items-center gap-2 text-[var(--text-sm)] text-[var(--text-secondary)]">
-            <Target className="w-4 h-4 text-[var(--accent-primary)]" />
+            <Target className="w-4 h-4 text-logo" />
             City Rank
           </span>
           <span className="font-bold font-mono text-[var(--text-xl)] text-[var(--foreground)]">
@@ -36,7 +36,7 @@ export function OverviewStats({ leaderboard, streak }: OverviewStatsProps) {
         </div>
         <div className="flex justify-between items-center p-4 hover-glow transition-all duration-200 bg-[var(--accent-secondary)] rounded-[var(--radius-lg)]">
           <span className="font-medium flex items-center gap-2 text-[var(--text-sm)] text-[var(--text-secondary)]">
-            <Flame className="w-4 h-4 text-[var(--accent-primary)]" />
+            <Flame className="w-4 h-4 text-logo" />
             Max Streak
           </span>
           <span className="font-bold font-mono text-[var(--text-xl)] text-[var(--foreground)]">
@@ -45,17 +45,17 @@ export function OverviewStats({ leaderboard, streak }: OverviewStatsProps) {
         </div>
 
         {/* Current Streak with new logic */}
-        <div 
+        <div
           className="flex justify-between items-center p-4 hover-glow transition-all duration-200 rounded-[var(--radius-lg)]"
           style={{
-            backgroundColor: (streak?.count === 0 && streak?.hasQuestion === false) 
-              ? 'var(--muted)' 
+            backgroundColor: (streak?.count === 0 && streak?.hasQuestion === false)
+              ? 'var(--muted)'
               : 'var(--accent-secondary)'
           }}
         >
           <div className="flex flex-col gap-1">
             <span className="font-medium flex items-center gap-2 text-[var(--text-sm)] text-[var(--text-secondary)]">
-              <Flame className="w-4 h-4 text-[var(--accent-primary)]" />
+              <Flame className="w-4 h-4 text-logo" />
               Current Streak
               {(streak?.count === 0 && streak?.hasQuestion === false) && (
                 <span className="text-[var(--text-xs)] text-[var(--text-secondary)]">
@@ -70,7 +70,7 @@ export function OverviewStats({ leaderboard, streak }: OverviewStatsProps) {
             )}
           </div>
           <div className="text-right">
-            <span 
+            <span
               className="font-bold font-mono text-[var(--text-xl)]"
               style={{
                 color: (streak?.count === 0 && streak?.hasQuestion === false)

@@ -54,21 +54,18 @@ export const BookmarkModal: React.FC<BookmarkModalProps> = ({
       <DialogContent className="max-w-md overflow-hidden p-0">
         <DialogHeader className="px-6 py-4 border-b border-border/40">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-2xl bg-primary/10">
-              <Bookmark className="w-5 h-5 text-primary" />
-            </div>
-            <DialogTitle className="text-lg font-semibold text-foreground">Add <span className='text-primary' >Bookmark</span></DialogTitle>
+            <DialogTitle className="text-2xl font-semibold text-foreground">Add <span className='text-primary' >Bookmark</span></DialogTitle>
           </div>
         </DialogHeader>
 
         {/* CONTENT */}
-        <div className="p-6">
+        <div className="px-4">
           {/* QUESTION INFO */}
           <div className="mb-6 p-4 rounded-2xl bg-accent/20 border border-border/40">
             <div className="flex items-start justify-between mb-2">
-              <h3 className="font-medium text-foreground">{question.question_name } </h3>
+              <h3 className="font-medium text-foreground">{question.question_name} </h3>
               <span className={`px-2 py-1 rounded border text-xs font-semibold ${getLevelColor(question.level)}`}>
-                {question.level} 
+                {question.level}
               </span>
             </div>
           </div>

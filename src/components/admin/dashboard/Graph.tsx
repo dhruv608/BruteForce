@@ -43,7 +43,7 @@ function Card({ title, icon, children }: CardProps) {
     <div className="glass  hover-glow rounded-2xl overflow-hidden">
 
       <div className="px-6 py-4 flex items-center gap-3 border-b border-border/40">
-        <div className="text-primary">{icon}</div>
+        <div className="text-logo">{icon}</div>
         <h3 className="font-semibold">{title}</h3>
       </div>
 

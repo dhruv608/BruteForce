@@ -15,22 +15,22 @@ export function ProfileInfo({ student }: ProfileInfoProps) {
   return (
     <div className="glass backdrop-blur-sm p-6 rounded-[var(--radius-lg)]">
       <h3 className="font-bold mb-6 flex items-center gap-2 text-[var(--text-base)] text-[var(--foreground)]">
-        <Code className="w-5 h-5 text-[var(--accent-primary)]" />
+        <Code className="w-5 h-5 text-logo" />
         Platform Links
       </h3>
 
       <div className="space-y-4">
 
         {/*  LeetCode */}
-        <div 
+        <div
           className="flex items-center gap-4 p-3 hover-glow transition-all duration-200 rounded-2xl "
           style={{
             backgroundColor: student.gfg ? 'var(--accent-secondary)' : 'var(--muted)'
           }}
         >
-          <div 
+          <div
             className="w-11 h-11 flex items-center justify-center rounded-2xl"
-            
+
           >
             <LeetCodeIcon className="w-8! h-8! text-leetcode" />
           </div>
@@ -49,7 +49,7 @@ export function ProfileInfo({ student }: ProfileInfoProps) {
               href={`https://leetcode.com/${student.leetcode}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-2xl hover:bg-[var(--accent-primary)]/20 transition-all duration-200 text-[var(--accent-primary)]"
+              className="p-2 rounded-2xl hover:bg-logo/20 transition-all duration-200 text-logo"
             >
               <ExternalLink className="w-4 h-4" />
             </a>
@@ -57,15 +57,15 @@ export function ProfileInfo({ student }: ProfileInfoProps) {
         </div>
 
         {/* 🔷 GFG */}
-        <div 
+        <div
           className="flex items-center gap-4 p-3 hover-glow transition-all duration-200 rounded-2xl "
           style={{
             backgroundColor: student.gfg ? 'var(--accent-secondary)' : 'var(--muted)'
           }}
         >
-          <div 
+          <div
             className="w-11 h-11 flex items-center justify-center "
-            
+
           >
             <GeeksforGeeksIcon className="w-8! h-8! text-gfg" />
           </div>
@@ -84,7 +84,7 @@ export function ProfileInfo({ student }: ProfileInfoProps) {
               href={`https://auth.geeksforgeeks.org/user/${student.gfg}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg hover:bg-[var(--accent-primary)]/20 transition-all duration-200 text-[var(--accent-primary)]"
+              className="p-2 rounded-lg hover:bg-logo/20 transition-all duration-200 text-logo"
             >
               <ExternalLink className="w-4 h-4" />
             </a>

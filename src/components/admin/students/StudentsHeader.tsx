@@ -12,7 +12,7 @@ export default function StudentsHeader({ totalRecords, selectedBatch }: Students
   return (
     <div className="glass backdrop-blur-2xl mb-5 -mt-3 rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-4">
-       
+
 
         <div>
           <h1 className="text-3xl font-semibold">Student<span className="text-primary ms-1">Management</span> </h1>
@@ -20,7 +20,7 @@ export default function StudentsHeader({ totalRecords, selectedBatch }: Students
         </div>
       </div>
 
-      <div className="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mt-3 sm:mt-0 w-full sm:w-auto text-center sm:text-left">
+      <div className="px-4 py-1.5 rounded-full bg-primary text-black text-sm font-medium mt-3 sm:mt-0 w-full sm:w-auto text-center sm:text-left">
         {totalRecords} Students
       </div>
     </div>

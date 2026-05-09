@@ -29,7 +29,7 @@ function StatCard({ title, value, icon }: StatCardProps) {
   return (
     <div className="glass  hover-glow rounded-2xl p-6 flex items-center gap-4">
 
-      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+      <div className="w-12 h-12 rounded-2xl bg-logo/10 flex items-center justify-center text-logo">
         {icon}
       </div>
 

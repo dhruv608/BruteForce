@@ -138,7 +138,7 @@ export default function StudentsTable({
                   {/* SOLVED */}
                   <TableCell className="text-center">
                     <div className="flex items-center justify-center gap-2">
-                      <Award className="w-4 h-4 text-primary/70" />
+                      <Award className="w-4 h-4 text-logo/70" />
                       <span className="font-semibold text-foreground">
                         {student.totalSolved || 0}
                       </span>

@@ -23,7 +23,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             title="Dhruv Narang's LinkedIn"
-            className="text-primary p-1 hover:underline underline-offset-4 transition-colors"
+            className="text-logo font-extrabold p-1 hover:underline underline-offset-4 transition-colors"
           >
             Dhruv Narang
           </a>
@@ -33,20 +33,20 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             title="Ayush Chaurasiya's LinkedIn"
-            className="text-primary p-1 hover:underline underline-offset-4 transition-colors"
+            className="text-logo font-extrabold p-1 hover:underline underline-offset-4 transition-colors"
           >
             Ayush Chaurasiya
           </a>
         </p>
 
         <p className="flex items-center gap-1 text-sm text-muted-foreground">
-          Built with <Heart className="w-4 h-4 text-primary fill-primary" /> at
+          Built with <Heart className="w-4 h-4 text-primary font-extrabold fill-primary" /> at
           <a
             href="https://www.pwioi.com/"
             target="_blank"
             rel="noopener noreferrer"
             title="Visit PW Institute of Innovation"
-            className="text-primary p-1 hover:underline underline-offset-4 transition-colors"
+            className="text-logo font-extrabold p-1 hover:underline underline-offset-4 transition-colors"
           >
             PW Institute of Innovation
           </a>

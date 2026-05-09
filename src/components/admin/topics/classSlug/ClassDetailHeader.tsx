@@ -68,15 +68,15 @@ export default function ClassDetailHeader({ selectedBatch, topicSlug, classSlug,
                   <div className="flex flex-wrap items-center gap-3">
 
                      {formattedDate && (
-                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                           <Calendar className="w-4 h-4" />
+                        <div className="flex items-center gap-1.5 text-xs font-bold bg-black/10 px-3 py-2 rounded-2xl text-muted-foreground">
+                           <Calendar className="w-4 h-4" strokeWidth={3} />
                            {formattedDate}
                         </div>
                      )}
 
                      {classDetails.duration_minutes && (
-                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                           <Clock className="w-4 h-4" />
+                        <div className="flex items-center gap-1.5 text-xs  font-bold bg-black/10 px-3 py-2 rounded-2xl text-muted-foreground">
+                           <Clock className="w-4 h-4" strokeWidth={3} />
                            {classDetails.duration_minutes} min
                         </div>
                      )}
@@ -89,7 +89,7 @@ export default function ClassDetailHeader({ selectedBatch, topicSlug, classSlug,
                            href={classDetails.pdf_url}
                            target="_blank"
                            rel="noopener noreferrer"
-                           className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-medium bg-primary/10 hover:bg-primary/20 text-primary transition-all duration-200"
+                           className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-medium bg-logo/10 hover:bg-logo/20 text-logo transition-all duration-200"
                         >
                            <FileText className="w-4 h-4" />
                            View Notes

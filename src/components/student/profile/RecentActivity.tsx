@@ -38,21 +38,21 @@ export function RecentActivity({ recentActivity }: RecentActivityProps) {
   };
 
   return (
-    <div className="glass  backdrop-blur-sm p-10 rounded-(--radius-lg)">
+    <div className="glass  backdrop-blur-sm p-4 rounded-(--radius-lg)">
       <h3 className="font-bold mb-8 flex items-center gap-3 text-[var(--text-lg)] text-[var(--foreground)]">
-        <Clock className="w-6 h-6 text-[var(--accent-primary)]" />
+        <Clock className="w-6 h-6 text-logo" />
         Recent Activity
       </h3>
 
       {recentActivity && recentActivity.length > 0 ? (
-        <div className="space-y-6">
+        <div className="space-y-4">
           {recentActivity.map((activity: RecentActivityType, idx: number) => {
             const style = getDifficultyStyle(activity.difficulty);
 
             return (
               <div
                 key={idx}
-                className="flex items-center justify-between p-6 hover-glow transition-all duration-200 rounded-(--radius-lg) border-border "
+                className="flex items-center justify-between p-2  hover-glow transition-all duration-200  "
                 style={{
                   backgroundColor: 'var(--background-secondary)',
                 }}

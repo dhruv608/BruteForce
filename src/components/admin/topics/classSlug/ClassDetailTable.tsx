@@ -1,6 +1,7 @@
 "use client";
 
 import { Trash2, ExternalLink, Pencil } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { LeetCodeIcon, GeeksforGeeksIcon } from '@/components/platform/PlatformIcons';
 import { Button } from '@/components/ui/button';
 import {
@@ -98,8 +99,12 @@ export default function ClassDetailTable({ assignedQuestions, loading, onEditTyp
                      </>
                   ) : assignedQuestions.length === 0 ? (
                      <TableRow>
-                        <TableCell colSpan={6} className="h-48 text-center text-muted-foreground">
-                           No questions assigned to this class yet.
+                        <TableCell colSpan={6} className="p-0 border-0 h-48">
+                           <div className="flex-1 flex flex-col items-center justify-center text-muted-foreground glass backdrop-blur-sm rounded-2xl p-10 m-4">
+                              <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
+                              <div className="font-semibold text-foreground mb-1">No questions found</div>
+                              <div className="text-[13px]">No questions assigned to this class yet.</div>
+                           </div>
                         </TableCell>
                      </TableRow>
                   ) : (

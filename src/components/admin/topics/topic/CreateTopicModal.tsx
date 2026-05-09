@@ -141,11 +141,11 @@ export default function CreateTopicModal({ isOpen, onClose, onSuccess }: CreateT
                      </div>
 
                      {photoPreview && (
-                        <div className="border border-border/40 rounded-xl p-3 bg-muted/20 space-y-2">
+                        <div className="border border-border/40 rounded-2xl p-3 bg-muted/20 space-y-2">
                            <p className="text-[11px] text-muted-foreground font-medium">
                               Preview
                            </p>
-                           <div className="aspect-video overflow-hidden rounded-lg">
+                           <div className="aspect-video overflow-hidden rounded-2xl">
                               <img
                                  src={photoPreview}
                                  alt="Preview"
