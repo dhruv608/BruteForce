@@ -60,56 +60,14 @@ export function TopicDetailsShimmer() {
       </div>
 
       {/* CLASSES SECTION */}
-      <div className="mt-6 rounded-2xl border border-border/40 glass bg-background/40 backdrop-blur-xl p-5 sm:p-6">
+      <div className="mt-6 rounded-2xl border border-border/40 glass bg-background/40 backdrop-blur-xl p-3 sm:p-3">
         {/* HEADER */}
         <div className="flex items-center gap-3 mb-6">
           <Skeleton className="h-4 w-32" />
         </div>
 
         {/* LIST */}
-        <div className="flex flex-col gap-3 mb-6">
-          {Array.from({ length: 3 }).map((_, idx) => (
-            <div
-              key={idx}
-              className="animate-in fade-in slide-in-from-bottom-2"
-              style={{ animationDelay: `${idx * 40}ms`, animationFillMode: 'both' }}
-            >
-              <div className="group flex backdrop-blur-2xl border border-border/70 rounded-2xl overflow-hidden transition-all duration-300 p-6">
-                {/* Left side - Index and Icon */}
-                <div className="flex items-center gap-4 mr-6">
-                  <Skeleton className="w-8 h-8 rounded-full" />
-                  <Skeleton className="w-6 h-6" />
-                </div>
-
-                {/* Middle - Content */}
-                <div className="flex-1 space-y-3">
-                  <Skeleton className="h-6 w-1/3" />
-                  <div className="flex items-center gap-6 text-sm">
-                    <div className="flex items-center gap-2">
-                      <Skeleton className="w-4 h-4" />
-                      <Skeleton className="w-16 h-3" />
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Skeleton className="w-4 h-4" />
-                      <Skeleton className="w-20 h-3" />
-                    </div>
-                  </div>
-
-                  {/* Progress Bar Shimmer */}
-                  <div className="w-full max-w-md">
-                    <Skeleton className="w-full h-2" />
-                  </div>
-                </div>
-
-                {/* Right side - Actions */}
-                <div className="flex items-center gap-3">
-                  <Skeleton className="w-8 h-8" />
-                  <Skeleton className="w-8 h-8" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <ClassesShimmer />
 
         {/* PAGINATION */}
         <div className="pt-4 border-t border-border/40">
@@ -122,6 +80,47 @@ export function TopicDetailsShimmer() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+export function ClassesShimmer() {
+  return (
+    <div className="flex flex-col gap-3 mb-6">
+      {Array.from({ length: 3 }).map((_, idx) => (
+        <div
+          key={idx}
+          className="animate-in fade-in slide-in-from-bottom-2"
+          style={{ animationDelay: `${idx * 40}ms`, animationFillMode: 'both' }}
+        >
+          <div className="group flex backdrop-blur-2xl border border-border/70 rounded-2xl overflow-hidden transition-all duration-300 p-6">
+            <div className="flex items-center gap-4 mr-6">
+              <Skeleton className="w-8 h-8 rounded-full" />
+              <Skeleton className="w-6 h-6" />
+            </div>
+            <div className="flex-1 space-y-3">
+              <Skeleton className="h-6 w-1/3" />
+              <div className="flex items-center gap-6 text-sm">
+                <div className="flex items-center gap-2">
+                  <Skeleton className="w-4 h-4" />
+                  <Skeleton className="w-16 h-3" />
+                </div>
+                <div className="flex items-center gap-2">
+                  <Skeleton className="w-4 h-4" />
+                  <Skeleton className="w-20 h-3" />
+                </div>
+              </div>
+              <div className="w-full max-w-md">
+                <Skeleton className="w-full h-2" />
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Skeleton className="w-8 h-8" />
+              <Skeleton className="w-8 h-8" />
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

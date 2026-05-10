@@ -56,7 +56,7 @@ export function ClassHeader({
   const hasDescription = descriptionBullets.length > 0;
 
   return (
-    <div className="mb-6 rounded-2xl bg-gradient-to-br from-background/80 to-background/40 glass backdrop-blur-3xl sm:p-6 shadow-sm">
+    <div className="mb-4 rounded-2xl bg-gradient-to-br from-background/80 to-background/40 glass backdrop-blur-3xl sm:p-6 shadow-sm">
 
       {/* TOP META ROW */}
       <div className="flex flex-wrap items-center justify-between gap-4  py-2 px-1">
@@ -81,82 +81,75 @@ export function ClassHeader({
         </div>
 
         {/* RIGHT ACTION */}
-        {classData.pdf_url ? (
-          <a
-            href={classData.pdf_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-medium text-black bg-primary dark:bg-primary/10 hover:bg-logo/20 dark:text-primary transition-all duration-200"
-          >
-            <FileText className="w-4 h-4" />
-            View Notes
-          </a>
-        ) : (
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-medium bg-muted/50 text-muted-foreground cursor-not-allowed">
-            <FileText className="w-4 h-4" />
-            No Notes
-          </div>
-        )}
-      </div>
+        <div className="flex items-center gap-3">
+          {classData.pdf_url ? (
+            <a
+              href={classData.pdf_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-medium text-black bg-primary dark:bg-primary/10 hover:bg-logo/20 dark:text-primary transition-all duration-200"
+            >
+              <FileText className="w-4 h-4" />
+              View Notes
+            </a>
+          ) : (
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl text-xs font-medium bg-muted/50 text-muted-foreground cursor-not-allowed">
+              <FileText className="w-4 h-4" />
+              No Notes
+            </div>
+          )}
 
-      {/* TITLE + PROGRESS */}
-      <div className="flex flex-col  lg:flex-row lg:items-center lg:justify-between gap-4 mb-3">
-
-        <h1 className="text-2xl sm:text-2xl  lg:text-3xl font-bold text-foreground leading-tight">
-          {classData.class_name}
-        </h1>
-
-        {/* PROGRESS */}
-        <div className="w-full lg:w-[260px] border border-border p-4 backdrop-blur-3xl rounded-2xl">
-          <div className="flex items-center justify-between text-xs mb-1">
-
-            <span className="text-muted-foreground font-bold">
-              Progress {solvedQuestions}/{totalQuestions}
-            </span>
-
-            <span className="text-logo font-medium">
-              {Math.round(progress)}%
-            </span>
-          </div>
-
-          <div className="h-2 bg-muted/30 border border-border/50 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-primary transition-all"
-              style={{ width: `${progress}%` }}
-            />
+          {/* PROGRESS */}
+          <div className="w-[180px] sm:w-[220px] lg:w-[260px] border border-border px-3 py-1.5 backdrop-blur-3xl rounded-2xl">
+            <div className="flex items-center justify-between text-[11px] mb-1">
+              <span className="text-muted-foreground font-bold">
+                Progress {solvedQuestions}/{totalQuestions}
+              </span>
+              <span className="text-logo font-medium">
+                {Math.round(progress)}%
+              </span>
+            </div>
+            <div className="h-1.5 bg-muted/30 border border-border/50 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-primary transition-all"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* 🔽 ACCORDION */}
-      {hasDescription && (
-        <div className="mt-4 border border-border/40 rounded-2xl overflow-hidden">
+      {/* TITLE & DESCRIPTION BUTTON */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-2 mb-3">
+        <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-tight">
+          {classData.class_name}
+        </h1>
 
-          {/* HEADER */}
+        {hasDescription && (
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-logo hover:bg-muted/20 transition"
+            className="flex items-center justify-center gap-1.5 text-xs font-medium text-foreground bg-muted/30 hover:bg-muted/50 px-4 py-3 rounded-full transition-colors border border-border/50 w-fit"
           >
             <span>View Description</span>
-
             <ChevronDown
-              className={`w-4 h-4 text-logo transition-transform duration-300 ${isOpen ? "rotate-180" : ""
-                }`}
+              className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
             />
           </button>
+        )}
+      </div>
 
-          {/* CONTENT */}
-          <div
-            className={`transition-all duration-300 ease-in-out ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-              } overflow-hidden`}
-          >
-            <div className="px-4 pb-4 pt-1">
-              <ul className="space-y-2 text-muted-foreground text-sm max-w-3xl leading-relaxed list-disc list-inside">
-                {descriptionBullets.map((bullet, index) => (
-                  <li key={index}>{bullet}</li>
-                ))}
-              </ul>
-            </div>
+      {/* DESCRIPTION CONTENT */}
+      {hasDescription && (
+        <div
+          className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-[500px] opacity-100 mb-3" : "max-h-0 opacity-0"
+            }`}
+        >
+          <div className="px-4 py-3 rounded-2xl border border-border bg-muted/20">
+            <ul className="space-y-2 text-muted-foreground text-sm max-w-3xl leading-relaxed list-disc list-inside">
+              {descriptionBullets.map((bullet, index) => (
+                <li key={index}>{bullet}</li>
+              ))}
+            </ul>
           </div>
         </div>
       )}

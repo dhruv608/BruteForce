@@ -8,16 +8,17 @@ import { ProfileAvatar } from '@/components/ui/ProfileAvatar';
 import { useRouter } from 'next/navigation';
 import { LeaderboardTableRowProps } from '@/types/student/index.types';
 
-export const LeaderboardTableRow: React.FC<LeaderboardTableRowProps> = ({ entry, selectedCity }) => {
-  // Determine rank value and label based on city selection
+export const LeaderboardTableRow: React.FC<LeaderboardTableRowProps> = ({ entry, selectedCity, currentUsername }) => {
   const isGlobalView = selectedCity === 'all';
   const rankValue = isGlobalView ? (entry.global_rank || 0) : (entry.city_rank || 0);
+  const isCurrentUser = currentUsername === entry.username;
 
 
   const router = useRouter();
 
   return (
-    <TableRow className="scrollbar-none transition-all duration-200 cursor-default [&>td:first-child]:rounded-l-2xl [&>td:last-child]:rounded-r-2xl">
+    <TableRow className={`scrollbar-none transition-all duration-200 cursor-default [&>td:first-child]:rounded-l-2xl [&>td:last-child]:rounded-r-2xl ${isCurrentUser ? 'bg-logo/10 border border-logo/50 relative z-10 hover:bg-logo/30' : ''
+      }`}>
 
 
       <TableCell>
@@ -36,7 +37,7 @@ export const LeaderboardTableRow: React.FC<LeaderboardTableRowProps> = ({ entry,
 
           </div>
           <div className="flex flex-col">
-            {entry.name}
+            {isCurrentUser ? <span className="font-extrabold text-logo">YOU</span> : entry.name}
             <Link href={`/profile/${entry.username}`}>
               <div className="flex items-center gap-1">
                 <span className="text-xs text-muted-foreground font-mono cursor-pointer  transition-transform">@{entry.username}</span>

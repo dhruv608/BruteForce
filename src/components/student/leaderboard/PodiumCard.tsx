@@ -8,9 +8,11 @@ import { ProfileAvatar } from "@/components/ui/ProfileAvatar";
 import Link from 'next/link'
 import { PodiumCardProps } from '@/types/student/index.types';
 
-export const PodiumCard = ({ student, rank, isCenter, onDragStart }: PodiumCardProps & { onDragStart?: () => void }) => {
+export const PodiumCard = ({ student, rank, isCenter, onDragStart, currentUsername }: PodiumCardProps & { onDragStart?: () => void }) => {
     const router = useRouter();
     if (!student || rank > 3) return null;
+
+    const isCurrentUser = currentUsername === student.username;
 
     // 🎨 Color logic (ONLY using your theme vars)
     const ringColor =
@@ -74,7 +76,7 @@ export const PodiumCard = ({ student, rank, isCenter, onDragStart }: PodiumCardP
             {/* 💎 Card */}
 
             <div
-                className={`relative glass backdrop-blur-2xl mb-6 rounded-3xl px-8 py-10 w-[230px] md:w-[260px] text-center border ${borderColor} shadow-xl backdrop-blur-xl`}
+                className={`relative glass backdrop-blur-2xl mb-6 rounded-3xl px-8 py-10 w-[230px] md:w-[260px] text-center border shadow-xl backdrop-blur-xl ${borderColor}`}
             >
 
                 {/* 👑 Crown */}
@@ -140,7 +142,7 @@ export const PodiumCard = ({ student, rank, isCenter, onDragStart }: PodiumCardP
 
                 {/* Name */}
                 <h3 className="font-bold text-2xl truncate">
-                    {student.name}
+                    {isCurrentUser ? <span className="font-extrabold">YOU</span> : student.name}
                 </h3>
 
                 {/* Username */}

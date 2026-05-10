@@ -5,11 +5,11 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export function BookmarkShimmer() {
   return (
-    <div className="space-y-3 p-5 rounded-2xl glass backdrop-blur-md">
+    <div className="space-y-3 p-4 rounded-2xl glass backdrop-blur-md">
       {[...Array(5)].map((_, i) => (
         <div
           key={i}
-          className="flex justify-between items-start gap-4 rounded-2xl border border-border/60 px-5 py-3"
+          className="flex justify-between items-start gap-4 rounded-2xl border border-border/60 px-4 py-3"
         >
           {/* LEFT: title + badges */}
           <div className="flex flex-col gap-2 flex-1 min-w-0">

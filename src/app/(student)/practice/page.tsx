@@ -105,8 +105,8 @@ export default function PracticePage() {
       setLoading(false);
       isFetching.current = false;
     }
-  // router is stable from useRouter() — excluded from deps to avoid callback recreation
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // router is stable from useRouter() — excluded from deps to avoid callback recreation
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters.topic, filters.level, filters.platform, filters.type, filters.solved, filters.sort, debouncedSearch, debouncedPage, debouncedLimit]);
 
   useEffect(() => {
@@ -139,39 +139,39 @@ export default function PracticePage() {
 
   return (
 
-      <div className="flex flex-col mx-auto max-w-7xl w-full pb-12 px-4 sm:px-6 lg:px-8 xl:px-12 pt-8">
-        <PracticeHeader />
+    <div className="flex flex-col mx-auto max-w-7xl w-full pb-4 px-4 sm:px-6 lg:px-8 xl:px-12 pt-8">
+      <PracticeHeader />
 
-        <PracticeFiltersComponent
-          filters={filters}
-          filterOptions={filterOptions}
-          hasActiveFilters={hasActiveFilters}
-          handleFilterChange={handleFilterChange}
-          clearFilters={clearFilters}
-        />
+      <PracticeFiltersComponent
+        filters={filters}
+        filterOptions={filterOptions}
+        hasActiveFilters={hasActiveFilters}
+        handleFilterChange={handleFilterChange}
+        clearFilters={clearFilters}
+      />
 
-        <PracticeResults
-          loading={loading}
-          questions={questions}
-          onRefresh={fetchQuestions}
-          onBookmarkSuccess={handleBookmarkSuccess}
-        />
+      <PracticeResults
+        loading={loading}
+        questions={questions}
+        onRefresh={fetchQuestions}
+        onBookmarkSuccess={handleBookmarkSuccess}
+      />
 
-        {/* Pagination */}
-        {(questions.length > 0 || loading) && (
-          <div className="mt-8">
-            <Pagination
-              currentPage={debouncedPage || 1}
-              totalItems={totalItems}
-              limit={debouncedLimit || 10}
-              onPageChange={(page) => handleFilterChange('page', page)}
-              onLimitChange={(limit) => handleFilterChange('limit', limit)}
-              showLimitSelector={true}
-              loading={loading}
-            />
-          </div>
-        )}
-      </div>
-    
+      {/* Pagination */}
+      {(questions.length > 0 || loading) && (
+        <div className="mt-4">
+          <Pagination
+            currentPage={debouncedPage || 1}
+            totalItems={totalItems}
+            limit={debouncedLimit || 10}
+            onPageChange={(page) => handleFilterChange('page', page)}
+            onLimitChange={(limit) => handleFilterChange('limit', limit)}
+            showLimitSelector={true}
+            loading={loading}
+          />
+        </div>
+      )}
+    </div>
+
   );
 }

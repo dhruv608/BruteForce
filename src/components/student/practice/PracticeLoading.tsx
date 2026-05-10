@@ -5,7 +5,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export function PracticeLoading() {
   return (
-    <div className="flex flex-col gap-3 min-h-100 border glass border-border/40 rounded-2xl p-9 backdrop-blur-sm">
+    <div className="flex flex-col gap-3 min-h-[400px] border glass border-border/40 rounded-2xl p-4 backdrop-blur-sm">
       {Array.from({ length: 8 }).map((_, idx) => (
         <div
           key={idx}

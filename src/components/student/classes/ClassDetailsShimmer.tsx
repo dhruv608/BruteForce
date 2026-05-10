@@ -11,51 +11,47 @@ export function ClassDetailsShimmer() {
       <ClassBackNav topicSlug="" topicName="Topic" />
 
       {/* Class Header Shimmer */}
-      <div className="mb-6 rounded-2xl bg-gradient-to-br from-background/80 to-background/40 glass backdrop-blur-3xl sm:p-6 shadow-sm space-y-4">
+      <div className="mb-4 rounded-2xl bg-gradient-to-br from-background/80 to-background/40 glass backdrop-blur-3xl sm:p-6 shadow-sm">
 
         {/* TOP META ROW */}
-        <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 py-2 px-1">
           {/* LEFT META */}
           <div className="flex flex-wrap items-center gap-3">
-            {/* Badge Shimmer */}
-            <Skeleton className="h-5 w-24" />
-
             {/* Date Shimmer */}
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-black/10">
               <Skeleton className="w-4 h-4" />
               <Skeleton className="w-20 h-3" />
             </div>
 
             {/* Duration Shimmer */}
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-black/10">
               <Skeleton className="w-4 h-4" />
               <Skeleton className="w-16 h-3" />
             </div>
           </div>
 
           {/* RIGHT ACTION */}
-          <Skeleton className="w-20 h-8" />
-        </div>
-
-        {/* TITLE + INLINE PROGRESS */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          {/* TITLE */}
-          <Skeleton className="h-10 w-3/4" />
-
-          {/* 🔥 RIGHT SIDE PROGRESS */}
-          <div className="w-full lg:w-[260px] border border-border/40 p-4 backdrop-blur-3xl rounded-2xl space-y-1">
-            <div className="flex items-center justify-between">
-              <Skeleton className="w-12 h-3" />
-              <Skeleton className="w-8 h-3" />
-            </div>
-            <Skeleton className="w-full h-2" />
+          <div className="flex items-center gap-3">
+             <Skeleton className="w-24 h-8 rounded-2xl" />
+             
+             {/* PROGRESS */}
+             <div className="w-[180px] sm:w-[220px] lg:w-[260px] border border-border/40 px-3 py-1.5 backdrop-blur-3xl rounded-2xl">
+               <div className="flex items-center justify-between mb-1">
+                 <Skeleton className="w-12 h-3" />
+                 <Skeleton className="w-8 h-3" />
+               </div>
+               <Skeleton className="w-full h-1.5 rounded-full" />
+             </div>
           </div>
         </div>
 
-        {/* DESCRIPTION */}
-        <div className="space-y-2">
-          <Skeleton className="h-4 w-full" />
-          <Skeleton className="h-4 w-5/6" />
+        {/* TITLE & DESCRIPTION BUTTON */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-2 mb-3">
+          {/* TITLE */}
+          <Skeleton className="h-8 w-[250px]" />
+
+          {/* DESC BUTTON */}
+          <Skeleton className="h-8 w-[130px] rounded-full" />
         </div>
       </div>
 

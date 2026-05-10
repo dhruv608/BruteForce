@@ -71,8 +71,8 @@ export function TopicCard({
         {/* TITLE */}
         <h3
           className={`text-base font-semibold line-clamp-1 transition-colors ${isLocked
-              ? "text-muted-foreground"
-              : "text-foreground group-hover:text-logo"
+            ? "text-muted-foreground"
+            : "text-foreground group-hover:text-logo"
             }`}
         >
           {topicName}
@@ -98,8 +98,8 @@ export function TopicCard({
         <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden mt-1">
           <div
             className={`h-full rounded-full transition-all duration-500 ease-out ${isLocked
-                ? "bg-muted-foreground/30"
-                : "bg-primary shadow-[0_0_6px_rgba(34,197,94,0.4)]"
+              ? "bg-muted-foreground/30"
+              : "bg-primary shadow-[0_0_6px_rgba(34,197,94,0.4)]"
               }`}
             style={{ width: `${isLocked ? 0 : progress}%` }}
           />

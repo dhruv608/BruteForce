@@ -3,6 +3,7 @@
 import React from 'react';
 import { TopicCard } from './TopicCard';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { TopicsLoading } from './TopicLoading';
 
 interface Topic {
   slug: string;
@@ -20,9 +21,23 @@ interface TopicsGridProps {
   topics: Topic[];
   searchQuery: string;
   pagination?: React.ReactNode;
+  loading?: boolean;
 }
 
-export function TopicsGrid({ topics, searchQuery, pagination }: TopicsGridProps) {
+export function TopicsGrid({ topics, searchQuery, pagination, loading }: TopicsGridProps) {
+  if (loading) {
+    return (
+      <>
+        <TopicsLoading />
+        {pagination && (
+          <div className="mt-8">
+            {pagination}
+          </div>
+        )}
+      </>
+    );
+  }
+
   if (topics.length === 0) {
     return (
       <div className="col-span-full flex flex-col items-center justify-center py-10 text-muted-foreground glass backdrop-blur-sm rounded-2xl ">
@@ -36,7 +51,7 @@ export function TopicsGrid({ topics, searchQuery, pagination }: TopicsGridProps)
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 ">
         {topics.map((t: Topic, idx: number) => (
           <div className="animate-in fade-in slide-in-from-bottom-2" style={{ animationDelay: `${idx * 40}ms`, animationFillMode: 'both' }} key={t.slug}>
             <TopicCard

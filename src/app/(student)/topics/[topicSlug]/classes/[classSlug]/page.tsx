@@ -40,7 +40,7 @@ export default function ClassDetailsPage() {
 
   const [classData, setClassData] = useState<ClassData | null>(null);
   const [loading, setLoading] = useState(true);
-  
+
   // Pagination and filter state
   const [currentPage, setCurrentPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -124,53 +124,53 @@ export default function ClassDetailsPage() {
     setCurrentPage(1);
   };
 
-return (
-  <div className="flex flex-col  mx-auto max-w-325 xl:max-w-275 2xl:max-w-325 w-full pb-12 px-7 sm:px-10 lg:px-12 pt-8">
+  return (
+    <div className="flex flex-col  mx-auto max-w-325 xl:max-w-275 2xl:max-w-325 w-full pb-12 px-7 sm:px-10 lg:px-12 pt-8">
 
-    <ClassBackNav
-      topicSlug={topicSlug}
-      topicName={classData.topic?.topic_name}
-    />
+      <ClassBackNav
+        topicSlug={topicSlug}
+        topicName={classData.topic?.topic_name}
+      />
 
-    <ClassHeader
-      classData={classData}
-      progress={progress}
-      solvedQuestions={solvedQuestions}
-      totalQuestions={totalQuestions}
-      formattedDate={formattedDate}
-    />
+      <ClassHeader
+        classData={classData}
+        progress={progress}
+        solvedQuestions={solvedQuestions}
+        totalQuestions={totalQuestions}
+        formattedDate={formattedDate}
+      />
 
-    {/* 🔥 FILTER BAR */}
-    <ClassFilterBar
-      filter={filter}
-      onFilterChange={handleFilterChange}
-      totalQuestions={pagination?.total || 0}
-    />
+      {/* 🔥 FILTER BAR */}
+      <ClassFilterBar
+        filter={filter}
+        onFilterChange={handleFilterChange}
+        totalQuestions={pagination?.total || 0}
+      />
 
-    {/* QUESTIONS */}
-    <ClassQuestions
-      classSlug={classSlug}
-      topicSlug={topicSlug}
-      questions={questions}
-      onRefresh={fetchClassDetails}
-      loading={loading}
-    />
+      {/* QUESTIONS */}
+      <ClassQuestions
+        classSlug={classSlug}
+        topicSlug={topicSlug}
+        questions={questions}
+        onRefresh={fetchClassDetails}
+        loading={loading}
+      />
 
-    {/* PAGINATION */}
-    {pagination && pagination.total > limit && (
-      <div className="mt-10">
-        <Pagination
-          currentPage={pagination.page || 1}
-          totalItems={pagination.total}
-          limit={pagination.limit}
-          onPageChange={handlePageChange}
-          onLimitChange={handleLimitChange}
-          showLimitSelector={true}
-          loading={loading}
-        />
-      </div>
-    )}
+      {/* PAGINATION */}
+      {pagination && pagination.total > 0 && (
+        <div className='mt-4'>
+          <Pagination
+            currentPage={pagination.page || 1}
+            totalItems={pagination.total}
+            limit={pagination.limit}
+            onPageChange={handlePageChange}
+            onLimitChange={handleLimitChange}
+            showLimitSelector={true}
+            loading={loading}
+          />
+        </div>
+      )}
 
-  </div>
-);
+    </div>
+  );
 }

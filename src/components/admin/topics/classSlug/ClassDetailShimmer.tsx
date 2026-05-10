@@ -9,12 +9,30 @@ export default function ClassDetailShimmer() {
          <Skeleton className="h-4 w-32" />
 
          {/* Header Skeleton */}
-         <div className="glass px-7 py-4 mb-7 rounded-2xl backdrop-blur-2xl flex items-center justify-between">
-            <div className="space-y-2">
-               <Skeleton className="h-8 w-64" />
-               <Skeleton className="h-4 w-96" />
+         <div className="mb-6 rounded-2xl bg-linear-to-br from-background/80 to-background/40 glass backdrop-blur-3xl sm:p-6 shadow-sm">
+            {/* TOP META ROW */}
+            <div className="flex flex-wrap items-center justify-between gap-4 py-2 px-1">
+               <div className="flex flex-wrap items-center gap-3">
+                  <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-black/10">
+                     <Skeleton className="h-4 w-4" />
+                     <Skeleton className="h-3 w-20" />
+                  </div>
+                  <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-black/10">
+                     <Skeleton className="h-4 w-4" />
+                     <Skeleton className="h-3 w-16" />
+                  </div>
+               </div>
+               <div className="flex items-center gap-3">
+                  <Skeleton className="h-8 w-24 rounded-2xl" />
+                  <Skeleton className="h-10 w-36 rounded-xl" />
+               </div>
             </div>
-            <Skeleton className="h-10 w-40" />
+
+            {/* TITLE & DESCRIPTION BUTTON */}
+            <div className="flex flex-wrap items-center justify-between gap-4 mt-2 mb-3">
+               <Skeleton className="h-8 w-[250px]" />
+               <Skeleton className="h-8 w-[130px] rounded-full" />
+            </div>
          </div>
 
          {/* Filter Bar Skeleton */}
@@ -26,7 +44,7 @@ export default function ClassDetailShimmer() {
          </div>
 
          {/* Table Skeleton */}
-         <div className="px-6 mb-7 glass backdrop-blur-2xl shadow-sm rounded-2xl overflow-hidden">
+         <div className="p-2 mb-5 glass bg-linear-to-br from-background/80 to-background/40 backdrop-blur-3xl shadow-sm rounded-2xl overflow-hidden">
             <div className="space-y-4 py-4">
                {/* Table Header */}
                <div className="flex items-center gap-4 pb-4 border-b border-border/40">

@@ -38,24 +38,7 @@ export function YourRank({ yourRank }: YourRankProps) {
           <Popover>
             <PopoverTrigger asChild>
               <div className="relative">
-                <AnimatePresence>
-                  {showHint && (
-                    <motion.div
-                      key="hint"
-                      initial={{ opacity: 0, scale: 0.75, y: 6 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      exit={{ opacity: 0, scale: 0.75, y: 6 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 pointer-events-none whitespace-nowrap"
-                    >
-                      <div className="relative bg-background border border-border rounded-2xl px-6 py-3 text-sm font-semibold text-primary shadow-md select-none flex items-center gap-2">
-                        <MousePointerClick className="w-4 h-4" />
-                        Click me
-                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-[6px] w-3 h-3 rotate-45 bg-background border-b border-r border-border" />
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+
                 <button onClick={() => setShowHint(false)} className="px-3 py-2 md:px-5 md:py-3 rounded-lg bg-primary text-black text-sm md:text-lg font-semibold shadow hover:scale-105 transition">
                   Rank #{yourRank.rank}
                 </button>
@@ -129,25 +112,8 @@ export function YourRank({ yourRank }: YourRankProps) {
         <Popover>
           <PopoverTrigger asChild>
             <div className="relative">
-              <AnimatePresence>
-                {showHint && (
-                  <motion.div
-                    key="hint"
-                    initial={{ opacity: 0, scale: 0.75, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.75, y: 6 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 pointer-events-none whitespace-nowrap"
-                  >
-                    <div className="relative bg-background glass group backdrop-blur-2xl border border-border rounded-2xl px-3 py-2 text-xs font-bold text-logo shadow-md select-none flex items-center gap-2">
-                      <MousePointerClick className="w-4 h-4" />
-                      Click me
-                      <div className="absolute right-1/5 -translate-x-1/2 -bottom-[6px]  glass group backdrop-blur-2xl  w-3 h-3 rotate-45 bg-background border-b border-r border-border" />
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <button onClick={() => setShowHint(false)} className="px-3 py-2 md:px-5 md:py-3 rounded-lg bg-primary text-black text-sm md:text-lg font-semibold shadow hover:scale-105 transition">
+
+              <button onClick={() => setShowHint(false)} className="px-3 py-2 md:px-2 md:py-2 rounded-lg bg-primary text-black text-sx md:text-sx font-semibold shadow hover:scale-105 transition">
                 Your Rank #{yourRank.rank}
               </button>
             </div>

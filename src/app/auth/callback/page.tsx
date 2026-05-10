@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { studentAuthService } from '@/services/student/auth.service';
 import { showError, showSuccess } from '@/ui/toast';
 import { BruteForceLoader } from '@/components/ui/BruteForceLoader';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 export default function AuthCallback() {
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function AuthCallback() {
 
         // Extract credential from URL parameters (GIS redirect)
         const credential = searchParams.get('credential');
-        
+
         // Also check for id_token in hash fragment
         const hashParams = new URLSearchParams(window.location.hash.substring(1));
         const idToken = hashParams.get('id_token');
@@ -38,7 +39,7 @@ export default function AuthCallback() {
         // Check for error parameters first
         const error = searchParams.get('error');
         const errorDescription = searchParams.get('error_description');
-        
+
         if (error) {
           const errorMsg = `Google OAuth Error: ${errorDescription || error}`;
           setError(errorMsg);
@@ -47,7 +48,7 @@ export default function AuthCallback() {
         }
 
         const token = credential || idToken;
-        
+
         if (!token) {
           setError('No credential received from Google');
           showError('Authentication failed: No credential received');
@@ -56,7 +57,7 @@ export default function AuthCallback() {
 
         // Decode JWT to validate email domain
         const payload = JSON.parse(atob(token.split('.')[1]));
-        
+
         if (!payload.email?.endsWith('@pwioi.com')) {
           showError('Please use your PW student email to log in.');
           router.push('/login');
@@ -84,11 +85,11 @@ export default function AuthCallback() {
           showError('Authentication failed: No token received');
         }
       } catch (err: any) {
-        const errorMessage = err.response?.data?.error ||
-                            err.response?.data?.message ||
-                            'Google login failed';
+        const errorMessage = err.message ||
+          err.response?.data?.error ||
+          err.response?.data?.message ||
+          'Google login failed';
         setError(errorMessage);
-        showError(errorMessage);
       } finally {
         setLoading(false);
       }
@@ -110,22 +111,32 @@ export default function AuthCallback() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="glass rounded-lg p-8 max-w-md w-full mx-4">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-destructive mb-4">
-              Authentication Failed
-            </h1>
-            <p className="text-muted-foreground mb-6">{error}</p>
-            <button
-              onClick={() => router.push('/login')}
-              className="glass rounded-(--radius-md) px-6 py-2 text-foreground 
-                       hover:scale-105 transition-all duration-200
-                       border border-border"
-            >
-              Back to Login
-            </button>
+      <div className="min-h-screen flex items-center justify-center bg-background px-4">
+        <div className="flex flex-col items-center text-center max-w-md w-full">
+          <div className="w-[70vmin] h-[70vmin] max-w-[500px] max-h-[500px]">
+            <DotLottieReact
+              src="/404erroranimation.json"
+              loop
+              autoplay
+              style={{ width: "100%", height: "100%" }}
+            />
           </div>
+
+
+
+          <p className="text-muted-foreground mb-8">
+            {error.toLowerCase().includes('not registered')
+              ? 'Your email is not registered. Please contact the admin.'
+              : error}
+          </p>
+
+          <button
+            onClick={() => router.push('/login')}
+            className="px-8 py-2.5 rounded-full bg-primary text-black font-semibold
+                     hover:opacity-90 transition-all duration-200"
+          >
+            Back to Login
+          </button>
         </div>
       </div>
     );

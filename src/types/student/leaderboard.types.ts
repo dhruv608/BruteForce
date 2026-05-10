@@ -45,11 +45,13 @@ export interface LeaderboardTableProps {
   setLimit: (limit: number) => void;
   selectedCity: string;
   mode?: 'admin' | 'student';
+  currentUsername?: string;
 }
 
 export interface LeaderboardTableRowProps {
   entry: LeaderboardEntry;
   selectedCity: string;
+  currentUsername?: string;
 }
 
 export interface FilterBarProps {
@@ -70,6 +72,7 @@ export interface PodiumCardProps {
   student: LeaderboardEntry;
   rank: number;
   isCenter?: boolean;
+  currentUsername?: string;
 }
 
 export interface PodiumSectionProps {
@@ -78,6 +81,7 @@ export interface PodiumSectionProps {
   error?: string;
   selectedCity: string;
   onCardDragged?: () => void;
+  currentUsername?: string;
 }
 
 export interface YourRankProps {

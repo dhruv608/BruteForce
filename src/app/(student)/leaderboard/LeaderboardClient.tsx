@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { studentLeaderboardService } from "@/services/student/leaderboard.service";
 import { studentAuthService } from "@/services/student/auth.service";
 import { LeaderboardTable } from "@/components/student/leaderboard/LeaderboardTable";
@@ -76,6 +76,7 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
+    placeholderData: keepPreviousData,
   });
 
   // Compute year options similar to admin leaderboard
@@ -125,6 +126,7 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
 
   const data = leaderboardData;
   const combinedLoading = isLoading || isInitialLoading;
+  const currentUsername = data?.yourRank?.username || studentData?.username;
 
   return (
     <>
@@ -168,6 +170,7 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
             loading={!podiumData}
             error={error?.message}
             selectedCity={lCity === 'All Cities' ? 'all' : lCity}
+            currentUsername={currentUsername}
           />
         </div>
 
@@ -180,6 +183,7 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
             error={error?.message}
             selectedCity={lCity === 'All Cities' ? 'all' : lCity}
             onCardDragged={() => setPodiumDirty(true)}
+            currentUsername={currentUsername}
           />
         </div>
         <div className="flex flex-col space-y-6">
@@ -201,6 +205,7 @@ export default function LeaderboardClient({ syncSchedule = [] }: { syncSchedule?
             setPage={() => { }}
             setLimit={() => { }}
             mode="student"
+            currentUsername={currentUsername}
           />
         </div>
       </div>

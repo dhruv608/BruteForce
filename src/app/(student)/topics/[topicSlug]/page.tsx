@@ -3,19 +3,15 @@
 
 
 import React, { useEffect, useState, useCallback, useRef } from 'react';
-
 import { useParams, useRouter } from 'next/navigation';
-
 import { studentTopicService } from '@/services/student/topic.service';
 import { ClassCard } from '@/components/student/classes/ClassCard';
 import { SubtopicBackNav } from '@/components/student/subtopics/SubtopicBackNav';
 import { SubtopicHeader } from '@/components/student/subtopics/SubtopicHeader';
-import { TopicDetailsShimmer } from '@/components/student/subtopics/TopicDetailsShimmer';
+import { TopicDetailsShimmer, ClassesShimmer } from '@/components/student/subtopics/TopicDetailsShimmer';
 import { Pagination } from '@/components/Pagination';
 import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 import { Class } from '@/types/student/index.types';
-
-
 
 interface TopicWithPagination {
   id: number;
@@ -26,23 +22,16 @@ interface TopicWithPagination {
   solved_questions: number;
   total_classes: number;
   overallProgress?: {
-
     totalQuestions: number;
-
     solvedQuestions: number;
-
   };
 
   classes?: Class[];
 
   pagination?: {
-
     page: number;
-
     limit: number;
-
     total: number;
-
   };
 
 }
@@ -50,23 +39,11 @@ interface TopicWithPagination {
 
 
 export default function TopicDetailsPage() {
-
   const { topicSlug } = useParams() as { topicSlug: string };
-
   const router = useRouter();
-
-
-
   const [topic, setTopic] = useState<TopicWithPagination | null>(null);
-
   const [loading, setLoading] = useState(true);
-
-  
-
-  // Pagination state
-
   const [currentPage, setCurrentPage] = useState(1);
-
   const [limit, setLimit] = useState(10);
 
   // Debounced values
@@ -124,10 +101,8 @@ export default function TopicDetailsPage() {
 
 
 
-  if (loading) {
-
+  if (loading && !topic) {
     return <TopicDetailsShimmer />;
-
   }
 
 
@@ -142,9 +117,9 @@ export default function TopicDetailsPage() {
 
     : topic.overallProgress
 
-    ? (topic.overallProgress.solvedQuestions / topic.overallProgress.totalQuestions) * 100
+      ? (topic.overallProgress.solvedQuestions / topic.overallProgress.totalQuestions) * 100
 
-    : 0;
+      : 0;
 
 
 
@@ -184,102 +159,81 @@ export default function TopicDetailsPage() {
 
 
 
-return (
+  return (
 
-  <div className="flex flex-col  mx-auto max-w-325 xl:max-w-275 2xl:max-w-325 w-full pb-12 px-7 sm:px-10 lg:px-12 pt-8">
-
-
-
-    <SubtopicBackNav />
-
-    <SubtopicHeader topic={topic} progress={progress} />
+    <div className="flex flex-col  mx-auto max-w-325 xl:max-w-275 2xl:max-w-325 w-full pb-12 px-7 sm:px-10 lg:px-12 pt-8">
+      <SubtopicBackNav />
+      <SubtopicHeader topic={topic} progress={progress} />
 
 
 
-    {/* 🔥 CLASSES SECTION */}
+      {/* 🔥 CLASSES SECTION */}
 
-    <div className="mt-6 rounded-2xl border border-border/40 bg-background/40 glass backdrop-blur-xl p-5 sm:p-6">
+      <div className="mt-6 rounded-2xl border border-border/40 bg-background/40 glass backdrop-blur-xl p-3  sm:p-3">
+        {/* LIST */}
 
-
-
-      {/* HEADER */}
-
-      <div className="flex items-center gap-3 mb-6">
-
-        <h2 className="text-sm font-mono font-medium text-muted-foreground tracking-widest uppercase">
-
-          Classes
-
-        </h2>
-      </div>
-
-
-
-      {/* LIST */}
-
-      <div className="flex flex-col gap-3 mb-6">
-
-
-
-        {classes.length > 0 ? (
-
-          classes.map((cls: Class, idx: number) => (
-
-            <div
-
-              key={cls.slug}
-
-              className="animate-in fade-in slide-in-from-bottom-2"
-
-              style={{
-
-                animationDelay: `${idx * 40}ms`,
-
-                animationFillMode: 'both'
-
-              }}
-
-            >
-
-              <ClassCard
-
-                topicSlug={topic.slug}
-
-                classSlug={cls.slug}
-
-                index={((pagination?.page || 1) - 1) * (pagination?.limit || 10) + idx + 1}
-
-                classNameTitle={cls.class_name}
-
-                date={cls.date || cls.class_date || cls.classDate}
-
-                totalQuestions={cls.total_questions || cls.totalQuestions || 0}
-
-                solvedQuestions={cls.solved_questions || cls.solvedQuestions || 0}
-
-                pdfUrl={cls.pdf_url}
-
-              />
-
+        <div className="flex flex-col gap-3 mb-6">
+          {loading ? (
+            <ClassesShimmer />
+          ) : classes.length > 0 ? (
+            classes.map((cls: Class, idx: number) => (
+              <div
+                key={cls.slug}
+                className="animate-in fade-in slide-in-from-bottom-2"
+                style={{
+                  animationDelay: `${idx * 40}ms`,
+                  animationFillMode: 'both'
+                }}
+              >
+                <ClassCard
+                  topicSlug={topic.slug}
+                  classSlug={cls.slug}
+                  index={((pagination?.page || 1) - 1) * (pagination?.limit || 10) + idx + 1}
+                  classNameTitle={cls.class_name}
+                  date={cls.date || cls.class_date || cls.classDate}
+                  totalQuestions={cls.total_questions || cls.totalQuestions || 0}
+                  solvedQuestions={cls.solved_questions || cls.solvedQuestions || 0}
+                  pdfUrl={cls.pdf_url}
+                />
+              </div>
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center py-14 text-center rounded-xl border border-dashed border-border/50 bg-background/30">
+              <div className="text-sm text-muted-foreground mb-1">
+                No classes available
+              </div>
+              <div className="text-xs text-muted-foreground/70">
+                Classes will appear here once assigned.
+              </div>
             </div>
+          )}
+        </div>
 
-          ))
 
-        ) : (
 
-          <div className="flex flex-col items-center justify-center py-14 text-center rounded-xl border border-dashed border-border/50 bg-background/30">
+        {/* PAGINATION */}
 
-            <div className="text-sm text-muted-foreground mb-1">
+        {totalItems > 0 && (
 
-              No classes available
+          <div className="pt-4 border-t border-border/40">
 
-            </div>
+            <Pagination
 
-            <div className="text-xs text-muted-foreground/70">
+              currentPage={pagination?.page || 1}
 
-              Classes will appear here once assigned.
+              totalItems={totalItems}
 
-            </div>
+              limit={pagination?.limit || 10}
+
+              onPageChange={handlePageChange}
+
+              onLimitChange={handleLimitChange}
+
+              showLimitSelector={true}
+
+              loading={loading}
+
+            />
 
           </div>
 
@@ -289,43 +243,9 @@ return (
 
       </div>
 
-
-
-      {/* PAGINATION */}
-
-      {totalItems > 0 && (
-
-        <div className="pt-4 border-t border-border/40">
-
-          <Pagination
-
-            currentPage={pagination?.page || 1}
-
-            totalItems={totalItems}
-
-            limit={pagination?.limit || 10}
-
-            onPageChange={handlePageChange}
-
-            onLimitChange={handleLimitChange}
-
-            showLimitSelector={true}
-
-            loading={loading}
-
-          />
-
-        </div>
-
-      )}
-
-
-
     </div>
 
-  </div>
-
-);
+  );
 
 }
 

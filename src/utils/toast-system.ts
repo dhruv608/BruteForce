@@ -106,11 +106,7 @@ const PremiumToastRenderer = ({ toast: toastObj, title, description, icon, id }:
       React.createElement(X, { className: "w-4 h-4", strokeWidth: 3 })
     ),
 
-    // Progress Bar
-    !isLoading && duration !== Infinity && React.createElement('div', {
-      className: `absolute bottom-0 left-0 h-1 ${isError ? 'bg-destructive sm:bg-red-500' : 'bg-primary'}`,
-      style: { animation: `toastProgress ${duration}ms linear forwards` }
-    })
+
   );
 };
 

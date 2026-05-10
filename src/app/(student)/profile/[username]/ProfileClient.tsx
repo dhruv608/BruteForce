@@ -100,14 +100,14 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
 
       const userPromise = isStudent
         ? fetchCurrentUser().catch(() => {
-            setCurrentUser(null);
-            setAuthChecked(true);
-          })
+          setCurrentUser(null);
+          setAuthChecked(true);
+        })
         : (() => {
-            setCurrentUser(null);
-            setAuthChecked(true);
-            return Promise.resolve();
-          })();
+          setCurrentUser(null);
+          setAuthChecked(true);
+          return Promise.resolve();
+        })();
 
       await Promise.all([profilePromise, userPromise]);
     };
@@ -245,15 +245,15 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
       }
       const newUsername = usernameForm.username.trim();
       await studentProfileService.updateUsername(newUsername);
-      
+
       // Update local state immediately to prevent "username not found" flash
       setCurrentUser(prev => prev ? { ...prev, username: newUsername } : null);
       setProfileData(prev => prev ? { ...prev, student: { ...prev.student, username: newUsername } } : null);
       setUsernameForm({ username: newUsername });
-      
+
       setShowUsernameEditModal(false);
       window.dispatchEvent(new CustomEvent('profileUpdated'));
-      
+
       if (newUsername !== username) {
         router.push(`/profile/${newUsername}`);
       }
@@ -312,8 +312,8 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
         onShowTopicProgress={() => setShowTopicProgressModal(true)}
         onEditUsername={() => setShowUsernameEditModal(true)}
       />
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        <div className="lg:col-span-1 space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+        <div className="lg:col-span-1 space-y-4">
           <OverviewStats
             leaderboard={leaderboard}
             streak={streak}
@@ -325,7 +325,7 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
             onEditSocialLinks={() => setShowEditModal(true)}
           />
         </div>
-        <div className="lg:col-span-3 space-y-8">
+        <div className="lg:col-span-3 space-y-4">
           <ProblemSolvingStats codingStats={codingStats} />
           <ActivityHeatmap
             heatmap={heatmap || []}
