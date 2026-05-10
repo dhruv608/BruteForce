@@ -7,7 +7,7 @@ export const loginAdmin = async (data: { email: string; password: string }) => {
   if (!response) {
     return undefined;
   }
-  showSuccess('Welcome to Admin Portal');
+  showSuccess('Welcome, Admin!', 'You have successfully logged in to the Admin Portal.');
   return response.data;
 };
 
@@ -17,7 +17,7 @@ export const loginSuperAdmin = async (data: { email: string; password: string })
   if (!response) {
     return undefined;
   }
-  showSuccess('Welcome to SuperAdmin Portal');
+  showSuccess('Welcome, SuperAdmin!', 'You have successfully logged in to the SuperAdmin Portal.');
   return response.data;
 };
 
@@ -35,6 +35,6 @@ export const logoutUser = async (showToast = true) => {
     document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
   }
   if (showToast) {
-    showSuccess('Logged out successfully.');
+    showSuccess('Logged Out', 'You have been signed out successfully.');
   }
 };

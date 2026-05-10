@@ -137,7 +137,7 @@ export default function DownloadReportModal({
       window.URL.revokeObjectURL(url);
 
       // Show success toast
-      showSuccess('Report downloaded successfully!');
+      showSuccess('Report Downloaded', 'The student performance report has been saved to your downloads.');
 
       // Close modal
       handleClose();

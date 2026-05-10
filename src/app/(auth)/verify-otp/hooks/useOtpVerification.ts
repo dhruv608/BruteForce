@@ -82,7 +82,7 @@ export function useOtpVerification() {
     const otpJoined = fpOtpArray.join('');
     
     if (otpJoined.length < 6) {
-        showError("Invalid OTP");
+        showError('Incomplete OTP', 'Please enter all 6 digits of your verification code.');
         setError("Please enter the 6-digit OTP.");
         return;
     }
@@ -95,14 +95,14 @@ export function useOtpVerification() {
       const response = await studentAuthService.verifyOtp(emailParam || '', otpJoined);
       // Only redirect if OTP is actually valid
       if (response && (response.valid || response.data?.valid)) {
-        showSuccess("OTP verified successfully");
+        showSuccess('OTP Verified', 'Redirecting you to reset your password...');
         // Redirect to reset password page only after successful OTP validation
         router.push(`/reset-password?email=${encodeURIComponent(emailParam || '')}&otp=${otpJoined}`);
       } else {
         // Handle case where backend returns success: false
         const errorMessage = response?.message || 'Invalid OTP. Please try again.';
         setError(errorMessage);
-        showError(errorMessage);
+        showError('Verification Failed', errorMessage);
         setFpOtpArray(Array(6).fill(''));
         setTimeout(() => {
           firstOtpInputRef.current?.focus();

@@ -15,7 +15,7 @@ export function useOnboardingModal(onComplete?: () => void) {
 
   const submitOnboarding = async () => {
     if (!confirmChecked) {
-      showError("Please confirm that your usernames are correct.");
+      showError('Confirmation Required', 'Please check the box to confirm your LeetCode and GFG usernames are correct.');
       return;
     }
     
@@ -24,7 +24,7 @@ export function useOnboardingModal(onComplete?: () => void) {
       const token = localStorage.getItem('accessToken');
       
       if (!token) {
-        showError("Authentication token missing. Please log in again.");
+        showError('Session Expired', 'Your session has expired. Please log in again to continue.');
         return;
       }
       
@@ -51,7 +51,7 @@ export function useOnboardingModal(onComplete?: () => void) {
         console.error("API Error Response:", errorData);
         
         if (res.status === 401) {
-          showError("Session expired. Please log in again.");
+          showError('Session Expired', 'Your session has expired. Please log in again to continue.');
           // Optionally redirect to login
           setTimeout(() => {
             window.location.href = '/login';
@@ -62,7 +62,7 @@ export function useOnboardingModal(onComplete?: () => void) {
         return;
       }
       
-      showSuccess("Profile completed successfully. Welcome!");
+      showSuccess('Profile Complete!', 'Welcome! Your profile has been set up successfully.');
       
       // Dispatch custom event to notify StudentHeader and page to refresh
       window.dispatchEvent(new Event('profileUpdated'));
@@ -74,7 +74,7 @@ export function useOnboardingModal(onComplete?: () => void) {
       
     } catch (err) {
       // Error is handled by API client interceptor
-      showError("Profile verification failed.");
+      showError('Setup Failed', 'We could not complete your profile setup. Please try again.');
     } finally {
       setLoading(false);
     }

@@ -28,7 +28,7 @@ export function useOnboarding() {
   }, [onboardingUser, router]);
 
   const submitOnboarding = async () => {
-    if (!confirmChecked) { showError("Please confirm that your usernames are correct."); return; }
+    if (!confirmChecked) { showError('Confirmation Required', 'Please check the box to confirm your LeetCode and GFG usernames are correct.'); return; }
     setLoading(true);
     try {
       // Only send profile data, no city_id/batch_id needed for /me endpoint
@@ -45,13 +45,13 @@ export function useOnboarding() {
         body: JSON.stringify(payload)
       });
       if (!res.ok) throw new Error("Failed to save profile.");
-      showSuccess("Profile completed successfully. Welcome!");
+      showSuccess('Profile Complete!', 'Welcome! Your profile has been set up successfully.');
       // Clear localStorage 
       localStorage.removeItem('onboardingUser');
       router.push('/');
     } catch (err) {
       // Error is handled by API client interceptor
-      showError("Profile verification failed.");
+      showError('Setup Failed', 'We could not complete your profile setup. Please try again.');
     } finally {
       setLoading(false);
     }

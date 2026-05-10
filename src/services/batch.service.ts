@@ -18,18 +18,18 @@ export const getAllBatches = async (city?: string, year?: number): Promise<Batch
 
 export const createBatch = async (data: { batch_name: string; year: number; city_id: number }) => {
   const response = await apiClient.post('/api/superadmin/batches', data);
-  showSuccess('Batch created successfully!');
+  showSuccess('Batch Created', 'The new batch has been added successfully.');
   return response.data;
 };
 
 export const updateBatch = async (id: number, data: { batch_name?: string; year?: number; city_id?: number }) => {
   const response = await apiClient.patch(`/api/superadmin/batches/${id}`, data);
-  showSuccess('Batch updated successfully!');
+  showSuccess('Batch Updated', 'The batch details have been saved.');
   return response.data;
 };
 
 export const deleteBatch = async (id: number) => {
   const response = await apiClient.delete(`/api/superadmin/batches/${id}`);
-  showSuccess('Batch deleted successfully!');
+  showSuccess('Batch Removed', 'The batch has been deleted from the system.');
   return response.data;
 };

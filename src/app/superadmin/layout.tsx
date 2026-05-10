@@ -70,7 +70,7 @@ export default function SuperAdminLayout({ children }: { children: React.ReactNo
       document.cookie = 'accessToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
     }
     if (showToast) {
-      showSuccess('Logged out successfully.');
+      showSuccess('Logged Out', 'You have been signed out successfully.');
     }
     window.location.href = '/superadmin/login';
   };

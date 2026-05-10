@@ -66,7 +66,7 @@ function resolveErrorMapping(appError: AppError): ErrorMapping | undefined {
  */
 function resolveErrorMessage(appError: AppError, options?: HandlerOptions): string {
   const mapping = resolveErrorMapping(appError);
-  
+
   if (mapping) {
     return mapping.message;
   }
@@ -78,6 +78,22 @@ function resolveErrorMessage(appError: AppError, options?: HandlerOptions): stri
 
   // Final fallback
   return options?.fallbackMessage || 'Something went wrong. Please try again.';
+}
+
+/**
+ * Resolve user-friendly title
+ */
+function resolveErrorTitle(appError: AppError, type: 'error' | 'warning' | 'info'): string {
+  const mapping = resolveErrorMapping(appError);
+
+  if (mapping?.title) {
+    return mapping.title;
+  }
+
+  // Default titles based on error type
+  if (type === 'warning') return 'Warning';
+  if (type === 'info') return 'Info';
+  return 'Error';
 }
 
 /**
@@ -130,17 +146,17 @@ function resolveAction(appError: AppError, options?: HandlerOptions): ErrorMappi
 /**
  * Execute toast notification action
  */
-function executeToast(message: string, type: 'error' | 'warning' | 'info'): void {
+function executeToast(title: string, message: string, type: 'error' | 'warning' | 'info'): void {
   switch (type) {
     case 'warning':
-      showWarning(message);
+      showWarning(title, message);
       break;
     case 'info':
-      showSuccess(message);
+      showSuccess(title, message);
       break;
     case 'error':
     default:
-      showError(message);
+      showError(title, message);
       break;
   }
 }
@@ -218,6 +234,7 @@ export function handleError(error: unknown, options?: HandlerOptions): ErrorResu
   // Resolve error properties
   const message = resolveErrorMessage(appError, options);
   const type = resolveErrorType(appError);
+  const title = resolveErrorTitle(appError, type);
   const action = resolveAction(appError, options);
 
   // Build result object
@@ -242,7 +259,7 @@ export function handleError(error: unknown, options?: HandlerOptions): ErrorResu
 
       case 'logout':
         result.actionExecuted = true;
-        executeToast(message, type);
+        executeToast(title, message, type);
         executeLogout(options?.redirectPath);
         break;
 
@@ -254,7 +271,7 @@ export function handleError(error: unknown, options?: HandlerOptions): ErrorResu
 
       case 'redirect':
         result.actionExecuted = true;
-        executeToast(message, type);
+        executeToast(title, message, type);
         if (typeof window !== 'undefined' && options?.redirectPath) {
           setTimeout(() => {
             window.location.href = options.redirectPath!;
@@ -265,7 +282,7 @@ export function handleError(error: unknown, options?: HandlerOptions): ErrorResu
       case 'toast':
       default:
         result.actionExecuted = true;
-        executeToast(message, type);
+        executeToast(title, message, type);
         break;
     }
   }

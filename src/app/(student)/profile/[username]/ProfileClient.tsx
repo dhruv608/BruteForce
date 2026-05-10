@@ -222,7 +222,7 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
       setShowEditModal(false);
       window.dispatchEvent(new CustomEvent('profileUpdated'));
       queryClient.invalidateQueries({ queryKey: ['currentStudent'] });
-      showSuccess('Profile updated successfully!');
+      showSuccess('Profile Updated', 'Your profile changes have been saved.');
     } catch (error) {
     } finally {
       setSavingProfile(false);
@@ -257,7 +257,7 @@ export default function ProfileClient({ username, initialData }: ProfileClientPr
       if (newUsername !== username) {
         router.push(`/profile/${newUsername}`);
       }
-      showSuccess('Username updated successfully!');
+      showSuccess('Username Updated', 'Your username has been changed. Redirecting to your new profile...');
     } catch (error: unknown) {
     }
   };

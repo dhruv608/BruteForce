@@ -67,7 +67,7 @@ export function StudentLoginForm() {
 
       if (data?.accessToken) {
         localStorage.setItem('accessToken', data.accessToken);
-        showSuccess('Welcome back!');
+        showSuccess('Welcome Back!', 'You have successfully logged in.');
         processPostLogin(data.user);
       }
     } catch (err) {

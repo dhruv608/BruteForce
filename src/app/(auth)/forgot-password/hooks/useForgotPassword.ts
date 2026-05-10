@@ -40,7 +40,7 @@ export function useForgotPassword() {
     setError('');
     try {
       await studentAuthService.forgotPassword(email);
-      showSuccess('Check your email for a verification code.');
+      showSuccess('OTP Sent', 'Check your email inbox for a 6-digit verification code.');
       router.push(`/verify-otp?email=${encodeURIComponent(email)}`);
     } catch (err: any) {
       const msg = err.response?.data?.error || err.response?.data?.message || 'Failed to send OTP.';

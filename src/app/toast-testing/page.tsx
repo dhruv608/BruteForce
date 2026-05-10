@@ -14,15 +14,15 @@ export default function ToastTestingPage() {
   React.useEffect(() => setMounted(true), []);
 
   const triggerSuccess = () => {
-    glassToast.success('Question assigned successfully!', { duration: 4000 });
+    glassToast.success('Questions Assigned', 'The selected questions have been added to this class.');
   };
 
   const triggerError = () => {
-    glassToast.error('Failed to assign question. Please try again.', { duration: 6000 });
+    glassToast.error('Assignment Failed', 'Failed to assign question. Please try again.');
   };
 
   const triggerLoading = () => {
-    glassToast.loading('Assigning question to the batch...', { duration: Infinity });
+    glassToast.loading('Assigning Questions', 'Assigning question to the batch...');
     setTimeout(() => glassToast.dismiss(), 5000);
   };
 

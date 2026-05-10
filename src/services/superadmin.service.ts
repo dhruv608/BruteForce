@@ -25,19 +25,19 @@ export const getStats = async () => {
 
 export const createAdmin = async (data: AdminCreateData) => {
   const response = await apiClient.post('/api/superadmin/admins', data);
-  showSuccess('Admin Created');
+  showSuccess('Admin Created', 'The new admin account has been set up successfully.');
   return response.data;
 };
 
 export const updateAdmin = async (id: number, data: AdminUpdateData) => {
   const response = await apiClient.patch(`/api/superadmin/admins/${id}`, data);
-  showSuccess('Admin updated successfully');
+  showSuccess('Admin Updated', 'The admin account details have been saved.');
   return response.data;
 };
 
 export const deleteAdmin = async (id: number) => {
   const response = await apiClient.delete(`/api/superadmin/admins/${id}`);
-  showSuccess('Admin deleted successfully!');
+  showSuccess('Admin Removed', 'The admin account has been deleted.');
   return response.data;
 };
 

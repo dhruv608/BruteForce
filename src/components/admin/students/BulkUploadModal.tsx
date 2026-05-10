@@ -279,7 +279,7 @@ export default function BulkUploadModal({
         onSuccess(result);
       }
 
-      showSuccess(`Successfully uploaded ${result.inserted} students!`);
+      showSuccess('Upload Complete', `Successfully added ${result.inserted} student accounts.`);
     } catch (error) {
       // Error is handled by API client interceptor
       console.error('Upload failed:', error);

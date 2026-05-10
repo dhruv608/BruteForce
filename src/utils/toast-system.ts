@@ -14,12 +14,11 @@ import {
 const activeToastIds = new Set<string>();
 
 /**
- * Generate a unique ID based on message content and type
- * This ensures same error message + type = same ID
+ * Generate a unique ID based on title + message content and type
+ * This ensures same title + message + type = same ID
  */
-function generateToastId(message: string, type: 'success' | 'error' | 'loading'): string {
-  // Simple hash function to create consistent ID from message + type
-  const content = `${type}:${message}`;
+function generateToastId(title: string, type: 'success' | 'error' | 'loading', message?: string): string {
+  const content = `${type}:${title}:${message ?? ''}`;
   let hash = 0;
   for (let i = 0; i < content.length; i++) {
     const char = content.charCodeAt(i);
@@ -37,7 +36,7 @@ function cleanupToastId(id: string): void {
 }
 
 // Custom premium toast renderer
-const PremiumToastRenderer = ({ toast: toastObj, title, description, icon, id }: any) => {
+const PremiumToastRenderer = ({ toast: toastObj, title, message, icon, id }: any) => {
   const isSuccess = toastObj.type === 'success';
   const isError = toastObj.type === 'error';
   const isLoading = toastObj.type === 'loading';
@@ -49,41 +48,44 @@ const PremiumToastRenderer = ({ toast: toastObj, title, description, icon, id }:
     return icon;
   };
 
-  const getTextColorClass = () => {
+  const getTitleColorClass = () => {
     if (isSuccess) return 'text-logo';
     if (isError) return 'text-hard sm:text-red-500';
     return 'text-foreground';
   };
 
-  const duration = toastObj.duration || 4000;
-
   return React.createElement('div', {
     className: `
       bg-background
       dark:bg-background/80
-      border-2 border-border/60     
+      border-2 border-border/60
       rounded-2xl
       p-4
       shadow-2xl drop-shadow-xl
-      flex items-center gap-3
+      flex items-start gap-3
       min-w-[320px]
-      max-w-[400px]
+      max-w-[420px]
       relative
       overflow-hidden
     `
   },
     // Icon
     React.createElement('div', {
-      className: "flex-shrink-0"
+      className: "flex-shrink-0 mt-0.5"
     }, getIcon()),
 
     // Content
     React.createElement('div', {
       className: "flex-1 min-w-0"
     },
+      // Title
       React.createElement('div', {
-        className: `font-bold text-[15px] ${getTextColorClass()} truncate tracking-tight`
-      }, title || description)
+        className: `font-bold text-[15px] ${getTitleColorClass()} tracking-tight leading-tight`
+      }, title),
+      // Message (only rendered when provided)
+      message && React.createElement('div', {
+        className: "text-[13px] text-muted-foreground mt-1 leading-snug"
+      }, message)
     ),
 
     // Close Button
@@ -96,11 +98,12 @@ const PremiumToastRenderer = ({ toast: toastObj, title, description, icon, id }:
         rounded-md
         border-none
         bg-transparent
-        cursor-pointer 
+        cursor-pointer
         text-muted-foreground
         hover:text-foreground
         hover:bg-muted
         transition-all duration-200
+        mt-0.5
       `
     },
       React.createElement(X, { className: "w-4 h-4", strokeWidth: 3 })
@@ -112,8 +115,8 @@ const PremiumToastRenderer = ({ toast: toastObj, title, description, icon, id }:
 
 // Premium SaaS toast variants
 export const glassToast = {
-  success: (message: string, options?: any) => {
-    const toastId = generateToastId(message, 'success');
+  success: (title: string, message?: string, options?: any) => {
+    const toastId = generateToastId(title, 'success', message);
 
     // If toast with same ID exists, dismiss it first
     if (activeToastIds.has(toastId)) {
@@ -126,7 +129,8 @@ export const glassToast = {
     return toast.custom((id) =>
       React.createElement(PremiumToastRenderer, {
         toast: { type: 'success', duration: 4000, ...options },
-        title: message,
+        title,
+        message,
         id: id
       })
       , {
@@ -137,8 +141,8 @@ export const glassToast = {
       });
   },
 
-  error: (message: string, options?: any) => {
-    const toastId = generateToastId(message, 'error');
+  error: (title: string, message?: string, options?: any) => {
+    const toastId = generateToastId(title, 'error', message);
 
     // If toast with same ID exists, dismiss it first
     if (activeToastIds.has(toastId)) {
@@ -151,7 +155,8 @@ export const glassToast = {
     return toast.custom((id) =>
       React.createElement(PremiumToastRenderer, {
         toast: { type: 'error', duration: 6000, ...options },
-        title: message,
+        title,
+        message,
         id: id
       })
       , {
@@ -163,8 +168,8 @@ export const glassToast = {
   },
 
 
-  loading: (message: string, options?: any) => {
-    const toastId = generateToastId(message, 'loading');
+  loading: (title: string, message?: string, options?: any) => {
+    const toastId = generateToastId(title, 'loading', message);
 
     // If toast with same ID exists, dismiss it first
     if (activeToastIds.has(toastId)) {
@@ -177,7 +182,8 @@ export const glassToast = {
     return toast.custom((id) =>
       React.createElement(PremiumToastRenderer, {
         toast: { type: 'loading', duration: Infinity, ...options },
-        title: message,
+        title,
+        message,
         id: id
       })
       , {
@@ -215,9 +221,10 @@ export const glassToast = {
 };
 
 // Helper function to handle errors
-export const handleToastError = (error: any, customMessage?: string) => {
+export const handleToastError = (error: any, customTitle?: string, customMessage?: string) => {
+  const errorTitle = customTitle || 'Error';
   const errorMessage = customMessage || error?.message || 'An error occurred';
-  glassToast.error(errorMessage);
+  glassToast.error(errorTitle, errorMessage);
 };
 
 export default glassToast;

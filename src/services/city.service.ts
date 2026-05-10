@@ -13,19 +13,19 @@ export const getAllCities = async (search?: string): Promise<City[]> => {
 
 export const createCity = async (data: { city_name: string }) => {
   const response = await apiClient.post('/api/superadmin/cities', data);
-  showSuccess('City created successfully');
+  showSuccess('City Added', 'The new city has been added to the system.');
   return response.data;
 };
 
 export const updateCity = async (id: number, data: { city_name: string }) => {
   const response = await apiClient.patch(`/api/superadmin/cities/${id}`, data);
-  showSuccess('City updated successfully');
+  showSuccess('City Updated', 'The city details have been saved.');
   return response.data;
 };
 
 export const deleteCity = async (id: number) => {
   const response = await apiClient.delete(`/api/superadmin/cities/${id}`);
-  showSuccess('City deleted successfully!');
+  showSuccess('City Removed', 'The city has been deleted from the system.');
   return response.data;
 };
 

@@ -24,12 +24,12 @@ export function useResetPassword() {
     e.preventDefault();
     
     if (!fpNewPassword) {
-      showError("Please enter a new password.");
+      showError('Password Required', 'Please enter a new password to continue.');
       setError("Please enter a new password.");
       return;
     }
     if (fpNewPassword !== fpConfirmPassword) {
-      showError("Passwords do not match.");
+      showError('Password Mismatch', 'The passwords you entered do not match. Please try again.');
       setError("Passwords do not match.");
       return;
     }
@@ -45,7 +45,7 @@ export function useResetPassword() {
       
       await studentAuthService.resetPassword(resetData);
 
-      showSuccess('Password reset successfully.');
+      showSuccess('Password Reset', 'Your password has been updated. You can now log in.');
       setTimeout(() => router.push('/login'), 1500);
     } catch (err: any) {
       // Error is handled by API client interceptor for API errors

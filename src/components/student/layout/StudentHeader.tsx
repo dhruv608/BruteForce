@@ -132,7 +132,7 @@ export default function StudentHeader() {
   const handleLogout = async () => {
     // Always show success and logout, regardless of API result
     // The user is logging out anyway - token may already be expired
-    showSuccess('Logged out successfully.');
+    showSuccess('Logged Out', 'You have been signed out successfully.');
 
     // Clear tokens immediately
     localStorage.removeItem('accessToken');

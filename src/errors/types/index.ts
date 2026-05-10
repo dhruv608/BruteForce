@@ -16,6 +16,7 @@ export interface BackendErrorResponse {
 }
 
 export interface ErrorMapping {
+  title: string;
   message: string;
   type: 'error' | 'warning' | 'info';
   action?: ErrorAction;

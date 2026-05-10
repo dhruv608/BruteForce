@@ -23,20 +23,20 @@ export const bookmarkService = {
   // Add new bookmark
   addBookmark: async (data: BookmarkRequest): Promise<{ id: number; question_id: number; description: string | null; created_at: string }> => {
     const res = await apiClient.post('/api/students/bookmarks', data);
-    showSuccess('Bookmark added successfully!');
+    showSuccess('Bookmark Added', 'This question has been saved to your bookmarks.');
     return res.data;
   },
 
   // Update bookmark description
   updateBookmark: async (questionId: number, description: string): Promise<{ id: number; question_id: number; description: string; created_at: string; updated_at: string }> => {
     const res = await apiClient.put(`/api/students/bookmarks/${questionId}`, { description });
-    showSuccess('Bookmark updated successfully!');
+    showSuccess('Bookmark Updated', 'Your bookmark notes have been saved.');
     return res.data;
   },
 
   // Delete bookmark
   deleteBookmark: async (questionId: number): Promise<void> => {
     await apiClient.delete(`/api/students/bookmarks/${questionId}`);
-    showSuccess('Bookmark removed successfully!');
+    showSuccess('Bookmark Removed', 'This question has been removed from your bookmarks.');
   }
 };

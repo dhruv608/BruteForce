@@ -43,7 +43,7 @@ export default function AuthCallback() {
         if (error) {
           const errorMsg = `Google OAuth Error: ${errorDescription || error}`;
           setError(errorMsg);
-          showError(errorMsg);
+          showError('Google Sign-In Failed', errorDescription || String(error) || 'An error occurred during Google authentication.');
           return;
         }
 
@@ -51,7 +51,7 @@ export default function AuthCallback() {
 
         if (!token) {
           setError('No credential received from Google');
-          showError('Authentication failed: No credential received');
+          showError('Sign-In Failed', 'No credentials received from Google. Please try again.');
           return;
         }
 
@@ -59,7 +59,7 @@ export default function AuthCallback() {
         const payload = JSON.parse(atob(token.split('.')[1]));
 
         if (!payload.email?.endsWith('@pwioi.com')) {
-          showError('Please use your PW student email to log in.');
+          showError('Invalid Email Domain', 'Please use your official PW student email (@pwioi.com) to log in.');
           router.push('/login');
           return;
         }
@@ -71,7 +71,7 @@ export default function AuthCallback() {
           // Store access token securely
           localStorage.setItem('accessToken', data.accessToken);
           document.cookie = `accessToken=${data.accessToken}; path=/; secure; samesite=strict`;
-          showSuccess('Welcome back!');
+          showSuccess('Welcome Back!', 'You have successfully signed in with Google.');
 
           // Handle post-login routing
           if (!data.user.leetcode_id || !data.user.gfg_id || !data.user.username) {
@@ -82,7 +82,7 @@ export default function AuthCallback() {
           }
         } else {
           setError('Login failed: No token received');
-          showError('Authentication failed: No token received');
+          showError('Sign-In Failed', 'Session could not be established. Please try logging in again.');
         }
       } catch (err: any) {
         const errorMessage = err.message ||
