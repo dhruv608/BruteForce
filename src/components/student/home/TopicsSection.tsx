@@ -16,7 +16,7 @@ export function TopicsSection({ topics, loading = false }: TopicsSectionProps) {
   const displayTopics = topics.slice(0, 8);
 
   return (
-    <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-10 py-10">
+    <section className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-10 ">
       {/* Section with subtle gradient background */}
       <div className=" glass backdrop-blur-sm rounded-2xl border border-border/40 p-8 mb-8">
         <div className="flex justify-between items-center">

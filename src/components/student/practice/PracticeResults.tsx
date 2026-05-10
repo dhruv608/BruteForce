@@ -71,7 +71,7 @@ export function PracticeResults({ loading, questions, onRefresh, onBookmarkSucce
         {questions.length > 0 ? (
           questions.map((q: PracticeQuestion, idx) => (
             <div
-              key={q.id}
+              key={`${q.id}-${idx}`}
               className="animate-in fade-in slide-in-from-bottom-2"
               style={{
                 animationDelay: `${idx * 25}ms`,

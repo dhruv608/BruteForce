@@ -72,11 +72,11 @@ export default function ActivityHeatmap({
     if (count <= 0)
       return "bg-[var(--muted)] border border-[var(--border)]";
 
-    if (count <= 2) return "bg-[rgba(204,255,0,0.2)]";
-    if (count <= 5) return "bg-[rgba(204,255,0,0.4)]";
-    if (count <= 10) return "bg-[rgba(204,255,0,0.7)]";
+    if (count <= 2) return "bg-logo/40";
+    if (count <= 5) return "bg-logo/60";
+    if (count <= 10) return "bg-logo/90";
 
-    return "bg-[var(--primary)]";
+    return "bg-logo";
   };
 
   // 📅 Month labels
@@ -177,10 +177,10 @@ export default function ActivityHeatmap({
       <div className="flex items-center gap-2 mt-3 text-xs text-[var(--muted-foreground)]">
         <span>Less</span>
         <div className="w-[14px] h-[14px] bg-[var(--muted)] border border-[var(--border)] rounded-[3px]" />
-        <div className="w-[14px] h-[14px] bg-[rgba(204,255,0,0.2)] rounded-[3px]" />
-        <div className="w-[14px] h-[14px] bg-[rgba(204,255,0,0.4)] rounded-[3px]" />
-        <div className="w-[14px] h-[14px] bg-[rgba(204,255,0,0.7)] rounded-[3px]" />
-        <div className="w-[14px] h-[14px] bg-[var(--primary)] rounded-[3px]" />
+        <div className="w-[14px] h-[14px] bg-logo/20 rounded-[3px]" />
+        <div className="w-[14px] h-[14px] bg-logo/40 rounded-[3px]" />
+        <div className="w-[14px] h-[14px] bg-logo/70 rounded-[3px]" />
+        <div className="w-[14px] h-[14px] bg-logo rounded-[3px]" />
         <span>More</span>
         <span className="ml-4 text-[var(--muted-foreground)]">|</span>
 

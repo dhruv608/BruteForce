@@ -35,11 +35,11 @@ export function ProfileInfo({ student }: ProfileInfoProps) {
             <LeetCodeIcon className="w-8! h-8! text-leetcode" />
           </div>
 
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <div className="font-semibold text-[var(--text-sm)] text-[var(--foreground)]">
               LeetCode
             </div>
-            <div className="font-mono text-[var(--text-xs)] text-[var(--text-secondary)]">
+            <div className="font-mono text-[var(--text-xs)] text-[var(--text-secondary)] truncate">
               {student.leetcode || 'Not linked'}
             </div>
           </div>
@@ -49,7 +49,7 @@ export function ProfileInfo({ student }: ProfileInfoProps) {
               href={`https://leetcode.com/${student.leetcode}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-2xl hover:bg-logo/20 transition-all duration-200 text-logo"
+              className="p-2 rounded-2xl hover:bg-logo/20 transition-all duration-200 text-logo shrink-0"
             >
               <ExternalLink className="w-4 h-4" />
             </a>
@@ -70,11 +70,11 @@ export function ProfileInfo({ student }: ProfileInfoProps) {
             <GeeksforGeeksIcon className="w-8! h-8! text-gfg" />
           </div>
 
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <div className="font-semibold text-[var(--text-sm)] text-[var(--foreground)]">
               GFG
             </div>
-            <div className="font-mono text-[var(--text-xs)] text-[var(--text-secondary)]">
+            <div className="font-mono text-[var(--text-xs)] text-[var(--text-secondary)] truncate">
               {student.gfg || 'Not linked'}
             </div>
           </div>
@@ -84,7 +84,7 @@ export function ProfileInfo({ student }: ProfileInfoProps) {
               href={`https://auth.geeksforgeeks.org/user/${student.gfg}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-lg hover:bg-logo/20 transition-all duration-200 text-logo"
+              className="p-2 rounded-2xl hover:bg-logo/20 transition-all duration-200 text-logo shrink-0"
             >
               <ExternalLink className="w-4 h-4" />
             </a>

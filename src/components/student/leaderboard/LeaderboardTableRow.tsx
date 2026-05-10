@@ -17,7 +17,7 @@ export const LeaderboardTableRow: React.FC<LeaderboardTableRowProps> = ({ entry,
   const router = useRouter();
 
   return (
-    <TableRow className={`scrollbar-none transition-all duration-200 cursor-default [&>td:first-child]:rounded-l-2xl [&>td:last-child]:rounded-r-2xl ${isCurrentUser ? 'bg-logo/10 border border-logo/50 relative z-10 hover:bg-logo/30' : ''
+    <TableRow className={`scrollbar-none transition-all duration-200 cursor-default [&>td:first-child]:rounded-l-2xl [&>td:last-child]:rounded-r-2xl ${isCurrentUser ? 'bg-logo/10 hover:bg-logo/20 relative z-10 ' : ''
       }`}>
 
 
