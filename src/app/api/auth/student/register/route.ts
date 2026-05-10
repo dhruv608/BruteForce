@@ -71,5 +71,5 @@ export const POST = withHandler(
       throw err;
     }
   },
-  { rateLimit: 'auth', bodySchema: registerStudentSchema }
+  { rateLimit: 'loginIP', bodySchema: registerStudentSchema }
 );

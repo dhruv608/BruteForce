@@ -19,5 +19,5 @@ export const POST = withHandler(
     setRefreshTokenCookie(response, newRefreshToken);
     return response;
   },
-  { rateLimit: 'auth' }
+  { rateLimit: 'loginIP' }
 );

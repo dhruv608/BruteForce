@@ -63,12 +63,12 @@ export const getAllQuestionsService = async ({
 
   //  Level filter
   if (level) {
-    where.level = level;
+    where.level = level as any;
   }
 
   //  Platform filter
   if (platform) {
-    where.platform = platform;
+    where.platform = platform as any;
   }
 
   //  Search filter
