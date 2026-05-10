@@ -78,47 +78,43 @@ export default function TopicsPage() {
 
   return (
 
-      <div className="flex flex-col mx-auto max-w-7xl w-full pb-12 px-4 sm:px-6 lg:px-8 xl:px-12 pt-8">
-        <TopicsHeader
-          searchQuery={searchQuery}
-          setSearchQuery={(query) => {
-            setSearchQuery(query);
-          }}
-          sortBy={sortBy}
-          setSortBy={(newSortBy) => {
-            setSortBy(newSortBy);
-            setPage(1); // Reset to first page when sorting
-          }}
-        />
-        
-        {loading ? (
-          <TopicsLoading />
-        ) : (
-          <>
-            <TopicsGrid
-              topics={topicsData}
-              searchQuery={searchQuery}
-              pagination={
-                pagination && (
-                  <Pagination 
-                    currentPage={pagination.page}
-                    totalItems={pagination.total}
-                    limit={pagination.limit}
-                    onPageChange={setPage}
-                    onLimitChange={(newLimit) => {
-                      setItemsPerPage(newLimit);
-                      setPage(1); // Reset to first page when changing limit
-                    }}
-                    showLimitSelector={true}
-                    loading={loading}
-                  />
-                )
-              }
+    <div className="flex flex-col mx-auto -mt-3 max-w-7xl w-full pb-6 px-4 sm:px-6 lg:px-8 xl:px-12 pt-8">
+
+      <TopicsHeader
+        searchQuery={searchQuery}
+        setSearchQuery={(query) => {
+          setSearchQuery(query);
+        }}
+        sortBy={sortBy}
+        setSortBy={(newSortBy) => {
+          setSortBy(newSortBy);
+          setPage(1); // Reset to first page when sorting
+        }}
+      />
+
+      <TopicsGrid
+        topics={topicsData}
+        searchQuery={searchQuery}
+        loading={loading}
+        pagination={
+          pagination && pagination.total > 0 && (
+            <Pagination
+              currentPage={pagination.page}
+              totalItems={pagination.total}
+              limit={pagination.limit}
+              onPageChange={setPage}
+              onLimitChange={(newLimit) => {
+                setItemsPerPage(newLimit);
+                setPage(1); // Reset to first page when changing limit
+              }}
+              showLimitSelector={true}
+              loading={loading}
             />
-          </>
-        )}
-        
-      </div>
-    
+          )
+        }
+      />
+
+    </div>
+
   );
 }

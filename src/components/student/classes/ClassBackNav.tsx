@@ -10,9 +10,9 @@ interface ClassBackNavProps {
 
 export function ClassBackNav({ topicSlug, topicName }: ClassBackNavProps) {
   return (
-    <Link 
+    <Link
       href={`/topics/${topicSlug}`}
-      className="text-[13px] font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5 mb-6 w-fit"
+      className="text-[13px] font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5  -mt-2! mb-4 w-fit"
     >
       <span>←</span> Back to {topicName || "Topic"}
     </Link>

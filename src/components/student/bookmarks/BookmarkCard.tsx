@@ -75,9 +75,9 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
         : { name: bookmark.question.platform, icon: null };
 
   return (
-    <div className={`flex flex-col rounded-2xl border px-5 py-3 transition-all duration-300 ${bookmark.isSolved
-        ? 'bg-emerald-500/10 border-emerald-400/30 shadow-[0_0_20px_rgba(34,197,94,0.12)]'
-        : 'border-border/60 hover:border-primary/30'
+    <div className={`flex flex-col rounded-2xl border px-4 py-3 transition-all duration-300 ${bookmark.isSolved
+      ? 'bg-emerald-500/10 border-emerald-400/30 shadow-[0_0_20px_rgba(34,197,94,0.12)]'
+      : 'border-border/60 hover:border-primary/30'
       }`}>
       {/* TOP SECTION */}
       <div className="flex justify-between items-start gap-4">
@@ -155,9 +155,8 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
             >
               <span>View Description</span>
               <ChevronDown
-                className={`w-3.5 h-3.5 transition-transform duration-300 ${
-                  isOpen ? "rotate-180" : ""
-                }`}
+                className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                  }`}
               />
             </button>
           )}
@@ -167,9 +166,8 @@ export function BookmarkCard({ bookmark, onEdit, onDelete, updatingBookmark }: B
       {/* DESCRIPTION CONTENT (full-width, below) */}
       {hasDescription && (
         <div
-          className={`transition-all duration-300 ease-in-out overflow-hidden ${
-            isOpen ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
-          }`}
+          className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-[500px] opacity-100 mt-3" : "max-h-0 opacity-0"
+            }`}
         >
           <div className="px-4 py-3 rounded-2xl border border-border bg-muted/20">
             <ul className="space-y-2 text-muted-foreground text-xs leading-relaxed list-disc list-inside">

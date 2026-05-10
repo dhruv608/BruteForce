@@ -116,8 +116,13 @@ export default function DownloadReportModal({
 
       const result = response.data;
 
-      if (!result.success) {
+      // If API returned { success: false } it won't be unwrapped by interceptor
+      if (result && result.success === false) {
         throw new Error(result.message || 'Failed to download report');
+      }
+
+      if (!result.csvContent || !result.filename) {
+        throw new Error('Failed to download report: Missing content or filename');
       }
 
       // Create blob and trigger download

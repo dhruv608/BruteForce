@@ -72,7 +72,7 @@ export function LeaderboardHeader({
           {onResetPodium && (
             <button
               onClick={onResetPodium}
-              className="flex items-center gap-1 px-2 py-1.5 h-8 text-xs sm:text-sm text-primary rounded-md border border-border"
+              className="flex items-center gap-1 px-2 py-1.5 h-8 text-xs sm:text-sm text-logo rounded-md border border-border"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               Reset

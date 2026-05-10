@@ -12,7 +12,7 @@ interface SubtopicHeaderProps {
 export function SubtopicHeader({ topic, progress }: SubtopicHeaderProps) {
   const hasImage = !!topic.photo_url;
   return (
-    <div className="mb-10  rounded-2xl glass bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-xl overflow-hidden">
+    <div className=" rounded-2xl glass bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-xl overflow-hidden">
 
       <div className="flex flex-col md:flex-row">
 

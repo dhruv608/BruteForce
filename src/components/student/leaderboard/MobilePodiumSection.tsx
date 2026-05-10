@@ -9,6 +9,7 @@ export default function MobilePodiumSection({
   top3,
   loading,
   selectedCity,
+  currentUsername,
 }: PodiumSectionProps) {
   if (loading) return <MobilePodiumShimmer />;
   if (!top3 || top3.length === 0) return null;
@@ -28,6 +29,7 @@ export default function MobilePodiumSection({
         <MobilePodiumCard
           student={top3?.[1]}
           rank={getRank(top3?.[1], 1)}
+          currentUsername={currentUsername}
         />
       </div>
 
@@ -36,6 +38,7 @@ export default function MobilePodiumSection({
         <MobilePodiumCard
           student={top3?.[0]}
           rank={getRank(top3?.[0], 0)}
+          currentUsername={currentUsername}
         />
       </div>
 
@@ -44,6 +47,7 @@ export default function MobilePodiumSection({
         <MobilePodiumCard
           student={top3?.[2]}
           rank={getRank(top3?.[2], 2)}
+          currentUsername={currentUsername}
         />
       </div>
 

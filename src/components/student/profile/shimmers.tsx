@@ -10,7 +10,7 @@ export function ProfilePageShimmer() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6">
             {/* Profile Image Shimmer */}
-            <Skeleton className="w-20 h-20 rounded-full border-2 border-border/60 shadow-sm" />
+            <Skeleton className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full border-2 border-border/60 shadow-sm shrink-0" />
 
             {/* Name and Metadata Shimmer */}
             <div className="space-y-3">
@@ -161,7 +161,7 @@ export function ProfileHeaderShimmer() {
     <div className="glass borderless p-8 mb-8">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-6">
-          <Skeleton className="w-20 h-20 rounded-full" />
+          <Skeleton className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-full shrink-0" />
           <div className="space-y-3">
             <Skeleton className="h-8 w-48" />
             <Skeleton className="h-4 w-32" />

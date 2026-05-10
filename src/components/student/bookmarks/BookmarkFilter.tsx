@@ -18,7 +18,7 @@ interface BookmarkFilterProps {
 
 export function BookmarkFilter({ sortBy, setSortBy, filterBy, setFilterBy }: BookmarkFilterProps) {
   return (
-    <div className="glass backdrop-blur-sm rounded-2xl p-6 mb-6">
+    <div className="glass backdrop-blur-sm rounded-2xl p-6 mb-4">
       <div className="flex flex-col sm:flex-row gap-6">
 
         <div className="flex items-center gap-3">

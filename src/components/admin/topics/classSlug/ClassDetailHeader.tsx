@@ -110,40 +110,37 @@ export default function ClassDetailHeader({ selectedBatch, topicSlug, classSlug,
                   </div>
                </div>
 
-               {/* TITLE */}
-               <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-tight mb-3">
-                  {classDetails.class_name}
-               </h1>
+               {/* TITLE & DESCRIPTION BUTTON */}
+               <div className="flex flex-wrap items-center justify-between gap-4 mt-2 mb-3">
+                  <h1 className="text-2xl sm:text-2xl lg:text-3xl font-bold text-foreground leading-tight">
+                     {classDetails.class_name}
+                  </h1>
 
-               {/* 🔽 ACCORDION */}
-               {hasDescription && (
-                  <div className="mt-4 border border-border/40 rounded-2xl overflow-hidden">
-
-                     {/* HEADER */}
+                  {hasDescription && (
                      <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="w-full flex items-center justify-between px-4 py-3 text-sm font-medium text-logo hover:bg-muted/20 transition"
+                        className="flex items-center gap-1.5 text-xs font-medium text-foreground bg-muted/30 hover:bg-muted/50 px-4 py-3 rounded-full transition-colors border border-border/50"
                      >
                         <span>View Description</span>
-
                         <ChevronDown
-                           className={`w-4 h-4 text-logo transition-transform duration-300 ${isOpen ? "rotate-180" : ""
-                              }`}
+                           className={`w-3.5 h-3.5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                         />
                      </button>
+                  )}
+               </div>
 
-                     {/* CONTENT */}
-                     <div
-                        className={`transition-all duration-300 ease-in-out ${isOpen ? "max-h-125 opacity-100" : "max-h-0 opacity-0"
-                           } overflow-hidden`}
-                     >
-                        <div className="px-4 pb-4 pt-1">
-                           <ul className="space-y-2 text-muted-foreground text-sm max-w-3xl leading-relaxed list-disc list-inside">
-                              {descriptionBullets.map((bullet, index) => (
-                                 <li key={index}>{bullet}</li>
-                              ))}
-                           </ul>
-                        </div>
+               {/* DESCRIPTION CONTENT */}
+               {hasDescription && (
+                  <div
+                     className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-[500px] opacity-100 mb-3" : "max-h-0 opacity-0"
+                        }`}
+                  >
+                     <div className="px-4 py-3 rounded-2xl border border-border bg-muted/20">
+                        <ul className="space-y-2 text-muted-foreground text-sm max-w-3xl leading-relaxed list-disc list-inside">
+                           {descriptionBullets.map((bullet, index) => (
+                              <li key={index}>{bullet}</li>
+                           ))}
+                        </ul>
                      </div>
                   </div>
                )}

@@ -1,16 +1,8 @@
 "use client";
 
-/**
- * UI Toast Layer - Pure UI layer for displaying toast notifications
- * This file ONLY triggers toast, no error logic here
- * Uses the existing premium custom glass toast design
- */
-
 import { glassToast } from '@/utils/toast-system';
 
-/**
- * Show error toast with premium glass UI
- */
+
 export function showError(message: string): void {
   glassToast.error(message);
 }

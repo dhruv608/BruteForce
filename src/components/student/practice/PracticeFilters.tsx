@@ -26,16 +26,16 @@ export function PracticeFilters({
   filterOptions: PracticeFilterOptions;
 }) {
   return (
-    <div className="relative z-10 mb-6">
+    <div className="relative z-10 mb-4">
       {/* 🔥 GLASS BACKGROUND */}
       <div className="absolute inset-0 rounded-2xl glass backdrop-blur-xs pointer-events-none" />
 
       {/* ✅ CONTENT */}
       <div className="relative p-3 rounded-2xl space-y-4">
-        
+
         {/* 🔍 SEARCH + TOPIC */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          
+
           {/* SEARCH */}
           <div className="relative col-span-1 sm:col-span-2">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground" />
@@ -66,7 +66,7 @@ export function PracticeFilters({
 
         {/* ⚙️ FILTERS */}
         <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-3">
-          
+
           {/* LEVEL */}
           <Select
             value={filters.level || "ALL"}

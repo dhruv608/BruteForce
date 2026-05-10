@@ -133,7 +133,7 @@ export default function BookmarksPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-325 xl:max-w-275 2xl:max-w-325">
+    <div className="container mx-auto pb-5! px-4 py-8 max-w-325 xl:max-w-275 2xl:max-w-325">
 
       <BookmarkHeader />
 
@@ -153,7 +153,7 @@ export default function BookmarksPage() {
           <div className="text-[13px]">Start bookmarking questions.</div>
         </div>
       ) : (
-        <div className="space-y-3 p-5 rounded-2xl glass backdrop-blur-md">
+        <div className="space-y-3 p-4 rounded-2xl glass backdrop-blur-md">
           {bookmarks.map((bookmark) => (
             <BookmarkCard
               key={bookmark.id}
@@ -167,7 +167,7 @@ export default function BookmarksPage() {
       )}
 
       {/* PAGINATION */}
-      <div className="mt-8">
+      <div className="mt-4">
         <Pagination
           currentPage={debouncedPage}
           totalItems={pagination.total}

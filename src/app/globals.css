@@ -7,6 +7,11 @@
   color: #CCFF00;
 }
 
+.light ::selection {
+  background-color: #8b9aae;
+  color: #FFFFFF;
+}
+
 :root {
   --background: #090A0F;
   --foreground: #E2E8F0;
@@ -192,21 +197,6 @@
   transition: backdrop-filter 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* ===== HOVER GLOW ===== */
-  /* .hover-glow {
-    transition: all 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  } */
-
-  /* .hover-glow:hover {
-    box-shadow: 0 4px 20px var(--hover-glow), 0 8px 30px rgba(204, 255, 0, 0.1);
-    transform: translateY(-2px);
-  } */
-
-  /* .light .hover-glow:hover {
-    box-shadow: 0 4px 20px rgba(204, 255, 0, 0.2), 0 8px 30px rgba(204, 255, 0, 0.15);
-  } */
-
-/* ===== CARD UPGRADE ===== */
 
 @theme inline {
   --color-background: var(--background);
@@ -570,8 +560,6 @@ button:focus {
     overflow: hidden;
     transition: all 0.2s ease;
   }
-
-
   /* Toolbar */
   .rte .ql-toolbar {
     border: none;

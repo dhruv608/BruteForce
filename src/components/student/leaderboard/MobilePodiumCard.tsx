@@ -6,8 +6,10 @@ import { ProfileAvatar } from "@/components/ui/ProfileAvatar";
 import Link from "next/link";
 import { PodiumCardProps } from "@/types/student/index.types";
 
-export const MobilePodiumCard = ({ student, rank }: PodiumCardProps) => {
+export const MobilePodiumCard = ({ student, rank, currentUsername }: PodiumCardProps) => {
   if (!student) return null;
+
+  const isCurrentUser = currentUsername === student.username;
 
   // 🎨 Color logic
   const ringColor =
@@ -105,7 +107,7 @@ export const MobilePodiumCard = ({ student, rank }: PodiumCardProps) => {
 
         {/* Name */}
         <h3 className="font-semibold text-sm truncate">
-          {student.name}
+          {isCurrentUser ? <span className="font-extrabold">YOU</span> : student.name}
         </h3>
 
         {/* Username */}

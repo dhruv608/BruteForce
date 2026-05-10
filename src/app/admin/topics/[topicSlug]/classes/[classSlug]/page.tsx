@@ -56,7 +56,7 @@ export default function AdminClassDetailsPage() {
    const [isDeleteOpen, setIsDeleteOpen] = useState(false);
    const [deletingQuestion, setDeletingQuestion] = useState<ClassAssignedQuestion | null>(null);
    const [submitting, setSubmitting] = useState(false);
-   
+
    // Refs for preventing double API calls
    const isFetchingAssigned = useRef(false);
    const lastFetchAssignedParams = useRef<{ topicSlug?: string; classSlug?: string; page: number; limit: number; search: string }>({
@@ -64,7 +64,7 @@ export default function AdminClassDetailsPage() {
       limit: 10,
       search: ''
    });
-   
+
 
    const fetchAssigned = async (page: number = 1, searchQuery: string = debouncedSearch) => {
       if (!selectedBatch) return;
@@ -166,7 +166,7 @@ export default function AdminClassDetailsPage() {
    };
 
 
-   if (isLoadingContext || loading) {
+   if (isLoadingContext || (loading && !classDetails)) {
       return <ClassDetailShimmer />;
    }
 
@@ -184,7 +184,7 @@ export default function AdminClassDetailsPage() {
       <div className="flex flex-col mx-auto  w-full pb-12  -mt-4  ">
 
          {/* BACK NAVIGATION */}
-         <Link 
+         <Link
             href={`/admin/topics/${topicSlug}`}
             className="text-[13px] font-medium text-muted-foreground hover:text-primary transition-colors flex items-center gap-1.5 mb-6 w-fit"
          >
@@ -215,8 +215,8 @@ export default function AdminClassDetailsPage() {
          />
 
          {/* PAGINATION */}
-         {assignedTotalCount > limit && (
-            <div className="mt-10">
+         {assignedTotalCount > 0 && (
+            <div >
                <Pagination
                   currentPage={assignedPage}
                   totalItems={assignedTotalCount}
@@ -233,30 +233,30 @@ export default function AdminClassDetailsPage() {
          )}
 
          <AssignQuestionsModal
-         isOpen={isAssignOpen}
-         onClose={() => setIsAssignOpen(false)}
-         onSuccess={() => {
-            lastFetchAssignedParams.current = { page: 0, limit: 0, search: '', topicSlug: '', classSlug: '' }; // Reset to force refetch
-            fetchAssigned();
-         }}
-         batchSlug={selectedBatch!.slug}
-         topicSlug={topicSlug}
-         classSlug={classSlug}
-         assignedQuestions={assignedQuestions}
-      />
+            isOpen={isAssignOpen}
+            onClose={() => setIsAssignOpen(false)}
+            onSuccess={() => {
+               lastFetchAssignedParams.current = { page: 0, limit: 0, search: '', topicSlug: '', classSlug: '' }; // Reset to force refetch
+               fetchAssigned();
+            }}
+            batchSlug={selectedBatch!.slug}
+            topicSlug={topicSlug}
+            classSlug={classSlug}
+            assignedQuestions={assignedQuestions}
+         />
 
          <EditQuestionTypeModal
-         isOpen={isEditTypeOpen}
-         onClose={() => setIsEditTypeOpen(false)}
-         onSuccess={() => {
-            lastFetchAssignedParams.current = { page: 0, limit: 0, search: '', topicSlug: '', classSlug: '' }; // Reset to force refetch
-            fetchAssigned();
-         }}
-         batchSlug={selectedBatch!.slug}
-         topicSlug={topicSlug}
-         classSlug={classSlug}
-         question={editingQuestion}
-      />
+            isOpen={isEditTypeOpen}
+            onClose={() => setIsEditTypeOpen(false)}
+            onSuccess={() => {
+               lastFetchAssignedParams.current = { page: 0, limit: 0, search: '', topicSlug: '', classSlug: '' }; // Reset to force refetch
+               fetchAssigned();
+            }}
+            batchSlug={selectedBatch!.slug}
+            topicSlug={topicSlug}
+            classSlug={classSlug}
+            question={editingQuestion}
+         />
 
          {/* DELETE QUESTION MODAL */}
          <DeleteModal

@@ -43,7 +43,7 @@ export default function StudentLayout({
     }
 
     const token = typeof window !== 'undefined' ? localStorage.getItem('accessToken') : null;
-    
+
     if (!token) {
       router.push('/login');
       return;
@@ -63,7 +63,7 @@ export default function StudentLayout({
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-primary/20 relative ">
-      {/* Dot Pattern Background - Only in light theme */}
+      {/* Dot Pattern Background */}
       {mounted && theme === 'dark' && (
         <DotPattern
           baseColor="#64748B"
@@ -74,17 +74,31 @@ export default function StudentLayout({
           glowIntensity={2.5}
           waveSpeed={0.4}
           scatterStrength={5}
+          variant="dark"
         />
       )}
-      
+      {mounted && theme === 'light' && (
+        <DotPattern
+          baseColor="#64748B"
+          glowColor="#64748B"
+          dotSize={1.8}
+          gap={28}
+          proximity={100}
+          glowIntensity={2.2}
+          waveSpeed={0.3}
+          scatterStrength={4}
+          variant="light"
+        />
+      )}
+
       <ProfileProvider>
         <RecentQuestionsProvider>
           <StudentHeader />
-          
+
           <main className="flex-1 overflow-y-auto custom-scrollbar relative z-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
             {children}
           </main>
-          
+
           <RecentQuestionsSidebar />
           <Footer />
         </RecentQuestionsProvider>

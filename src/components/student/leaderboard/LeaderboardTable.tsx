@@ -11,7 +11,8 @@ export function LeaderboardTable({
   data, loading, error,
   page, limit, setPage, setLimit,
   selectedCity,
-  mode = 'admin'
+  mode = 'admin',
+  currentUsername
 }: LeaderboardTableProps) {
   const leaderboard = data?.leaderboard || [];
   const totalRecords = data?.total || 0;
@@ -61,7 +62,7 @@ export function LeaderboardTable({
                 </TableRow>
               ) : ( 
                 leaderboard.map((entry: LeaderboardEntry) => (
-                  <LeaderboardTableRow key={entry.student_id || entry.username} entry={entry}  selectedCity={selectedCity} />
+                  <LeaderboardTableRow key={entry.student_id || entry.username} entry={entry}  selectedCity={selectedCity} currentUsername={currentUsername} />
                 ))
               )}
             </TableBody>

@@ -28,6 +28,8 @@ export interface DotPatternProps {
   glowZIndex?: number
   /** Scatter/repulsion force strength (0 = disabled, 4–8 feels good) */
   scatterStrength?: number
+  /** Theme variant — controls vignette overlay */
+  variant?: 'dark' | 'light'
 }
 
 function hexToRgb(hex: string): { r: number; g: number; b: number } {
@@ -69,6 +71,7 @@ export function DotPattern({
   dotZIndex = 1,
   glowZIndex = 2,
   scatterStrength = 0,
+  variant = 'dark',
 }: DotPatternProps) {
   const canvasRef      = useRef<HTMLCanvasElement>(null)
   const glowCanvasRef  = useRef<HTMLCanvasElement>(null)
@@ -299,7 +302,9 @@ export function DotPattern({
         className="pointer-events-none absolute inset-0"
         style={{
           zIndex: 3,
-          background: "radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(10,10,10,0.6) 100%)",
+          background: variant === 'light'
+            ? "radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(248,250,252,0.5) 80%, rgba(248,250,252,1) 100%)"
+            : "radial-gradient(ellipse at center, transparent 0%, transparent 40%, rgba(10,10,10,0.6) 100%)",
         }}
       />
       {children && (

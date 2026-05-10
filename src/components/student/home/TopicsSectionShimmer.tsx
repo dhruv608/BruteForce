@@ -5,7 +5,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 export function TopicsSectionShimmer() {
   return (
-    <section className="mx-auto max-w-[1400px] w-full px-6 lg:px-10 py-16">
+    <div className="mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-10 py-10">
       {/* Topics Grid Shimmer Only - Header is handled by TopicsSection */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {Array.from({ length: 8 }).map((_, idx) => (
@@ -46,6 +46,6 @@ export function TopicsSectionShimmer() {
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

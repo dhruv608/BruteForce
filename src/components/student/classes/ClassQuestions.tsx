@@ -44,73 +44,65 @@ export function ClassQuestions({ questions, onRefresh }: ClassQuestionsProps) {
     }
   };
 
- return (
-  <>
-    <div className="rounded-2xl glass  bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-3xl p-5 sm:p-6 shadow-sm">
+  return (
+    <>
+      <div className="rounded-2xl glass  bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-3xl p-5 sm:p-4 shadow-sm ">
 
-      {/* HEADER */}
-      <div className="flex items-center gap-3 mb-6">
-        <h2 className="text-sm font-mono font-medium text-muted-foreground tracking-widest uppercase">
-          Assigned Questions
-        </h2>
 
-        
+        {/* LIST */}
+        <div className="flex flex-col gap-3">
+
+          {questions.length > 0 ? (
+            questions.map((q: PracticeQuestion, idx: number) => (
+              <div
+                key={q.id}
+                className=" transition-all duration-200 animate-in fade-in slide-in-from-bottom-2"
+                style={{
+                  animationDelay: `${idx * 40}ms`,
+                  animationFillMode: 'both',
+                }}
+              >
+                <QuestionRow
+                  questionName={q.question_name || q.questionName || 'Unknown Question'}
+                  platform={q.platform || 'Unknown'}
+                  level={q.level || 'EASY'}
+                  type={q.type || 'CLASSWORK'}
+                  isSolved={q.isSolved || false}
+                  link={q.question_link || q.questionLink || ''}
+                  questionId={Number(q.id)}
+                  isBookmarked={q.isBookmarked || false}
+                  onBookmarkClick={handleBookmarkClick}
+                />
+              </div>
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center py-14 text-center rounded-2xl ">
+              <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
+              <div className="font-semibold text-foreground mb-1">
+                No questions assigned
+              </div>
+              <div className="text-[13px] text-muted-foreground">
+                Once questions are added, they’ll appear here.
+              </div>
+            </div>
+          )}
+
+        </div>
       </div>
 
-      {/* LIST */}
-      <div className="flex flex-col gap-3">
-
-        {questions.length > 0 ? (
-          questions.map((q: PracticeQuestion, idx: number) => (
-            <div
-              key={q.id}
-              className=" transition-all duration-200 animate-in fade-in slide-in-from-bottom-2"
-              style={{
-                animationDelay: `${idx * 40}ms`,
-                animationFillMode: 'both',
-              }}
-            >
-              <QuestionRow
-                questionName={q.question_name || q.questionName || 'Unknown Question'}
-                platform={q.platform || 'Unknown'}
-                level={q.level || 'EASY'}
-                type={q.type || 'CLASSWORK'}
-                isSolved={q.isSolved || false}
-                link={q.question_link || q.questionLink || ''}
-                questionId={Number(q.id)}
-                isBookmarked={q.isBookmarked || false}
-                onBookmarkClick={handleBookmarkClick}
-              />
-            </div>
-          ))
-        ) : (
-          <div className="flex flex-col items-center justify-center py-14 text-center rounded-2xl glass backdrop-blur-sm p-10">
-            <DotLottieReact src="/Empty.json" loop autoplay className="w-40 h-40" />
-            <div className="font-semibold text-foreground mb-1">
-              No questions assigned
-            </div>
-            <div className="text-[13px] text-muted-foreground">
-              Once questions are added, they’ll appear here.
-            </div>
-          </div>
-        )}
-
-      </div>
-    </div>
-
-    {/* Bookmark Modal */}
-    {bookmarkModal.question && (
-      <BookmarkModal
-        isOpen={bookmarkModal.isOpen}
-        onClose={() =>
-          setBookmarkModal({ isOpen: false, question: null })
-        }
-        question={bookmarkModal.question}
-        onSubmit={handleBookmarkSubmit}
-        loading={loading}
-      />
-    )}
-  </>
-);
+      {/* Bookmark Modal */}
+      {bookmarkModal.question && (
+        <BookmarkModal
+          isOpen={bookmarkModal.isOpen}
+          onClose={() =>
+            setBookmarkModal({ isOpen: false, question: null })
+          }
+          question={bookmarkModal.question}
+          onSubmit={handleBookmarkSubmit}
+          loading={loading}
+        />
+      )}
+    </>
+  );
 }
 

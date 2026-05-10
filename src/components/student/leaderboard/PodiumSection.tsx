@@ -5,7 +5,7 @@ import { PodiumCard } from "./PodiumCard";
 import { PodiumShimmer } from "./PodiumShimmer";
 import { PodiumSectionProps } from '@/types/student/index.types';
 
-export default function PodiumSection({ top3, loading, selectedCity, onCardDragged }: PodiumSectionProps) {
+export default function PodiumSection({ top3, loading, selectedCity, onCardDragged, currentUsername }: PodiumSectionProps) {
   if (loading) {
     return <PodiumShimmer />;
   }
@@ -29,6 +29,7 @@ export default function PodiumSection({ top3, loading, selectedCity, onCardDragg
           student={top3?.[1]}
           rank={isGlobalView ? (top3?.[1]?.global_rank || 2) : (top3?.[1]?.city_rank || 2)}
           onDragStart={onCardDragged}
+          currentUsername={currentUsername}
         />
 
         {/* Rank 1 (Center Hero) */}
@@ -37,6 +38,7 @@ export default function PodiumSection({ top3, loading, selectedCity, onCardDragg
           rank={isGlobalView ? (top3?.[0]?.global_rank || 1) : (top3?.[0]?.city_rank || 1)}
           isCenter
           onDragStart={onCardDragged}
+          currentUsername={currentUsername}
         />
 
         {/* Rank 3 */}
@@ -44,6 +46,7 @@ export default function PodiumSection({ top3, loading, selectedCity, onCardDragg
           student={top3?.[2]}
           rank={isGlobalView ? (top3?.[2]?.global_rank || 3) : (top3?.[2]?.city_rank || 3)}
           onDragStart={onCardDragged}
+          currentUsername={currentUsername}
         />
 
       </div>
