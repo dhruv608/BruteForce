@@ -26,10 +26,10 @@ export const LeaderboardTableRow: React.FC<LeaderboardTableRowProps> = ({ entry,
         <div className="flex flex-row items-center gap-3">
           <div className={`w-10 h-10 rounded-full overflow-hidden border border-border shadow-sm group-hover:border-primary/50 transition-colors`}>
             {entry.profile_image_url ?
-              <Image 
-                src={entry.profile_image_url || ''} 
-                alt={entry.name || entry.username || 'Student'} 
-                width={40} 
+              <Image
+                src={entry.profile_image_url || ''}
+                alt={entry.name || entry.username || 'Student'}
+                width={40}
                 height={40}
                 className="w-full h-full object-cover"
                 loading="eager"
@@ -64,7 +64,7 @@ export const LeaderboardTableRow: React.FC<LeaderboardTableRowProps> = ({ entry,
       </TableCell>
 
       <TableCell className="text-center">
-        <span className="font-black text-primary text-xl tracking-tight ">{entry.score}</span>
+        <span className="font-bold text-logo  tracking-tight ">{entry.score}</span>
       </TableCell>
 
       <TableCell className="text-center">
