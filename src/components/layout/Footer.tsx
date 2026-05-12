@@ -7,7 +7,7 @@ import Logo from '@/components/Logo';
 export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background/95 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
         <Link
           href="/"
           aria-label="BruteForce home"

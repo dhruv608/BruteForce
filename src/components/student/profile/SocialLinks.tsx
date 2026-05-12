@@ -60,7 +60,7 @@ export function SocialLinks({ student, canEdit, onEditSocialLinks }: SocialLinks
           </div>
           <div className="flex-1">
             <div className="font-bold text-[var(--text-sm)] text-[var(--foreground)]">LinkedIn</div>
-            <div className="font-mono text-[var(--text-xs)] text-[var(--text-secondary)]">{student.linkedin ? 'Connected' : 'Not linked'}</div>
+            <div className="font-mono text-[var(--text-xs)] text-[var(--text-secondary)]">{student.linkedin ? 'Connected' : 'Not connected'}</div>
           </div>
           {student.linkedin && (
             <ExternalLink className="w-4 h-4 text-logo hover:text-logo/80 transition-colors duration-200" />

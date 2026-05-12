@@ -165,7 +165,7 @@ export default function StudentHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 h-16 flex items-center lg:px-10 bg-background/80 backdrop-blur-md border-b border-border/40 shadow-sm">
+      <header className="sticky top-0 z-50 h-16 flex items-center lg:px-10 bg-background/80 backdrop-blur-md border-b border-border/20 shadow-sm">
         <div className="max-w-7xl mx-auto w-full flex items-center justify-between">
 
           {/* Left Side - Hamburger Menu + Logo */}
@@ -280,8 +280,11 @@ export default function StudentHeader() {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <button
-                        className=" relative w-10 h-10 rounded-full border-2 border-border/50 hover:border-accent-primary/50 focus:outline-none transition-all duration-200 hover:scale-105  overflow-hidden"
-                        style={{ borderRadius: 'var(--radius-full)', borderColor: 'var(--border)' }}
+                        className={`relative w-10 h-10 rounded-full border-2  transition-all duration-200 hover:scale-105 overflow-hidden ${pathname.startsWith('/profile') || pathname.startsWith('/bookmarks')
+                          ? 'border-logo shadow-[0_0_15px_var(--hover-glow)]'
+                          : 'border-border/50 '
+                          }`}
+                        style={{ borderRadius: 'var(--radius-full)' }}
                       >
                         {profile.profileImageUrl ? (
                           <Image src={profile.profileImageUrl} alt="Profile" width={40} height={40} quality={75} priority className="w-full h-full object-cover" />
@@ -318,20 +321,26 @@ export default function StudentHeader() {
                       <DropdownMenuSeparator className="border border-border/20 my-1" />
 
                       {/* PROFILE BUTTON */}
-                      <DropdownMenuItem asChild className="cursor-pointer rounded-2xl border border-border/30 shadow-sm mb-1 text-sm p-3">
+                      <DropdownMenuItem asChild className={`cursor-pointer rounded-2xl mb-1 text-sm p-3 transition-all duration-200 font-bold ${pathname.startsWith('/profile')
+                        ? 'border-primary bg-primary text-primary-foreground focus:bg-primary focus:text-primary-foreground shadow-[0_0_15px_var(--hover-glow)]'
+                        : 'shadow-sm text-muted-foreground hover:text-foreground focus:text-foreground hover:bg-transparent focus:bg-transparent'
+                        }`}>
                         <Link
                           href={profile.username ? `/profile/${profile.username}` : '/profile'}
                           className="flex items-center gap-2"
                         >
-                          <User className="w-4 h-4" />
+                          <User className="w-4 h-4" strokeWidth={3} />
                           My Profile
                         </Link>
                       </DropdownMenuItem>
 
                       {/* BOOKMARKS BUTTON */}
-                      <DropdownMenuItem asChild className="cursor-pointer border border-border/30 shadow-sm rounded-2xl text-sm p-3">
+                      <DropdownMenuItem asChild className={`cursor-pointer rounded-2xl text-sm p-3 transition-all duration-200 font-bold ${pathname.startsWith('/bookmarks')
+                        ? 'border-primary bg-primary text-primary-foreground focus:bg-primary focus:text-primary-foreground shadow-[0_0_15px_var(--hover-glow)]'
+                        : 'shadow-sm text-muted-foreground hover:text-foreground focus:text-foreground hover:bg-transparent focus:bg-transparent'
+                        }`}>
                         <Link href="/bookmarks" className="flex items-center gap-2">
-                          <Bookmark className="w-4 h-4" />
+                          <Bookmark className="w-4 h-4" strokeWidth={3} />
                           My Bookmarks
                         </Link>
                       </DropdownMenuItem>
@@ -341,7 +350,7 @@ export default function StudentHeader() {
                       {/* LOGOUT */}
                       <DropdownMenuItem
                         onClick={handleLogout}
-                        className="cursor-pointer rounded-2xl border border-border/30 shadow-sm p-3 text-sm text-destructive"
+                        className="cursor-pointer rounded-2xl  shadow-sm p-3 text-sm  text-destructive"
                       >
                         <LogOut className="w-4 h-4 mr-2" />
                         Log out

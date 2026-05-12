@@ -14,11 +14,11 @@ import { useDebouncedValue } from '@/hooks/useDebouncedValue';
 import { SyncTime } from '@/lib/utils/cronUtils';
 
 export default function AdminLeaderboardClient({ syncSchedule = [] }: { syncSchedule?: SyncTime[] }) {
-  
+
   const searchParams = useSearchParams();
   const { selectedCity, selectedBatch, isLoadingContext } = useAdminStore();
   const [isInit, setIsInit] = useState(false);
-  
+
   const [allCities, setAllCities] = useState<Array<{ city_name: string, available_years: number[] }>>([]);
   const [allYears, setAllYears] = useState<number[]>([]);
   const [cityYearMap, setCityYearMap] = useState<Record<string, Set<number>>>({});
@@ -58,7 +58,7 @@ export default function AdminLeaderboardClient({ syncSchedule = [] }: { syncSche
   useEffect(() => {
     setPage(1);
   }, [debouncedSearch]);
-  
+
   // Refs for preventing double API calls
   const isFetchingLeaderboard = useRef(false);
   const lastFetchLeaderboardParams = useRef<{ city: string; year: number | undefined; page: number; limit: number; search: string }>({
@@ -242,7 +242,7 @@ export default function AdminLeaderboardClient({ syncSchedule = [] }: { syncSche
   }, [debouncedPage, debouncedLimit, lCity, lYear, debouncedSearch, isInit]);
 
 
- 
+
 
   const updateUrl = useCallback(() => {
     if (!isInit) return;
@@ -267,7 +267,7 @@ export default function AdminLeaderboardClient({ syncSchedule = [] }: { syncSche
   // TimerLeaderboard will handle the countdown display
 
   return (
-     <div className="flex flex-col mx-auto  w-full pb-12  -m-3">
+    <div className="flex flex-col mx-auto  w-full pb-12  -m-3">
       <AdminLeaderboardHeader
         lastCalculated={lastCalculated}
         syncSchedule={syncSchedule}
